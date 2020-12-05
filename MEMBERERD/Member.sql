@@ -25,7 +25,7 @@ DROP TABLE userMember CASCADE CONSTRAINTS;
 CREATE TABLE auth
 (
 	userName varchar2(50) NOT NULL,
-	-- ROLE_GEST
+	-- ROLE_GUEST
 	-- ROLE_MEMBER
 	-- ROLE_ADMIN
 	authority varchar2(50) DEFAULT 'ROLE_MEMBER' NOT NULL,
@@ -39,6 +39,7 @@ CREATE TABLE userMember
 	userPassword varchar2(200) NOT NULL,
 	userRealPassword varchar2(50) NOT NULL,
 	userNickName varchar2(50) NOT NULL,
+	userRegDate timestamp DEFAULT SYSDATE,
 	enabled char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (userName)
 );
@@ -86,18 +87,22 @@ u.userName as username,
 u.userPassword as password,
 u.userRealPassword as realPassword,
 u.userNickName as nickName,
+u.userRegDate as regDate,
 u.enabled,
 a.authority
 FROM userMember u, auth a
-WHERE u.userName = a.userName;
+WHERE u.userName = a.userName
+ORDER BY regDate ASC;
 
 
 
 /* Comments */
 
-COMMENT ON COLUMN auth.authority IS 'ROLE_GEST
+COMMENT ON COLUMN auth.authority IS 'ROLE_GUEST
 ROLE_MEMBER
 ROLE_ADMIN';
+
+
 
 INSERT INTO userMember(userName,userPassword ,userRealPassword,userNickName) VALUES('admin', '$2a$10$.ty2lbI.rSz7bjpmWXRop.S5SZZPGzNQuKmPFDgHscDhjijAPlhai', '0000', '운영자');
 INSERT INTO auth VALUES('admin', 'ROLE_ADMIN');
@@ -108,3 +113,4 @@ INSERT INTO userMember(userName,userPassword ,userRealPassword,userNickName) VAL
 commit;
 SELECT * FROM usermember;
 SELECT * FROM auth;
+SELECT * FROM userView;
