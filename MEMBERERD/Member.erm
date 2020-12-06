@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-12-06 03:39:32</creation_date>
-			<updated_date>2020-12-06 06:57:54</updated_date>
+			<updated_date>2020-12-06 19:30:46</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -212,28 +212,12 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
-			<logical_name>회원 아이디</logical_name>
-			<physical_name>userName</physical_name>
+			<logical_name>회원 닉네임</logical_name>
+			<physical_name>nickname</physical_name>
 			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>3</id>
-			<length>50</length>
-			<decimal>null</decimal>
-			<array>false</array>
-			<array_dimension>null</array_dimension>
-			<unsigned>false</unsigned>
-			<zerofill>false</zerofill>
-			<binary>false</binary>
-			<args></args>
-			<char_semantics>false</char_semantics>
-			<description></description>
-			<logical_name>회원 닉네임</logical_name>
-			<physical_name>userNickName</physical_name>
-			<type>varchar(n)</type>
-		</word>
-		<word>
-			<id>4</id>
 			<length>200</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -245,11 +229,11 @@
 			<char_semantics>false</char_semantics>
 			<description></description>
 			<logical_name>회원 비밀번호</logical_name>
-			<physical_name>userPassword</physical_name>
+			<physical_name>password</physical_name>
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>5</id>
+			<id>4</id>
 			<length>50</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -261,11 +245,11 @@
 			<char_semantics>false</char_semantics>
 			<description></description>
 			<logical_name>회원 비밀번호(No encoding)</logical_name>
-			<physical_name>userRealPassword</physical_name>
+			<physical_name>realPassword</physical_name>
 			<type>varchar(n)</type>
 		</word>
 		<word>
-			<id>6</id>
+			<id>5</id>
 			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
@@ -277,63 +261,77 @@
 			<char_semantics>false</char_semantics>
 			<description></description>
 			<logical_name>회원가입일</logical_name>
-			<physical_name>userRegDate</physical_name>
+			<physical_name>regDate</physical_name>
 			<type>timestamp</type>
+		</word>
+		<word>
+			<id>6</id>
+			<length>50</length>
+			<decimal>null</decimal>
+			<array>false</array>
+			<array_dimension>null</array_dimension>
+			<unsigned>false</unsigned>
+			<zerofill>false</zerofill>
+			<binary>false</binary>
+			<args></args>
+			<char_semantics>false</char_semantics>
+			<description></description>
+			<logical_name>회원 아이디</logical_name>
+			<physical_name>username</physical_name>
+			<type>varchar(n)</type>
 		</word>
 	</dictionary>
 	<tablespace_set>
 	</tablespace_set>
 	<contents>
-		<view>
-			<id>0</id>
-			<height>75</height>
-			<width>120</width>
-				<font_name>맑은 고딕</font_name>
-				<font_size>9</font_size>
-			<x>405</x>
-			<y>242</y>
-			<color>
-				<r>128</r>
-				<g>128</g>
-				<b>192</b>
-			</color>
-			<connections>
-			</connections>
-			<physical_name>userView</physical_name>
-			<logical_name>유저 and 권한 view</logical_name>
-			<description></description>
-			<sql>SELECT&#x0D;&#x0A;u.userName as username,&#x0D;&#x0A;u.userPassword as password,&#x0D;&#x0A;u.userRealPassword as realPassword,&#x0D;&#x0A;u.userNickName as nickName,&#x0D;&#x0A;u.userRegDate as regDate,&#x0D;&#x0A;u.enabled,&#x0D;&#x0A;a.authority&#x0D;&#x0A;FROM userMember u, auth a&#x0D;&#x0A;WHERE u.userName = a.userName&#x0D;&#x0A;ORDER BY regDate ASC</sql>
-			<columns>
-			</columns>
-			<view_properties>
-			<schema></schema>
-			</view_properties>
-		</view>
 		<table>
-			<id>1</id>
-			<height>170</height>
-			<width>280</width>
+			<id>0</id>
+			<height>-1</height>
+			<width>-1</width>
 				<font_name>맑은 고딕</font_name>
 				<font_size>9</font_size>
-			<x>72</x>
-			<y>60</y>
+			<x>408</x>
+			<y>72</y>
 			<color>
 				<r>128</r>
 				<g>128</g>
 				<b>192</b>
 			</color>
 			<connections>
+				<relation>
+					<id>0</id>
+					<source>1</source>
+					<target>0</target>
+						<source_xp>-1</source_xp>
+						<source_yp>-1</source_yp>
+						<target_xp>-1</target_xp>
+						<target_yp>-1</target_yp>
+						<color>
+							<r>0</r>
+							<g>0</g>
+							<b>0</b>
+						</color>
+					<child_cardinality>1..n</child_cardinality>
+					<parent_cardinality>1</parent_cardinality>
+					<reference_for_pk>true</reference_for_pk>
+					<name></name>
+					<on_delete_action>RESTRICT</on_delete_action>
+					<on_update_action>RESTRICT</on_update_action>
+					<referenced_column>null</referenced_column>
+					<referenced_complex_unique_key>null</referenced_complex_unique_key>
+				</relation>
 			</connections>
-			<physical_name>userMember</physical_name>
-			<logical_name>사용자(user) 테이블</logical_name>
+			<physical_name>auth</physical_name>
+			<logical_name>authority 권한 테이블</logical_name>
 			<description></description>
 			<constraint></constraint>
 			<primary_key_name></primary_key_name>
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>2</word_id>
 					<id>0</id>
+					<referenced_column>2</referenced_column>
+					<relation>0</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -341,6 +339,39 @@
 					<type>varchar(n)</type>
 					<constraint></constraint>
 					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>true</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>true</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>0</word_id>
+					<id>1</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value>ROLE_MEMBER</default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
@@ -364,41 +395,39 @@
 						<decimal_size>0</decimal_size>
 					</sequence>
 				</normal_column>
+			</columns>
+			<indexes>
+			</indexes>
+			<complex_unique_key_list>
+			</complex_unique_key_list>
+			<table_properties>
+				<schema></schema>
+			</table_properties>
+		</table>
+		<table>
+			<id>1</id>
+			<height>170</height>
+			<width>280</width>
+				<font_name>맑은 고딕</font_name>
+				<font_size>9</font_size>
+			<x>72</x>
+			<y>60</y>
+			<color>
+				<r>128</r>
+				<g>128</g>
+				<b>192</b>
+			</color>
+			<connections>
+			</connections>
+			<physical_name>usermember</physical_name>
+			<logical_name>사용자(user) 테이블</logical_name>
+			<description></description>
+			<constraint></constraint>
+			<primary_key_name></primary_key_name>
+			<option></option>
+			<columns>
 				<normal_column>
-					<word_id>4</word_id>
-					<id>1</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>varchar(n)</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<word_id>5</word_id>
+					<word_id>6</word_id>
 					<id>2</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -410,7 +439,7 @@
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
-					<primary_key>false</primary_key>
+					<primary_key>true</primary_key>
 					<unique_key>false</unique_key>
 					<character_set></character_set>
 					<collation></collation>
@@ -464,8 +493,74 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>6</word_id>
+					<word_id>4</word_id>
 					<id>4</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>2</word_id>
+					<id>5</id>
+					<description></description>
+					<unique_key_name></unique_key_name>
+					<logical_name></logical_name>
+					<physical_name></physical_name>
+					<type>varchar(n)</type>
+					<constraint></constraint>
+					<default_value></default_value>
+					<auto_increment>false</auto_increment>
+					<foreign_key>false</foreign_key>
+					<not_null>true</not_null>
+					<primary_key>false</primary_key>
+					<unique_key>false</unique_key>
+					<character_set></character_set>
+					<collation></collation>
+					<sequence>
+						<name></name>
+						<schema></schema>
+						<increment></increment>
+						<min_value></min_value>
+						<max_value></max_value>
+						<start></start>
+						<cache></cache>
+						<nocache>false</nocache>
+						<cycle>false</cycle>
+						<order>false</order>
+						<description></description>
+						<data_type></data_type>
+						<decimal_size>0</decimal_size>
+					</sequence>
+				</normal_column>
+				<normal_column>
+					<word_id>5</word_id>
+					<id>6</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -475,7 +570,7 @@
 					<default_value>SYSDATE</default_value>
 					<auto_increment>false</auto_increment>
 					<foreign_key>false</foreign_key>
-					<not_null>false</not_null>
+					<not_null>true</not_null>
 					<primary_key>false</primary_key>
 					<unique_key>false</unique_key>
 					<character_set></character_set>
@@ -498,7 +593,7 @@
 				</normal_column>
 				<normal_column>
 					<word_id>1</word_id>
-					<id>5</id>
+					<id>7</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
@@ -538,126 +633,6 @@
 				<schema></schema>
 			</table_properties>
 		</table>
-		<table>
-			<id>2</id>
-			<height>-1</height>
-			<width>-1</width>
-				<font_name>맑은 고딕</font_name>
-				<font_size>9</font_size>
-			<x>408</x>
-			<y>72</y>
-			<color>
-				<r>128</r>
-				<g>128</g>
-				<b>192</b>
-			</color>
-			<connections>
-				<relation>
-					<id>0</id>
-					<source>1</source>
-					<target>2</target>
-						<source_xp>-1</source_xp>
-						<source_yp>-1</source_yp>
-						<target_xp>-1</target_xp>
-						<target_yp>-1</target_yp>
-						<color>
-							<r>0</r>
-							<g>0</g>
-							<b>0</b>
-						</color>
-					<child_cardinality>1..n</child_cardinality>
-					<parent_cardinality>1</parent_cardinality>
-					<reference_for_pk>true</reference_for_pk>
-					<name></name>
-					<on_delete_action>RESTRICT</on_delete_action>
-					<on_update_action>RESTRICT</on_update_action>
-					<referenced_column>null</referenced_column>
-					<referenced_complex_unique_key>null</referenced_complex_unique_key>
-				</relation>
-			</connections>
-			<physical_name>auth</physical_name>
-			<logical_name>authority 권한 테이블</logical_name>
-			<description></description>
-			<constraint></constraint>
-			<primary_key_name></primary_key_name>
-			<option></option>
-			<columns>
-				<normal_column>
-					<id>6</id>
-					<referenced_column>0</referenced_column>
-					<relation>0</relation>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>varchar(n)</type>
-					<constraint></constraint>
-					<default_value></default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>true</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-				<normal_column>
-					<word_id>0</word_id>
-					<id>7</id>
-					<description></description>
-					<unique_key_name></unique_key_name>
-					<logical_name></logical_name>
-					<physical_name></physical_name>
-					<type>varchar(n)</type>
-					<constraint></constraint>
-					<default_value>ROLE_MEMBER</default_value>
-					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
-					<not_null>true</not_null>
-					<primary_key>true</primary_key>
-					<unique_key>false</unique_key>
-					<character_set></character_set>
-					<collation></collation>
-					<sequence>
-						<name></name>
-						<schema></schema>
-						<increment></increment>
-						<min_value></min_value>
-						<max_value></max_value>
-						<start></start>
-						<cache></cache>
-						<nocache>false</nocache>
-						<cycle>false</cycle>
-						<order>false</order>
-						<description></description>
-						<data_type></data_type>
-						<decimal_size>0</decimal_size>
-					</sequence>
-				</normal_column>
-			</columns>
-			<indexes>
-			</indexes>
-			<complex_unique_key_list>
-			</complex_unique_key_list>
-			<table_properties>
-				<schema></schema>
-			</table_properties>
-		</table>
 	</contents>
 	<column_groups>
 	</column_groups>
@@ -666,18 +641,6 @@
 	<sequence_set>
 	</sequence_set>
 	<trigger_set>
-		<trigger>
-			<name>DELETE_USER</name>
-			<schema></schema>
-			<sql>AFTER&#x0D;&#x0A;DELETE ON userMember&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;DECLARE&#x0D;&#x0A;BEGIN&#x0D;&#x0A;DELETE FROM auth WHERE userName = :OLD.userName;&#x0D;&#x0A;END</sql>
-			<description></description>
-		</trigger>
-		<trigger>
-			<name>INSERT_AUTH</name>
-			<schema></schema>
-			<sql>AFTER&#x0D;&#x0A;INSERT ON userMember&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;DECLARE&#x0D;&#x0A;BEGIN&#x0D;&#x0A;INSERT INTO auth(userName) VALUES(:NEW.userName);&#x0D;&#x0A;END</sql>
-			<description></description>
-		</trigger>
 	</trigger_set>
 	<change_tracking_list>
 	</change_tracking_list>
