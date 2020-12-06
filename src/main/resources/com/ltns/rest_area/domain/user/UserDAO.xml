@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ltns.rest_area.domain.user.UserDAO">
+
+	<insert id="joinUser" flushCache="true">
+		INSERT INTO 
+		userMember(username, password ,realpassword,nickname) 
+		VALUES(#{username}, #{passwword}, #{realpassword}, #{nickname})
+	</insert> 
+	<delete id="deleteUser" flushCache="true">
+		DELETE FROM userMember
+		WHERE username = #{username}
+	</delete>
+	<update id="updateUser" flushCache="true">
+		<![CDATA[
+			UPDATE userMember
+			SET
+			<choose>
+				<when test="password != null && password != ''
+					&& nickname == null || nickname == ''">
+					password = #{password}
+					WHERE username = #{username}
+				</when>
+				<when test="nickname != null && nickname != ''
+					&& password == null || password == ''">
+					nickname = #{nickname}
+					WHERE username = #{username}
+				</when>
+				<otherwise>
+					password = #{password},
+					nickname = #{nickname}
+					WHERE username = #{username}
+				</otherwise>
+			</choose>
+		]]>
+	</update>
+	<select id="allUserList" resultType="com.ltns.rest_area.domain.user.UserDTO">
+		SELECT username, nickname, regdate
+		FROM userMember
+	</select>
+	<select id="loginUserFindByUid" resultType="com.ltns.rest_area.domain.user.UserDTO">
+		SELECT username, password, enabled
+		FROM userMember
+	</select>
+	<select id="myPageFindByUid" resultType="com.ltns.rest_area.domain.user.UserDTO">
+		SELECT username, password, nickname, regdate
+		FROM userMember
+	</select>
+
+</mapper>
