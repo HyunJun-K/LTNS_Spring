@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ltns.rest_area.domain.rest_area.RestAreaDAO">
+<mapper namespace="com.ltns.rest_area.domain.restarea.RestAreaDAO">
 
 	<insert id="insertByDTO" flushCache="true" parameterType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		INSERT INTO RestArea
