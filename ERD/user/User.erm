@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-12-06 03:39:32</creation_date>
-			<updated_date>2020-12-07 02:18:17</updated_date>
+			<updated_date>2020-12-07 20:20:48</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -181,7 +181,7 @@
 			<char_semantics>false</char_semantics>
 			<description>ROLE_GUEST&#x0D;&#x0A;ROLE_MEMBER&#x0D;&#x0A;ROLE_ADMIN</description>
 			<logical_name>권한</logical_name>
-			<physical_name>authority</physical_name>
+			<physical_name>au_authority</physical_name>
 			<type>varchar(n)</type>
 		</word>
 		<word>
@@ -197,7 +197,7 @@
 			<char_semantics>false</char_semantics>
 			<description></description>
 			<logical_name>보안사용여부</logical_name>
-			<physical_name>enabled</physical_name>
+			<physical_name>um_enabled</physical_name>
 			<type>character(n)</type>
 		</word>
 		<word>
@@ -213,7 +213,7 @@
 			<char_semantics>false</char_semantics>
 			<description></description>
 			<logical_name>회원 닉네임</logical_name>
-			<physical_name>nickname</physical_name>
+			<physical_name>um_nickname</physical_name>
 			<type>varchar(n)</type>
 		</word>
 		<word>
@@ -229,12 +229,12 @@
 			<char_semantics>false</char_semantics>
 			<description></description>
 			<logical_name>회원 비밀번호</logical_name>
-			<physical_name>password</physical_name>
+			<physical_name>um_password</physical_name>
 			<type>varchar(n)</type>
 		</word>
 		<word>
 			<id>4</id>
-			<length>50</length>
+			<length>null</length>
 			<decimal>null</decimal>
 			<array>false</array>
 			<array_dimension>null</array_dimension>
@@ -244,9 +244,9 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
-			<logical_name>회원 비밀번호(No encoding)</logical_name>
-			<physical_name>realPassword</physical_name>
-			<type>varchar(n)</type>
+			<logical_name>회원가입일</logical_name>
+			<physical_name>um_regDate</physical_name>
+			<type>timestamp</type>
 		</word>
 		<word>
 			<id>5</id>
@@ -260,9 +260,9 @@
 			<args></args>
 			<char_semantics>false</char_semantics>
 			<description></description>
-			<logical_name>회원가입일</logical_name>
-			<physical_name>regDate</physical_name>
-			<type>timestamp</type>
+			<logical_name>회원 고유 번호</logical_name>
+			<physical_name>um_uid</physical_name>
+			<type>decimal</type>
 		</word>
 		<word>
 			<id>6</id>
@@ -277,7 +277,7 @@
 			<char_semantics>false</char_semantics>
 			<description></description>
 			<logical_name>회원 아이디</logical_name>
-			<physical_name>username</physical_name>
+			<physical_name>um_username</physical_name>
 			<type>varchar(n)</type>
 		</word>
 	</dictionary>
@@ -329,18 +329,17 @@
 			<option></option>
 			<columns>
 				<normal_column>
+					<word_id>0</word_id>
 					<id>0</id>
-					<referenced_column>2</referenced_column>
-					<relation>0</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
 					<type>varchar(n)</type>
 					<constraint></constraint>
-					<default_value></default_value>
+					<default_value>ROLE_MEMBER</default_value>
 					<auto_increment>false</auto_increment>
-					<foreign_key>true</foreign_key>
+					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>true</primary_key>
 					<unique_key>false</unique_key>
@@ -363,17 +362,18 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>0</word_id>
 					<id>1</id>
+					<referenced_column>2</referenced_column>
+					<relation>0</relation>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>decimal</type>
 					<constraint></constraint>
-					<default_value>ROLE_MEMBER</default_value>
+					<default_value></default_value>
 					<auto_increment>false</auto_increment>
-					<foreign_key>false</foreign_key>
+					<foreign_key>true</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>true</primary_key>
 					<unique_key>false</unique_key>
@@ -427,16 +427,16 @@
 			<option></option>
 			<columns>
 				<normal_column>
-					<word_id>6</word_id>
+					<word_id>5</word_id>
 					<id>2</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
 					<logical_name></logical_name>
 					<physical_name></physical_name>
-					<type>varchar(n)</type>
+					<type>decimal</type>
 					<constraint></constraint>
 					<default_value></default_value>
-					<auto_increment>false</auto_increment>
+					<auto_increment>true</auto_increment>
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>true</primary_key>
@@ -460,7 +460,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>3</word_id>
+					<word_id>6</word_id>
 					<id>3</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -473,7 +473,7 @@
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
+					<unique_key>true</unique_key>
 					<character_set></character_set>
 					<collation></collation>
 					<sequence>
@@ -493,7 +493,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>4</word_id>
+					<word_id>3</word_id>
 					<id>4</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -559,7 +559,7 @@
 					</sequence>
 				</normal_column>
 				<normal_column>
-					<word_id>5</word_id>
+					<word_id>4</word_id>
 					<id>6</id>
 					<description></description>
 					<unique_key_name></unique_key_name>
@@ -639,8 +639,50 @@
 	<test_data_list>
 	</test_data_list>
 	<sequence_set>
+		<sequence>
+			<name>SEQ_usermember_uid</name>
+			<schema></schema>
+			<increment>1</increment>
+			<min_value></min_value>
+			<max_value></max_value>
+			<start>1</start>
+			<cache></cache>
+			<nocache>false</nocache>
+			<cycle>false</cycle>
+			<order>false</order>
+			<description></description>
+			<data_type></data_type>
+			<decimal_size>0</decimal_size>
+		</sequence>
+		<sequence>
+			<name>SEQ_usermember_um_uid</name>
+			<schema></schema>
+			<increment>1</increment>
+			<min_value></min_value>
+			<max_value></max_value>
+			<start>1</start>
+			<cache></cache>
+			<nocache>false</nocache>
+			<cycle>false</cycle>
+			<order>false</order>
+			<description></description>
+			<data_type></data_type>
+			<decimal_size>0</decimal_size>
+		</sequence>
 	</sequence_set>
 	<trigger_set>
+		<trigger>
+			<name>TRI_usermember_uid</name>
+			<schema></schema>
+			<sql>BEFORE INSERT ON usermember&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_usermember_uid.nextval&#x0D;&#x0A;&#x09;INTO :new.uid&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
+			<description></description>
+		</trigger>
+		<trigger>
+			<name>TRI_usermember_um_uid</name>
+			<schema></schema>
+			<sql>BEFORE INSERT ON usermember&#x0D;&#x0A;FOR EACH ROW&#x0D;&#x0A;BEGIN&#x0D;&#x0A;&#x09;SELECT SEQ_usermember_um_uid.nextval&#x0D;&#x0A;&#x09;INTO :new.um_uid&#x0D;&#x0A;&#x09;FROM dual;&#x0D;&#x0A;END</sql>
+			<description></description>
+		</trigger>
 	</trigger_set>
 	<change_tracking_list>
 	</change_tracking_list>

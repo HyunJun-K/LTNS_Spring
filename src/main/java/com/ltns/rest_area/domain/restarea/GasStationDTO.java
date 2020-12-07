@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class GasStationDTO implements DTO {
-	private int gs_code;
+	private int gs_uid;
 	private int ra_code;	//휴게소 코드(외래키)
-	private String ga_company;
-	private String ga_diesel;
-	private String ga_gasoline;
-	private String ga_lpg;
+	private String gs_company;
+	private String gs_diesel;
+	private String gs_gasoline;
+	private String gs_lpg;
 }
