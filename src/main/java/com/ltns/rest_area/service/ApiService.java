@@ -17,12 +17,18 @@ public class ApiService {
 	@Autowired
 	private SqlSession sqlSessionTemplate;
 	
+	public ApiService() {
+		System.out.println("과연?");
+	}
+	
 	@Transactional
 	public int insertByDTOs(DTO[] dtos) throws Exception {
 		int result=0;
+		System.out.println("a");
 		dao=sqlSessionTemplate.getMapper(RestAreaDAO.class);
-		
+		System.out.println("b");		
 		for(DTO dto : dtos ) {
+			System.out.println("c");
 			result=dao.insertByDTO(dto);
 			if(result==0) {
 				System.out.println("실패");

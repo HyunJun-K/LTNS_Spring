@@ -5,7 +5,6 @@
 	   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"
-<<<<<<< HEAD
 	p:driverClassName="oracle.jdbc.driver.OracleDriver" 
 	p:url="jdbc:oracle:thin:@localhost:1521:xe" 
 	p:username="ltns2" 
@@ -13,10 +12,6 @@
 	
 	<bean id="jdbcTemplate" 
 	class="org.springframework.jdbc.core.JdbcTemplate"
-=======
-	p:driverClassName="oracle.jdbc.driver.OracleDriver" p:url="jdbc:oracle:thin:@localhost:1521:xe" p:username="scott" p:password="tiger"/>
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate"
->>>>>>> branch 'master' of https://github.com/HyunJun-K/LTNS_Spring.git
 	p:dataSource-ref="dataSource"/>
 	
 	<bean id="platformTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
