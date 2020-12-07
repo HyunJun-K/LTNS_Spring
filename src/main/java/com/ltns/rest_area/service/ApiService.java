@@ -14,12 +14,8 @@ import com.ltns.rest_area.domain.restarea.RestAreaDAO;
 public class ApiService {
 	RestAreaDAO dao;
 	
-	private SqlSessionTemplate sqlSessionTemplate;
-	
 	@Autowired
-	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
-		this.sqlSessionTemplate = sqlSessionTemplate;
-	}
+	private SqlSessionTemplate sqlSessionTemplate;
 	
 	public ApiService() {
 		System.out.println("과연?");
