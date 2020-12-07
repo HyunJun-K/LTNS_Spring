@@ -41,7 +41,7 @@
 		<suspend_validator>false</suspend_validator>
 		<export_setting>
 			<export_ddl_setting>
-				<output_path>MEMBERERD\Member.sql</output_path>
+				<output_path>ERD\user\User.sql</output_path>
 				<encoding>UTF-8</encoding>
 				<line_feed>CR+LF</line_feed>
 				<is_open_after_saved>true</is_open_after_saved>
@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-12-06 03:39:32</creation_date>
-			<updated_date>2020-12-06 19:30:46</updated_date>
+			<updated_date>2020-12-07 02:18:17</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -539,7 +539,7 @@
 					<foreign_key>false</foreign_key>
 					<not_null>true</not_null>
 					<primary_key>false</primary_key>
-					<unique_key>false</unique_key>
+					<unique_key>true</unique_key>
 					<character_set></character_set>
 					<collation></collation>
 					<sequence>
