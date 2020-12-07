@@ -1,9 +1,7 @@
 
-/* Drop Triggers */
+/* Drop Views */
 
-DROP TRIGGER TRI_usermember_uid;
-DROP TRIGGER TRI_usermember_um_uid;
-
+DROP VIEW userView;
 
 
 /* Drop Tables */
@@ -15,7 +13,6 @@ DROP TABLE usermember CASCADE CONSTRAINTS;
 
 /* Drop Sequences */
 
-DROP SEQUENCE SEQ_usermember_uid;
 DROP SEQUENCE SEQ_usermember_um_uid;
 
 
@@ -23,7 +20,6 @@ DROP SEQUENCE SEQ_usermember_um_uid;
 
 /* Create Sequences */
 
-CREATE SEQUENCE SEQ_usermember_uid INCREMENT BY 1 START WITH 1;
 CREATE SEQUENCE SEQ_usermember_um_uid INCREMENT BY 1 START WITH 1;
 
 
@@ -35,9 +31,9 @@ CREATE TABLE auth
 	-- ROLE_GUEST
 	-- ROLE_MEMBER
 	-- ROLE_ADMIN
-	au_authority varchar2(50) DEFAULT 'ROLE_MEMBER' NOT NULL,
+	authority varchar2(50) DEFAULT 'ROLE_MEMBER' NOT NULL,
 	um_uid number NOT NULL,
-	PRIMARY KEY (au_authority, um_uid)
+	PRIMARY KEY (authority, um_uid)
 );
 
 
@@ -62,29 +58,16 @@ ALTER TABLE auth
 ;
 
 
+/* Create Views */
 
-/* Create Triggers */
-
-CREATE OR REPLACE TRIGGER TRI_usermember_uid BEFORE INSERT ON usermember
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_usermember_uid.nextval
-	INTO :new.uid
-	FROM dual;
-END;
-
-/
-
-CREATE OR REPLACE TRIGGER TRI_usermember_um_uid BEFORE INSERT ON usermember
-FOR EACH ROW
-BEGIN
-	SELECT SEQ_usermember_um_uid.nextval
-	INTO :new.um_uid
-	FROM dual;
-END;
-
-/
-
+CREATE OR REPLACE VIEW userView AS SELECT 
+um_username AS username,
+um_password AS passowrd,
+authority
+FROM userMember u
+JOIN auth a
+ON
+u.um_uid = a.um_uid;
 
 
 
@@ -96,3 +79,20 @@ ROLE_ADMIN';
 
 
 
+/* TestData */
+
+INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'admin', '$2a$10$.ty2lbI.rSz7bjpmWXRop.S5SZZPGzNQuKmPFDgHscDhjijAPlhai',  '운영자');
+INSERT INTO auth(um_uid) VALUES(1);
+INSERT INTO auth VALUES('ROLE_ADMIN', 1);
+INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'hogn', '$2a$10$QneCaQwCDQIWEnnYT64/pOk.88K91rDL81LlZ4NxAzdJtRXiNMOoq',  '홍성혁');
+INSERT INTO auth(um_uid) VALUES(2);
+INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'hyun', '$2a$10$6s1NtNSY3BEULN7krTuw3OfECZYR0WdICc/HYzRLVdK4ZiDR337nG',  '김현준');
+INSERT INTO auth(um_uid) VALUES(3);
+INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'hwi', '$2a$10$suS4tGXX5zhdBGln/5QfXutWjpe6VwNRN2mee9FZ52Z7KWdf35jwi',  '김휘진');
+INSERT INTO auth(um_uid) VALUES(4);
+INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'park', '$2a$10$5Yy/c52u4Ped7j11mMxKEeuHAIRHjiZyg5NyltWqpW5MGIh6zk/Ky', '박성언');
+INSERT INTO auth(um_uid) VALUES(5);
+commit;
+SELECT * FROM usermember;
+SELECT * FROM auth;
+SELECT * FROM userView;
