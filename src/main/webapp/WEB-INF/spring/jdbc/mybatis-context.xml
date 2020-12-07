@@ -2,13 +2,12 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
     <bean name="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
-    <property name="mapperLocations" value="classpath:com/ltns/rest_area/domain/**/*.xml"/>
-    	<beans:list>
-			<beans:value>classpath:mapper/*.xml</beans:value>
-		</beans:list>
-    <property name="dataSource" ref="dataSource"/>
+    	<property name="mapperLocations" value="classpath:com/ltns/rest_area/domain/**/*.xml"/>
+    	<property name="dataSource" ref="dataSource"/>
     </bean>
+    
     <bean name="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactoryBean"/>
     </bean>

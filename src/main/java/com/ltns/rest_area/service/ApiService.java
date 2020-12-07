@@ -1,6 +1,7 @@
 package com.ltns.rest_area.service;
 
 import org.apache.ibatis.session.SqlSession;
+import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,14 +15,20 @@ public class ApiService {
 	DAO dao;
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private SqlSession sqlSessionTemplate;
+	
+	public ApiService() {
+		System.out.println("과연?");
+	}
 	
 	@Transactional
 	public int insertByDTOs(DTO[] dtos) throws Exception {
 		int result=0;
-		dao=sqlSession.getMapper(RestAreaDAO.class);
-		
+		System.out.println("a");
+		dao=sqlSessionTemplate.getMapper(RestAreaDAO.class);
+		System.out.println("b");		
 		for(DTO dto : dtos ) {
+			System.out.println("c");
 			result=dao.insertByDTO(dto);
 			if(result==0) {
 				System.out.println("실패");
