@@ -1,6 +1,6 @@
 -- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
 
-DROP SEQUENCE UserMember_SEQ;
+DROP SEQUENCE SEQ_usermember_um_uid;
 DROP SEQUENCE Post_SEQ;
 DROP SEQUENCE Comment_SEQ;
 
@@ -16,90 +16,57 @@ DROP TABLE GS_like CASCADE CONSTRAINTS;
 DROP TABLE FM_like CASCADE CONSTRAINTS;
 DROP TABLE Post_like CASCADE CONSTRAINTS;
 
+DROP VIEW userView;
 
 
--- UserMember Table Create SQL
-CREATE TABLE UserMember
+
+/* Create Sequences */
+
+CREATE SEQUENCE SEQ_usermember_um_uid INCREMENT BY 1 START WITH 1;
+
+
+
+/* Create Tables */
+CREATE TABLE auth
 (
-    um_uid         INT             NOT NULL, 
-    um_username    VARCHAR2(20)    NOT NULL, 
-    um_password    VARCHAR2(20)    NOT NULL, 
-    um_name        VARCHAR2(20)    NOT NULL, 
-    um_regdate     TIMESTAMP       NOT NULL, 
-    um_enabled     CHAR(1)         NOT NULL, 
-    CONSTRAINT USERMEMBER_PK PRIMARY KEY (um_uid)
-)
-/
-
-CREATE SEQUENCE UserMember_SEQ
-START WITH 1
-INCREMENT BY 1;
-/
-
---CREATE OR REPLACE TRIGGER UserMember_AI_TRG
---BEFORE INSERT ON UserMember 
---REFERENCING NEW AS NEW FOR EACH ROW 
---BEGIN 
---    SELECT UserMember_SEQ.NEXTVAL
---    INTO :NEW.um_uid
---    FROM DUAL;
---END;
-/
-
---DROP TRIGGER UserMember_AI_TRG;
-/
-
---DROP SEQUENCE UserMember_SEQ;
-/
-
---COMMENT ON TABLE UserMember IS '사용자(user) 테이블'
---/
---
---COMMENT ON COLUMN UserMember.um_uid IS '회원 고유번호'
---/
---
---COMMENT ON COLUMN UserMember.um_username IS '아이디(이메일)'
---/
---
---COMMENT ON COLUMN UserMember.um_password IS '비밀번호'
---/
---
---COMMENT ON COLUMN UserMember.um_name IS '이름'
---/
---
---COMMENT ON COLUMN UserMember.um_regdate IS '가입일'
---/
---
---COMMENT ON COLUMN UserMember.um_enabled IS '보안 사용여부'
-/
-
-ALTER TABLE UserMember
-    ADD CONSTRAINT UC_um_username UNIQUE (um_username)
-/
+	-- ROLE_GUEST
+	-- ROLE_MEMBER
+	-- ROLE_ADMIN
+	authority varchar2(50) DEFAULT 'ROLE_MEMBER' NOT NULL,
+	um_uid number NOT NULL,
+	PRIMARY KEY (authority, um_uid)
+);
 
 
--- AUTH Table Create SQL
-CREATE TABLE AUTH
+CREATE TABLE usermember
 (
-    um_uid       INT             NOT NULL, 
-    authority    VARCHAR2(20)    NOT NULL
-)
-/
+	um_uid number NOT NULL,
+	um_username varchar2(50) NOT NULL UNIQUE,
+	um_password varchar2(200) NOT NULL,
+	um_nickname varchar2(50) NOT NULL UNIQUE,
+	um_regDate timestamp DEFAULT SYSDATE NOT NULL,
+	um_enabled char(1) DEFAULT '1' NOT NULL,
+	PRIMARY KEY (um_uid)
+);
 
---COMMENT ON TABLE AUTH IS 'Authority 권한 테이블'
---/
---
---COMMENT ON COLUMN AUTH.um_uid IS '회원 고유번호'
---/
---
---COMMENT ON COLUMN AUTH.authority IS '권한'
-/
 
-ALTER TABLE AUTH
-    ADD CONSTRAINT FK_AUTH_um_uid_UserMember_um_u FOREIGN KEY (um_uid)
-        REFERENCES UserMember (um_uid)
-/
 
+/* Create Foreign Keys */
+ALTER TABLE auth
+	ADD FOREIGN KEY (um_uid)
+	REFERENCES usermember (um_uid)
+;
+
+
+/* Create Views */
+CREATE OR REPLACE VIEW userView AS SELECT 
+um_username AS username,
+um_password AS passowrd,
+authority
+FROM userMember u
+JOIN auth a
+ON
+u.um_uid = a.um_uid;
 
 
 -- RestArea Table Create SQL
