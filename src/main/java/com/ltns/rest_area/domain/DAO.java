@@ -23,4 +23,5 @@ public interface DAO {
 	int deleteByInt(int i);
 	int deleteByDTO(DTO dto);
 	int deleteByObject(Object obj);
+	int deleteAll();
 }

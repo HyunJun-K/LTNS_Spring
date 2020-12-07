@@ -24,7 +24,6 @@ public class ApiController {
 			e.printStackTrace();
 			return ".";
 		}
-		
 		return ".";
 	}
 }

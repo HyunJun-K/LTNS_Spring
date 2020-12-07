@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class FoodMenuDTO implements DTO {
 	private int fm_id;	//고유 음식 아이디(기본키)
-	private int fm_code;	//음식 코드
+	private String fm_code;	//음식 코드
 	private int ra_code;	//휴게소 코드(외래키)
 	private String fm_name;	//음식 이름
 	private String fm_price; //음식 가격
