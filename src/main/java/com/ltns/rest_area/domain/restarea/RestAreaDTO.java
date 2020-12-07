@@ -14,7 +14,9 @@ import lombok.NoArgsConstructor;
 public class RestAreaDTO implements DTO{
 	private int ra_code;
 	private String ra_name;
-	private String ra_direction;
-	private String ra_route;
-	private String ra_comment;
+	
+	private String ra_routeNo;
+	private String ra_routeName;
+	private String ra_updownType;
+	private String ra_destination;
 }
