@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class GasStationDTO implements DTO {
 	private int gs_uid;
 	private int ra_code;	//휴게소 코드(외래키)
-	private String gs_company;
+	private String gs_company;	//정유소
 	private String gs_diesel;
 	private String gs_gasoline;
 	private String gs_lpg;
