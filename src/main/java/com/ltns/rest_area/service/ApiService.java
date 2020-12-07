@@ -12,10 +12,14 @@ import com.ltns.rest_area.domain.restarea.RestAreaDAO;
 
 @Service
 public class ApiService {
-	DAO dao;
+	RestAreaDAO dao;
+	
+	private SqlSessionTemplate sqlSessionTemplate;
 	
 	@Autowired
-	private SqlSession sqlSessionTemplate;
+	public void setSqlSessionTemplate(SqlSessionTemplate sqlSessionTemplate) {
+		this.sqlSessionTemplate = sqlSessionTemplate;
+	}
 	
 	public ApiService() {
 		System.out.println("과연?");
@@ -25,6 +29,8 @@ public class ApiService {
 	public int insertByDTOs(DTO[] dtos) throws Exception {
 		int result=0;
 		System.out.println("a");
+		System.out.println(sqlSessionTemplate);
+		System.out.println(sqlSessionTemplate.getMapper(RestAreaDAO.class));
 		dao=sqlSessionTemplate.getMapper(RestAreaDAO.class);
 		System.out.println("b");		
 		for(DTO dto : dtos ) {

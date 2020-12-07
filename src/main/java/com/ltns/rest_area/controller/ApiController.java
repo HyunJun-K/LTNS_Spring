@@ -14,10 +14,11 @@ public class ApiController {
 	@RequestMapping("/allapi")
 	public String requestAllApi() {
 		try {
-			new ApiService().insertByDTOs(new DTO[] {new RestAreaDTO().builder().ra_code(1).build()});
+			new ApiService().insertByDTOs(new DTO[] {new RestAreaDTO(1,"a","b","c","d","e","f")});
 		} catch (Exception e) {
 			System.out.println("db에러");
 			e.printStackTrace();
+			return ".";
 		}
 		
 		return ".";

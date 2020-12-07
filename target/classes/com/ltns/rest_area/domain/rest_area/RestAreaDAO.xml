@@ -2,11 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ltns.rest_area.domain.rest_area.RestAreaDAO">
 
-	<insert id="insertByDTO" flushCache="true">
+	<insert id="insertByDTO" flushCache="true" parameterType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		INSERT INTO RestArea
 			(ra_code, ra_name, ra_routeNo, ra_routeName, ra_updownType, ra_destination, ra_locName)
 		VALUES
 			(#{ra_code}, #{ra_name}, #{ra_routeNo}, #{ra_routeName}, #{ra_updownType}, #{ra_destination}, #{ra_locName})
 	</insert>
-
+	
 </mapper>
