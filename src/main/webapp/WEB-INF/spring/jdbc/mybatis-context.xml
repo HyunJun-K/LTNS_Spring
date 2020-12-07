@@ -4,6 +4,9 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
     <bean name="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
     <property name="mapperLocations" value="classpath:com/ltns/rest_area/domain/**/*.xml"/>
+    	<beans:list>
+			<beans:value>classpath:mapper/*.xml</beans:value>
+		</beans:list>
     <property name="dataSource" ref="dataSource"/>
     </bean>
     <bean name="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">

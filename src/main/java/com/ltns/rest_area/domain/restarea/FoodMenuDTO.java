@@ -15,6 +15,8 @@ public class FoodMenuDTO implements DTO {
 	private int fm_id;	//고유 음식 아이디(기본키)
 	private int fm_code;	//음식 코드
 	private int ra_code;	//휴게소 코드(외래키)
-	private String fm_name;
-	private String fm_price;
+	private String fm_name;	//음식 이름
+	private String fm_price; //음식 가격
+	private String fm_material;	//음식 재료
+	private String fm_etc;	//음식 상세 내역
 }

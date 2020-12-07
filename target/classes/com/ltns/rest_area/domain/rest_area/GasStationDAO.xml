@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ltns.rest_area.domain.rest_area.GasStationDAO">
+
+	<insert id="insertByDTO" flushCache="true">
+		INSERT INTO RestArea
+			( gs_uid, ra_code, gs_company, gs_diesel, gs_gasoline, gs_lpg )
+		VALUES
+			( #{gs_uid}, #{ra_code}, #{gs_company}, #{gs_diesel}, #{gs_gasoline}, #{gs_lpg} )
+	</insert>
+
+</mapper>
