@@ -3,7 +3,18 @@
 DROP SEQUENCE UserMember_SEQ;
 DROP SEQUENCE Post_SEQ;
 DROP SEQUENCE Comment_SEQ;
-DROP TABLE USER 
+
+DROP TABLE UserMember CASCADE CONSTRAINTS;
+DROP TABLE Auth CASCADE CONSTRAINTS;
+DROP TABLE RestArea CASCADE CONSTRAINTS;
+DROP TABLE GasStation CASCADE CONSTRAINTS;
+DROP TABLE FoodMenu CASCADE CONSTRAINTS;
+DROP TABLE Post CASCADE CONSTRAINTS;
+DROP TABLE Comment CASCADE CONSTRAINTS;
+DROP TABLE RA_like CASCADE CONSTRAINTS;
+DROP TABLE GS_like CASCADE CONSTRAINTS;
+DROP TABLE FM_like CASCADE CONSTRAINTS;
+DROP TABLE Post_like CASCADE CONSTRAINTS;
 
 
 
@@ -67,7 +78,31 @@ ALTER TABLE UserMember
 /
 
 
--- UserMember Table Create SQL
+-- AUTH Table Create SQL
+CREATE TABLE AUTH
+(
+    um_uid       INT             NOT NULL, 
+    authority    VARCHAR2(20)    NOT NULL
+)
+/
+
+--COMMENT ON TABLE AUTH IS 'Authority 권한 테이블'
+--/
+--
+--COMMENT ON COLUMN AUTH.um_uid IS '회원 고유번호'
+--/
+--
+--COMMENT ON COLUMN AUTH.authority IS '권한'
+/
+
+ALTER TABLE AUTH
+    ADD CONSTRAINT FK_AUTH_um_uid_UserMember_um_u FOREIGN KEY (um_uid)
+        REFERENCES UserMember (um_uid)
+/
+
+
+
+-- RestArea Table Create SQL
 CREATE TABLE RestArea
 (
     ra_code           INT             NOT NULL, 
@@ -106,7 +141,7 @@ CREATE TABLE RestArea
 --/
 
 
--- UserMember Table Create SQL
+-- Post Table Create SQL
 CREATE TABLE Post
 (
     post_id          INT               NOT NULL, 
@@ -180,7 +215,7 @@ ALTER TABLE Post
 /
 
 
--- UserMember Table Create SQL
+-- GasStation Table Create SQL
 CREATE TABLE GasStation
 (
     gs_id          INT             NOT NULL, 
@@ -220,7 +255,7 @@ ALTER TABLE GasStation
 /
 
 
--- UserMember Table Create SQL
+-- FoodMenu Table Create SQL
 CREATE TABLE FoodMenu
 (
     fm_id          INT               NOT NULL, 
@@ -264,7 +299,7 @@ ALTER TABLE FoodMenu
 /
 
 
--- UserMember Table Create SQL
+-- FM_like Table Create SQL
 CREATE TABLE FM_like
 (
     um_uid    INT    NOT NULL, 
@@ -292,7 +327,7 @@ ALTER TABLE FM_like
 /
 
 
--- UserMember Table Create SQL
+-- GS_like Table Create SQL
 CREATE TABLE GS_like
 (
     um_uid    INT    NOT NULL, 
@@ -320,7 +355,7 @@ ALTER TABLE GS_like
 /
 
 
--- UserMember Table Create SQL
+-- RA_like Table Create SQL
 CREATE TABLE RA_like
 (
     um_uid     INT    NOT NULL, 
@@ -348,7 +383,7 @@ ALTER TABLE RA_like
 /
 
 
--- UserMember Table Create SQL
+-- Post_like Table Create SQL
 CREATE TABLE Post_like
 (
     um_uid     INT    NOT NULL, 
@@ -376,30 +411,8 @@ ALTER TABLE Post_like
 /
 
 
--- UserMember Table Create SQL
-CREATE TABLE AUTH
-(
-    um_uid       INT             NOT NULL, 
-    authority    VARCHAR2(20)    NOT NULL
-)
-/
 
---COMMENT ON TABLE AUTH IS 'Authority 권한 테이블'
---/
---
---COMMENT ON COLUMN AUTH.um_uid IS '회원 고유번호'
---/
---
---COMMENT ON COLUMN AUTH.authority IS '권한'
-/
-
-ALTER TABLE AUTH
-    ADD CONSTRAINT FK_AUTH_um_uid_UserMember_um_u FOREIGN KEY (um_uid)
-        REFERENCES UserMember (um_uid)
-/
-
-
--- UserMember Table Create SQL
+-- Comment Table Create SQL
 CREATE TABLE Comment
 (
     comment_id          INT               NOT NULL, 
