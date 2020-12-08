@@ -4,9 +4,9 @@
 
 	<insert id="insertByDTO" flushCache="true"  parameterType="com.ltns.rest_area.domain.restarea.GasStationDTO">
 		INSERT INTO GasStation
-			( gs_uid, ra_code, gs_company, gs_diesel, gs_gasoline, gs_lpg )
+			( gs_code, gs_name, ra_code, gs_company, gs_diesel, gs_gasoline, gs_lpg )
 		VALUES
-			( #{gs_uid}, #{ra_code}, #{gs_company}, #{gs_diesel}, #{gs_gasoline}, #{gs_lpg} )
+			( #{gs_code}, #{gs_name}, #{ra_code}, #{gs_company}, #{gs_diesel}, #{gs_gasoline}, #{gs_lpg} )
 	</insert>
 
 

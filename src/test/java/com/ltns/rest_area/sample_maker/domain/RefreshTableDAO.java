@@ -35,9 +35,9 @@ public class RefreshTableDAO extends AbstractDAO {
 	
 	
 	//create
-	final static String CREATE_AUTH_TABLE="CREATE TABLE auth\r\n" + 
+	final static String CREATE_AUTH_TABLE="CREATE TABLE auth " + 
 			"( " + 
-			"	authority varchar2(50) DEFAULT 'ROLE_MEMBER' NOT NULL, " + 
+			"	authority varchar2(100) DEFAULT 'ROLE_MEMBER' NOT NULL, " + 
 			"	um_uid number NOT NULL, " + 
 			"	PRIMARY KEY (authority, um_uid) " + 
 			")";
@@ -45,9 +45,9 @@ public class RefreshTableDAO extends AbstractDAO {
 	final static String CREATE_USERMEMBER_TABLE="CREATE TABLE usermember " + 
 			"( " + 
 			"	um_uid number NOT NULL, " + 
-			"	um_username varchar2(50) NOT NULL UNIQUE, " + 
+			"	um_username varchar2(100) NOT NULL UNIQUE, " + 
 			"	um_password varchar2(200) NOT NULL, " + 
-			"	um_nickname varchar2(50) NOT NULL UNIQUE, " + 
+			"	um_nickname varchar2(100) NOT NULL UNIQUE, " + 
 			"	um_regDate timestamp DEFAULT SYSDATE NOT NULL, " + 
 			"	um_enabled char(1) DEFAULT '1' NOT NULL, " + 
 			"	PRIMARY KEY (um_uid) " + 
@@ -72,25 +72,26 @@ public class RefreshTableDAO extends AbstractDAO {
 	
 	final static String CREATE_RESTAREA_TABLE="CREATE TABLE RestArea " + 
 			"( " + 
-			"    ra_code           INT             NOT NULL,  " + 
-			"    ra_name           VARCHAR2(50)    NOT NULL,  " + 
-			"    ra_routeNo        VARCHAR2(50)    NOT NULL,  " + 
-			"    ra_routeName      VARCHAR2(50)    NOT NULL,  " + 
-			"    ra_updownType     VARCHAR2(50)    NOT NULL,  " + 
-			"    ra_destination    VARCHAR2(50)    NOT NULL,  " + 
-			"    ra_locName        VARCHAR2(50)    NOT NULL,  " + 
+			"    ra_code           VARCHAR2(100)    NOT NULL,  " + 
+			"    ra_name           VARCHAR2(100)    NOT NULL,  " + 
+			"    ra_routeNo        VARCHAR2(100)    NOT NULL,  " + 
+			"    ra_routeName      VARCHAR2(100)    NOT NULL,  " + 
+			"    ra_destination    VARCHAR2(100)    NOT NULL,  " + 
+			"    ra_xValue         VARCHAR2(100)    NOT NULL,  " + 
+			"    ra_yValue         VARCHAR2(100)    NOT NULL,  " + 
 			"    CONSTRAINT RESTAREA_PK PRIMARY KEY (ra_code) " + 
 			")";
 	
 	final static String CREATE_GASSTATION_TABLE="CREATE TABLE GasStation " + 
 			"( " + 
-			"    gs_id          INT             NOT NULL,  " + 
-			"    ra_code        INT             NOT NULL,  " + 
-			"    gs_company     VARCHAR2(50)    NOT NULL,  " + 
-			"    gs_diesel      VARCHAR2(50)    ,  " + 
-			"    gs_gasoline    VARCHAR2(50)    ,  " + 
-			"    gs_lpg         VARCHAR2(50)    ,  " + 
-			"    CONSTRAINT GASSTATION_PK PRIMARY KEY (gs_id) " + 
+			"    gs_code        VARCHAR2(100)    NOT NULL,  " + 
+			"    gs_name        VARCHAR2(100)    NOT NULL,  " + 
+			"    ra_code        VARCHAR2(100)    NOT NULL,  " + 
+			"    gs_company     VARCHAR2(100)    NOT NULL,  " + 
+			"    gs_diesel      VARCHAR2(100)    ,  " + 
+			"    gs_gasoline    VARCHAR2(100)    ,  " + 
+			"    gs_lpg         VARCHAR2(100)    ,  " + 
+			"    CONSTRAINT GASSTATION_PK PRIMARY KEY (gs_code) " + 
 			")";
 	
 	final static String ALTER_GASSTATION_RA_CODE_FOREIGN_KEY="ALTER TABLE GasStation " + 
@@ -99,13 +100,13 @@ public class RefreshTableDAO extends AbstractDAO {
 	
 	final static String CREATE_FOODMENU_TABLE="CREATE TABLE FoodMenu " + 
 			"( " + 
-			"    fm_id          INT               NOT NULL,  " + 
-			"    fm_code        VARCHAR2(50)      NOT NULL,  " + 
-			"    ra_code        INT               NOT NULL,  " + 
-			"    fm_name        VARCHAR2(50)      NOT NULL,  " + 
-			"    fm_price       VARCHAR2(50)      ,  " + 
-			"    fm_material    VARCHAR2(1000)    ,  " + 
-			"    fm_etc         VARCHAR2(1000)    ,  " + 
+			"    fm_id          VARCHAR2(100)      NOT NULL,  " + 
+			"    fm_code        VARCHAR2(100)      NOT NULL,  " + 
+			"    ra_code        VARCHAR2(100)      NOT NULL,  " + 
+			"    fm_name        VARCHAR2(100)      NOT NULL,  " + 
+			"    fm_price       VARCHAR2(100)      ,  " + 
+			"    fm_material    VARCHAR2(4000)    ,  " + 
+			"    fm_etc         VARCHAR2(4000)    ,  " + 
 			"    CONSTRAINT FOODMENU_PK PRIMARY KEY (fm_id) " + 
 			")";
 	
@@ -115,14 +116,14 @@ public class RefreshTableDAO extends AbstractDAO {
 	
 	final static String CREATE_POST_TABLE="CREATE TABLE Post " + 
 			"( " + 
-			"    post_id          INT               NOT NULL,  " + 
+			"    post_id          number            NOT NULL,  " + 
 			"    post_title       VARCHAR2(100)     NOT NULL,  " + 
 			"    post_contents    VARCHAR2(4000)    NOT NULL,  " + 
-			"    um_uid           INT               NOT NULL,  " + 
-			"    um_username      VARCHAR2(50)      NOT NULL,  " + 
+			"    um_uid           number            NOT NULL,  " + 
+			"    um_username      VARCHAR2(100)     NOT NULL,  " + 
 			"    post_regdate     TIMESTAMP         NOT NULL,  " + 
-			"    ra_code          INT               NOT NULL,  " + 
-			"    post_reported    VARCHAR2(50)      ,  " + 
+			"    ra_code          VARCHAR2(100)     NOT NULL,  " + 
+			"    post_reported    VARCHAR2(100)      ,  " + 
 			"    CONSTRAINT POST_PK PRIMARY KEY (post_id) " + 
 			")";
 	
@@ -141,8 +142,8 @@ public class RefreshTableDAO extends AbstractDAO {
 
 	final static String CREATE_RA_LIKE_TABLE="CREATE TABLE RA_like " + 
 			"( " + 
-			"    um_uid     INT    NOT NULL,  " + 
-			"    ra_code    INT    NOT NULL " + 
+			"    um_uid     number    NOT NULL,  " + 
+			"    ra_code    VARCHAR2(100)    NOT NULL " + 
 			")";
 	final static String ALTER_RA_LIKE_UM_UID_FOREIGN_KEY="ALTER TABLE RA_like " + 
 			"    ADD CONSTRAINT FK_RA_like_um_uid_UserMember_u FOREIGN KEY (um_uid) " + 
@@ -153,20 +154,20 @@ public class RefreshTableDAO extends AbstractDAO {
 	
 	final static String CREATE_GS_LIKE_TABLE="CREATE TABLE GS_like " + 
 			"( " + 
-			"    um_uid    INT    NOT NULL,  " + 
-			"    gs_id     INT    NOT NULL " + 
+			"    um_uid    number    NOT NULL,  " + 
+			"    gs_code     VARCHAR2(100)    NOT NULL " + 
 			")";
 	final static String ALTER_GS_LIKE_GS_ID_FOREIGN_KEY="ALTER TABLE GS_like " + 
-			"    ADD CONSTRAINT FK_GS_like_gs_id_GasStation_gs FOREIGN KEY (gs_id) " + 
-			"        REFERENCES GasStation (gs_id)";
+			"    ADD CONSTRAINT FK_GS_like_gs_id_GasStation_gs FOREIGN KEY (gs_code) " + 
+			"        REFERENCES GasStation (gs_code)";
 	final static String ALTER_GS_LIKE_UM_UID_FOREIGN_KEY="ALTER TABLE GS_like " + 
 			"    ADD CONSTRAINT FK_GS_like_um_uid_UserMember_u FOREIGN KEY (um_uid) " + 
 			"        REFERENCES UserMember (um_uid)";
 	
 	final static String CREATE_FM_LIKE_TABLE="CREATE TABLE FM_like " + 
 			"( " + 
-			"    um_uid    INT    NOT NULL, " + 
-			"    fm_id     INT    NOT NULL " + 
+			"    um_uid    number    NOT NULL, " + 
+			"    fm_id     VARCHAR2(100)    NOT NULL " + 
 			")";
 	final static String ALTER_FM_LIKE_FM_ID_FOREIGN_KEY="ALTER TABLE FM_like " + 
 			"    ADD CONSTRAINT FK_FM_like_fm_id_FoodMenu_fm_i FOREIGN KEY (fm_id) " + 
@@ -177,8 +178,8 @@ public class RefreshTableDAO extends AbstractDAO {
 	
 	final static String CREATE_POST_LIKE_TABLE="CREATE TABLE Post_like " + 
 			"( " + 
-			"    um_uid     INT    NOT NULL,  " + 
-			"    post_id    INT    NOT NULL " + 
+			"    um_uid     number    NOT NULL,  " + 
+			"    post_id    number    NOT NULL " + 
 			")";
 	final static String ALTER_POST_LIKE_POST_ID_FOREIGN_KEY="ALTER TABLE Post_like " + 
 			"    ADD CONSTRAINT FK_Post_like_post_id_Post_post FOREIGN KEY (post_id) " + 
@@ -190,13 +191,13 @@ public class RefreshTableDAO extends AbstractDAO {
 	
 	final static String CREATE_COMMENTS_TABLE="CREATE TABLE Comments " + 
 			"( " + 
-			"    comment_id          INT               NOT NULL,  " + 
-			"    comment_contents    VARCHAR2(2000)    NOT NULL,  " + 
-			"    um_uid              INT               NOT NULL,  " + 
-			"    um_username         VARCHAR2(50)      NOT NULL,  " + 
-			"    um_regdate          TIMESTAMP         NOT NULL,  " + 
-			"    post_id             INT               NOT NULL,  " + 
-			"    comment_reported    VARCHAR2(50)      ,  " + 
+			"    comment_id          number               NOT NULL,  " + 
+			"    comment_contents    VARCHAR2(2000)       NOT NULL,  " + 
+			"    um_uid              number               NOT NULL,  " + 
+			"    um_username         VARCHAR2(100)        NOT NULL,  " + 
+			"    um_regdate          TIMESTAMP            NOT NULL,  " + 
+			"    post_id             number               NOT NULL,  " + 
+			"    comment_reported    VARCHAR2(100)      ,  " + 
 			"    CONSTRAINT COMMENT_PK PRIMARY KEY (comment_id) " + 
 			")";
 	final static String ALTER_COMMENTS_POST_ID_FOREIGN_KEY="ALTER TABLE Comments " + 

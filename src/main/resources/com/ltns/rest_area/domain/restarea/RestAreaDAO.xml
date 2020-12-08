@@ -4,9 +4,9 @@
 
 	<insert id="insertByDTO" flushCache="true" parameterType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		INSERT INTO RestArea
-			(ra_code, ra_name, ra_routeNo, ra_routeName, ra_updownType, ra_destination, ra_locName)
+			(ra_code, ra_name, ra_routeNo, ra_routeName, ra_destination, ra_xValue, ra_yValue)
 		VALUES
-			(#{ra_code}, #{ra_name}, #{ra_routeNo}, #{ra_routeName}, #{ra_updownType}, #{ra_destination}, #{ra_locName})
+			(#{ra_code}, #{ra_name}, #{ra_routeNo}, #{ra_routeName}, #{ra_destination}, #{ra_xValue}, #{ra_yValue})
 	</insert>
 	
 	

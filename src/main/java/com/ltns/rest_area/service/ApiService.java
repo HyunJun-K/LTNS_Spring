@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 
@@ -40,8 +41,13 @@ public class ApiService {
 	
 	//고속도로 휴게소 기준정보 현황(위치)
 	final static String endpoint0="http://data.ex.co.kr/openapi/locationinfo/locationinfoRest";
+	//휴게소 이름 정리해놓은 해쉬맵을 만들어두기... 주유소 정보에 넣어야 한다...  ('휴게소'뺀 이름:휴게소코드)
+	
 	//주유소 가격, 업체 현황
 	final static String endpoint1="http://data.ex.co.kr/openapi/business/curStateStation";
+	//=> unitName에서 주유소를 잘라, 휴게소 코드를 가져와야 한다...
+	//휴게소 정리가 끝나고, 휴게소 이름 정리해놓은 해쉬맵을 활용하기!  ('휴게소'뺀 이름:휴게소코드)
+	
 	//휴게소 푸드메뉴현황 조회 서비스
 	final static String endpoint2="http://data.ex.co.kr/openapi/restinfo/restBestfoodList";
 	final static String serviceKey="2082754925";
@@ -54,42 +60,47 @@ public class ApiService {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	DAO dao;
+	DAO dao;	
 	
-	//api를 임시 저장할 경로
-	final static String pathname="./";
-	
+	/*전체 작업*/
 	public int refreshApiData() throws Exception {
 		//sqlSession 확인
 		System.out.println("sqlSession : "+sqlSession);
 
 		int result=0;
 		
+		//api 가져오기
 		getDTOFromJson();
 		
+		//기존 정보 날리기
 		result=deleteAllBeforeApiDataInDB();
 		
+		//새 정보 넣기
 		DTO[] dtos;
 		
 		dtos=new RestAreaDTO[rAdtos.size()];
 		rAdtos.toArray(dtos);
 		result=insertRestAreaByDTOs(dtos);
 		
-		dtos=new GasStationDTO[gSdtos.size()];
-		gSdtos.toArray(dtos);
-		result=insertGasStationByDTOs(dtos);
-		
-		dtos=new FoodMenuDTO[fMdtos.size()];
-		fMdtos.toArray(dtos);
-		result=insertFoodMenuByDTOs(dtos);
+//		dtos=new GasStationDTO[gSdtos.size()];
+//		gSdtos.toArray(dtos);
+//		result=insertGasStationByDTOs(dtos);
+//		
+//		dtos=new FoodMenuDTO[fMdtos.size()];
+//		fMdtos.toArray(dtos);
+//		result=insertFoodMenuByDTOs(dtos);
 		
 		return result;
 	}
 	
-	//api 가져오기
+	
+	/*api 가져오기*/
 	public int getDTOFromJson() throws Exception {
 		int result=0;
 		
+		/*휴게소 정보 (휴게소 코드 : ra_code, 휴게소 이름 : ra_name, 노선코드 : ra_routeNo, 노선명 : ra_routeName, 방향 : ra_destination, x좌표 : ra_xValue, y좌표 : ra_yValue)*/
+		//해쉬맵을 작성할것...
+		HashMap<String, String> ranameMap=new HashMap<String, String>(); //('휴게소'뺀 이름:휴게소코드)
 		String url=endpoint0+"?"+"key="+serviceKey+"&type="+type+"&numOfRows=99";
 		JSONParser jsonParser=new JSONParser();
 		JSONObject jsonObj0=(JSONObject)jsonParser.parse(readURL(url));
@@ -104,9 +115,23 @@ public class ApiService {
 			jsonObj0=(JSONObject)jsonParser.parse(readURL(url+"&pageNo="+i));
 			JSONArray array=(JSONArray)jsonObj0.get("list");
 			
+			//최대갯수로 페이지마다 죠지기
 			for(int j=0;j<array.size();j++) {
 				JSONObject row=(JSONObject)array.get(j);
+				String ra_code=(String)row.get("serviceAreaCode");
+				String ra_name=(String)row.get("unitName");
+				String ra_destination=ra_name.replaceAll("[^(]*[(]", "");
+				ra_destination=ra_destination.replaceAll("[)].*", "");
+				ra_name=ra_name.replaceAll("[(][^)]*[)]", "");
+
+				String ra_routeNo=(String)row.get("routeNo");
+				String ra_routeName=(String)row.get("routeName");
+				String ra_xValue=(String)row.get("xValue");
+				String ra_yValue=(String)row.get("yValue");
 				
+				ranameMap.put(ra_name.replaceAll("휴게소", ""), ra_code);
+				
+				rAdtos.add(new RestAreaDTO().builder().ra_code(ra_code).ra_name(ra_name).ra_routeNo(ra_routeNo).ra_routeName(ra_routeName).ra_destination(ra_destination).ra_xValue(ra_xValue).ra_yValue(ra_yValue).build());
 			}
 			
 		}
@@ -124,32 +149,6 @@ public class ApiService {
 		JSONArray array2=(JSONArray)jsonObj2.get("list");
 
 		
-		
-		//todo
-		//JSONObject array1=(JSONObject)jsonObj1.get("");
-		
-		HashSet<Integer> raSet=new HashSet<Integer>();//불량 데이터.. 중복 검사용
-		for(int i=0;i<array1.size();i++) {
-			JSONObject row = (JSONObject)array1.get(i);
-            String sdate = (String)row.get("sdate");//집계일자
-            
-            int ra_code = Integer.parseInt(((String)row.get("unitCode")).replaceAll("[^0-9]", ""));//휴게소코드 => 수정 필요
-            String ra_name=(String)row.get("unitName"); //휴게소명 => 수정필요?
-            String ra_routeNo = (String)row.get("routeNo");//노선 번호
-            String ra_routeName = (String)row.get("routeName");//노선명
-            String ra_updownType = (String)row.get("updownType");//방향
-            String ra_destination = (String)row.get("destination");//행선 구분
-            String ra_locName = (String)row.get("locName");//거점으로부터 
-            
-            if(raSet.contains(ra_code)){//불량 데이터.. 중복 검사
-            	System.out.println("중복"+i);
-            	continue;
-            }
-            raSet.add(ra_code);
-            
-            
-		}
-		
 //            String ra_routeNo = (String)row.get("routeNo");//노선 번호
 //            String gs_company = (String)row.get("oilCompany");//정유사
 //            String gs_diesel = (String)row.get("dieselPrice");
@@ -159,20 +158,20 @@ public class ApiService {
 		
 		//todo
 		//JSONObject array2=(JSONObject)jsonObj2.get("");
-		for(int i=0;i<array2.size();i++) {
-			JSONObject row = (JSONObject)array2.get(i);
-            String sdate = (String)row.get("sdate");//집계일자
-            
-            String fm_code = (String)row.get("seq");
-            int ra_code = Integer.parseInt(((String)row.get("stdRestCd")).replaceAll("[^0-9]", ""));//휴게소코드 => 수정 필요
-            String fm_name = (String)row.get("foodNm");
-            String fm_price = (String)row.get("foodCost");
-            String fm_material = (String)row.get("foodMaterial");
-            String fm_etc = (String)row.get("etc");
-            
-            fMdtos.add(new FoodMenuDTO().builder().fm_id(i).fm_code(fm_code).ra_code(ra_code).fm_name(fm_name).fm_price(fm_price).fm_material(fm_material).fm_etc(fm_etc).build());
-            
-		}
+//		for(int i=0;i<array2.size();i++) {
+//			JSONObject row = (JSONObject)array2.get(i);
+//            String sdate = (String)row.get("sdate");//집계일자
+//            
+//            String fm_code = (String)row.get("seq");
+//            int ra_code = Integer.parseInt(((String)row.get("stdRestCd")).replaceAll("[^0-9]", ""));//휴게소코드 => 수정 필요
+//            String fm_name = (String)row.get("foodNm");
+//            String fm_price = (String)row.get("foodCost");
+//            String fm_material = (String)row.get("foodMaterial");
+//            String fm_etc = (String)row.get("etc");
+//            
+//            fMdtos.add(new FoodMenuDTO().builder().fm_id(i).fm_code(fm_code).ra_code(ra_code).fm_name(fm_name).fm_price(fm_price).fm_material(fm_material).fm_etc(fm_etc).build());
+//            
+//		}
 		System.out.println("dtos 생성 완료!");
 		return result;
 	}
