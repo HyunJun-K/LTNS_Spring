@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ltns.rest_area_Schedule.ScheduleDAO">
+<mapper namespace="com.ltns.rest_area.domain.admin.ScheduleDAO">
+	
+	<select id="select"  flushCache="true"  resultType="com.ltns.rest_area.domain.admin.ScheduleDTO">
+			SELECT
+					subject,startdate,enddate,memo
+			FROM 
+					schedule
+	</select>
+	
+	<insert id="insertByDTO"  flushCache="true"  parameterType="com.ltns.rest_area.domain.admin.ScheduleDTO">
+		INSERT INTO
+			schedule(s_sid, subject, startDate, endDate, memo)
+		VALUES
+			(s_sid_seq.nextval, #{subject}, #{startDate}, #{endDate}, #{memo})
+	</insert>
+	
+
 
 </mapper>
 
