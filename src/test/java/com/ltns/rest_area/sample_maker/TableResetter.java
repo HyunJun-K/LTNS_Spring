@@ -17,6 +17,7 @@ public class TableResetter {
 		RefreshTableDAO dao=new RefreshTableDAO();
 	
 		dao.refreshAll();
+		System.out.println("완료!");
 	}
 	
 	

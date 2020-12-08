@@ -9,4 +9,8 @@
 			(#{ra_code}, #{ra_name}, #{ra_routeNo}, #{ra_routeName}, #{ra_updownType}, #{ra_destination}, #{ra_locName})
 	</insert>
 	
+	
+	<delete id="deleteAll" flushCache="true">
+		DELETE FROM RestArea
+	</delete>
 </mapper>

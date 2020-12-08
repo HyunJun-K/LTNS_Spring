@@ -3,10 +3,13 @@
 <mapper namespace="com.ltns.rest_area.domain.restarea.FoodMenuDAO">
 	
 	<insert id="insertByDTO" flushCache="true"  parameterType="com.ltns.rest_area.domain.restarea.FoodMenuDTO">
-		INSERT INTO RestArea
+		INSERT INTO FoodMenu
 			( fm_id, fm_code, ra_code, fm_name, fm_price, fm_material, fm_etc)
 		VALUES
 			( #{fm_id}, #{fm_code}, #{ra_code}, #{fm_name}, #{fm_price}, #{fm_material}, #{fm_etc})
 	</insert>
 	
+	<delete id="deleteAll" flushCache="true">
+		DELETE FROM FoodMenu
+	</delete>
 </mapper>

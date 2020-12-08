@@ -3,10 +3,14 @@
 <mapper namespace="com.ltns.rest_area.domain.restarea.GasStationDAO">
 
 	<insert id="insertByDTO" flushCache="true"  parameterType="com.ltns.rest_area.domain.restarea.GasStationDTO">
-		INSERT INTO RestArea
+		INSERT INTO GasStation
 			( gs_uid, ra_code, gs_company, gs_diesel, gs_gasoline, gs_lpg )
 		VALUES
 			( #{gs_uid}, #{ra_code}, #{gs_company}, #{gs_diesel}, #{gs_gasoline}, #{gs_lpg} )
 	</insert>
 
+
+	<delete id="deleteAll" flushCache="true">
+		DELETE FROM GasStation
+	</delete>
 </mapper>
