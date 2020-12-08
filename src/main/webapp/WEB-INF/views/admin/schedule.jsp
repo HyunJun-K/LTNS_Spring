@@ -3,7 +3,7 @@
     
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.ltns.rest_area_Schedule.*" %>
+<%@ page import="com.ltns.rest_area.domain.admin.*" %>
 
 <%
 	List<ScheduleDTO> list = (ArrayList<ScheduleDTO>) request.getAttribute("showSchedule");

@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.ltns.rest_area_Schedule.ScheduleDTO;
-import com.ltns.rest_area_Schedule.ScheduleService;
+import com.ltns.rest_area.domain.admin.ScheduleDTO;
+import com.ltns.rest_area.service.ScheduleService;
 
 @Controller
 @RequestMapping(value="/admin")
@@ -26,21 +26,21 @@ public class AdminController {
 	@Autowired
 	ScheduleService service;
 	
-	
-	@ResponseBody
-	@RequestMapping(value= "/addSchedule", method = RequestMethod.POST)
-	public Map<Object, Object> addSchedule(@RequestBody ScheduleDTO dto) throws Exception{
-		 Map<Object, Object> map = new HashMap<Object, Object>();
-		 service.addSchedule(dto);
-		 return map;
-	}
-	
+//	
+//	@ResponseBody
+//	@RequestMapping(value= "/addSchedule", method = RequestMethod.POST)
+//	public Map<Object, Object> addSchedule(@RequestBody ScheduleDTO dto) throws Exception{
+//		 Map<Object, Object> map = new HashMap<Object, Object>();
+//		 service.addSchedule(dto);
+//		 return map;
+//	}
+//	
 
 	
 	@RequestMapping("/schedule")
 	public void schedule(Model m) throws Exception
 	{
-		m.addAttribute("showSchedule", service.showSchedule());
+	//	m.addAttribute("showSchedule", service.showSchedule());
 		
 	}
 	
