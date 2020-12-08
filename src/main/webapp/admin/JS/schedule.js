@@ -65,16 +65,17 @@ $.fn.serializeObject = function(){
 function click_ok(){
 	
 	var scheduleData = JSON.stringify($('form#scheduleData').serializeObject());
-	
 	$.ajax({
 		data : scheduleData,
 		url : "addSchedule",
 		type : "POST",
 		dataType : "JSON",
-		contentType : "application/json",
+		contentType:'application/json;',
 		success : function(data) {
+			console.log("접근해유???");
 			opener.parent.location.reload();
 			window.close();
+			console.log(data);
 		}
 	});
 };

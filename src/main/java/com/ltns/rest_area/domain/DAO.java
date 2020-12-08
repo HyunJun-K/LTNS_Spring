@@ -21,6 +21,7 @@ public interface DAO {
 	int insertAllByDTOs(List<DTO> list);
 	int test(String s);
 	
+	
 	/*update*/
 	int updateByDTO(DTO dto);
 	int updateByObject(Object obj);
@@ -30,4 +31,6 @@ public interface DAO {
 	int deleteByDTO(DTO dto);
 	int deleteByObject(Object obj);
 	int deleteAll();
+
 }
+
