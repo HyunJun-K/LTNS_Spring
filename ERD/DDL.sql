@@ -10,7 +10,7 @@ DROP TABLE RestArea CASCADE CONSTRAINTS;
 DROP TABLE GasStation CASCADE CONSTRAINTS;
 DROP TABLE FoodMenu CASCADE CONSTRAINTS;
 DROP TABLE Post CASCADE CONSTRAINTS;
-DROP TABLE Comment CASCADE CONSTRAINTS;
+DROP TABLE Comments CASCADE CONSTRAINTS;
 DROP TABLE RA_like CASCADE CONSTRAINTS;
 DROP TABLE GS_like CASCADE CONSTRAINTS;
 DROP TABLE FM_like CASCADE CONSTRAINTS;
@@ -111,8 +111,8 @@ CREATE TABLE RestArea
 CREATE TABLE Post
 (
     post_id          INT               NOT NULL, 
-    post_title       VARCHAR2(20)      NOT NULL, 
-    post_contents    VARCHAR2(1000)    NOT NULL, 
+    post_title       VARCHAR2(100)      NOT NULL, 
+    post_contents    VARCHAR2(4000)    NOT NULL, 
     um_uid           INT               NOT NULL, 
     um_username      VARCHAR2(20)      NOT NULL, 
     post_regdate     TIMESTAMP         NOT NULL, 
@@ -382,7 +382,7 @@ ALTER TABLE Post_like
 CREATE TABLE Comments
 (
     comment_id          INT               NOT NULL, 
-    comment_contents    VARCHAR2(1000)    NOT NULL, 
+    comment_contents    VARCHAR2(2000)    NOT NULL, 
     um_uid              INT               NOT NULL, 
     um_username         VARCHAR2(20)      NOT NULL, 
     um_regdate          TIMESTAMP         NOT NULL, 
