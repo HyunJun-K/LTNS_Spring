@@ -15,7 +15,7 @@ public class RefreshTableDAO extends AbstractDAO {
 	//drop
 	String DROP_USERMEMBER_SEQ="DROP SEQUENCE SEQ_usermember_um_uid";
 	String DROP_POST_SEQ =	"DROP SEQUENCE Post_SEQ";
-	String DROP_COMMENTS_SEQ="DROP SEQUENCE Comment_SEQ";
+	String DROP_COMMENTS_SEQ="DROP SEQUENCE Comments_SEQ";
 
 	String DROP_USERMEMBER_TABLE="DROP TABLE UserMember CASCADE CONSTRAINTS";
 	String DROP_AUTH_TABLE="DROP TABLE Auth CASCADE CONSTRAINTS";
@@ -36,10 +36,7 @@ public class RefreshTableDAO extends AbstractDAO {
 	
 	//create
 	String CREATE_AUTH_TABLE="CREATE TABLE auth\r\n" + 
-			"(\r\n" + 
-			"	-- ROLE_GUEST" + 
-			"	-- ROLE_MEMBER" + 
-			"	-- ROLE_ADMIN" + 
+			"( " + 
 			"	authority varchar2(50) DEFAULT 'ROLE_MEMBER' NOT NULL, " + 
 			"	um_uid number NOT NULL, " + 
 			"	PRIMARY KEY (authority, um_uid) " + 
@@ -223,7 +220,6 @@ public class RefreshTableDAO extends AbstractDAO {
 	public void refreshAll() throws SQLException {
 		deleteAll();
 		createAll();
-		close();
 	}
 	
 	//그냥 sql문 실행하는 메서드
@@ -235,6 +231,7 @@ public class RefreshTableDAO extends AbstractDAO {
 			System.out.println("에러! : "+sql);
 			e.printStackTrace();
 		}finally {
+			conn.commit();
 //			close();
 		}
 	}
