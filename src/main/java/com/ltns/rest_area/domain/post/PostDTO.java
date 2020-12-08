@@ -1,4 +1,4 @@
-package com.ltns.rest_area.domain.board;
+package com.ltns.rest_area.domain.post;
 
 import java.sql.Timestamp;
 

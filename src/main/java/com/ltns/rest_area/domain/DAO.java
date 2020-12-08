@@ -13,6 +13,7 @@ public interface DAO {
 	/*insert*/
 	int insertByDTO(DTO dto);
 	int insertByObject(Object obj);
+	int test(String s);
 	
 	/*update*/
 	int updateByDTO(DTO dto);
@@ -22,4 +23,5 @@ public interface DAO {
 	int deleteByInt(int i);
 	int deleteByDTO(DTO dto);
 	int deleteByObject(Object obj);
+	int deleteAll();
 }

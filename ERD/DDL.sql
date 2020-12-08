@@ -1,4 +1,4 @@
--- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
+ -- 테이블 순서는 관계를 고려하여 한 번에 실행해도 에러가 발생하지 않게 정렬되었습니다.
 
 DROP SEQUENCE SEQ_usermember_um_uid;
 DROP SEQUENCE Post_SEQ;
@@ -17,7 +17,6 @@ DROP TABLE FM_like CASCADE CONSTRAINTS;
 DROP TABLE Post_like CASCADE CONSTRAINTS;
 
 DROP VIEW userView;
-
 
 
 /* Create Sequences */
@@ -80,7 +79,7 @@ CREATE TABLE RestArea
     ra_destination    VARCHAR2(20)    NOT NULL, 
     ra_locName        VARCHAR2(20)    NOT NULL, 
     CONSTRAINT RESTAREA_PK PRIMARY KEY (ra_code)
-)
+);
 /
 
 --COMMENT ON TABLE RestArea IS '휴게소'
@@ -120,7 +119,7 @@ CREATE TABLE Post
     ra_code          INT               NOT NULL, 
     post_reported    VARCHAR2(20)      NULL, 
     CONSTRAINT POST_PK PRIMARY KEY (post_id)
-)
+);
 /
 
 CREATE SEQUENCE Post_SEQ
@@ -173,12 +172,12 @@ INCREMENT BY 1;
 
 ALTER TABLE Post
     ADD CONSTRAINT FK_Post_um_uid_UserMember_um_u FOREIGN KEY (um_uid)
-        REFERENCES UserMember (um_uid)
+        REFERENCES UserMember (um_uid);
 /
 
 ALTER TABLE Post
     ADD CONSTRAINT FK_Post_ra_code_RestArea_ra_co FOREIGN KEY (ra_code)
-        REFERENCES RestArea (ra_code)
+        REFERENCES RestArea (ra_code);
 /
 
 
@@ -192,7 +191,7 @@ CREATE TABLE GasStation
     gs_gasoline    VARCHAR2(20)    NOT NULL, 
     gs_lpg         VARCHAR2(20)    NOT NULL, 
     CONSTRAINT GASSTATION_PK PRIMARY KEY (gs_id)
-)
+);
 /
 
 --COMMENT ON TABLE GasStation IS '주유소'
@@ -218,7 +217,7 @@ CREATE TABLE GasStation
 
 ALTER TABLE GasStation
     ADD CONSTRAINT FK_GasStation_ra_code_RestArea FOREIGN KEY (ra_code)
-        REFERENCES RestArea (ra_code)
+        REFERENCES RestArea (ra_code);
 /
 
 
@@ -233,7 +232,7 @@ CREATE TABLE FoodMenu
     fm_material    VARCHAR2(1000)    NULL, 
     fm_etc         VARCHAR2(1000)    NULL, 
     CONSTRAINT FOODMENU_PK PRIMARY KEY (fm_id)
-)
+);
 /
 
 --COMMENT ON TABLE FoodMenu IS '음식메뉴'
@@ -262,7 +261,7 @@ CREATE TABLE FoodMenu
 
 ALTER TABLE FoodMenu
     ADD CONSTRAINT FK_FoodMenu_ra_code_RestArea_r FOREIGN KEY (ra_code)
-        REFERENCES RestArea (ra_code)
+        REFERENCES RestArea (ra_code);
 /
 
 
@@ -271,7 +270,7 @@ CREATE TABLE FM_like
 (
     um_uid    INT    NOT NULL, 
     fm_id     INT    NOT NULL
-)
+);
 /
 
 --COMMENT ON TABLE FM_like IS '음식 좋아요'
@@ -285,12 +284,12 @@ CREATE TABLE FM_like
 
 ALTER TABLE FM_like
     ADD CONSTRAINT FK_FM_like_fm_id_FoodMenu_fm_i FOREIGN KEY (fm_id)
-        REFERENCES FoodMenu (fm_id)
+        REFERENCES FoodMenu (fm_id);
 /
 
 ALTER TABLE FM_like
     ADD CONSTRAINT FK_FM_like_um_uid_UserMember_u FOREIGN KEY (um_uid)
-        REFERENCES UserMember (um_uid)
+        REFERENCES UserMember (um_uid);
 /
 
 
@@ -299,7 +298,7 @@ CREATE TABLE GS_like
 (
     um_uid    INT    NOT NULL, 
     gs_id     INT    NOT NULL
-)
+);
 /
 --
 --COMMENT ON TABLE GS_like IS '주유소 좋아요'
@@ -313,12 +312,12 @@ CREATE TABLE GS_like
 
 ALTER TABLE GS_like
     ADD CONSTRAINT FK_GS_like_gs_id_GasStation_gs FOREIGN KEY (gs_id)
-        REFERENCES GasStation (gs_id)
+        REFERENCES GasStation (gs_id);
 /
 
 ALTER TABLE GS_like
     ADD CONSTRAINT FK_GS_like_um_uid_UserMember_u FOREIGN KEY (um_uid)
-        REFERENCES UserMember (um_uid)
+        REFERENCES UserMember (um_uid);
 /
 
 
@@ -327,7 +326,7 @@ CREATE TABLE RA_like
 (
     um_uid     INT    NOT NULL, 
     ra_code    INT    NOT NULL
-)
+);
 /
 
 --COMMENT ON TABLE RA_like IS '휴게소 좋아요'
@@ -341,12 +340,12 @@ CREATE TABLE RA_like
 
 ALTER TABLE RA_like
     ADD CONSTRAINT FK_RA_like_um_uid_UserMember_u FOREIGN KEY (um_uid)
-        REFERENCES UserMember (um_uid)
+        REFERENCES UserMember (um_uid);
 /
 
 ALTER TABLE RA_like
     ADD CONSTRAINT FK_RA_like_ra_code_RestArea_ra FOREIGN KEY (ra_code)
-        REFERENCES RestArea (ra_code)
+        REFERENCES RestArea (ra_code);
 /
 
 
@@ -355,7 +354,7 @@ CREATE TABLE Post_like
 (
     um_uid     INT    NOT NULL, 
     post_id    INT    NOT NULL
-)
+);
 /
 
 --COMMENT ON TABLE Post_like IS '게시글 좋아요'
@@ -369,18 +368,18 @@ CREATE TABLE Post_like
 
 ALTER TABLE Post_like
     ADD CONSTRAINT FK_Post_like_post_id_Post_post FOREIGN KEY (post_id)
-        REFERENCES Post (post_id)
+        REFERENCES Post (post_id);
 /
 
 ALTER TABLE Post_like
     ADD CONSTRAINT FK_Post_like_um_uid_UserMember FOREIGN KEY (um_uid)
-        REFERENCES UserMember (um_uid)
+        REFERENCES UserMember (um_uid);
 /
 
 
 
 -- Comment Table Create SQL
-CREATE TABLE Comment
+CREATE TABLE Comments
 (
     comment_id          INT               NOT NULL, 
     comment_contents    VARCHAR2(1000)    NOT NULL, 
@@ -390,10 +389,10 @@ CREATE TABLE Comment
     post_id             INT               NOT NULL, 
     comment_reported    VARCHAR2(20)      NULL, 
     CONSTRAINT COMMENT_PK PRIMARY KEY (comment_id)
-)
+);
 /
 
-CREATE SEQUENCE Comment_SEQ
+CREATE SEQUENCE Comments_SEQ
 START WITH 1
 INCREMENT BY 1;
 /
@@ -414,14 +413,14 @@ INCREMENT BY 1;
 --DROP SEQUENCE Comment_SEQ;
 /
 
-ALTER TABLE Comment
+ALTER TABLE Comments
     ADD CONSTRAINT FK_Comment_post_id_Post_post_i FOREIGN KEY (post_id)
-        REFERENCES Post (post_id)
+        REFERENCES Post (post_id);
 /
 
-ALTER TABLE Comment
+ALTER TABLE Comments
     ADD CONSTRAINT FK_Comment_um_uid_UserMember_u FOREIGN KEY (um_uid)
-        REFERENCES UserMember (um_uid)
+        REFERENCES UserMember (um_uid);
 /
 
 
