@@ -1,6 +1,9 @@
 package com.ltns.rest_area.service;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -43,6 +46,9 @@ public class ApiService {
 	private SqlSession sqlSession;
 	
 	DAO dao;
+	
+	//api를 임시 저장할 경로
+	final static String pathname="";
 	
 	//디비 api 데이터 최신화 트랜잭션화 -실패시...도루묵~
 	@Transactional
@@ -140,13 +146,21 @@ public class ApiService {
 			while((i=reader.read(b))!=-1) {
 				buffer.append(new String(b,0,i));
 			}
-			return buffer.toString();
+			String str=buffer.toString();
+			printOutFile(str);
+			return str;
 		}finally {
 			if(reader!=null)
 				reader.close();
 		}
 	}
 	
+	
+	public void printOutFile(String str) {
+		
+		File file=new File(pathname);
+		BufferedWriter writer=new BufferedWriter(new FileWriter(file));
+	}
 	
 	//api 테이블들 비우기
 	public int deleteAllBeforeApiDataInDB() throws Exception {

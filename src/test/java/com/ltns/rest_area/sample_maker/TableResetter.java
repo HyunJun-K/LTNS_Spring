@@ -10,7 +10,7 @@ import org.junit.Test;
 
 import com.ltns.rest_area.sample_maker.domain.RefreshTableDAO;
 
-public class TableRefresher {
+public class TableResetter {
 	
 	@Test
 	public void refreshAllTable() throws SQLException {
