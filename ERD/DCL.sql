@@ -1,4 +1,4 @@
--- 테이블 스페이스 생성
+-- 테이블 스페이스 생성r
 -- 크기는 10MB 로 하며, 용량이 꽉찼을씨 2MB의 크기로 자동으로 증가합니다.
 CREATE TABLESPACE LTNSspring
 DATAFILE 'C:\ProjectWork\LTNS2\OracleDB\LTNSspring.dbf'

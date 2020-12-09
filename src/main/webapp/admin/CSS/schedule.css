@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+
+.zTree-h1 {
+	text-align: center;
+}
+
+
+.group-body {
+	text-align: center;
+}
+
+
+input[type="text"] {
+	
+	height: auto;
+	line-height : normal;
+	padding : .8em .5em;
+}
+
+.ok-button {
+	margin-top : 15px;
+	cursor: pointer;
+}
+
+textarea {
+	height: auto;
+	line-height : normal;
+	padding : .8em .5em;
+	resize: none;
+}
+
+
+
+
+

@@ -11,16 +11,14 @@ public class ApiServiceTest {
 
 	@Test
 	public void test() {
-		ApiService apiservice=new ApiService();
 		
-		DTO dto=new RestAreaDTO().builder().ra_code(1).build();
-		DTO[] dtos=new DTO[1];
-		dtos[0]=dto;
-		try {
-			apiservice.insertByDTOs(dtos);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		String ra_name="11111111(22222)33333";
+		
+		String ra_destination=ra_name.replaceAll("[^(]*[(]", "");
+		ra_destination=ra_destination.replaceAll("[)].*", "");
+		System.out.println("ra_destination : "+ra_destination);
+		ra_name=ra_name.replaceAll("[(][^)]*[)]", "");
+		System.out.println("ra_name : "+ra_name);
 	}
 
 }

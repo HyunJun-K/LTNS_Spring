@@ -18,7 +18,7 @@ public class ApiController {
 	@RequestMapping("/allapi")
 	public String requestAllApi() {
 		try {
-			apiService.insertByDTOs(new DTO[] {new RestAreaDTO().builder().ra_code(2).build()});
+			apiService.refreshApiData();
 		} catch (Exception e) {
 			System.out.println("db에러");
 			e.printStackTrace();

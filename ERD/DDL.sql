@@ -2,7 +2,7 @@
 
 DROP SEQUENCE SEQ_usermember_um_uid;
 DROP SEQUENCE Post_SEQ;
-DROP SEQUENCE Comment_SEQ;
+DROP SEQUENCE Comments_SEQ;
 
 DROP TABLE UserMember CASCADE CONSTRAINTS;
 DROP TABLE Auth CASCADE CONSTRAINTS;
@@ -10,7 +10,7 @@ DROP TABLE RestArea CASCADE CONSTRAINTS;
 DROP TABLE GasStation CASCADE CONSTRAINTS;
 DROP TABLE FoodMenu CASCADE CONSTRAINTS;
 DROP TABLE Post CASCADE CONSTRAINTS;
-DROP TABLE Comment CASCADE CONSTRAINTS;
+DROP TABLE Comments CASCADE CONSTRAINTS;
 DROP TABLE RA_like CASCADE CONSTRAINTS;
 DROP TABLE GS_like CASCADE CONSTRAINTS;
 DROP TABLE FM_like CASCADE CONSTRAINTS;
@@ -32,7 +32,7 @@ CREATE TABLE auth
 	-- ROLE_GUEST
 	-- ROLE_MEMBER
 	-- ROLE_ADMIN
-	authority varchar2(50) DEFAULT 'ROLE_MEMBER' NOT NULL,
+	authority varchar2(100) DEFAULT 'ROLE_MEMBER' NOT NULL,
 	um_uid number NOT NULL,
 	PRIMARY KEY (authority, um_uid)
 );
@@ -41,9 +41,9 @@ CREATE TABLE auth
 CREATE TABLE usermember
 (
 	um_uid number NOT NULL,
-	um_username varchar2(50) NOT NULL UNIQUE,
+	um_username varchar2(100) NOT NULL UNIQUE,
 	um_password varchar2(200) NOT NULL,
-	um_nickname varchar2(50) NOT NULL UNIQUE,
+	um_nickname varchar2(100) NOT NULL UNIQUE,
 	um_regDate timestamp DEFAULT SYSDATE NOT NULL,
 	um_enabled char(1) DEFAULT '1' NOT NULL,
 	PRIMARY KEY (um_uid)
@@ -75,13 +75,13 @@ u.um_uid = a.um_uid;
 -- RestArea Table Create SQL
 CREATE TABLE RestArea
 (
-    ra_code           INT             NOT NULL, 
-    ra_name           VARCHAR2(20)    NOT NULL, 
-    ra_routeNo        VARCHAR2(20)    NOT NULL, 
-    ra_routeName      VARCHAR2(20)    NOT NULL, 
-    ra_updownType     VARCHAR2(20)    NOT NULL, 
-    ra_destination    VARCHAR2(20)    NOT NULL, 
-    ra_locName        VARCHAR2(20)    NOT NULL, 
+    ra_code           VARCHAR2(100)    NOT NULL, 
+    ra_name           VARCHAR2(100)    NOT NULL, 
+    ra_routeNo        VARCHAR2(100)    NOT NULL, 
+    ra_routeName      VARCHAR2(100)    NOT NULL, 
+    ra_destination    VARCHAR2(100)    NOT NULL, 
+    ra_xValue    	  VARCHAR2(100)    NOT NULL, 
+    ra_yValue         VARCHAR2(100)    NOT NULL, 
     CONSTRAINT RESTAREA_PK PRIMARY KEY (ra_code)
 );
 /
@@ -114,14 +114,14 @@ CREATE TABLE RestArea
 -- Post Table Create SQL
 CREATE TABLE Post
 (
-    post_id          INT               NOT NULL, 
-    post_title       VARCHAR2(20)      NOT NULL, 
-    post_contents    VARCHAR2(1000)    NOT NULL, 
-    um_uid           INT               NOT NULL, 
-    um_username      VARCHAR2(20)      NOT NULL, 
+    post_id          number     	   NOT NULL, 
+    post_title       VARCHAR2(1000)    NOT NULL, 
+    post_contents    CLOB			   NOT NULL, 
+    um_uid           VARCHAR2(100)     NOT NULL, 
+    um_username      VARCHAR2(100)     NOT NULL, 
     post_regdate     TIMESTAMP         NOT NULL, 
-    ra_code          INT               NOT NULL, 
-    post_reported    VARCHAR2(20)      NULL, 
+    ra_code          VARCHAR2(100)     NOT NULL, 
+    post_reported    VARCHAR2(100)     , 
     CONSTRAINT POST_PK PRIMARY KEY (post_id)
 );
 /
@@ -188,13 +188,14 @@ ALTER TABLE Post
 -- GasStation Table Create SQL
 CREATE TABLE GasStation
 (
-    gs_id          INT             NOT NULL, 
-    ra_code        INT             NOT NULL, 
-    gs_company     VARCHAR2(20)    NOT NULL, 
-    gs_diesel      VARCHAR2(20)    NOT NULL, 
-    gs_gasoline    VARCHAR2(20)    NOT NULL, 
-    gs_lpg         VARCHAR2(20)    NOT NULL, 
-    CONSTRAINT GASSTATION_PK PRIMARY KEY (gs_id)
+    gs_code        VARCHAR2(100)    NOT NULL,
+    gs_name        VARCHAR2(100)   NOT NULL,
+    ra_code        VARCHAR2(100)   , 
+    gs_company     VARCHAR2(100)   NOT NULL, 
+    gs_diesel      VARCHAR2(100)   NOT NULL, 
+    gs_gasoline    VARCHAR2(100)    NOT NULL, 
+    gs_lpg         VARCHAR2(100)   NOT NULL, 
+    CONSTRAINT GASSTATION_PK PRIMARY KEY (gs_code)
 );
 /
 
@@ -219,22 +220,18 @@ CREATE TABLE GasStation
 --COMMENT ON COLUMN GasStation.gs_lpg IS 'LPG'
 /
 
-ALTER TABLE GasStation
-    ADD CONSTRAINT FK_GasStation_ra_code_RestArea FOREIGN KEY (ra_code)
-        REFERENCES RestArea (ra_code);
-/
 
 
 -- FoodMenu Table Create SQL
 CREATE TABLE FoodMenu
 (
-    fm_id          INT               NOT NULL, 
-    fm_code        VARCHAR2(20)      NOT NULL, 
-    ra_code        INT               NOT NULL, 
-    fm_name        VARCHAR2(20)      NOT NULL, 
-    fm_price       VARCHAR2(20)      NOT NULL, 
-    fm_material    VARCHAR2(1000)    NULL, 
-    fm_etc         VARCHAR2(1000)    NULL, 
+    fm_id          VARCHAR2(100)     NOT NULL, 
+    fm_code        VARCHAR2(100)     NOT NULL, 
+    ra_code        VARCHAR2(100)      NOT NULL, 
+    fm_name        VARCHAR2(100)     NOT NULL, 
+    fm_price       VARCHAR2(100)     NOT NULL, 
+    fm_material    CLOB			    , 
+    fm_etc         CLOB    			, 
     CONSTRAINT FOODMENU_PK PRIMARY KEY (fm_id)
 );
 /
@@ -272,8 +269,8 @@ ALTER TABLE FoodMenu
 -- FM_like Table Create SQL
 CREATE TABLE FM_like
 (
-    um_uid    INT    NOT NULL, 
-    fm_id     INT    NOT NULL
+    um_uid    number    NOT NULL, 
+    fm_id     VARCHAR2(100)    NOT NULL
 );
 /
 
@@ -300,8 +297,8 @@ ALTER TABLE FM_like
 -- GS_like Table Create SQL
 CREATE TABLE GS_like
 (
-    um_uid    INT    NOT NULL, 
-    gs_id     INT    NOT NULL
+    um_uid    number    NOT NULL, 
+    gs_code     VARCHAR2(100)    NOT NULL
 );
 /
 --
@@ -315,8 +312,8 @@ CREATE TABLE GS_like
 /
 
 ALTER TABLE GS_like
-    ADD CONSTRAINT FK_GS_like_gs_id_GasStation_gs FOREIGN KEY (gs_id)
-        REFERENCES GasStation (gs_id);
+    ADD CONSTRAINT FK_GS_like_gs_id_GasStation_gs FOREIGN KEY (gs_code)
+        REFERENCES GasStation (gs_code);
 /
 
 ALTER TABLE GS_like
@@ -328,8 +325,8 @@ ALTER TABLE GS_like
 -- RA_like Table Create SQL
 CREATE TABLE RA_like
 (
-    um_uid     INT    NOT NULL, 
-    ra_code    INT    NOT NULL
+    um_uid     number    NOT NULL, 
+    ra_code    VARCHAR2(100)    NOT NULL
 );
 /
 
@@ -356,8 +353,8 @@ ALTER TABLE RA_like
 -- Post_like Table Create SQL
 CREATE TABLE Post_like
 (
-    um_uid     INT    NOT NULL, 
-    post_id    INT    NOT NULL
+    um_uid     number    NOT NULL, 
+    post_id    number    NOT NULL
 );
 /
 
@@ -385,13 +382,13 @@ ALTER TABLE Post_like
 -- Comment Table Create SQL
 CREATE TABLE Comments
 (
-    comment_id          INT               NOT NULL, 
-    comment_contents    VARCHAR2(1000)    NOT NULL, 
-    um_uid              INT               NOT NULL, 
-    um_username         VARCHAR2(20)      NOT NULL, 
-    um_regdate          TIMESTAMP         NOT NULL, 
-    post_id             INT               NOT NULL, 
-    comment_reported    VARCHAR2(20)      NULL, 
+    comment_id          number              NOT NULL, 
+    comment_contents    CLOB			    NOT NULL, 
+    um_uid              number              NOT NULL, 
+    um_username         VARCHAR2(100)       NOT NULL, 
+    um_regdate          TIMESTAMP           NOT NULL, 
+    post_id             number              NOT NULL, 
+    comment_reported    VARCHAR2(100)       , 
     CONSTRAINT COMMENT_PK PRIMARY KEY (comment_id)
 );
 /
@@ -426,5 +423,9 @@ ALTER TABLE Comments
     ADD CONSTRAINT FK_Comment_um_uid_UserMember_u FOREIGN KEY (um_uid)
         REFERENCES UserMember (um_uid);
 /
+
+
+
+select * from schedule;
 
 

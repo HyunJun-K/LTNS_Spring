@@ -4,9 +4,25 @@
 
 	<insert id="insertByDTO" flushCache="true" parameterType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		INSERT INTO RestArea
-			(ra_code, ra_name, ra_routeNo, ra_routeName, ra_updownType, ra_destination, ra_locName)
+			(ra_code, ra_name, ra_routeNo, ra_routeName, ra_destination, ra_xValue, ra_yValue)
 		VALUES
-			(#{ra_code}, #{ra_name}, #{ra_routeNo}, #{ra_routeName}, #{ra_updownType}, #{ra_destination}, #{ra_locName})
+			(#{ra_code}, #{ra_name}, #{ra_routeNo}, #{ra_routeName}, #{ra_destination}, #{ra_xValue}, #{ra_yValue})
 	</insert>
+	
+	
+	<insert id="insertAllByDTOs" parameterType="java.util.List">
+        <foreach collection="list" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" > 
+	        INTO RestArea
+				(ra_code, ra_name, ra_routeNo, ra_routeName, ra_destination, ra_xValue, ra_yValue)
+	        VALUES
+				(#{item.ra_code}, #{item.ra_name}, #{item.ra_routeNo}, #{item.ra_routeName}, #{item.ra_destination}, #{item.ra_xValue}, #{item.ra_yValue})
+        </foreach>
+    </insert>
+
+
+	<delete id="deleteAll" flushCache="true">
+		DELETE FROM RestArea
+	</delete>
+	
 	
 </mapper>
