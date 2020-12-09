@@ -7,11 +7,8 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
-<<<<<<< HEAD
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
-=======
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
->>>>>>> branch 'master' of https://github.com/HyunJun-K/LTNS_Spring.git
+
 
 	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
 	
@@ -29,9 +26,7 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<context:component-scan base-package="com.ltns.rest_area" />
-<<<<<<< HEAD
-		
+	<context:component-scan base-package="com.ltns.rest_area" />	
 
     <beans:bean id="userDB" class="com.ltns.rest_area.aop.user.UserDBTimeCheckAspect"/>
     <aop:config>
@@ -42,9 +37,4 @@
         </aop:aspect>
     </aop:config>
 
-=======
-	
-
-	
->>>>>>> branch 'master' of https://github.com/HyunJun-K/LTNS_Spring.git
 </beans:beans>
