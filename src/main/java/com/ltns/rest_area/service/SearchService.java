@@ -21,7 +21,7 @@ public class SearchService {
 
 	public int raCount() {
 		dao=sqlSession.getMapper(RestAreaDAO.class);
-		return dao.select();
+		return dao.selectCnt();
 	}
 
 	public List<DTO> selectSomeRaDTOs(String routeName, String destination, String orderBy, int from, int numOfRows) {

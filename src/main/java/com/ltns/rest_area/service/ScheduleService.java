@@ -23,7 +23,7 @@ public class ScheduleService {
 	//달력 서비스 view 
 	public List<DTO> showSchedule()  {
 		dao = sqlSession.getMapper(ScheduleDAO.class);
-		return dao.select();
+		return dao.selectAll();
 	}
 	
 	//달력서비스 insert 
