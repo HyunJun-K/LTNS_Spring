@@ -26,6 +26,8 @@ public interface DAO {
 	/*update*/
 	int updateByDTO(DTO dto);
 	int updateByObject(Object obj);
+	int updateAllByDTOs(List<DTO> dtos);
+
 	
 	/*delete*/
 	int deleteByInt(int i);

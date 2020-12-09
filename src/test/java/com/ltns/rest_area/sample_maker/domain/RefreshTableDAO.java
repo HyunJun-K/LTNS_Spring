@@ -100,9 +100,9 @@ public class RefreshTableDAO extends AbstractDAO {
 			"    fm_code        VARCHAR2(100)      NOT NULL,  " + 
 			"    ra_code        VARCHAR2(100)      NOT NULL,  " + 
 			"    fm_name        VARCHAR2(100)      NOT NULL,  " + 
-			"    fm_price       VARCHAR2(100)      ,  " + 
-			"    fm_material    VARCHAR2(4000)    ,  " + 
-			"    fm_etc         VARCHAR2(4000)    ,  " + 
+			"    fm_price       VARCHAR2(100)       ,  " + 
+			"    fm_material    CLOB			    ,  " + 
+			"    fm_etc         CLOB    			,  " + 
 			"    CONSTRAINT FOODMENU_PK PRIMARY KEY (fm_id) " + 
 			")";
 	
@@ -113,8 +113,8 @@ public class RefreshTableDAO extends AbstractDAO {
 	final static String CREATE_POST_TABLE="CREATE TABLE Post " + 
 			"( " + 
 			"    post_id          number            NOT NULL,  " + 
-			"    post_title       VARCHAR2(100)     NOT NULL,  " + 
-			"    post_contents    VARCHAR2(4000)    NOT NULL,  " + 
+			"    post_title       VARCHAR2(1000)    NOT NULL,  " + 
+			"    post_contents    CLOB  			NOT NULL,  " + 
 			"    um_uid           number            NOT NULL,  " + 
 			"    um_username      VARCHAR2(100)     NOT NULL,  " + 
 			"    post_regdate     TIMESTAMP         NOT NULL,  " + 
@@ -188,7 +188,7 @@ public class RefreshTableDAO extends AbstractDAO {
 	final static String CREATE_COMMENTS_TABLE="CREATE TABLE Comments " + 
 			"( " + 
 			"    comment_id          number               NOT NULL,  " + 
-			"    comment_contents    VARCHAR2(2000)       NOT NULL,  " + 
+			"    comment_contents    CLOB     			  NOT NULL,  " + 
 			"    um_uid              number               NOT NULL,  " + 
 			"    um_username         VARCHAR2(100)        NOT NULL,  " + 
 			"    um_regdate          TIMESTAMP            NOT NULL,  " + 
