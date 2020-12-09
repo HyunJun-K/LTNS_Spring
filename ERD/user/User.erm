@@ -135,7 +135,7 @@
 			</connections>
 			<display>false</display>
 			<creation_date>2020-12-06 03:39:32</creation_date>
-			<updated_date>2020-12-07 21:13:21</updated_date>
+			<updated_date>2020-12-08 19:10:42</updated_date>
 			<model_property>
 				<name>프로젝트명</name>
 				<value></value>
@@ -302,7 +302,7 @@
 			<physical_name>userView</physical_name>
 			<logical_name>새 뷰</logical_name>
 			<description></description>
-			<sql>SELECT &#x0D;&#x0A;um_username AS username,&#x0D;&#x0A;um_password AS passowrd,&#x0D;&#x0A;au_authority&#x0D;&#x0A;FROM userMember u&#x0D;&#x0A;JOIN auth a&#x0D;&#x0A;ON&#x0D;&#x0A;u.um_uid = a.um_uid;</sql>
+			<sql>SELECT &#x0D;&#x0A;u.um_username AS username,&#x0D;&#x0A;u.um_password AS password,&#x0D;&#x0A;u.um_enabled AS enabled,&#x0D;&#x0A;a.au_authority&#x0D;&#x0A;FROM userMember u&#x0D;&#x0A;JOIN auth a&#x0D;&#x0A;ON&#x0D;&#x0A;u.um_uid = a.um_uid;</sql>
 			<columns>
 			</columns>
 			<view_properties>

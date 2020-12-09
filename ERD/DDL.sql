@@ -26,6 +26,7 @@ CREATE SEQUENCE SEQ_usermember_um_uid INCREMENT BY 1 START WITH 1;
 
 
 /* Create Tables */
+
 CREATE TABLE auth
 (
 	-- ROLE_GUEST
@@ -51,6 +52,7 @@ CREATE TABLE usermember
 
 
 /* Create Foreign Keys */
+
 ALTER TABLE auth
 	ADD FOREIGN KEY (um_uid)
 	REFERENCES usermember (um_uid)
@@ -58,10 +60,12 @@ ALTER TABLE auth
 
 
 /* Create Views */
+
 CREATE OR REPLACE VIEW userView AS SELECT 
-um_username AS username,
-um_password AS passowrd,
-authority
+u.um_username AS username,
+u.um_password AS password,
+u.um_enabled AS enabled,
+a.authority
 FROM userMember u
 JOIN auth a
 ON

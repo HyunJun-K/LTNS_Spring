@@ -1,0 +1,125 @@
+package com.ltns.rest_area.domain.user;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.ltns.rest_area.domain.DTO;
+
+@Component
+public class UserDAOImpl implements UserDAO {
+
+	@Autowired
+	SqlSession session;
+
+	@Override
+	public List<DTO> select() {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).select();
+	}
+	
+	@Override
+	public List<UserDTO> findByNickname(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByNickname(user);
+	}
+
+	@Override
+	public List<DTO> selectByObject(Object obj) {
+		UserDTO user = (UserDTO) obj;
+		return session.getMapper(UserDAO.class).selectByObject(user);
+	}
+
+	@Override
+	public List<DTO> selectByString(String s) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).selectByString(s);
+	}
+
+	@Override
+	public int insertByObject(Object obj) {
+		// TODO Auto-generated method stub
+		UserDTO user = (UserDTO) obj;
+		return session.getMapper(UserDAO.class).insertByObject(user);
+	}
+
+	@Override
+	public int updateByObject(Object obj) {
+		// TODO Auto-generated method stub
+		UserDTO user = (UserDTO) obj;
+		return session.getMapper(UserDAO.class).updateByObject(user);
+	}
+	
+
+	@Override
+	public int updateAllByUsername(UserDTO user) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+	@Override
+	public int updateByDTO(DTO dto) {
+		// TODO Auto-generated method stub
+		UserDTO user = (UserDTO) dto;
+		return session.getMapper(UserDAO.class).updateByDTO(user);
+	}
+
+
+	@Override
+	public int deleteByObject(Object obj) {
+		// TODO Auto-generated method stub
+		UserDTO user = (UserDTO) obj;
+		return session.getMapper(UserDAO.class).deleteByObject(user);
+	}
+
+
+
+	@Override
+	public List<DTO> selectByDTO(DTO dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertByDTO(DTO dto) {
+		return 0;
+	}
+
+	@Override
+	public int test(String s) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteByInt(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteAll() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<DTO> selectByInt(int i) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int deleteByDTO(DTO dto) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
+
+}

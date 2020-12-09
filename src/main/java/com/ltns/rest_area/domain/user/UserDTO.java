@@ -1,13 +1,20 @@
 package com.ltns.rest_area.domain.user;
 
+import com.ltns.rest_area.domain.DTO;
 import lombok.Data;
 
-@Data
-public class UserDTO {
+import java.sql.Timestamp;
 
-    private String username;
-    private String password;
-    private String realpassword;
-    private String nickname;
+@Data
+public class UserDTO implements DTO {
+
+    private long um_uid;
+    private String um_username;
+    private String um_password;
+    private String passwordCheck;
+    private String um_nickname;
+    private Timestamp um_regdate;
+    private char um_enabled;
+    private String message;
 
 }
