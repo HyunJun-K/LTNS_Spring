@@ -9,14 +9,26 @@
 					schedule
 	</select>
 	
-	<insert id="insertByDTO"  flushCache="true"  parameterType="com.ltns.rest_area.domain.admin.ScheduleDTO">
+	<insert id="inset_"  flushCache="true"  parameterType="com.ltns.rest_area.domain.admin.ScheduleDTO">
 		INSERT INTO
 			schedule(s_sid, subject, startDate, endDate, memo)
 		VALUES
-			(s_sid_seq.nextval, #{subject}, #{startDate}, #{endDate}, #{memo})
+			(s_sid_seq.nextval, #{param1}, #{param2}, #{param3}, #{param4})
 	</insert>
 	
-
+	
+	<delete id="deleteByName"   flushCache="true" parameterType="com.ltns.rest_area.domain.admin.ScheduleDTO">
+		Delete from schedule where subject = #{param1}
+	
+	</delete>
+	
+	
+	
+	<update id="update_" flushCache="true" parameterType="com.ltns.rest_area.domain.admin.ScheduleDTO">
+			UPDATE SCHEDULE SET 
+				subject= #{param2}, startDate=#{param3}, endDate= #{param4}, memo= #{param5}
+			WHERE subject=#{param1}
+	</update>
 
 </mapper>
 

@@ -3,13 +3,28 @@
 //date pick  ( jquery ui ) 
 
 
-function click_add() {
-		var url = "schedulePopup";
-		var name = "schedulePopup";
-		var option = "width = 600, height = 600 left = 100, top=50,location=no";
+function click_delete() {
+		var url = "deletePopup";
+		var name = "deletePopup";
+		var option = "width = 600, height = 200 left = 100, top=50,location=no";
 		window.open(url,name,option)
-	}; 
+}; 
 
+
+function click_add() {
+	var url = "schedulePopup";
+	var name = "schedulePopup";
+	var option = "width = 600, height = 600 left = 100, top=50,location=no";
+	window.open(url,name,option)
+}; 
+
+
+function click_update() {
+	var url = "updatePopup";
+	var name = "updatePopup";
+	var option = "width = 600, height = 720 left = 100, top=50,location=no";
+	window.open(url,name,option)
+}; 
 
 
 
@@ -67,18 +82,61 @@ function click_ok(){
 	var scheduleData = JSON.stringify($('form#scheduleData').serializeObject());
 	$.ajax({
 		data : scheduleData,
-		url : "addSchedule",
+		url : "schedule",
 		type : "POST",
 		dataType : "JSON",
 		contentType:'application/json;',
 		success : function(data) {
-			console.log("접근해유???");
-			opener.parent.location.reload();
-			window.close();
-			console.log(data);
+			
 		}
 	});
+	alert("일정이 추가되었습니다.")
+	opener.parent.location.reload();
+	location.reload();
+	window.close();
 };
+
+
+function delete_ok(){
+	var scheduleData = JSON.stringify($('form#deleteForm').serializeObject());
+	$.ajax({
+		data : scheduleData,
+		url : "schedule",
+		type : "DELETE",
+		dataType : "JSON",
+		contentType:'application/json;',
+		success : function(data) {
+			
+		}
+	});
+	alert("일정이 삭제되었습니다..")
+	opener.parent.location.reload();
+	location.reload();
+	window.close();
+};
+
+
+
+
+
+function update_ok(){
+	var scheduleData = JSON.stringify($('form#updateForm').serializeObject());
+	$.ajax({
+		data : scheduleData,
+		url : "schedule",
+		type : "PUT",
+		dataType : "JSON",
+		contentType:'application/json;',
+		success : function(data) {
+			
+		}
+	});
+	alert("일정이 수정되었습니다..")
+	opener.parent.location.reload();
+	location.reload();
+	window.close();
+};
+
 
 
   
