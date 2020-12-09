@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset='utf-8' />
-
+<title>일정</title>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -22,8 +22,11 @@
 <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
+<!--  bootstrap -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
-
+<!-- 풀캘린더 패키지  -->
 <link href='${pageContext.request.contextPath }/pakege/core/main.css' rel='stylesheet' />
 <link href='${pageContext.request.contextPath }/pakege/daygrid/main.css' rel='stylesheet' />
 <link href='${pageContext.request.contextPath }/pakege/timegrid/main.css' rel='stylesheet' />
@@ -33,7 +36,9 @@
 <script src='${pageContext.request.contextPath }/pakege/daygrid/main.js'></script>
 <script src='${pageContext.request.contextPath }/pakege/timegrid/main.js'></script>
 <script src='${pageContext.request.contextPath }/pakege/list/main.js'></script>
- <link href='${pageContext.request.contextPath }/admin/CSS/schedule.css' rel='stylesheet' />
+
+<!-- css & js -->
+<link href='${pageContext.request.contextPath }/admin/CSS/admin.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/schedule.js'></script>
    
 <script>
@@ -42,7 +47,7 @@
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
-      plugins: [ 'interaction', 'dayGrid', 'timeGrid', 'list' ],
+      plugins: [ 'interaction', 'dayGrid',  'list' ],
       header: {
         left: 'prev,next today',
         center: 'title',
@@ -73,14 +78,6 @@
 %>
     	  
       
-      {
-    	  title : 'default',
-    	  start : "2020-12-08",
-    	  end :   "2020-12-08"
-      }
-      
-      
-      
       ]
     });
 
@@ -96,38 +93,82 @@
 </script>
 <style>
 
-  body {
-    margin: 40px 10px;
-    padding: 0;
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
-
-  #calendar {
-    max-width: 900px;
-    margin: 0 auto;
-  }
-  
-  .add-button{
-  	position : absolute;
-  	top: 0px;
-  	left : 160px;
-  	background : #2C3E50;
-  	border : 0;
-  	color : white;
-  	height : 35px;
-  	border-radius: 3px;
-  	width : 100px;
-  	
-  } 
 
 </style>
 </head>
 <body>
 
-  <div id='calendar' style="position : relative;"> 
+
+	<!-- dashboard nav -->
+   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 mt-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          	<span>help</span>
+          	<span calss="font-white">date</span>
+        </li>
+      </ul>
+    </nav>
+
+ <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link " href="${pageContext.request.contextPath}/admin/dashboard">
+                  Dashboard 
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="${pageContext.request.contextPath}/admin/schedule">
+                  	일정  
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="shopping-cart"></span>
+                  	회원정보
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="users"></span>
+                  Customers
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Reports
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <span data-feather="layers"></span>
+                  Integrations
+                </a>
+              </li>
+            </ul>
+
+          </div>
+        </nav>
+     </div>
+</div>
+
+
+
+
+
+
+
+	<!-- 캘린더  -->
+
+  <div class="mt-4" id='calendar' style="position : relative;"> 
 	  <div>
-	  	<button class="add-button" type="button" onclick="click_add();"> 일정 추가 </button>
+	  	<button class="add-button" type="button" onclick="click_add();">  추가 </button>
+	  	<button class="delete-button" type="button" onclick="click_delete();"> 삭제 </button>
+	 	<button class="update-button" type="button" onclick="click_update();"> 수정</button>
 	  </div>
   </div>
 
