@@ -18,10 +18,6 @@ public class SearchService {
 	@Autowired
 	private SqlSession sqlSession;
 
-	
-	public List<DTO> restAreaListByPath(int from, int pageRows){
-		dao=sqlSession.getMapper()
-		return dao.selectByObject();
-	}
+
 	
 }
