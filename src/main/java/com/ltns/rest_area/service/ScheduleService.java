@@ -37,7 +37,7 @@ public class ScheduleService {
 	// delete 
 	public int deleteSchedule(String subject) {
 		dao = sqlSession.getMapper(ScheduleDAO.class);
-		return dao.deleteByName(subject);
+		return dao.deleteByString(subject);
 	}
 	
 	// update 

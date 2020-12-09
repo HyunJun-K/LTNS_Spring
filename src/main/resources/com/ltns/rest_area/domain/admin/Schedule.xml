@@ -17,7 +17,7 @@
 	</insert>
 	
 	
-	<delete id="deleteByName"   flushCache="true" parameterType="com.ltns.rest_area.domain.admin.ScheduleDTO">
+	<delete id="deleteByString"   flushCache="true" parameterType="com.ltns.rest_area.domain.admin.ScheduleDTO">
 		Delete from schedule where subject = #{param1}
 	
 	</delete>
