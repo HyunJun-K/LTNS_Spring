@@ -18,7 +18,8 @@ public interface DAO {
 	/*insert*/
 	int insertByDTO(DTO dto);
 	int insertByObject(Object obj);
-	int insertAllByDTOs(List<DTO> list);
+	int insertAllByDTOs(List<DTO> dtos);
+	
 	int test(String s);
 	
 	

@@ -6,3 +6,5 @@ INSERT INTO RestArea
 			(1, 'a', 'a', 'a', 'a', 'a', 'a');
 
 DELETE FROM restarea;
+
+SELECT * FROM GASSTATION;

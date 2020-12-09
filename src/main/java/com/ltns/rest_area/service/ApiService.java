@@ -79,7 +79,7 @@ public class ApiService {
 		//새 정보 넣기
 		result=insertRestAreaByDTOs(rAdtos);
 		
-//		result=insertGasStationByDTOs(gSdtos);
+		result=insertGasStationByDTOs(gSdtos);
 //		
 //		result=insertFoodMenuByDTOs(fMdtos);
 		
@@ -94,23 +94,25 @@ public class ApiService {
 	public int getDTOFromJson() throws Exception {
 		int result=0;
 		
-		/*휴게소 정보 (휴게소 코드 : ra_code, 휴게소 이름 : ra_name, 노선코드 : ra_routeNo, 노선명 : ra_routeName, 방향 : ra_destination, x좌표 : ra_xValue, y좌표 : ra_yValue)*/
+		/*휴게소 정보 
+		 * (휴게소 코드 : ra_code, 휴게소 이름 : ra_name, 노선코드 : ra_routeNo, 노선명 : ra_routeName, 방향 : ra_destination, 
+		 * x좌표 : ra_xValue, y좌표 : ra_yValue)*/
 		//해쉬맵을 작성할것...
 		HashMap<String, String> ranameMap=new HashMap<String, String>(); //('휴게소'뺀 이름:휴게소코드)
 		String url=endpoint0+"?"+"key="+serviceKey+"&type="+type+"&numOfRows=99";
 		JSONParser jsonParser=new JSONParser();
-		JSONObject jsonObj0=(JSONObject)jsonParser.parse(readURL(url));
+		JSONObject jsonObj=(JSONObject)jsonParser.parse(readURL(url));
 		//여러 페이지를 다 가져와야 한다!
 		//페이지 확인
-		int fullcnt=Integer.parseInt((jsonObj0.get("count").toString()))/99;
+		int fullcnt=Integer.parseInt((jsonObj.get("count").toString()))/99;
 		
 		System.out.println("휴게소 위치 api를 가져오는 중..");
 		//전부 꺼내기
 		//디비에 집어넣기
-		for(int i=1;i<=fullcnt;i++) {
+		for(int i=1;i<=fullcnt+1;i++) {
 			jsonParser=new JSONParser();
-			jsonObj0=(JSONObject)jsonParser.parse(readURL(url+"&pageNo="+i));
-			JSONArray array=(JSONArray)jsonObj0.get("list");
+			jsonObj=(JSONObject)jsonParser.parse(readURL(url+"&pageNo="+i));
+			JSONArray array=(JSONArray)jsonObj.get("list");
 			
 			//최대갯수로 페이지마다 죠지기
 			for(int j=0;j<array.size();j++) {
@@ -119,40 +121,76 @@ public class ApiService {
 				String ra_name=(String)row.get("unitName");
 				String ra_destination=ra_name.replaceAll("[^(]*[(]", "");
 				ra_destination=ra_destination.replaceAll("[)].*", "");
-				ra_name=ra_name.replaceAll("[(][^)]*[)]", "");
+				ranameMap.put(ra_name.replaceAll("휴게소", ""), ra_code);
+				
 
 				String ra_routeNo=(String)row.get("routeNo");
 				String ra_routeName=(String)row.get("routeName");
 				String ra_xValue=(String)row.get("xValue");
 				String ra_yValue=(String)row.get("yValue");
 				
-				ranameMap.put(ra_name.replaceAll("휴게소", ""), ra_code);
 				
 				rAdtos.add(new RestAreaDTO().builder().ra_code(ra_code).ra_name(ra_name).ra_routeNo(ra_routeNo).ra_routeName(ra_routeName).ra_destination(ra_destination).ra_xValue(ra_xValue).ra_yValue(ra_yValue).build());
 				System.out.print("|");
 			}
+		}
+		System.out.println("\ndtos 휴게소 생성 완료!");
+		
+		
+		
+		/*주유소 정보 
+		 * (주유소 코드 : gs_code, 주유소 이름 : gs_name, 휴게소 코드 : ra_code, 정유소 : gs_company,
+		 *  경유 : gs_diesel, 휘발유 : gs_gasoline, LPG : gs_lpg)*/
+		url=endpoint1+"?"+"key="+serviceKey+"&type="+type+"&numOfRows=99";
+		jsonParser=new JSONParser();
+		jsonObj=(JSONObject)jsonParser.parse(readURL(url));
+		//여러 페이지를 다 가져와야 한다!
+		//페이지 확인
+		fullcnt=Integer.parseInt((jsonObj.get("count").toString()))/99;
+		
+		System.out.println("주유소 api를 가져오는 중..");
+		//전부 꺼내기
+		//디비에 집어넣기
+		for(int i=1;i<=fullcnt+1;i++) {
+			jsonParser=new JSONParser();
+			jsonObj=(JSONObject)jsonParser.parse(readURL(url+"&pageNo="+i));
+			JSONArray array=(JSONArray)jsonObj.get("list");
+			
+			//최대갯수로 페이지마다 죠지기
+			for(int j=0;j<array.size();j++) {
+				JSONObject row=(JSONObject)array.get(j);
+				String gs_code=(String)row.get("serviceAreaCode");
+				String gs_name=(String)row.get("serviceAreaName");
+				String ra_code=ranameMap.get(gs_name.replaceAll("주유소", ""));
+				if(ra_code==null) {
+					ra_code="X";
+				}
+				
+				String gs_company=(String)row.get("oilCompany");
+				String gs_diesel=(String)row.get("diselPrice");
+				String gs_gasoline=(String)row.get("gasolinePrice");
+				String gs_lpg=(String)row.get("lpgPrice");
+				
+				gSdtos.add(new GasStationDTO().builder().gs_code(gs_code).gs_name(gs_name).ra_code(ra_code).gs_company(gs_company).gs_diesel(gs_diesel).gs_gasoline(gs_gasoline).gs_lpg(gs_lpg).build());
+				System.out.println(gSdtos.get(j));
+				System.out.print("|");
+			}
 			
 		}
-		
-		
-//		url=endpoint1+"?"+"key="+serviceKey+"&type="+type;
-//		jsonParser=new JSONParser();
-//		JSONObject jsonObj1=(JSONObject)jsonParser.parse(readURL(url));
-//		JSONArray array1=(JSONArray)jsonObj1.get("list");
-//		
-//		
-//		url=endpoint2+"?"+"key="+serviceKey+"&type="+type;
-//		jsonParser=new JSONParser();
-//		JSONObject jsonObj2=(JSONObject)jsonParser.parse(readURL(url));
-//		JSONArray array2=(JSONArray)jsonObj2.get("list");
+		System.out.println("\ndtos 주유소 생성 완료!");
 
 		
-//            String ra_routeNo = (String)row.get("routeNo");//노선 번호
-//            String gs_company = (String)row.get("oilCompany");//정유사
-//            String gs_diesel = (String)row.get("dieselPrice");
-//            String gs_gasoline = (String)row.get("gasolinePrice");
-//            String gs_lpg = (String)row.get("lpgPrice");
-//            gSdtos.add(new GasStationDTO().builder().gs_uid(i).ra_code(ra_code).gs_company(gs_company).gs_diesel(gs_diesel).gs_gasoline(gs_gasoline).gs_lpg(gs_lpg).build());
+		/*음식메뉴
+		 * (음식 고유번호 : fm_id, 음식 코드 : fm_code, 휴게소 코드 : ra_code, 음식 이름 : fm_name, 음식 가격 : fm_price, 
+		 * 음식 재료 : fm_material, 음식 상세 내역 : fm_etc)*/
+//		url=endpoint2+"?"+"key="+serviceKey+"&type="+type+"&numOfRows=99";
+//		jsonParser=new JSONParser();
+//		jsonObj=(JSONObject)jsonParser.parse(readURL(url));
+//		//여러 페이지를 다 가져와야 한다!
+//		//페이지 확인
+//		fullcnt=Integer.parseInt((jsonObj.get("count").toString()))/99;
+//		
+//		System.out.println("주유소 api를 가져오는 중..");
 		
 		//todo
 		//JSONObject array2=(JSONObject)jsonObj2.get("");
@@ -185,7 +223,7 @@ public class ApiService {
 			
 			StringBuffer buffer=new StringBuffer();
 			int i=0;
-			byte[] b=new byte[1024];
+			byte[] b=new byte[8192];
 			while((i=reader.read(b))!=-1) {
 				buffer.append(new String(b,0,i));
 			}
@@ -234,31 +272,35 @@ public class ApiService {
 		return result;
 	}
 	
-	public int insertRestAreaByDTOs(List<DTO> rAdtos2) throws Exception {
+	public int insertRestAreaByDTOs(List<DTO> DTOs) throws Exception {
 		int result=0;
 		System.out.println("insert sqlSession : "+sqlSession);
 
 		System.out.println("1");
 		dao=sqlSession.getMapper(RestAreaDAO.class);
-		dao.insertAllByDTOs(rAdtos2);
+		System.out.println(dao);
+		dao.insertAllByDTOs(DTOs);
 		return result;
 	};
 
-//	public int insertGasStationByDTOs(List<DTO> dtos) throws Exception {
-//		System.out.println("2");
-//		int result=0;
-//		dao=sqlSession.getMapper(GasStationDAO.class);
-//		dao.insertAllByDTOs(dtos);
-//		return result;
-//	};
-//	
-//	public int insertFoodMenuByDTOs(List<DTO> dtos) throws Exception {
-//		System.out.println("3");
-//		int result=0;
-//		dao=sqlSession.getMapper(FoodMenuDAO.class);
-//		dao.insertAllByDTOs(dtos);
-//		return result;
-//	};
+	public int insertGasStationByDTOs(List<DTO> DTOs) throws Exception {
+		int result=0;
+		System.out.println("insert sqlSession : "+sqlSession);
+		
+		System.out.println("2");
+		dao=sqlSession.getMapper(GasStationDAO.class);
+		System.out.println(dao);
+		 dao.insertAllByDTOs(DTOs);
+		return result;
+	};
+	
+	public int insertFoodMenuByDTOs(List<DTO> dtos) throws Exception {
+		System.out.println("3");
+		int result=0;
+		dao=sqlSession.getMapper(FoodMenuDAO.class);
+		dao.insertAllByDTOs(dtos);
+		return result;
+	};
 	
 
 }
