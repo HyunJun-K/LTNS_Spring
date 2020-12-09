@@ -15,6 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.type.IntegerTypeHandler;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -53,7 +54,7 @@ public class ApiService {
 	final static String serviceKey="2082754925";
 	final static String type="json";
 	
-	List<DTO> rAdtos=new ArrayList<DTO>();
+	List<DTO> rAdtos=new ArrayList<DTO>();//확인 필요...
 	List<DTO> gSdtos=new ArrayList<DTO>();
 	List<DTO> fMdtos=new ArrayList<DTO>();
 	
@@ -76,19 +77,14 @@ public class ApiService {
 		result=deleteAllBeforeApiDataInDB();
 		
 		//새 정보 넣기
-		DTO[] dtos;
+		result=insertRestAreaByDTOs(rAdtos);
 		
-		dtos=new RestAreaDTO[rAdtos.size()];
-		rAdtos.toArray(dtos);
-		result=insertRestAreaByDTOs(dtos);
-		
-//		dtos=new GasStationDTO[gSdtos.size()];
-//		gSdtos.toArray(dtos);
-//		result=insertGasStationByDTOs(dtos);
+//		result=insertGasStationByDTOs(gSdtos);
 //		
-//		dtos=new FoodMenuDTO[fMdtos.size()];
-//		fMdtos.toArray(dtos);
-//		result=insertFoodMenuByDTOs(dtos);
+//		result=insertFoodMenuByDTOs(fMdtos);
+		
+		
+		System.out.println("작업 완료!");
 		
 		return result;
 	}
@@ -106,8 +102,9 @@ public class ApiService {
 		JSONObject jsonObj0=(JSONObject)jsonParser.parse(readURL(url));
 		//여러 페이지를 다 가져와야 한다!
 		//페이지 확인
-		int fullcnt=((int)jsonObj0.get("count"))/99;
+		int fullcnt=Integer.parseInt((jsonObj0.get("count").toString()))/99;
 		
+		System.out.println("휴게소 위치 api를 가져오는 중..");
 		//전부 꺼내기
 		//디비에 집어넣기
 		for(int i=1;i<=fullcnt;i++) {
@@ -132,21 +129,22 @@ public class ApiService {
 				ranameMap.put(ra_name.replaceAll("휴게소", ""), ra_code);
 				
 				rAdtos.add(new RestAreaDTO().builder().ra_code(ra_code).ra_name(ra_name).ra_routeNo(ra_routeNo).ra_routeName(ra_routeName).ra_destination(ra_destination).ra_xValue(ra_xValue).ra_yValue(ra_yValue).build());
+				System.out.print("|");
 			}
 			
 		}
 		
 		
-		url=endpoint1+"?"+"key="+serviceKey+"&type="+type;
-		jsonParser=new JSONParser();
-		JSONObject jsonObj1=(JSONObject)jsonParser.parse(readURL(url));
-		JSONArray array1=(JSONArray)jsonObj1.get("list");
-		
-		
-		url=endpoint2+"?"+"key="+serviceKey+"&type="+type;
-		jsonParser=new JSONParser();
-		JSONObject jsonObj2=(JSONObject)jsonParser.parse(readURL(url));
-		JSONArray array2=(JSONArray)jsonObj2.get("list");
+//		url=endpoint1+"?"+"key="+serviceKey+"&type="+type;
+//		jsonParser=new JSONParser();
+//		JSONObject jsonObj1=(JSONObject)jsonParser.parse(readURL(url));
+//		JSONArray array1=(JSONArray)jsonObj1.get("list");
+//		
+//		
+//		url=endpoint2+"?"+"key="+serviceKey+"&type="+type;
+//		jsonParser=new JSONParser();
+//		JSONObject jsonObj2=(JSONObject)jsonParser.parse(readURL(url));
+//		JSONArray array2=(JSONArray)jsonObj2.get("list");
 
 		
 //            String ra_routeNo = (String)row.get("routeNo");//노선 번호
@@ -172,7 +170,7 @@ public class ApiService {
 //            fMdtos.add(new FoodMenuDTO().builder().fm_id(i).fm_code(fm_code).ra_code(ra_code).fm_name(fm_name).fm_price(fm_price).fm_material(fm_material).fm_etc(fm_etc).build());
 //            
 //		}
-		System.out.println("dtos 생성 완료!");
+		System.out.println("\ndtos 생성 완료!");
 		return result;
 	}
 	
@@ -225,54 +223,42 @@ public class ApiService {
 		System.out.println("delete sqlSession : "+sqlSession);
 
 		dao=sqlSession.getMapper(RestAreaDAO.class);
- 
+		dao.deleteAll();
+		
 		dao=sqlSession.getMapper(GasStationDAO.class);
- 
+		dao.deleteAll();
+		
 		dao=sqlSession.getMapper(FoodMenuDAO.class);
- 
+		dao.deleteAll();
+		
 		return result;
 	}
 	
-	@Transactional
-	public int insertRestAreaByDTOs(DTO[] dtos) throws Exception {
+	public int insertRestAreaByDTOs(List<DTO> rAdtos2) throws Exception {
 		int result=0;
 		System.out.println("insert sqlSession : "+sqlSession);
 
 		System.out.println("1");
 		dao=sqlSession.getMapper(RestAreaDAO.class);
-		insertByDTOs(dtos);
+		dao.insertAllByDTOs(rAdtos2);
 		return result;
 	};
 
-	@Transactional
-	public int insertGasStationByDTOs(DTO[] dtos) throws Exception {
-		System.out.println("2");
-		int result=0;
-		dao=sqlSession.getMapper(GasStationDAO.class);
-		insertByDTOs(dtos);
-		return result;
-	};
+//	public int insertGasStationByDTOs(List<DTO> dtos) throws Exception {
+//		System.out.println("2");
+//		int result=0;
+//		dao=sqlSession.getMapper(GasStationDAO.class);
+//		dao.insertAllByDTOs(dtos);
+//		return result;
+//	};
+//	
+//	public int insertFoodMenuByDTOs(List<DTO> dtos) throws Exception {
+//		System.out.println("3");
+//		int result=0;
+//		dao=sqlSession.getMapper(FoodMenuDAO.class);
+//		dao.insertAllByDTOs(dtos);
+//		return result;
+//	};
 	
-	@Transactional
-	public int insertFoodMenuByDTOs(DTO[] dtos) throws Exception {
-		System.out.println("3");
-		int result=0;
-		dao=sqlSession.getMapper(FoodMenuDAO.class);
-		insertByDTOs(dtos);
-		return result;
-	};
-	
-	//공통 코드
-	public int insertByDTOs(DTO[] dtos) throws Exception {
-		int result=0;
-		for(DTO dto : dtos ) {
-			result=dao.insertByDTO(dto);
-			if(result==0) {
-				System.out.println("실패");
-				throw new Exception();
-			}
-		}
-		return result;
-	}
 
 }

@@ -1,6 +1,11 @@
+
 package com.ltns.rest_area.domain;
 
 import java.util.List;
+
+import org.springframework.transaction.annotation.Transactional;
+
+import com.ltns.rest_area.domain.restarea.RestAreaDTO;
 
 public interface DAO {
 	/*select*/
@@ -13,6 +18,7 @@ public interface DAO {
 	/*insert*/
 	int insertByDTO(DTO dto);
 	int insertByObject(Object obj);
+	int insertAllByDTOs(List<DTO> list);
 	int test(String s);
 	
 	
@@ -27,3 +33,4 @@ public interface DAO {
 	int deleteAll();
 
 }
+
