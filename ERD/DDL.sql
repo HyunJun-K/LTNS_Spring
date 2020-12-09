@@ -110,14 +110,14 @@ CREATE TABLE RestArea
 -- Post Table Create SQL
 CREATE TABLE Post
 (
-    post_id          number     NOT NULL, 
-    post_title       VARCHAR2(100)     NOT NULL, 
-    post_contents    VARCHAR2(4000)    NOT NULL, 
+    post_id          number     	   NOT NULL, 
+    post_title       VARCHAR2(1000)    NOT NULL, 
+    post_contents    CLOB			   NOT NULL, 
     um_uid           VARCHAR2(100)     NOT NULL, 
     um_username      VARCHAR2(100)     NOT NULL, 
     post_regdate     TIMESTAMP         NOT NULL, 
     ra_code          VARCHAR2(100)     NOT NULL, 
-    post_reported    VARCHAR2(100)      NULL, 
+    post_reported    VARCHAR2(100)     , 
     CONSTRAINT POST_PK PRIMARY KEY (post_id)
 );
 /
@@ -226,8 +226,8 @@ CREATE TABLE FoodMenu
     ra_code        VARCHAR2(100)      NOT NULL, 
     fm_name        VARCHAR2(100)     NOT NULL, 
     fm_price       VARCHAR2(100)     NOT NULL, 
-    fm_material    VARCHAR2(4000)    , 
-    fm_etc         VARCHAR2(4000)    , 
+    fm_material    CLOB			    , 
+    fm_etc         CLOB    			, 
     CONSTRAINT FOODMENU_PK PRIMARY KEY (fm_id)
 );
 /
@@ -378,13 +378,13 @@ ALTER TABLE Post_like
 -- Comment Table Create SQL
 CREATE TABLE Comments
 (
-    comment_id          number               NOT NULL, 
-    comment_contents    VARCHAR2(2000)    NOT NULL, 
-    um_uid              number               NOT NULL, 
-    um_username         VARCHAR2(100)      NOT NULL, 
-    um_regdate          TIMESTAMP         NOT NULL, 
-    post_id             number               NOT NULL, 
-    comment_reported    VARCHAR2(100)      NULL, 
+    comment_id          number              NOT NULL, 
+    comment_contents    CLOB			    NOT NULL, 
+    um_uid              number              NOT NULL, 
+    um_username         VARCHAR2(100)       NOT NULL, 
+    um_regdate          TIMESTAMP           NOT NULL, 
+    post_id             number              NOT NULL, 
+    comment_reported    VARCHAR2(100)       , 
     CONSTRAINT COMMENT_PK PRIMARY KEY (comment_id)
 );
 /
