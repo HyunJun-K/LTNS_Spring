@@ -1,3 +1,4 @@
 *.class
 
-target/m2e-wtp/web-resources/META-INF/maven/com.ltns/rest_area/pom.properties
+pom.properties
+MANIFEST.MF
