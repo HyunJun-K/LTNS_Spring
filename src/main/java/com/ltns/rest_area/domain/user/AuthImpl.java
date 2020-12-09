@@ -13,13 +13,13 @@ public class AuthImpl implements AuthDAO {
     @Autowired
     private SqlSession sqlSession;
 
-    @Override // 등급 insert
+    @Override 
     public int insertByObject(Object obj) {
         long uid = (long) obj;
         return sqlSession.getMapper(AuthDAO.class).insertByObject(uid);
     }
 
-    @Override // 회원 탈퇴시 등급 제거 또는 uid 값으로 등급 제거 (foreign key => uid)
+    @Override 
     public int deleteByObject(Object obj) {
         long uid = (long) obj;
         return sqlSession.getMapper(AuthDAO.class).deleteByObject(uid);
@@ -85,4 +85,34 @@ public class AuthImpl implements AuthDAO {
     public int deleteAll() {
         return 0;
     }
+
+	@Override
+	public int insertAllByDTOs(List<DTO> dtos) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int inset_(String s, String d, String e, String dd) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateAllByDTOs(List<DTO> dtos) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int update_(String a, String s, String d, String e, String dd) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteByString(String str) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }
