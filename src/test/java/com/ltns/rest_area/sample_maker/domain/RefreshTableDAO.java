@@ -86,17 +86,13 @@ public class RefreshTableDAO extends AbstractDAO {
 			"( " + 
 			"    gs_code        VARCHAR2(100)    NOT NULL,  " + 
 			"    gs_name        VARCHAR2(100)    NOT NULL,  " + 
-			"    ra_code        VARCHAR2(100)    NOT NULL,  " + 
+			"    ra_code        VARCHAR2(100)    ,  " + 
 			"    gs_company     VARCHAR2(100)    NOT NULL,  " + 
 			"    gs_diesel      VARCHAR2(100)    ,  " + 
 			"    gs_gasoline    VARCHAR2(100)    ,  " + 
 			"    gs_lpg         VARCHAR2(100)    ,  " + 
 			"    CONSTRAINT GASSTATION_PK PRIMARY KEY (gs_code) " + 
 			")";
-	
-	final static String ALTER_GASSTATION_RA_CODE_FOREIGN_KEY="ALTER TABLE GasStation " + 
-			"    ADD CONSTRAINT FK_GasStation_ra_code_RestArea FOREIGN KEY (ra_code) " + 
-			"        REFERENCES RestArea (ra_code)";
 	
 	final static String CREATE_FOODMENU_TABLE="CREATE TABLE FoodMenu " + 
 			"( " + 
@@ -352,7 +348,6 @@ public class RefreshTableDAO extends AbstractDAO {
 			
 			justExcuteBySQL(CREATE_RESTAREA_TABLE);
 			justExcuteBySQL(CREATE_GASSTATION_TABLE);
-			justExcuteBySQL(ALTER_GASSTATION_RA_CODE_FOREIGN_KEY);
 			justExcuteBySQL(CREATE_FOODMENU_TABLE);
 			justExcuteBySQL(ALTER_FOODMENU_RACODE_FOREIGN_KEY);
 			justExcuteBySQL(CREATE_POST_TABLE);
@@ -385,5 +380,15 @@ public class RefreshTableDAO extends AbstractDAO {
 		}
 		return 1;
 	}
+
+
+	@Override
+	public int insertAllByDTOs(List<DTO> dtos) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
 
 }

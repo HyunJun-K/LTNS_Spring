@@ -186,7 +186,7 @@ CREATE TABLE GasStation
 (
     gs_code        VARCHAR2(100)    NOT NULL,
     gs_name        VARCHAR2(100)   NOT NULL,
-    ra_code        VARCHAR2(100)   NOT NULL, 
+    ra_code        VARCHAR2(100)   , 
     gs_company     VARCHAR2(100)   NOT NULL, 
     gs_diesel      VARCHAR2(100)   NOT NULL, 
     gs_gasoline    VARCHAR2(100)    NOT NULL, 
@@ -216,10 +216,6 @@ CREATE TABLE GasStation
 --COMMENT ON COLUMN GasStation.gs_lpg IS 'LPG'
 /
 
-ALTER TABLE GasStation
-    ADD CONSTRAINT FK_GasStation_ra_code_RestArea FOREIGN KEY (ra_code)
-        REFERENCES RestArea (ra_code);
-/
 
 
 -- FoodMenu Table Create SQL
