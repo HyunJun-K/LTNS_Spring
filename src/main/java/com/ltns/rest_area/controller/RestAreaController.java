@@ -50,7 +50,7 @@ public class RestAreaController {
 
 		int pagenationPage=10;	//페이지네이션에 표시할 페이지 갯수
 		
-		int from=lastIndex+1;
+		int fromRow=lastIndex+1;
 		try {
 			switch (listSort) {
 			case "ra":
@@ -61,7 +61,7 @@ public class RestAreaController {
 				totalPage=(int)Math.ceil(totalCnt/(double)numOfRows);
 				
 				//데이터 가져오기
-				list=searchService.selectSomeRaDTOs(routeName,destination,orderBy, from,numOfRows);
+				list=searchService.selectSomeRaDTOs(routeName,destination,orderBy, fromRow, numOfRows);
 				break;
 				
 				
@@ -73,7 +73,7 @@ public class RestAreaController {
 				totalPage=(int)Math.ceil(totalCnt/(double)numOfRows);
 				
 				//데이터 가져오기
-				list=searchService.selectSomeGsDTOs(routeName,destination,orderBy, from,numOfRows);
+				list=searchService.selectSomeGsDTOs(routeName,destination,orderBy, fromRow, numOfRows);
 				break;
 				
 				
@@ -85,7 +85,7 @@ public class RestAreaController {
 				totalPage=(int)Math.ceil(totalCnt/(double)numOfRows);
 				
 				//데이터 가져오기
-				list=searchService.selectSomeFmDTOs(routeName,destination,orderBy, from,numOfRows);
+				list=searchService.selectSomeFmDTOs(routeName,destination,orderBy, fromRow,numOfRows);
 				break;
 			}
 			

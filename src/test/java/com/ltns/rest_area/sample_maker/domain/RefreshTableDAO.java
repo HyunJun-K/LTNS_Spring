@@ -102,7 +102,7 @@ public class RefreshTableDAO extends AbstractDAO {
 			"    ra_code        VARCHAR2(100)      NOT NULL,  " + 
 			"    ra_name		VARCHAR2(100)   	,  "+
 			"    fm_name        VARCHAR2(100)      NOT NULL,  " + 
-			"    fm_price       VARCHAR2(100)       ,  " + 
+			"    fm_price       number       ,  " + 
 			"    fm_material    CLOB			    ,  " + 
 			"    fm_etc         CLOB    			,  " + 
 			"    CONSTRAINT FOODMENU_PK PRIMARY KEY (fm_id) " + 

@@ -182,7 +182,7 @@ public class ApiService {
 				((RestAreaDTO)rAdtos.get(tmpIndex)).setRa_destination(ra_destination);
 				
 //				System.out.println(rAdtos.get(tmpIndex));//test
-				System.out.println("|");
+				System.out.print("|");
 			}
 		}
 		System.out.println("\ndtos 휴게소 생성 완료!");
@@ -268,7 +268,7 @@ public class ApiService {
 				String ra_name=ra_codeNra_nameMap.get(ra_code);
 
 				String fm_name = (String) row.get("foodNm");
-				String fm_price = (String) row.get("foodCost");
+				int fm_price = Integer.parseInt((String)row.get("foodCost"));
 
 				String fm_material = (String) row.get("foodMaterial");
 				if (fm_material == null) {
