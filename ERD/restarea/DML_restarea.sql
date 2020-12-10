@@ -19,14 +19,23 @@ FROM RestArea
 WHERE ra_routeName = '경부선' AND ra_DESTINATION ='서울'
 ORDER BY ra_code
 ;
-
+SELECT *
+FROM 
+(
+SELECT ROWNUM rnum, a.*
+FROM
+(
 SELECT RestArea.*, ra_like.ra_like_cnt
 FROM RestArea
 LEFT OUTER JOIN 
 (SELECT ra_code, COUNT(*) AS ra_like_cnt
 FROM ra_like
 GROUP BY ra_code) ra_like ON restarea.ra_code=ra_like.ra_code
-ORDER BY ra_like.ra_like_cnt DESC, RestArea.ra_code 
+ORDER BY ra_like.ra_like_cnt DESC, RestArea.ra_code
+) a
+WHERE ROWNUM< 10+10
+)
+WHERE rnum >=11
 ;
 
 SELECT *
@@ -45,3 +54,79 @@ GROUP BY ra_code;
 --서울양양선 y 서울/양양 2
 --서천공주선 y 서천/공주 4
 --서해안선 y 서울/목포/양방향
+
+
+
+SELECT *
+FROM(
+	SELECT
+		ROWNUM rnum, a.*
+	FROM (
+		SELECT
+			RestArea.*
+		FROM 
+			RestArea
+				WHERE 
+					ra_routeName='경부선'
+		ORDER BY 
+			RestArea.ra_code
+	) a
+	WHERE ROWNUM < 1 + 10
+)
+WHERE rnum >=1
+;
+
+SELECT *
+FROM(
+	SELECT ROWNUM rnum, a.*
+	FROM(
+		SELECT
+			gs.*, ra.ra_routeName, ra.ra_destination
+		FROM
+			GasStation gs
+			LEFT OUTER JOIN
+				RestArea ra ON gs.ra_code=ra.ra_code
+			LEFT OUTER JOIN (
+				SELECT gs_code, COUNT(*) AS gs_like_cnt
+				FROM gs_like
+				GROUP BY gs_code
+				) gs_like ON gs.gs_code=gs_like.gs_code
+		WHERE 
+			ra.ra_routeName='경부선'
+			 AND ra.ra_destination = '부산'
+		ORDER BY
+			gs.ra_code
+	) a
+	WHERE ROWNUM <1+10
+)
+WHERE rnum >=1
+;
+
+
+
+SELECT *
+FROM(
+	SELECT ROWNUM rnum, a.*
+	FROM(
+		SELECT
+			fm.*, ra.ra_routeName, ra.ra_destination
+		FROM
+			FoodMenu fm
+			LEFT OUTER JOIN
+				RestArea ra ON fm.ra_code=ra.ra_code
+			LEFT OUTER JOIN (
+				SELECT fm_id, COUNT(*) AS fm_like_cnt
+				FROM fm_like
+				GROUP BY fm_id
+				) fm_like ON fm.fm_id=fm_like.fm_id
+--		WHERE 
+--			ra.ra_routeName='ALL'
+--			 AND ra.ra_destination = 'ALL'
+		ORDER BY
+			fm.fm_price,
+			fm.ra_code
+	) a
+--	WHERE ROWNUM <1+10
+)
+--WHERE rnum >=1
+;

@@ -18,8 +18,7 @@ public class RestAreaCDTO implements DTO {
 	private String orderBy;		//경로순 'BY_PATH', 좋아요순 'BY_LIKE'
 								//GS용	'BY_DIESEL' 'BY_GASOLINE' 'BY_LPG'
 								//FM용	'BY_PRICE'
-	private int from;
+	private int fromRow;
 	private int numOfRows;
-	
 	
 }

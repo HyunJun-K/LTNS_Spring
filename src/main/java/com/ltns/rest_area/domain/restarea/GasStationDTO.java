@@ -20,4 +20,6 @@ public class GasStationDTO implements DTO {
 	private String gs_diesel;
 	private String gs_gasoline;
 	private String gs_lpg;
+	
+	private int gs_like_cnt;
 }
