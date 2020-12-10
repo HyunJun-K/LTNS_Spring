@@ -45,7 +45,7 @@
 						<li class="nav-item"><a class="nav-link "
 							href="${pageContext.request.contextPath}/admin/schedule"> 일정
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/memberInfo"> <span
 								data-feather="shopping-cart"></span> 회원정보
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"> <span

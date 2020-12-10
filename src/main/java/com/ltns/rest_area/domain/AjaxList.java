@@ -3,6 +3,7 @@ package com.ltns.rest_area.domain;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,5 +24,14 @@ public class AjaxList extends AjaxResult{
 	
 	List<DTO> list;	//dto 데이터
 
+
 	int pagenationPage;	//페이지네이션에 표시할 페이지 갯수
+	int WritePages ; // list 수 
+	
+	
+	
+	
+	
+	
+
 }

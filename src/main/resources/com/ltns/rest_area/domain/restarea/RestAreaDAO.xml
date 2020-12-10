@@ -10,6 +10,7 @@
 	</select>
 
 	
+<<<<<<< HEAD
 	<select id="selectByDTO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaCDTO" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		SELECT
 			RestArea.*
@@ -30,6 +31,9 @@
 			RestArea.ra_code
 	</select>
 
+=======
+	
+>>>>>>> branch 'master' of https://github.com/HyunJun-K/LTNS_Spring.git
 
 	<insert id="insertByDTO" flushCache="true" parameterType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		INSERT INTO RestArea

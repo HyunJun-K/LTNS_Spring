@@ -8,5 +8,8 @@ public class UserController {
 
 	@GetMapping("/auth/user/login")
 	public void login() {}
+	
+	@GetMapping("/auth/user/join")
+	public void join() {}
 
 }
