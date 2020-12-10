@@ -13,9 +13,9 @@
 	<insert id="insertAllByDTOs" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" > 
 	        INTO FoodMenu
-			( fm_id, fm_code, ra_code, fm_name, fm_price, fm_material, fm_etc)
+			( fm_id, fm_code, ra_code, ra_name, fm_name, fm_price, fm_material, fm_etc)
 		VALUES
-			( #{item.fm_id}, #{item.fm_code}, #{item.ra_code}, #{item.fm_name}, #{item.fm_price}, #{item.fm_material}, #{item.fm_etc})
+			( #{item.fm_id}, #{item.fm_code}, #{item.ra_code}, #{item.ra_name}, #{item.fm_name}, #{item.fm_price}, #{item.fm_material}, #{item.fm_etc})
 		</foreach>
     </insert>
 	

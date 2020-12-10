@@ -8,8 +8,28 @@
 		FROM
 			RestArea		
 	</select>
+
 	
-	
+	<select id="selectByDTO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaCDTO" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
+		SELECT
+			RestArea.*
+		FROM 
+			RestArea
+			<if test="orderBy == 'BY_LIKE'">  
+				LEFT OUTER JOIN (
+					SELECT ra_code, COUNT(*) AS ra_like_cnt
+					FROM ra_like
+					GROUP BY ra_code
+					) ra_like ON restarea.ra_code=ra_like.ra_code 
+			</if>
+		WHERE 
+			ra_routeName=#{routeName}
+			<if test="destination != 'ALL'"> AND ra_destination = #{destination} </if>
+		ORDER BY 
+			<if test="orderBy == 'BY_LIKE'"> ra_like.ra_like_cnt DESC, </if>
+			RestArea.ra_code
+	</select>
+
 
 	<insert id="insertByDTO" flushCache="true" parameterType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		INSERT INTO RestArea
@@ -22,8 +42,8 @@
 	<insert id="insertAllByDTOs" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" > 
 	        INTO RestArea
-				(ra_code, ra_name, ra_routeNo, ra_routeName, ra_destination, ra_xValue, ra_yValue)
-	        VALUES
+				(ra_code, ra_name, ra_rout ra_routeName, ra_destination, ra_xValue, ra_yValue)
+	        VALUESeNo,
 				(#{item.ra_code}, #{item.ra_name}, #{item.ra_routeNo}, #{item.ra_routeName}, #{item.ra_destination}, #{item.ra_xValue}, #{item.ra_yValue})
         </foreach>
     </insert>

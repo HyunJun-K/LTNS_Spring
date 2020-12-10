@@ -7,17 +7,19 @@
 <title> 회원 정보</title>
 </head>
 
+<!--  chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
 <!-- jquery  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
 
 
 <!--  bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
-<link href='${pageContext.request.contextPath }/admin/CSS/admin.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath }/admin/CSS/memberInfo.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/memberInfo.js'></script>
 
 <body>
@@ -61,16 +63,13 @@
 			</nav>
 		</div><!-- sidebar 라인 -->
 
-
-
+		<!-- section 1  -->
 		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-
-
-			<div id="list" class="border">
-				<div class="d01">
-					<div class="left" id="pageinfo"></div>
-					<div class="right" id="pageRows"></div>
+			<div id="list" >
+				<div class="d01 text-right font-lg">
+					<div id="pageinfo"></div>
+					<div id="pageRows"></div>
 				</div>
 				<div class="clear"></div>
 
@@ -78,28 +77,45 @@
 					<table>
 						<thead>
 							<th>UID</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>조회수</th>
-							<th>작성일</th>
+							<th>UID</th>
+							<th>아이디</th>
+							<th>닉네임</th>
+							<th>가입일</th>
+							<th>신고횟수</th>
 						</thead>
 						<tbody>
 
 						</tbody>
 					</table>
-				</form>
-			</div>
-
+				</form> 
+			</div> <!-- end list table -->
+	<%--페이징 --%>
+		<br>
+		
+				<div class="d-flex justify-content-center">
+					<form name="sechForm" id="sechForm">
+					<select id="sele_option"class="mr-2">
+						<option  value="id" selected> 아이디 </option>
+						<option value="nickName"> 닉네임 </option>
+						<option value="regdate"> 가입일 </option>
+					</select>
+					<input id="text_info" type="text" name="text_Info">
+					<button type="button" class="ml-2" onclick="addSerch();"> 검색 </button>
+				  </form>
+				</div>
+		
+				<div class="d-flex justify-content-end">
+					<ul class="pagination " id="pagination">
+					</ul>
+				</div>
+				
+		
 			<div class="clear"></div>
 
 
-			<%--페이징 --%>
-			<div class="center">
-				<ul class="pagination" id="pagination">
-				</ul>
-			</div>
+		</main> <!-- article -->
 
-		</main>
+
+
 	</div> <!-- end con -->
 </body>
-</html>

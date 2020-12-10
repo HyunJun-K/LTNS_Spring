@@ -6,16 +6,16 @@
 		INSERT INTO GasStation
 			( gs_code, gs_name, ra_code, gs_company, gs_diesel, gs_gasoline, gs_lpg )
 		VALUES
-			( #{gs_code}, #{gs_name}, #{ra_code}, #{gs_company}, #{gs_diesel}, #{gs_gasoline}, #{gs_lpg} )
+			( #{gs_code}, #{gs_name}, #{ra_code}, #{ra_name}, #{gs_company}, #{gs_diesel}, #{gs_gasoline}, #{gs_lpg} )
 	</insert>
 
 
 	<insert id="insertAllByDTOs" parameterType="java.util.List">
         <foreach collection="list" item="item" index="index"  open="INSERT ALL " separator=" " close="SELECT * FROM DUAL" > 
 	        INTO GasStation
-				( gs_code, gs_name, ra_code, gs_company, gs_diesel, gs_gasoline, gs_lpg ) 
+				( gs_code, gs_name, ra_code, ra_name, gs_company, gs_diesel, gs_gasoline, gs_lpg ) 
 	       VALUES 
-			( #{item.gs_code}, #{item.gs_name}, #{item.ra_code}, #{item.gs_company}, #{item.gs_diesel}, #{item.gs_gasoline}, #{item.gs_lpg} )
+			( #{item.gs_code}, #{item.gs_name}, #{item.ra_code}, #{item.ra_name}, #{item.gs_company}, #{item.gs_diesel}, #{item.gs_gasoline}, #{item.gs_lpg} )
 		</foreach>
     </insert>
 

@@ -7,18 +7,21 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.service.SearchService;
 
-@Controller
+@RestController
 @RequestMapping("/restarea")
 public class RestAreaController {
 
 	@Autowired
 	private SearchService searchService;
 
+
+	
 	// 휴게소로 검색
 	@GetMapping("/{listSort}/{routeName}/{destination}/{orderBy}")
 	public AjaxList getList(@PathVariable String listSort, @PathVariable String routeName, @PathVariable String destination, @PathVariable String orderBy) {
@@ -91,7 +94,7 @@ public class RestAreaController {
 			}else {
 				status="OK";
 			}
-			
+			System.out.println(list);//test용
 		}catch(Exception e) {
 			e.printStackTrace();
 			message.append("[트랜잭션 에러 : "+e.getMessage()+"]");
@@ -112,6 +115,7 @@ public class RestAreaController {
 		
 		result.setPagenationPage(pagenationPage);
 
+		System.out.println(result);
 		return result;
 	}
 
