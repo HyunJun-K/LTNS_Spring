@@ -132,7 +132,7 @@ public class AdminController {
 		
 		try {
 
-			 
+			
 			list = member_service.seachId(nick);
 			
 			if(list == null) {
