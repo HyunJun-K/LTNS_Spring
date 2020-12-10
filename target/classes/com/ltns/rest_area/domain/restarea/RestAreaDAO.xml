@@ -9,6 +9,7 @@
 			RestArea		
 	</select>
 	
+	
 
 	<insert id="insertByDTO" flushCache="true" parameterType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		INSERT INTO RestArea

@@ -3,6 +3,7 @@ package com.ltns.rest_area.domain;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ltns.rest_area.domain.admin.ScheduleDTO;
@@ -48,5 +49,10 @@ public interface DAO {
 	int deleteByString(String str);
 	int deleteByObject(Object obj);			//이외의 다양한 자료형에 사용하세요
 
+	
+	public List<DTO> selectFromRow(
+			@Param("from") int from, @Param("pagenationPage") int pagenationPage
+	);
+	
 }
 
