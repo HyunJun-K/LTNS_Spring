@@ -110,4 +110,28 @@ public class AuthImpl implements AuthDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	@Override
+	public int selectCnt() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int selectCntByInt(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int selectCntByString(String str) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int selectCntByObject(Object obj) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

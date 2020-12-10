@@ -15,9 +15,9 @@ public class UserDAOImpl implements UserDAO {
 	SqlSession session;
 
 	@Override
-	public List<DTO> select() {
+	public List<DTO> selectAll() {
 		// TODO Auto-generated method stub
-		return session.getMapper(UserDAO.class).select();
+		return session.getMapper(UserDAO.class).selectAll();
 	}
 	
 	@Override
@@ -114,12 +114,6 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public int deleteByDTO(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int insertAllByDTOs(List<DTO> dtos) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -145,6 +139,30 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public int deleteByString(String str) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int selectCnt() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int selectCntByInt(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int selectCntByString(String str) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int selectCntByObject(Object obj) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
