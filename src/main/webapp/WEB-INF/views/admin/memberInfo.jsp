@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>관리자 페이지</title>
+<title> 회원 정보</title>
 </head>
 
 <!-- jquery  -->
@@ -20,7 +20,7 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
 <link href='${pageContext.request.contextPath }/admin/CSS/admin.css' rel='stylesheet' />
-<script src='${pageContext.request.contextPath }/admin/JS/admin.js'></script>
+<script src='${pageContext.request.contextPath }/admin/JS/memberInfo.js'></script>
 
 <body>
 	<!-- dashboard nav -->
@@ -39,13 +39,13 @@
 			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
 				<div class="sidebar-sticky">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link active"
+						<li class="nav-item"><a class="nav-link "
 							href="${pageContext.request.contextPath}/admin/dashboard">
 								Dashboard </a></li>
 						<li class="nav-item"><a class="nav-link "
 							href="${pageContext.request.contextPath}/admin/schedule"> 일정
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/memberInfo"> <span
+						<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/admin/memberInfo"> <span
 								data-feather="shopping-cart"></span> 회원정보
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"> <span
@@ -67,19 +67,41 @@
 
 		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-		<canvas id="myChart" width="200" height="200"></canvas>
+
+
+			<div id="list" class="border">
+				<div class="d01">
+					<div class="left" id="pageinfo"></div>
+					<div class="right" id="pageRows"></div>
+				</div>
+				<div class="clear"></div>
+
+				<form id="frmList" name="frmList">
+					<table>
+						<thead>
+							<th>UID</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>조회수</th>
+							<th>작성일</th>
+						</thead>
+						<tbody>
+
+						</tbody>
+					</table>
+				</form>
+			</div>
+
+			<div class="clear"></div>
+
+
+			<%--페이징 --%>
+			<div class="center">
+				<ul class="pagination" id="pagination">
+				</ul>
+			</div>
 
 		</main>
-
-
-
-
 	</div> <!-- end con -->
-	
-	
-	
-
-
-
 </body>
 </html>
