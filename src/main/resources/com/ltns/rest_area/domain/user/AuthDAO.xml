@@ -5,7 +5,7 @@
      insert into auth(um_uid) values (#{uid})
     </insert>
     
-    <insert id="insertByDTO" parameterType="com.ltns.rest_area.domain.user.userAuthDTO" flushCache="true">
+    <insert id="insertByDTO" parameterType="com.ltns.rest_area.domain.user.UserAuthDTO" flushCache="true">
      insert into auth values (#{uid}, #{addAuthority})
     </insert>
     
@@ -21,15 +21,15 @@
     select * from auth where um_uid=#{uid}
     </select>
    
-    <select id="selectByString" parameterType="string" resultType="com.ltns.rest_area.domain.user.userAuthDTO">
+    <select id="selectByString" parameterType="string" resultType="com.ltns.rest_area.domain.user.UserAuthDTO">
     select u.um_uid "uid", u.um_username username, u.um_enabled enabled, u.um_nickname nickname, a.authority, u.um_password password from usermember u join auth a on u.um_uid = a.um_uid where username=#{s}
     </select>
    
-    <select id="selectAll" resultType="com.ltns.rest_area.domain.user.userAuthDTO">
+    <select id="selectAll" resultType="com.ltns.rest_area.domain.user.UserAuthDTO">
     select u.um_uid "uid", u.um_username username, u.um_enabled enabled, u.um_nickname nickname, a.authority, u.um_password password from usermember u join auth a on u.um_uid = a.um_uid
     </select>
    
-    <update id="updateByObject" parameterType="com.ltns.rest_area.domain.user.userAuthDTO" flushCache="true">
+    <update id="updateByObject" parameterType="com.ltns.rest_area.domain.user.UserAuthDTO" flushCache="true">
      update auth set nextAuthority = #{nextAuthority} where um_uid = #{uid} AND prevAuthority = #{prevAuthority}
     </update>
 
