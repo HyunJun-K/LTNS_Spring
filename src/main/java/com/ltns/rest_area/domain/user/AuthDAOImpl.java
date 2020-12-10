@@ -24,7 +24,7 @@ public class AuthDAOImpl implements AuthDAO {
     @Override
     public int insertByDTO(DTO dto) {
     	UserAuthDTO userAuth = (UserAuthDTO)dto;
-        return sqlSession.getMapper(AuthDAO.class).insertByObject(userAuth);
+        return sqlSession.getMapper(AuthDAO.class).insertByDTO(userAuth);
     }
 
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.user.AuthDAO;
+import com.ltns.rest_area.domain.user.AuthDTO;
 import com.ltns.rest_area.domain.user.UserDTO;
 import com.ltns.rest_area.domain.user.UserAuthDTO;
 
@@ -28,6 +29,7 @@ public class AuthService {
 		UserDTO user = new UserDTO();
 		user.setUm_username(userAuth.getUsername());
 		userAuth.setUid(service.findByUsername(user).get(0).getUm_uid());
+		System.out.println("asd;ka;lskfjl;akflkasl;fk l :" + userAuth);
 		return authDAO.insertByDTO(userAuth);
 	}
 
@@ -43,12 +45,12 @@ public class AuthService {
         return authDAO.deleteByUserAuth(userAuth);
     }
 	
-	public List<UserAuthDTO> findByUid(long uid) {
+	public List<AuthDTO> findByUid(long uid) {
 		List<DTO> list = null;
 		list = authDAO.selectByObject(uid);
-		List<UserAuthDTO> result = new ArrayList<UserAuthDTO>();
+		List<AuthDTO> result = new ArrayList<AuthDTO>();
 		if (list != null)
-			list.forEach(item -> result.add((UserAuthDTO) item));
+			list.forEach(item -> result.add((AuthDTO) item));
 		return result;
 	}
 
