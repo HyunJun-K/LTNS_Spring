@@ -167,6 +167,12 @@ public class UserDAOImpl implements UserDAO {
 		return 0;
 	}
 
+	@Override
+	public List<DTO> selectFromRow(int from, int pagenationPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 
 
 
