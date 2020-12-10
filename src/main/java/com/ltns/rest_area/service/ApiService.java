@@ -43,7 +43,10 @@ public class ApiService {
 	// 고속도로 휴게소 기준정보 현황(위치)
 	final static String endpoint0 = "http://data.ex.co.kr/openapi/locationinfo/locationinfoRest";
 	// 휴게소 이름 정리해놓은 해쉬맵을 만들어두기... 주유소 정보에 넣어야 한다... ('휴게소'뺀 이름:휴게소코드)
-
+	
+	//휴게소 방향정보를 위함
+	final static String endpoint0_1 = "http://data.ex.co.kr/openapi/business/serviceAreaRoute";
+	
 	// 주유소 가격, 업체 현황
 	final static String endpoint1 = "http://data.ex.co.kr/openapi/business/curStateStation";
 	// => unitName에서 주유소를 잘라, 휴게소 코드를 가져와야 한다...
@@ -99,6 +102,8 @@ public class ApiService {
 		// 해쉬맵을 작성할것...
 		HashMap<String, String> ranameMap = new HashMap<String, String>(); // ('휴게소'뺀 이름:휴게소코드)
 		HashMap<String, String> ra_codeNstdRestCdMap = new HashMap<String, String>(); // (serviceAreaCode : stdRestCd)
+		HashMap<String, String> ra_codeNra_nameMap=new HashMap<String, String>();	//(ra_code:ra_name)
+		HashMap<String,Integer> ra_codeNi = new HashMap<String, Integer>();	//(ra_code:i)
 		String url = endpoint0 + "?" + "key=" + serviceKey + "&type=" + type + "&numOfRows=99";
 		JSONParser jsonParser = new JSONParser();
 		JSONObject jsonObj = (JSONObject) jsonParser.parse(readURL(url));
@@ -109,6 +114,7 @@ public class ApiService {
 		System.out.println("휴게소 위치 api를 가져오는 중..");
 		// 전부 꺼내기
 		// 디비에 집어넣기
+		int rAdtosIndex=0;
 		for (int i = 1; i <= fullcnt + 1; i++) {
 			jsonParser = new JSONParser();
 			jsonObj = (JSONObject) jsonParser.parse(readURL(url + "&pageNo=" + i));
@@ -122,9 +128,16 @@ public class ApiService {
 				ra_codeNstdRestCdMap.put(stdRestCd, ra_code);
 
 				String ra_name = (String) row.get("unitName");
-				String ra_destination = ra_name.replaceAll("[^(]*[(]", "");
-				ra_destination = ra_destination.replaceAll("[)].*", "");
+				
+				String ra_destination="X";
+				if(!ra_name.contains("(")) {
+					ra_destination="양방향";
+				}else {
+					ra_destination = ra_name.replaceAll("[^(]*[(]", "");
+					ra_destination = ra_destination.replaceAll("[)].*", "");
+				}
 				ranameMap.put(ra_name.replaceAll("휴게소", ""), ra_code);
+				ra_codeNra_nameMap.put(ra_code, ra_name);
 
 				String ra_routeNo = (String) row.get("routeNo");
 				String ra_routeName = (String) row.get("routeName");
@@ -134,7 +147,42 @@ public class ApiService {
 				rAdtos.add(new RestAreaDTO().builder().ra_code(ra_code).ra_name(ra_name).ra_routeNo(ra_routeNo)
 						.ra_routeName(ra_routeName).ra_destination(ra_destination).ra_xValue(ra_xValue)
 						.ra_yValue(ra_yValue).build());
+				ra_codeNi.put(ra_code, rAdtosIndex);
+				rAdtosIndex++;
 				System.out.print("|");
+			}
+		}
+		//방향 api
+		System.out.println("휴게소 방향 api를 가져오는 중..1");
+		url = endpoint0_1 + "?" + "key=" + serviceKey + "&type=" + type + "&numOfRows=99";
+		jsonParser = new JSONParser();
+		jsonObj = (JSONObject) jsonParser.parse(readURL(url));
+		// 여러 페이지를 다 가져와야 한다!
+		// 페이지 확인
+		fullcnt = Integer.parseInt((jsonObj.get("count").toString())) / 99;
+
+		System.out.println("휴게소 방향 api를 가져오는 중..");
+		// 전부 꺼내기
+		// 디비에 집어넣기
+		for (int i = 1; i <= fullcnt + 1; i++) {
+			jsonParser = new JSONParser();
+			jsonObj = (JSONObject) jsonParser.parse(readURL(url + "&pageNo=" + i));
+			JSONArray array = (JSONArray) jsonObj.get("list");
+
+			// 최대갯수로 페이지마다 죠지기
+			for (int j = 0; j < array.size(); j++) {
+				JSONObject row = (JSONObject) array.get(j);
+				String ra_code=(String)row.get("serviceAreaCode");
+				String ra_destination=(String)row.get("direction");
+				if(ra_codeNi.get(ra_code)==null) {
+					continue;
+				}
+				
+				int tmpIndex=ra_codeNi.get(ra_code);
+				((RestAreaDTO)rAdtos.get(tmpIndex)).setRa_destination(ra_destination);
+				
+//				System.out.println(rAdtos.get(tmpIndex));//test
+				System.out.println("|");
 			}
 		}
 		System.out.println("\ndtos 휴게소 생성 완료!");
@@ -169,13 +217,14 @@ public class ApiService {
 					//휴게소 위치정보가 없는 곳들은 열외합니다...
 					continue;
 				}
+				String ra_name=ra_codeNra_nameMap.get(ra_code);
 
 				String gs_company = (String) row.get("oilCompany");
 				String gs_diesel = (String) row.get("diselPrice");
 				String gs_gasoline = (String) row.get("gasolinePrice");
 				String gs_lpg = (String) row.get("lpgPrice");
 
-				gSdtos.add(new GasStationDTO().builder().gs_code(gs_code).gs_name(gs_name).ra_code(ra_code)
+				gSdtos.add(new GasStationDTO().builder().gs_code(gs_code).gs_name(gs_name).ra_code(ra_code).ra_name(ra_name)
 						.gs_company(gs_company).gs_diesel(gs_diesel).gs_gasoline(gs_gasoline).gs_lpg(gs_lpg).build());
 				System.out.print("|");
 			}
@@ -216,6 +265,7 @@ public class ApiService {
 					//휴게소 위치정보가 없는 곳들은 열외합니다...
 					continue;
 				}
+				String ra_name=ra_codeNra_nameMap.get(ra_code);
 
 				String fm_name = (String) row.get("foodNm");
 				String fm_price = (String) row.get("foodCost");
@@ -229,7 +279,7 @@ public class ApiService {
 					fm_etc = "X";
 				}
 
-				fMdtos.add(new FoodMenuDTO().builder().fm_id("" + fm_id).fm_code(fm_code).ra_code(ra_code)
+				fMdtos.add(new FoodMenuDTO().builder().fm_id("" + fm_id).fm_code(fm_code).ra_code(ra_code).ra_name(ra_name)
 						.fm_name(fm_name).fm_price(fm_price).fm_material(fm_material).fm_etc(fm_etc).build());
 //				System.out.println(fMdtos.get(fm_id-1));
 				fm_id++;
@@ -287,15 +337,17 @@ public class ApiService {
 	public int deleteAllBeforeApiDataInDB() throws Exception {
 		int result = 0;
 		System.out.println("delete sqlSession : " + sqlSession);
-
-		dao = sqlSession.getMapper(RestAreaDAO.class);
+		System.out.println("기존 정보 삭제중..");
+		dao = sqlSession.getMapper(FoodMenuDAO.class);
 		dao.deleteAll();
 
 		dao = sqlSession.getMapper(GasStationDAO.class);
 		dao.deleteAll();
 
-		dao = sqlSession.getMapper(FoodMenuDAO.class);
+		dao = sqlSession.getMapper(RestAreaDAO.class);
 		dao.deleteAll();
+		System.out.println("삭제 완료!");
+
 
 		return result;
 	}

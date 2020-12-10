@@ -19,6 +19,11 @@ public class RestAreaController {
 	@Autowired
 	private SearchService searchService;
 
+	@GetMapping("/list")
+	public String page() {
+		return "/restarea/list";
+	}
+	
 	// 휴게소로 검색
 	@GetMapping("/{listSort}/{routeName}/{destination}/{orderBy}")
 	public AjaxList getList(@PathVariable String listSort, @PathVariable String routeName, @PathVariable String destination, @PathVariable String orderBy) {
@@ -91,7 +96,7 @@ public class RestAreaController {
 			}else {
 				status="OK";
 			}
-			
+			System.out.println(list);//test용
 		}catch(Exception e) {
 			e.printStackTrace();
 			message.append("[트랜잭션 에러 : "+e.getMessage()+"]");

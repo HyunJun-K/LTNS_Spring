@@ -86,7 +86,8 @@ public class RefreshTableDAO extends AbstractDAO {
 			"( " + 
 			"    gs_code        VARCHAR2(100)    NOT NULL,  " + 
 			"    gs_name        VARCHAR2(100)    NOT NULL,  " + 
-			"    ra_code        VARCHAR2(100)    ,  " + 
+			"    ra_code        VARCHAR2(100)    ,  " +
+			"    ra_name		VARCHAR2(100)    ,  "+
 			"    gs_company     VARCHAR2(100)    NOT NULL,  " + 
 			"    gs_diesel      VARCHAR2(100)    ,  " + 
 			"    gs_gasoline    VARCHAR2(100)    ,  " + 
@@ -99,6 +100,7 @@ public class RefreshTableDAO extends AbstractDAO {
 			"    fm_id          VARCHAR2(100)      NOT NULL,  " + 
 			"    fm_code        VARCHAR2(100)      NOT NULL,  " + 
 			"    ra_code        VARCHAR2(100)      NOT NULL,  " + 
+			"    ra_name		VARCHAR2(100)   	,  "+
 			"    fm_name        VARCHAR2(100)      NOT NULL,  " + 
 			"    fm_price       VARCHAR2(100)       ,  " + 
 			"    fm_material    CLOB			    ,  " + 

@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 public class RestAreaCDTO implements DTO {
 	private String routeName;
-	private String destination;
+	private String destination;	//전체 'ALL'
 	
 	private String orderBy;		//경로순 'BY_PATH', 좋아요순 'BY_LIKE'
 								//GS용	'BY_DIESEL' 'BY_GASOLINE' 'BY_LPG'

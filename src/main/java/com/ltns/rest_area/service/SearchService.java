@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ltns.rest_area.domain.DAO;
 import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.restarea.GasStationDAO;
 import com.ltns.rest_area.domain.restarea.RestAreaCDTO;
 import com.ltns.rest_area.domain.restarea.RestAreaDAO;
 
@@ -27,12 +28,13 @@ public class SearchService {
 
 	public List<DTO> selectSomeRaDTOs(String routeName, String destination, String orderBy, int from, int numOfRows) {
 		dao=sqlSession.getMapper(RestAreaDAO.class);
+		//orderBy : default 는 암것도 없기~~ ra_Code 순, 
 		return dao.selectByDTO(new RestAreaCDTO().builder().routeName(routeName).destination(destination).orderBy(orderBy).from(from).numOfRows(numOfRows).build());
 	}
 
 	public int gsCount() {
-		// TODO Auto-generated method stub
-		return 0;
+		dao=sqlSession.getMapper(GasStationDAO.class);
+		return dao.selectCnt();
 	}
 
 	public List<DTO> selectSomeGsDTOs(String routeName, String destination, String orderBy, int from, int numOfRows) {
