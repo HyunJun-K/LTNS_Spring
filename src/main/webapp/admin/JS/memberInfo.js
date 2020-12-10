@@ -14,8 +14,6 @@ $(document).ready(function(){
 
 
 function pageLoad(pageNo){
-	
-	
     $.ajax({
     	  url : "./memberInfo"  + "/"+ pageNo + "/" + pagenationPage,
           type : "GET",
