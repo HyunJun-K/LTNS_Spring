@@ -8,12 +8,10 @@
 </head>
 
 <!-- jquery  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
-<!--  chart.js CDN -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
 
 <!--  bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">

@@ -8,20 +8,24 @@ var viewItem = undefined;
 //로딩된후 실행시킴 
 $(document).ready(function(){
 	
+	pageLoad(pageNo)
 })
 
 
 
 
 function pageLoad(pageNo){
+	var values = {pageNo : "1" , pagenationPage : "10"}
     $.ajax({
-    	  url : "./memberInfo"  + "/"+ pageNo + "/" + pagenationPage,
-          type : "GET",
+    	  data : JSON.stringify(values),
+    	  url : "memberInfo",
+          type : "POST",
           cache : false,
-		contentType:'application/json',
-        success : function(data, status){
+          contentType : 'application/json; charset=UTF-8',
+          dataType : 'json',
+      	  success : function(data, status){
             if(status == "success"){
-            	
+            
                 if(updateList(data)){
                     // 페이지 로딩 성공한 뒤에 
                     // 업데이트 된 list 에 view 동작 이벤트 
