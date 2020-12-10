@@ -443,6 +443,13 @@ public class RefreshTableDAO extends AbstractDAO {
 	}
 
 
+	@Override
+	public List<DTO> selectFromRow(int from, int pagenationPage) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 
 }
