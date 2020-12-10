@@ -2,6 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ltns.rest_area.domain.restarea.RestAreaDAO">
 
+	<select id="selectCnt" resultType="int">
+		SELECT 
+			count(*)
+		FROM
+			RestArea		
+	</select>
+	
+	<select id="selectByDTO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaCDTO" restultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
+		SELECT 
+			ra_code, ra_name, ra_routeNo, ra_routeName, ra_destination, ra_xValue, ra_yValue
+		FROM
+			RestArea
+		ORDER BY
+			<choose>
+				<when test="orderBy == 'BY_PATH'"></when>
+				<when test="orderBy == 'BY_LIKE'"></when>
+			</choose>
+	</select>
+
 	<insert id="insertByDTO" flushCache="true" parameterType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		INSERT INTO RestArea
 			(ra_code, ra_name, ra_routeNo, ra_routeName, ra_destination, ra_xValue, ra_yValue)

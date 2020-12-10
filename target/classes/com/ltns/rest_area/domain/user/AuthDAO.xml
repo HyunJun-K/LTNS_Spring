@@ -1,37 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ltns.rest_area.domain.user.AuthDAO">
-
-	<insert id="joinAuth" flushCache="true">
-		INSERT INTO 
-		auth(usernmae)  
-		VALUES(#{username})
-	</insert>
-	<select id="findByUid" resultType="com.ltns.rest_area.domain.user.AuthDTO">
-		SELECT username, authority
-		FROM auth
-	</select>
-	<insert id="addAuth" flushCache="true">
-		INSERT INTO 
-		auth  
-		VALUES(#{username}, #{authority})
-	</insert>
-	<delete id="removeAuthByUid" flushCache="true">
-		DELETE FROM
-		auth
-		WHERE username = #{username}
-	</delete>
-	<delete id="removeAuthByUidAndAuthority" flushCache="true">
-		DELETE FROM
-		auth
-		WHERE username = #{username} 
-		AND authority = #{authority} 
-	</delete>
-	<update id="updateAuth" flushCache="true">
-		UPDATE autho
-		SET authority = #{authority}
-		WHERE username = #{username} 
-	</update>
-	
+    <insert id="insertByObject" flushCache="true" parameterType="long">
+     insert into auth(um_uid) values (#{uid})
+    </insert>
+    <delete id="deleteByObject" flushCache="true" parameterType="long">
+        delete from auth where um_uid = #{uid}
+    </delete>
 
 </mapper>

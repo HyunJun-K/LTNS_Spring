@@ -61,9 +61,10 @@ ALTER TABLE auth
 /* Create Views */
 
 CREATE OR REPLACE VIEW userView AS SELECT 
-um_username AS username,
-um_password AS passowrd,
-authority
+u.um_username AS username,
+u.um_password AS password,
+u.um_enabled AS enabled,
+a.authority
 FROM userMember u
 JOIN auth a
 ON
