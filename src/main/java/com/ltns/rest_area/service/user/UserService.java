@@ -26,7 +26,7 @@ public class UserService {
 	public List<UserDTO> findAll() {
 		List<UserDTO> users = new ArrayList<UserDTO>();
 
-		List<DTO> list = userDAO.select();
+		List<DTO> list = userDAO.selectAll();
 
 		if (list != null)
 			list.forEach(item -> users.add((UserDTO) item));
