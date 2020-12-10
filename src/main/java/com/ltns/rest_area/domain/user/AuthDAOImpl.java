@@ -1,14 +1,15 @@
 package com.ltns.rest_area.domain.user;
 
-import com.ltns.rest_area.domain.DTO;
-import org.apache.ibatis.session.SqlSession;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
-@Repository
-public class AuthImpl implements AuthDAO {
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.ltns.rest_area.domain.DTO;
+
+@Component
+public class AuthDAOImpl implements AuthDAO {
 
     @Autowired
     private SqlSession sqlSession;
@@ -18,16 +19,47 @@ public class AuthImpl implements AuthDAO {
         long uid = (long) obj;
         return sqlSession.getMapper(AuthDAO.class).insertByObject(uid);
     }
+    
+
+    @Override
+    public int insertByDTO(DTO dto) {
+    	UserAuthDTO userAuth = (UserAuthDTO)dto;
+        return sqlSession.getMapper(AuthDAO.class).insertByObject(userAuth);
+    }
+
 
     @Override 
     public int deleteByObject(Object obj) {
         long uid = (long) obj;
         return sqlSession.getMapper(AuthDAO.class).deleteByObject(uid);
     }
-
+    
+    @Override
+    public List<DTO> selectByObject(Object obj) {
+    	 long uid = (long) obj;
+        return sqlSession.getMapper(AuthDAO.class).selectByObject(uid);
+    }
+  
+    @Override
+    public List<DTO> selectByString(String s) {
+        return sqlSession.getMapper(AuthDAO.class).selectByString(s);
+    }
+    
+    @Override
+    public int updateByObject(Object obj) {
+    	UserAuthDTO userAuth = (UserAuthDTO)obj;
+        return sqlSession.getMapper(AuthDAO.class).updateByObject(userAuth);
+    }
+    
+	@Override
+	public int deleteByUserAuth(UserAuthDTO userAuthDTO) {
+		// TODO Auto-generated method stub
+		return sqlSession.getMapper(AuthDAO.class).deleteByUserAuth(userAuthDTO);
+	}
+    
     @Override
     public List<DTO> selectAll() {
-        return null;
+        return sqlSession.getMapper(AuthDAO.class).selectAll();
     }
 
     @Override
@@ -35,25 +67,13 @@ public class AuthImpl implements AuthDAO {
         return null;
     }
 
-    @Override
-    public List<DTO> selectByString(String s) {
-        return null;
-    }
+
 
     @Override
     public List<DTO> selectByDTO(DTO dto) {
         return null;
     }
 
-    @Override
-    public List<DTO> selectByObject(Object obj) {
-        return null;
-    }
-
-    @Override
-    public int insertByDTO(DTO dto) {
-        return 0;
-    }
 
 
     @Override
@@ -66,10 +86,7 @@ public class AuthImpl implements AuthDAO {
         return 0;
     }
 
-    @Override
-    public int updateByObject(Object obj) {
-        return 0;
-    }
+
 
     @Override
     public int deleteByInt(int i) {
@@ -134,4 +151,8 @@ public class AuthImpl implements AuthDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+
+	
 }
