@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.DTO;
@@ -21,7 +22,7 @@ import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
 import com.ltns.rest_area.service.MemberInfoService;
 import com.ltns.rest_area.service.ScheduleService;
 
-@Controller
+@RestController
 @RequestMapping(value="/admin")
 public class AdminController {
 	
