@@ -234,11 +234,6 @@ public class RefreshTableDAO extends AbstractDAO {
 	}
 	
 	
-	@Override
-	public List<DTO> select() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public List<DTO> selectByInt(int i) {
@@ -296,12 +291,6 @@ public class RefreshTableDAO extends AbstractDAO {
 
 	@Override
 	public int deleteByInt(int i) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteByDTO(DTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
@@ -384,6 +373,69 @@ public class RefreshTableDAO extends AbstractDAO {
 
 	@Override
 	public int insertAllByDTOs(List<DTO> dtos) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int selectCnt() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int selectCntByInt(int i) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int selectCntByString(String str) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int selectCntByObject(Object obj) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public List<DTO> selectAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public int inset_(String s, String d, String e, String dd) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int updateAllByDTOs(List<DTO> dtos) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int update_(String a, String s, String d, String e, String dd) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int deleteByString(String str) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

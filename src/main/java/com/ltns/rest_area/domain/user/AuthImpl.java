@@ -26,7 +26,7 @@ public class AuthImpl implements AuthDAO {
     }
 
     @Override
-    public List<DTO> select() {
+    public List<DTO> selectAll() {
         return null;
     }
 
@@ -73,11 +73,6 @@ public class AuthImpl implements AuthDAO {
 
     @Override
     public int deleteByInt(int i) {
-        return 0;
-    }
-
-    @Override
-    public int deleteByDTO(DTO dto) {
         return 0;
     }
 
