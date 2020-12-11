@@ -51,8 +51,8 @@
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/memberInfo"> <span
 								data-feather="shopping-cart"></span> 회원정보
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
-								data-feather="users"></span> Customers
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/postInfo"> <span
+								data-feather="users"></span> 게시글 정보
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"> <span
 								data-feather="bar-chart-2"></span> Reports

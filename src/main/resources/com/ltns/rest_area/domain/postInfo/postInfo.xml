@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ltns.rest_area.postInfo.postInfoDAO">
+
+
+
+
+	<select id="selectFromRow" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
+		<![CDATA[
+		SELECT 
+			 post_id, post_title, POST_CONTENTS, UM_UID, UM_USERNAME, POST_REGDATE, RA_CODE, POST_REPORTED
+		FROM 
+			(SELECT ROWNUM AS RNUM, T.* FROM
+				(SELECT * FROM POST ORDER BY post_id DESC) T)
+		WHERE
+			RNUM >= #{from} AND RNUM < (#{from} + #{pagenationPage})
+		]]>
+	</select>
+
+
+	<select id="selectCnt" resultType="int">
+			SELECT count(*) FROM POST
+	</select>
+
+
+
+	
+	<select id="selectAll" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
+		<![CDATA[
+		SELECT ROWNUM, POST_TITLE,POST_REPORTED  FROM 
+		(SELECT * FROM POST ORDER BY POST_REPORTED DESC)
+		WHERE ROWNUM <=5
+		]]>
+	</select>
+
+
+
+</mapper>
