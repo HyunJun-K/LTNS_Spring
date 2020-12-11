@@ -132,9 +132,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="${pageContext.request.contextPath}/admin/postInfo">
                   <span data-feather="users"></span>
-                  Customers
+                   	게시글 정보
                 </a>
               </li>
               <li class="nav-item">

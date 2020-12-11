@@ -1,6 +1,5 @@
 package com.ltns.rest_area.service;
 
-
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -10,35 +9,40 @@ import org.springframework.stereotype.Service;
 import com.ltns.rest_area.domain.DAO;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.memberInfo.memberInfoDAO;
+import com.ltns.rest_area.postInfo.postInfoDAO;
+import com.ltns.rest_area.postInfo.postInfoDTO;
 
 @Service
-public class MemberInfoService {
+public class PostInfoService {
+
 	
+	
+	@Autowired
+	SqlSession sqlSession;
 	
 	DAO dao;
-
-	@Autowired
-	private SqlSession sqlSession;
-
+	
+	
+	
 	//list 
 	public List<DTO> list(int from,int pagenationPage) {
-		dao = sqlSession.getMapper(memberInfoDAO.class);
+		dao = sqlSession.getMapper(postInfoDAO.class);
 		return dao.selectFromRow(from, pagenationPage);
 	}
 	
 	
-	//모든 회원수 
-	public int countAll() {
-		dao = sqlSession.getMapper(memberInfoDAO.class);
-		return dao.selectCnt();
+	//모든 게시글
+		public int countAll() {
+			dao = sqlSession.getMapper(postInfoDAO.class);
+			return dao.selectCnt();
 	}
-	
-	
-	public List<DTO> seachId(String str) {
-		dao = sqlSession.getMapper(memberInfoDAO.class);
-		return dao.selectByString(str);
+		
+		
+	//신고가 많은 상위 5개의 데이터 
+		
+		
+	public List<DTO> listTop() {
+		dao = sqlSession.getMapper(postInfoDAO.class);
+		return dao.selectAll();
 	}
-	
-	
-	
 }

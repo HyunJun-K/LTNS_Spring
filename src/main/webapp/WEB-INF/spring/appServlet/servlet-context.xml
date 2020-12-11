@@ -28,13 +28,10 @@
 	
 	<context:component-scan base-package="com.ltns.rest_area" />	
 
-    <beans:bean id="userDB" class="com.ltns.rest_area.aop.user.UserDBTimeCheckAspect"/>
-    <aop:config>
-        <aop:aspect id="dbTime" ref="userDB">
-            <aop:pointcut id="userPc"
-                          expression="execution(* com.ltns.rest_area.domain.user.*DAO.*(..))"/>
-            <aop:around pointcut-ref="userPc" method="aroundTimeCheckAdvice"/>
-        </aop:aspect>
-    </aop:config>
+    <beans:bean id="userDAO" class="com.ltns.rest_area.domain.user.UserDAOImpl"/>
+	<beans:bean id="authDAO" class="com.ltns.rest_area.domain.user.AuthDAOImpl"/>
+    <beans:bean id="userService" class="com.ltns.rest_area.service.user.UserService"/>
+    <beans:bean id="authSerVice" class="com.ltns.rest_area.service.user.AuthService"/>
+    <context:annotation-config></context:annotation-config>
 
 </beans:beans>

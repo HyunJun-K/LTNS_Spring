@@ -23,4 +23,13 @@
 	</select>
 
 
+
+	<select id="selectByString" flushCache="true" resultType="com.ltns.rest_area.domain.memberInfo.memberInfoDTO">
+	
+		SELECT * FROM USERMEMBER  WHERE UM_USERNAME = #{param1}
+		
+	
+	</select>
+
+
 </mapper>

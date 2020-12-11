@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
+<!--  font awsome -->
+<script src="https://kit.fontawesome.com/bb29575d31.js"></script>
+
 <link href='${pageContext.request.contextPath }/admin/CSS/admin.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/admin.js'></script>
 
@@ -48,8 +51,8 @@
 						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/memberInfo"> <span
 								data-feather="shopping-cart"></span> 회원정보
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
-								data-feather="users"></span> Customers
+						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/postInfo"> <span
+								data-feather="users"></span> 게시글 정보
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"> <span
 								data-feather="bar-chart-2"></span> Reports
