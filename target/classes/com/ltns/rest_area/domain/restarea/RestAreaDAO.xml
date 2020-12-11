@@ -8,6 +8,24 @@
 		FROM
 			RestArea		
 	</select>
+	
+	<select id="selectByObject" parameterType="com.ltns.rest_area.domain.restarea.RestAreaCDTO" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
+		SELECT
+			<choose>
+				<when test="requestDataKind=='routeName'">ra_routeName</when>
+				<when test="requestDataKind=='destination'">ra_destination</when>
+			</choose>
+		FROM 
+			RestArea
+		<if test="requestDataKind=='destination'">
+		WHERE
+			ra_routeName=#{routeName}
+		GROUP BY ra_destination
+		</if>
+		<if test="requestDataKind=='routeName'">
+		GROUP BY ra_routeName
+		</if>
+	</select>
 
 	
 	<select id="selectByDTO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaCDTO" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">

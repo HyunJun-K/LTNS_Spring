@@ -55,6 +55,11 @@ public class SearchService {
 		return dao.selectByDTO(new RestAreaCDTO().builder().routeName(routeName).destination(destination).orderBy(orderBy).fromRow(fromRow).numOfRows(numOfRows).build());
 	}
 
+	public List<DTO> requestComboList(RestAreaCDTO dto) {
+		dao=sqlSession.getMapper(RestAreaDAO.class);
+		return dao.selectByObject(dto);
+	}
+
 
 	
 }
