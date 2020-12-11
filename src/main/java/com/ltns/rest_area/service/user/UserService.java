@@ -5,23 +5,33 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.stereotype.Service;
 
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.user.UserDAO;
 import com.ltns.rest_area.domain.user.UserDTO;
 
-@Service
 public class UserService {
 
-	@Autowired
 	UserDAO userDAO;
 
-	@Autowired
 	AuthService authService;
 
-	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
+
+	@Autowired
+	public void setUserDAO(UserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+
+	@Autowired
+	public void setAuthService(AuthService authService) {
+		this.authService = authService;
+	}
+
+	@Autowired
+	public void setbCryptPasswordEncoder(BCryptPasswordEncoder bCryptPasswordEncoder) {
+		this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+	}
 
 	public List<UserDTO> findAll() {
 		List<UserDTO> users = new ArrayList<UserDTO>();
@@ -58,9 +68,10 @@ public class UserService {
 	public int insertUser(UserDTO user) {
 		user.setUm_password(bCryptPasswordEncoder.encode(user.getUm_password()));
 		int result = userDAO.insertByObject(user);
+		List<UserDTO> users = findByUsername(user);
 
 		if (result == 1) {
-			long seq = user.getUm_uid();
+			long seq = users.get(0).getUm_uid();
 			result = authService.insertAuth(seq);
 		}
 		return result;
@@ -80,14 +91,14 @@ public class UserService {
 	}
 
 	public int deleteByUesrname(UserDTO user) {
-        List<UserDTO> findUsers = findByUsername(user);
-        UserDTO findUser = findUsers.get(0);
+		List<UserDTO> findUsers = findByUsername(user);
+		UserDTO findUser = findUsers.get(0);
 
-        int result = authService.deleteAuth(findUser.getUm_uid());
+		int result = authService.deleteAuth(findUser.getUm_uid());
 
-        if (result == 1) 
-            result = userDAO.deleteByObject(user);
+		if (result == 1)
+			result = userDAO.deleteByObject(user);
 
-        return result;
+		return result;
 	}
 }
