@@ -13,7 +13,7 @@
 	<select id="findByNickname" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="com.ltns.rest_area.domain.user.UserDTO">
 		select * from usermember where um_nickname = #{um_nickname}
 	</select>
-	<insert id="insertByObject" parameterType="com.ltns.rest_area.domain.user.UserDTO" flushCache="true" keyColumn="um_uid" keyProperty="um_uid" useGeneratedKeys="true">
+	<insert id="insertByObject" parameterType="com.ltns.rest_area.domain.user.UserDTO" flushCache="true">
 		insert into usermember(um_uid,um_username,um_password,um_nickname) values(SEQ_USERMEMBER_UM_UID.nextval,#{um_username},#{um_password},#{um_nickname})
 	</insert>
 	<update id="updateByObject" parameterType="com.ltns.rest_area.domain.user.UserDTO" flushCache="true">

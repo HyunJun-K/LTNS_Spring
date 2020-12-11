@@ -1,8 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+    <bean id="data" class="org.springframework.jdbc.datasource.DriverManagerDataSource" p:driverClassName="oracle.jdbc.driver.OracleDriver" p:url="jdbc:oracle:thin:@localhost:1521:xe" p:username="ltns2" p:password="ltns2"/>
+    <bean id="jdbc" class="org.springframework.jdbc.core.JdbcTemplate" p:dataSource-ref="data"/>
+    <bean id="loginFailureHandler" class="com.ltns.rest_area.security.handler.LoginFailureHandler"/>
+    <bean id="securityDeniedHandler" class="com.ltns.rest_area.security.handler.SecurityDeniedHandler"/>
+    <bean name="loginSuccessHandler" class="com.ltns.rest_area.security.handler.LoginSuccessHandler" p:jdbc-ref="jdbc"/>
+    <bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+ 	<security:http>
+    	<security:csrf disabled="true"/>
+        <security:intercept-url pattern="/*" access="permitAll"/>
+        <!-- 
+        <security:intercept-url pattern="/auth/**" access="permitAll"/>
+        <security:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')"/>
+        <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
+     	 -->
+        
+        <security:form-login login-page="/auth/user/login" login-processing-url="/loginProcess"
+                             authentication-success-handler-ref="loginSuccessHandler"
+                             authentication-failure-handler-ref="loginFailureHandler"/>
+     	<!-- <security:logout logout-url="" logout-success-url="" invalidate-session="true"/> -->
+        <security:access-denied-handler ref="securityDeniedHandler"/>
+    </security:http>
+    <security:authentication-manager>
+        <security:authentication-provider>
+            <security:password-encoder ref="bCryptPasswordEncoder"/>
+            <security:jdbc-user-service data-source-ref="data" users-by-username-query="SELECT username, password, enabled FROM userView WHERE username = ?" authorities-by-username-query="SELECT username, authority FROM userView WHERE username = ?"/>
+        </security:authentication-provider>
+    </security:authentication-manager>
     
 </beans>

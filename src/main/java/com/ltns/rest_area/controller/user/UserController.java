@@ -11,5 +11,7 @@ public class UserController {
 	
 	@GetMapping("/auth/user/join")
 	public void join() {}
-
+	
+	@GetMapping("/member/user/mypage")
+	public void mypage() {}
 }
