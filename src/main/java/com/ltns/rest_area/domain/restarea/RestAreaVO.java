@@ -1,6 +1,6 @@
 package com.ltns.rest_area.domain.restarea;
 
-import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.VO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class RestAreaVO implements DTO {
+public class RestAreaVO implements VO{
 	private String routeName;
 	private String destination;	//전체 'ALL'
 	

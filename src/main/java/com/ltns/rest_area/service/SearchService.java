@@ -30,7 +30,7 @@ public class SearchService {
 	public List<DTO> selectSomeRaDTOs(String routeName, String destination, String orderBy, int fromRow, int numOfRows) {
 		dao=sqlSession.getMapper(RestAreaDAO.class);
 		//orderBy : default 는 암것도 없기~~ ra_Code 순, 
-		return dao.selectByDTO(new RestAreaVO().builder().routeName(routeName).destination(destination).orderBy(orderBy).fromRow(fromRow).numOfRows(numOfRows).build());
+		return dao.selectByVO(new RestAreaVO().builder().routeName(routeName).destination(destination).orderBy(orderBy).fromRow(fromRow).numOfRows(numOfRows).build());
 	}
 
 	public int gsCount() {
@@ -41,7 +41,7 @@ public class SearchService {
 	public List<DTO> selectSomeGsDTOs(String routeName, String destination, String orderBy, int fromRow, int numOfRows) {
 		dao=sqlSession.getMapper(GasStationDAO.class);
 		//orderBy : default 는 암것도 없기~~ ra_Code 순, 
-		return dao.selectByDTO(new RestAreaVO().builder().routeName(routeName).destination(destination).orderBy(orderBy).fromRow(fromRow).numOfRows(numOfRows).build());
+		return dao.selectByVO(new RestAreaVO().builder().routeName(routeName).destination(destination).orderBy(orderBy).fromRow(fromRow).numOfRows(numOfRows).build());
 	}
 
 	public int fmCount() {
@@ -52,7 +52,7 @@ public class SearchService {
 	public List<DTO> selectSomeFmDTOs(String routeName, String destination, String orderBy, int fromRow, int numOfRows) {
 		dao=sqlSession.getMapper(FoodMenuDAO.class);
 		//orderBy : default 는 암것도 없기~~ ra_Code 순, 
-		return dao.selectByDTO(new RestAreaVO().builder().routeName(routeName).destination(destination).orderBy(orderBy).fromRow(fromRow).numOfRows(numOfRows).build());
+		return dao.selectByVO(new RestAreaVO().builder().routeName(routeName).destination(destination).orderBy(orderBy).fromRow(fromRow).numOfRows(numOfRows).build());
 	}
 
 	public List<DTO> requestComboList(RestAreaVO dto) {

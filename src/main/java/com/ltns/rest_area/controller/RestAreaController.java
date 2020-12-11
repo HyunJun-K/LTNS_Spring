@@ -27,8 +27,8 @@ public class RestAreaController {
 	public AjaxList requestDestinationList(@PathVariable String requestDataKind) {
 		System.out.println("확인 : "+requestDataKind);
 		AjaxList result=new AjaxList();
-		RestAreaVO dto=new RestAreaVO().builder().requestDataKind(requestDataKind).build();
-		List<DTO> list=searchService.requestComboList(dto);
+		RestAreaVO vo=new RestAreaVO().builder().requestDataKind(requestDataKind).build();
+		List<DTO> list=searchService.requestComboList(vo);
 		result.setList(list);
 		return result;
 	}
@@ -36,8 +36,8 @@ public class RestAreaController {
 	@GetMapping("/{requestDataKind}/{routeName}")
 	public AjaxList requestDestinationList(@PathVariable String requestDataKind, @PathVariable String routeName) {
 		AjaxList result=new AjaxList();
-		RestAreaVO dto=new RestAreaVO().builder().requestDataKind(requestDataKind).routeName(routeName).build();
-		List<DTO> list=searchService.requestComboList(dto);
+		RestAreaVO vo=new RestAreaVO().builder().requestDataKind(requestDataKind).routeName(routeName).build();
+		List<DTO> list=searchService.requestComboList(vo);
 		result.setList(list);
 		return result;
 	}

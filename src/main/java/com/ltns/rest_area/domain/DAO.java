@@ -14,6 +14,7 @@ public interface DAO {
 	int selectCnt();						//조건없이 갯수 전부 셀 때 사용하세요
 	int selectCntByInt(int i);
 	int selectCntByString(String str);
+	int selectCntByVO(VO vo);
 	int selectCntByObject(Object obj);		//이외의 다양한 자료형에 사용하세요
 	
 	/*select : 컬럼을 가져올 때 사용합니다*/
@@ -21,6 +22,7 @@ public interface DAO {
 	List<DTO> selectByInt(int i);
 	List<DTO> selectByString(String str);
 	List<DTO> selectByDTO(DTO dto);
+	List<DTO> selectByVO(VO vo);
 	List<DTO> selectByObject(Object obj);	//이외의 다양한 자료형에 사용하세요
 	
 	
@@ -47,6 +49,7 @@ public interface DAO {
 	int deleteAll();						//조건없이 전부 지울 때 사용하세요
 	int deleteByInt(int i);
 	int deleteByString(String str);
+	int deleteByVO(VO vo);
 	int deleteByObject(Object obj);			//이외의 다양한 자료형에 사용하세요
 
 	
