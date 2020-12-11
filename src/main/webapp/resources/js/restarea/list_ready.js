@@ -1,6 +1,3 @@
-/**
- * 
- */
 $(document).ready(function(){
 	
 	/* 페이지 로딩시, 노선 입력에 노선 값들을 집어 넣기 */
@@ -10,8 +7,9 @@ $(document).ready(function(){
 		cache:false,
 		success:function(data,status){
 			if(status=="success"){
-				var list=data.list;
+				var list=data.data;
 				var htmlval="";
+				console.log(list);
 				for(i=0;i<list.length;i++){
 					console.log(list[i].ra_routeName)
 					htmlval+='<li><a tabindex="-1" role="button" onclick="changeRouteNameValue(\''+list[i].ra_routeName+'\')">'+list[i].ra_routeName+'</a></li>';
