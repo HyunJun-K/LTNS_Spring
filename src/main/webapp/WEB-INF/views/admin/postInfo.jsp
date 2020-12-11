@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title> 회원 정보</title>
+<title> 게시글 정보</title>
 </head>
 
 <!--  chart.js CDN -->
@@ -20,7 +20,7 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
 <link href='${pageContext.request.contextPath }/admin/CSS/memberInfo.css' rel='stylesheet' />
-<script src='${pageContext.request.contextPath }/admin/JS/memberInfo.js'></script>
+<script src='${pageContext.request.contextPath }/admin/JS/postInfo.js'></script>
 
 <body>
 	<!-- dashboard nav -->
@@ -45,10 +45,10 @@
 						<li class="nav-item"><a class="nav-link "
 							href="${pageContext.request.contextPath}/admin/schedule"> 일정
 						</a></li>
-						<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/admin/memberInfo"> <span
+						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/memberInfo"> <span
 								data-feather="shopping-cart"></span> 회원정보
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/postInfo"> <span
+						<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/admin/postInfo"> <span
 								data-feather="users"></span> 게시글 정보
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"> <span
@@ -77,11 +77,12 @@
 					<table>
 						<thead>
 							<th>UID</th>
-							<th>UID</th>
-							<th>아이디</th>
-							<th>닉네임</th>
-							<th>가입일</th>
-							<th>신고횟수</th>
+							<th>POST_ID</th>
+							<th>POST_TITLE</th>
+							<th>POST_CONTENTS</th>
+							<th>UM_USERNAME</th>
+							<th>RA_CODE</th>
+							<th>POST_REPORTED</th>
 						</thead>
 						<tbody>
 

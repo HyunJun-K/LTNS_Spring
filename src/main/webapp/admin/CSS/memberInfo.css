@@ -163,6 +163,8 @@ ul.pagination a:hover:not(.active) {background-color: #ddd;}
 }
 
 
-
+div .sele_option {
+	padding : 10px;
+}
 
 

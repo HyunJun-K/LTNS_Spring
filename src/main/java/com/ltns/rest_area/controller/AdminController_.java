@@ -121,6 +121,9 @@ public class AdminController_ {
 	@RequestMapping("/memberInfo")
 	public void memberInfo()	{}
 	
+	@RequestMapping("/postInfo")
+	public void postInfo()	{}
+	
 	
 	
 }
