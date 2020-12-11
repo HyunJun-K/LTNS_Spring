@@ -87,6 +87,7 @@ public class UserService {
 	}
 
 	public int updateAllByUsername(UserDTO user) {
+		user.setUm_password(bCryptPasswordEncoder.encode(user.getUm_password()));
 		return userDAO.updateAllByUsername(user);
 	}
 

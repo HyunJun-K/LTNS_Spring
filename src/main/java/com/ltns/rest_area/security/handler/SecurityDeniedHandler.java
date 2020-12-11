@@ -14,6 +14,6 @@ public class SecurityDeniedHandler implements AccessDeniedHandler {
 	@Override
 	public void handle(HttpServletRequest request, HttpServletResponse response,
 			AccessDeniedException accessDeniedException) throws IOException, ServletException {
-		response.sendRedirect("에로페이지");
+		response.sendRedirect(request.getContextPath() + "/member/autherror");
 	}
 }
