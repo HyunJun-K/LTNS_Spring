@@ -3,12 +3,13 @@ package com.ltns.rest_area.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.restarea.RestAreaDTO;
 import com.ltns.rest_area.service.ApiService;
 
-@Controller
+@RestController
 @RequestMapping("/api")
 public class ApiController {
 	

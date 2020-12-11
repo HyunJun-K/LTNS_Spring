@@ -22,13 +22,20 @@ public class AjaxList extends AjaxResult{
 	int numOfRows; 	//한 페이지에 리스트할 dto 갯수
 	int totalPage;	//총 페이지 갯수
 	
+	@JsonProperty("data")
 	List<DTO> list;	//dto 데이터
 
 
 	int pagenationPage;	//페이지네이션에 표시할 페이지 갯수
 	int WritePages ; // list 수 
 	
-	
+	@Override
+	public String toString() {
+		return "AjaxList (count=" + getCount() + ", status=" + getStatus() + ", message=" + getMessage()
+				+ "totalCnt=" + totalCnt + ", pageNo=" + pageNo + ", numOfRows=" + numOfRows + ", totalPage="
+				+ totalPage + ", list=" + list + ", pagenationPage=" + pagenationPage + ", WritePages=" + WritePages
+				+ ")";
+	}
 	
 	
 	

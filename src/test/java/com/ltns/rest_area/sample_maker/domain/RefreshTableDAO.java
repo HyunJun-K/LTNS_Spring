@@ -86,7 +86,8 @@ public class RefreshTableDAO extends AbstractDAO {
 			"( " + 
 			"    gs_code        VARCHAR2(100)    NOT NULL,  " + 
 			"    gs_name        VARCHAR2(100)    NOT NULL,  " + 
-			"    ra_code        VARCHAR2(100)    ,  " + 
+			"    ra_code        VARCHAR2(100)    ,  " +
+			"    ra_name		VARCHAR2(100)    ,  "+
 			"    gs_company     VARCHAR2(100)    NOT NULL,  " + 
 			"    gs_diesel      VARCHAR2(100)    ,  " + 
 			"    gs_gasoline    VARCHAR2(100)    ,  " + 
@@ -99,8 +100,9 @@ public class RefreshTableDAO extends AbstractDAO {
 			"    fm_id          VARCHAR2(100)      NOT NULL,  " + 
 			"    fm_code        VARCHAR2(100)      NOT NULL,  " + 
 			"    ra_code        VARCHAR2(100)      NOT NULL,  " + 
+			"    ra_name		VARCHAR2(100)   	,  "+
 			"    fm_name        VARCHAR2(100)      NOT NULL,  " + 
-			"    fm_price       VARCHAR2(100)       ,  " + 
+			"    fm_price       number       ,  " + 
 			"    fm_material    CLOB			    ,  " + 
 			"    fm_etc         CLOB    			,  " + 
 			"    CONSTRAINT FOODMENU_PK PRIMARY KEY (fm_id) " + 
@@ -438,6 +440,13 @@ public class RefreshTableDAO extends AbstractDAO {
 	public int deleteByString(String str) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+
+	@Override
+	public List<DTO> selectFromRow(int from, int pagenationPage) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

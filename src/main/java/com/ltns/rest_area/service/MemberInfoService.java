@@ -33,4 +33,12 @@ public class MemberInfoService {
 		return dao.selectCnt();
 	}
 	
+	
+	public List<DTO> seachId(String str) {
+		dao = sqlSession.getMapper(memberInfoDAO.class);
+		return dao.selectByString(str);
+	}
+	
+	
+	
 }

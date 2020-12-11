@@ -21,4 +21,5 @@ public class RestAreaDTO implements DTO{
 	private String ra_xValue; //x좌표
 	private String ra_yValue; //y좌표
 
+	private int ra_like_cnt; //좋아요 갯수.. BY_LIKE에서 갯수 불러올때 사용
 }

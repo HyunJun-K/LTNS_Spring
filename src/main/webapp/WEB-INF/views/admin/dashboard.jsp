@@ -19,6 +19,9 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
+<!--  font awsome -->
+<script src="https://kit.fontawesome.com/bb29575d31.js"></script>
+
 <link href='${pageContext.request.contextPath }/admin/CSS/admin.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/admin.js'></script>
 
