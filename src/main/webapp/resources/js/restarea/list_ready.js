@@ -7,11 +7,9 @@ $(document).ready(function(){
 		cache:false,
 		success:function(data,status){
 			if(status=="success"){
-				var list=data.data;
+				var list=data.list;
 				var htmlval="";
-				console.log(list);
 				for(i=0;i<list.length;i++){
-					console.log(list[i].ra_routeName)
 					htmlval+='<li><a tabindex="-1" role="button" onclick="changeRouteNameValue(\''+list[i].ra_routeName+'\')">'+list[i].ra_routeName+'</a></li>';
 				}
 				$("#routeNameList").html(htmlval);

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.DTO;
-import com.ltns.rest_area.domain.restarea.RestAreaCDTO;
+import com.ltns.rest_area.domain.restarea.RestAreaVO;
 import com.ltns.rest_area.service.SearchService;
 
 @RestController
@@ -27,7 +27,7 @@ public class RestAreaController {
 	public AjaxList requestDestinationList(@PathVariable String requestDataKind) {
 		System.out.println("확인 : "+requestDataKind);
 		AjaxList result=new AjaxList();
-		RestAreaCDTO dto=new RestAreaCDTO().builder().requestDataKind(requestDataKind).build();
+		RestAreaVO dto=new RestAreaVO().builder().requestDataKind(requestDataKind).build();
 		List<DTO> list=searchService.requestComboList(dto);
 		result.setList(list);
 		return result;
@@ -36,7 +36,7 @@ public class RestAreaController {
 	@GetMapping("/{requestDataKind}/{routeName}")
 	public AjaxList requestDestinationList(@PathVariable String requestDataKind, @PathVariable String routeName) {
 		AjaxList result=new AjaxList();
-		RestAreaCDTO dto=new RestAreaCDTO().builder().requestDataKind(requestDataKind).routeName(routeName).build();
+		RestAreaVO dto=new RestAreaVO().builder().requestDataKind(requestDataKind).routeName(routeName).build();
 		List<DTO> list=searchService.requestComboList(dto);
 		result.setList(list);
 		return result;

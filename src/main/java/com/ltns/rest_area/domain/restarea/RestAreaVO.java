@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class RestAreaCDTO implements DTO {
+public class RestAreaVO implements DTO {
 	private String routeName;
 	private String destination;	//전체 'ALL'
 	

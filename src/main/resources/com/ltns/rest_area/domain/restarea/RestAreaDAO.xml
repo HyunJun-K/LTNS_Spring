@@ -9,7 +9,7 @@
 			RestArea		
 	</select>
 	
-	<select id="selectByObject" parameterType="com.ltns.rest_area.domain.restarea.RestAreaCDTO" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
+	<select id="selectByObject" parameterType="com.ltns.rest_area.domain.restarea.RestAreaVO" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		SELECT
 			<choose>
 				<when test="requestDataKind=='routeName'">ra_routeName</when>
@@ -28,7 +28,7 @@
 	</select>
 
 	
-	<select id="selectByDTO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaCDTO" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
+	<select id="selectByDTO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaVO" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		SELECT *
 		FROM(
 			SELECT
