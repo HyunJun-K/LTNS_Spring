@@ -22,11 +22,11 @@
     </select>
    
     <select id="selectByString" parameterType="string" resultType="com.ltns.rest_area.domain.user.UserAuthDTO">
-    select u.um_uid "uid", u.um_username username, u.um_enabled enabled, u.um_nickname nickname, a.authority, u.um_password password from usermember u join auth a on u.um_uid = a.um_uid where um_username=#{s}
+    select u.um_uid "uid", u.um_username username, u.um_enabled enabled, u.um_nickname nickname, a.authority, u.um_password password, u.um_regdate regdate from usermember u join auth a on u.um_uid = a.um_uid where um_username=#{s}
     </select>
    
     <select id="selectAll" resultType="com.ltns.rest_area.domain.user.UserAuthDTO">
-    select u.um_uid "uid", u.um_username username, u.um_enabled enabled, u.um_nickname nickname, a.authority, u.um_password password from usermember u join auth a on u.um_uid = a.um_uid
+    select u.um_uid "uid", u.um_username username, u.um_enabled enabled, u.um_nickname nickname, a.authority, u.um_password password, u.um_regdate regdate from usermember u join auth a on u.um_uid = a.um_uid
     </select>
    
     <update id="updateByObject" parameterType="com.ltns.rest_area.domain.user.UserAuthDTO" flushCache="true">

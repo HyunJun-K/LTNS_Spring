@@ -10,7 +10,7 @@
 	</select>
 	
 	
-	<select id="selectByDTO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaCDTO" resultType="com.ltns.rest_area.domain.restarea.GasStationDTO">
+	<select id="selectByVO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaVO" resultType="com.ltns.rest_area.domain.restarea.GasStationDTO">
 		SELECT *
 		FROM(
 			SELECT ROWNUM rnum, a.*

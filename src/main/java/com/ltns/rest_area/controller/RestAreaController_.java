@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class RestAreaController_ {
-	@GetMapping("/restarea/list")
-	public void page() {}
+	@GetMapping("/rest_area/list")
+	public String page() {return "/restarea/list";}
 	
 }

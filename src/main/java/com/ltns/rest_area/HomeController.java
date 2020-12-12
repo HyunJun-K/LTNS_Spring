@@ -38,5 +38,8 @@ public class HomeController {
 
 		return "home";
 	}
+	
+	@RequestMapping("/member/autherror")
+	public void autherror() {}
 
 }

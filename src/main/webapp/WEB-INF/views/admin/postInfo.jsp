@@ -114,7 +114,7 @@
 			<div class="clear"></div>
 	<hr>
 		
-		<canvas id="myChart" width="200" height="200"></canvas>
+		<canvas id="myChart" width="600" height="400"></canvas>
 		
 
 

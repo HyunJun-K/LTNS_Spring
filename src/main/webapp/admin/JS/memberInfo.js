@@ -48,7 +48,7 @@ function updateList(JsonObj) {
         window.page = JsonObj.pageNo;
         window.pageRows = JsonObj.pagenationPage;
     var i;
-    var items  = JsonObj.data;
+    var items  = JsonObj.list;
     for(i=0; i<count; i++){
         result += "<tr>\n";
         result += "<td><input type='checkbox' name='uid' value='" + items[i].um_UID + "'></td>\n";
@@ -161,7 +161,7 @@ function seachData(JsonObj){
 	        window.page = JsonObj.pageNo;
 	        window.pageRows = JsonObj.pagenationPage;
 	    var i;
-	    var items  = JsonObj.data;
+	    var items  = JsonObj.list;
 	    for(i=0; i<count; i++){
 	        result += "<tr>\n";
 	        result += "<td><input type='checkbox' name='uid' value='" + items[i].um_UID + "'></td>\n";

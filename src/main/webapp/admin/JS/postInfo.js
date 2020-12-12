@@ -53,7 +53,7 @@ function pageLoad(pageNo){
 function charts(JsonObj) {
 	var count = JsonObj.count; 
 	var ctx = document.getElementById('myChart');
-	var item = JsonObj.data;
+	var item = JsonObj.list;
 	var myChart = new Chart(ctx, {
 		type: 'bar',
 	    
@@ -62,7 +62,6 @@ function charts(JsonObj) {
 	        	[item[0].post_title , item[1].post_title, item[2].post_title, item[3].post_title, item[4].post_title ],
 	        	
 	        datasets: [{
-	            label: '# of Votes',
 	            data: [item[0].post_reported , item[1].post_reported, item[2].post_reported, item[3].post_reported, item[4].post_reported],
 	            backgroundColor: [
 	                'rgba(255, 99, 132, 0.2)',
@@ -80,18 +79,23 @@ function charts(JsonObj) {
 	                'rgba(153, 102, 255, 1)',
 	                'rgba(255, 159, 64, 1)'
 	            ],
-	            borderWidth: 1
+	            borderWidth: 1,
+		    	
 	        }]
 	    },
 	    options: {
 	    	responsive: false,
-	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero: true
-	                }
-	            }]
-	        }
+	    	   legend: { display: false },
+	    	title: {
+	              display: true,
+	              text: '가장많은 신고가 접수된 게시물'
+	        },
+	        xAxes: [{
+                stacked: true
+            }],
+            yAxes: [{
+                stacked: true
+            }]
 	    }
 	});
 }
@@ -109,7 +113,7 @@ function updateList(JsonObj) {
         window.page = JsonObj.pageNo;
         window.pageRows = JsonObj.pagenationPage;
     var i;
-    var items  = JsonObj.data;
+    var items  = JsonObj.list;
     for(i=0; i<count; i++){
         result += "<tr>\n";
         result += "<td><input type='checkbox' name='uid' value='" + items[i].post_id + "'></td>\n";
