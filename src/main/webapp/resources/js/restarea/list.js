@@ -1,3 +1,8 @@
+var lastIndex=0;
+var listSort;
+var routeName;
+var destination;
+var orderBy;
 
 function top_arrow_fadeout() {
 	if ($(this).scrollTop() > 200) {
@@ -8,18 +13,159 @@ function top_arrow_fadeout() {
 }
 
 function gototop() {
-		$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
+	return false;
+}
+
+function scrollInfinteList(){
+	//	/{listSort}/{routeName}/{destination}/{orderBy}/{numOfRows}/{lastIndex}
+	var url='../restarea/'+listSort+"/"+routeName+"/"+destination+"/"+orderBy+"/1/"+lastIndex;
+	lastIndex++;
+	$.ajax({
+		url:url,
+		type:'GET',
+		cache:'false',
+		success:function(data,status){ 
+			if(status=="success"){
+				console.log(data);
+				if(data.count==0){
+				}
+				else if(listSort=="ra"){
+					pageListReLoadToRA(data);					
+				}else if(listSort=="gs"){
+					pageListReLoadToGS(data);
+				}else if(listSort=="fm"){
+					pageListReLoadToFM(data);
+				}
+			}
+		}
+	});//ajax 끝
+}
+
+function searchBtnClick(){
+	lastIndex=0;
+	listSort=$("#listSortBtn").attr('value');
+	routeName=$("input[name=routeName]").val();
+	destination=$("input[name=destination]").val();
+	orderBy=$("#orderByRadio .custom-control-input:checked").val();
+
+	if(!(routeName.length>0)||routeName==""){
+		alert("노선 입력은 필수 입니다!");
 		return false;
+	}else if(!$('.dropdownRouteNameList').text().includes(routeName)){	
+		alert("잘못된 노선 입력입니다.");
+		$("input[name=routeName]").val("");		
+		return false;
+	}
+	
+	if(!(destination.length>0)||destination==""){
+		destination='ALL';
+	}else if(!$('.dropdownDestinationList').text().includes(destination)){
+		alert("잘못된 방향 입력입니다.");
+		$("input[name=destination]").val("");
+		return false;
+	}
+	console.log('listSort : '+listSort+', routeName : '+routeName+', destination : '+destination+', orderBy : '+orderBy);
+
+	
+	//{listSort}/{routeName}/{destination}/{orderBy}
+	var url='../restarea/'+listSort+"/"+routeName+"/"+destination+"/"+orderBy;
+	$.ajax({
+		url:url,
+		type:'GET',
+		cache:'false',
+		success:function(data,status){ 
+			if(status=="success"){
+				console.log(data);
+				lastIndex+=data.count;
+				$('#searchResultList').html("");
+				if(data.count==0){
+					applyWebPage("데이터가 없습니다!");
+				}
+				else if(listSort=="ra"){
+					pageListReLoadToRA(data);					
+				}else if(listSort=="gs"){
+					pageListReLoadToGS(data);
+				}else if(listSort=="fm"){
+					pageListReLoadToFM(data);
+				}
+			}
+		}
+	});//ajax 끝
+}
+
+function pageListReLoadToRA(jsonObj){
+	console.log("ra다");
+	let str="";
+	let row=jsonObj.list;
+	for(i=0;i<row.length;i++){
+		str+=
+		'<a class="listelement" href="#">'+
+		'	<div class="card">			'+
+	  	'	<img src="..." alt="" />	'+
+	  	'	<div class="card-body">		'+
+	    '	<h5 class="card-title">'+row[i].ra_name+'</h5>'+
+	    '	<p class="card-text">위도 : '+row[i].ra_xValue+', 경도 : '+row[i].ra_yValue+'</p>'+
+		'	  </div>	'+
+		'	</div>		'+
+		'</a>			';
+	}
+	applyWebPage(str);
+}
+function pageListReLoadToGS(jsonObj){
+	console.log("gs다");
+	let str="";
+	let row=jsonObj.list;
+	for(i=0;i<row.length;i++){
+		str+=
+		'<a class="listelement" href="#">	'+
+		'	<div class="card">				'+
+		'	  <img src="..." alt="" />		'+
+		'	  <div class="card-body">		'+
+		'	  	<p class="card-text">'+row[i].ra_name+'</p>	'+
+		'	    <h5 class="card-title">'+row[i].gs_name+'</h5>	'+
+		'	    <p class="card-text">경유 가격 : '+row[i].gs_diesel+'원,  휘발유 가격 : '+row[i].gs_gasoline+'원,  LPG 가격 : '+row[i].gs_lpg+'원</p>	'+
+		'	  </div>	'+
+		'	</div>		'+
+		'</a>			';
+	}
+	applyWebPage(str);
+}
+function pageListReLoadToFM(jsonObj){
+	console.log("fm다");
+	let str="";
+	let row=jsonObj.list;
+	for(i=0;i<row.length;i++){
+		str+=
+		'<a class="listelement" href="#">			'+
+		'	<div class="card">						'+
+		'	  <img src="..." alt="" />				'+
+		'	  <div class="card-body">				'+
+		'	  	<p class="card-text">'+row[i].ra_name+'</p>		'+
+		'	    <h5 class="card-title">'+row[i].fm_name+'</h5>	'+
+		'	    <p class="card-text">가격 : '+row[i].fm_price+'</p>'+
+		'  	    <p class="card-text">재료 : '+row[i].fm_material+'</p>	'+
+		'   	    <p class="card-text">'+row[i].fm_etc+'</p>'+
+		'	  </div>	'+
+		'	</div>		'+
+		'</a>			';
+	}
+	applyWebPage(str);
+}
+function applyWebPage(str){
+	$('#searchResultList').append(str);
+	console.log(lastIndex);
 }
 
 function changeListSortValue(listSort){
 	let sortval_str;
 	let html_str;
+	console.log("listSort : "+listSort);
 	if(listSort=='휴게소'){
 		sortval_str='ra';
 		html_str=
 		'<div class="custom-control custom-radio">'+
-		'	<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input" name="orderBy" value="default">'+
+		'	<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input" name="orderBy" value="default" checked="checked">'+
 		'	<label class="custom-control-label" for="jb-radio-1">경로 순서</label>'+
 		'</div>'+
 		'<div class="custom-control custom-radio">'+
@@ -31,7 +177,7 @@ function changeListSortValue(listSort){
 		sortval_str='gs';
 		html_str=
 		'<div class="custom-control custom-radio">'+
-		'	<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input" name="orderBy" value="default">'+
+		'	<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input" name="orderBy" value="default" checked="checked">'+
 		'	<label class="custom-control-label" for="jb-radio-1">경로 순서</label>'+
 		'</div>'+
 		'<div class="custom-control custom-radio">'+
@@ -55,7 +201,7 @@ function changeListSortValue(listSort){
 		sortval_str='fm';
 		html_str=
 		'<div class="custom-control custom-radio">'+
-		'	<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input" name="orderBy" value="default">'+
+		'	<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input" name="orderBy" value="default" checked="checked">'+
 		'	<label class="custom-control-label" for="jb-radio-1">경로 순서</label>'+
 		'</div>'+
 		'<div class="custom-control custom-radio">'+
@@ -69,15 +215,15 @@ function changeListSortValue(listSort){
 	} 
 	$("#listSortBtn").attr('value',sortval_str);
 	$("#listSortBtn").html(listSort);
-	$("#orderBy").html(html_str);
+	$("#orderByRadio").html(html_str);
 }
 
 function changeRouteNameValue(routeName){
 	
-	$('#routeName').attr('value',routeName);
+	$('#routeName').val(routeName);
 
 	$.ajax({
-		url:'http://localhost:8089/rest_area/restarea/destination/'+routeName,
+		url:'../restarea/destination/'+routeName,
 		type:'GET',
 		cache:false,
 		success:function(data,status){ 
@@ -86,7 +232,7 @@ function changeRouteNameValue(routeName){
 				var row=data.list;
 				html_str="";
 				for(i=0;i<row.length;i++){
-					html_str+=' <li><a tabindex="-1" role="button" onclick="changeDestinationValue(\''+row[i].ra_destination+'\')">'+row[i].ra_destination+'</a></li>';
+					html_str+=' <li><a class="dropdownDestinationList" tabindex="-1" role="button" onclick="changeDestinationValue(\''+row[i].ra_destination+'\')">'+row[i].ra_destination+'</a></li>';
 				}
 				$("#destinationList").html(html_str);
 			}
@@ -98,16 +244,5 @@ function changeRouteNameValue(routeName){
 }
 
 function changeDestinationValue(destination){
-	$('#destination').attr('value',destination);
+	$('#destination').val(destination);
 }
-
-//리스트 ajax 요청하여 띄우는 펑션
-function printList(){
-	
-}
-
-//휴게소 JSON 파싱
-
-//주유소 JSON 파싱
-
-//음식 메뉴 JSON 파싱

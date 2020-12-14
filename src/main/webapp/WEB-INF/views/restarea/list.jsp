@@ -27,9 +27,9 @@
 	   		<div >	   		
 	   			
 	   			
-			    <form class="navbar-form navbar-left " role="search">
+			    <div class="navbar-form navbar-left " role="search">
 			    	<div class="form-group dropdown">
-			    		<button class="btn btn-outline-info dropdown-toggle" type="button" id="listSortBtn" name="listSort" value="휴게소" data-toggle="dropdown">
+			    		<button class="btn btn-outline-info dropdown-toggle" type="button" id="listSortBtn" name="listSort" value="ra" data-toggle="dropdown">
 			    			휴게소
 			    			<span class="caret"></span>
 			    		</button>
@@ -46,7 +46,7 @@
 				      <div class="input-group-btn">
 				        <button type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" > <span class="caret"></span></button>
 				        <ul id="routeNameList" class="dropdown-menu dropdown-menu-right" role="menu">
-				          <li><a tabindex="-1" role="button" onclick="changeRouteNameValue('')">이곳에 노선을 입력</a></li>
+				          <li><a class="dropdownRouteNameList" tabindex="-1" role="button" onclick="changeRouteNameValue('')">이곳에 노선을 입력</a></li>
 				        </ul>
 				      </div><!-- /btn-group -->
 				    </div><!-- /input-group -->
@@ -56,14 +56,14 @@
 				      <div class="input-group-btn">
 				        <button type="button" class="btn btn-outline-info dropdown-toggle" data-toggle="dropdown" aria-expanded="false" > <span class="caret"></span></button>
 				        <ul id="destinationList" class="dropdown-menu dropdown-menu-right" role="menu">
-				          <li><a tabindex="-1" role="button" onclick="changeDestinationValue('')">노선을 먼저 입력해주세요</a></li>
+				          <li><a class="dropdownDestinationList" tabindex="-1" role="button" onclick="changeDestinationValue('')">노선을 먼저 입력해주세요</a></li>
 				        </ul>
 				      </div><!-- /btn-group -->
 				    </div><!-- /input-group -->
 				    
-				    <div id="orderBy" class="form-group">
+				    <div id="orderByRadio" class="form-group">
 				    	<div class="custom-control custom-radio">
-							<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input" name="orderBy" value="default">
+							<input type="radio" name="jb-radio" id="jb-radio-1" class="custom-control-input" name="orderBy" value="default" checked="checked">
 							<label class="custom-control-label" for="jb-radio-1">경로 순서</label>
 						</div>
 						<div class="custom-control custom-radio">
@@ -72,16 +72,15 @@
 						</div>
 				    </div>
 				    
-				    <button type="submit" class="btn btn-info">검색</button>
-			    </form>
+				    <button class="btn btn-info" onclick="searchBtnClick()">검색</button>
+			    </div><!-- form 역할 -->
 		  
 	   		</div>
 		</div>
 	</nav>
-	<main id="list">
+	<main id="searchResultList">
 		<!-- 임시 -->
 		<jsp:include page="./component/element.jsp"></jsp:include>
-		
 	</main>
 	<br>
 	<jsp:include page="../footer/footer.jsp" />

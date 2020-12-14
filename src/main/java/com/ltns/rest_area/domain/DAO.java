@@ -51,8 +51,9 @@ public interface DAO {
 	int deleteByString(String str);
 	int deleteByVO(VO vo);
 	int deleteByObject(Object obj);			//이외의 다양한 자료형에 사용하세요
-	int deleteByUid(int [] uids);
 	
+	//vo를 사용합시다...
+	int deleteByUid(int [] uids);
 	public List<DTO> selectFromRow(
 			@Param("from") int from, @Param("pagenationPage") int pagenationPage
 	);
