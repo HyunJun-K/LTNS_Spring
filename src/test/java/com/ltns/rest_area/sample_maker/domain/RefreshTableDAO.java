@@ -472,6 +472,13 @@ public class RefreshTableDAO extends AbstractDAO {
 	}
 
 
+	@Override
+	public int deleteByUid(int[] uids) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
 
 
 }
