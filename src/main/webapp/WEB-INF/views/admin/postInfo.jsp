@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
-<link href='${pageContext.request.contextPath }/admin/CSS/memberInfo.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath }/admin/CSS/postInfo.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/postInfo.js'></script>
 
 <body>
@@ -80,8 +80,8 @@
 							<th>POST_ID</th>
 							<th>POST_TITLE</th>
 							<th>POST_CONTENTS</th>
-							<th>UM_USERNAME</th>
 							<th>RA_CODE</th>
+							<th>UM_USERNAME</th>
 							<th>POST_REPORTED</th>
 						</thead>
 						<tbody>
@@ -96,12 +96,13 @@
 				<div class="d-flex justify-content-center">
 					<form name="sechForm" id="sechForm">
 					<select id="sele_option" class=" mr-2">
-						<option  value="id" selected> 아이디 </option>
+						<option value="title" selected> 제목 </option>
 						<option value="nickName"> 닉네임 </option>
-						<option value="regdate"> 가입일 </option>
 					</select>
 					<input id="text_info"  type="text" name="text_Info">
 					<button type="button" class="btn ml-2 btn-info" onclick="addSerch();"> 검색 </button>
+				 	<button type="button" class="btn btn-info" id="btnDel"> 삭제 </button>
+				 
 				  </form>
 				</div>
 		
@@ -113,11 +114,8 @@
 		
 			<div class="clear"></div>
 	<hr>
+		<canvas id="myChart" width="450" height="400"></canvas>
 		
-		<canvas id="myChart" width="600" height="400"></canvas>
-		
-
-
 		</main> <!-- article -->
 
 

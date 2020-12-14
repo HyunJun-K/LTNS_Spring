@@ -136,7 +136,7 @@ function addSerch(){
 	var data = {option : $("#sele_option").val() ,  text :  $("#text_info").val()}
 	$.ajax({
 		data : JSON.stringify(data), 
-		url : ".",
+		url : "SEACH",
 		type : "DELETE",
 		dataType : "JSON",
 		contentType:'application/json;',
