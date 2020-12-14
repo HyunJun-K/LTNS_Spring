@@ -21,5 +21,9 @@ public class postInfoDTO implements DTO {
 	private String RA_code;
 	private String post_reported;
 	
+	private int ACCOUNT;
+	
+	private String days;
+	private int dayscount;
 	
 }

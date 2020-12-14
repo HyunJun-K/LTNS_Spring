@@ -27,8 +27,8 @@
 	
 	<select id="selectAll" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
 		<![CDATA[
-		SELECT ROWNUM, POST_TITLE ,POST_REPORTED  FROM 
-		(SELECT * FROM POST ORDER BY POST_ID DESC)
+		SELECT ROWNUM, post_title, POST_REPORTED  FROM 
+		(SELECT * FROM POST ORDER BY POST_REPORTED DESC)
 		WHERE ROWNUM <=5
 		]]>
 	</select>
@@ -51,6 +51,24 @@
 		SELECT * FROM POST  WHERE POST_TITLE = #{title} or UM_USERNAME = #{nickname} 
 	</select>
 
+
+	<select id="selectAlls" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO"> 
+	<![CDATA[
+		SELECT RA_CODE, COUNT(*) AS ACCOUNT 
+		FROM POST
+		GROUP BY RA_CODE
+		]]>
+	</select>
+	
+	<select id="Allselect" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
+	<![CDATA[
+		SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days ,count(*) dayscount  FROM POST
+		WHERE POST_REGDATE BETWEEN to_char(trunc(POST_REGDATE, 'iw')) and to_char(trunc(sysdate, 'iw'))
+		GROUP BY TO_CHAR(POST_REGDATE ,'MM-DD')
+		order by days
+	]]>
+	
+	</select>
 
 
 

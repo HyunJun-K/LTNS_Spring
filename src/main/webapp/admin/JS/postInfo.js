@@ -11,11 +11,8 @@ $(document).ready(function(){
 	
 	pageLoad(pageNo)
     topLists()
-   
-    $("#btnDel").click(function(){
-        click_delete();
-    })
-
+    topArea()
+    listWeek()
     
 })
 
@@ -57,57 +54,7 @@ function pageLoad(pageNo){
 	
 }
 
-// 차트 
-function charts(JsonObj) {
-	var count = JsonObj.count; 
-	var ctx = document.getElementById('myChart');
-	var item = JsonObj.list;
-	var myChart = new Chart(ctx, {
-		type: 'bar',
-	    
-		data: {
-	        labels: 
-	        	[item[0].post_title , item[1].post_title, item[2].post_title, item[3].post_title, item[4].post_title ],
-	        	
-	        datasets: [{
-	            data: [item[0].post_reported , item[1].post_reported, item[2].post_reported, item[3].post_reported, item[4].post_reported],
-	            backgroundColor: [
-	                'rgba(255, 99, 132, 0.2)',
-	                'rgba(54, 162, 235, 0.2)',
-	                'rgba(255, 206, 86, 0.2)',
-	                'rgba(75, 192, 192, 0.2)',
-	                'rgba(153, 102, 255, 0.2)',
-	                'rgba(255, 159, 64, 0.2)'
-	            ],
-	            borderColor: [
-	                'rgba(255, 99, 132, 1)',
-	                'rgba(54, 162, 235, 1)',
-	                'rgba(255, 206, 86, 1)',
-	                'rgba(75, 192, 192, 1)',
-	                'rgba(153, 102, 255, 1)',
-	                'rgba(255, 159, 64, 1)'
-	            ],
-	            borderWidth: 1,
-		    	
-	        }]
-	    },
-	    options: {
-	    	responsive: false,
-	    	   legend: { display: false },
-	    	title: {
-	              display: true,
-	              text: '가장많은 신고가 접수된 게시물'
-	        },
-	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero: true
-	                }
-	            }]
-	        }
-	    }
-	});
-}
+
 
 
 
@@ -177,7 +124,7 @@ function click_delete() {
         alert("삭제 하실 글을 선택해주세요 ")
         return false;
     }else {
-        if(!confirm(post_id.length + '글을 삭제하시겠습니까?')) return false;
+        if(!confirm(post_id.length + '개의 글을 삭제하시겠습니까?')) return false;
 
         var data = $("#frmList").serialize();  // form 데이터를 String 형태로 정리를해줌 
 
@@ -267,7 +214,8 @@ function addSerch(){
 	
 	
 	if(text_info == null || text_info ==""){
-		alert("검색 내용이 비었습니다.");
+        alert("검색 내용이 비었습니다.");
+        $("#text_info").focus();
 		return false;
 	}
 	
@@ -317,7 +265,6 @@ function seachData(JsonObj){
         }
 
 	    $("#list tbody").html(result); //업데이트 
-	    $("#pageinfo").html(JsonObj.pageNo + " / " + JsonObj.totalPage + "페이지  " +  "<span class='text-warning' >" + JsonObj.totalCnt + "</span>" + " 명의 회원"  );
 
 	    //페이징 정보 업데이트 
 	    var pagination = buildPagination(JsonObj.writePages, JsonObj.totalPage, JsonObj.pageNo, JsonObj.pagenationPage);
@@ -330,4 +277,186 @@ function seachData(JsonObj){
 	       return false;
 	   } 
 	
+}
+
+
+
+// 차트1 번  
+function charts(JsonObj) {
+	var count = JsonObj.count; 
+	var ctx = document.getElementById('myChart');
+	var item = JsonObj.list;
+	var myChart = new Chart(ctx, {
+		type: 'bar',
+	    
+		data: {
+	        labels: 
+	        	[item[0].post_title , item[1].post_title, item[2].post_title, item[3].post_title, item[4].post_title ],
+	        	
+	        datasets: [{
+	            data: [item[0].post_reported , item[1].post_reported, item[2].post_reported, item[3].post_reported, item[4].post_reported],
+	            backgroundColor: [
+	                'rgba(255, 99, 132, 0.2)',
+	                'rgba(54, 162, 235, 0.2)',
+	                'rgba(255, 206, 86, 0.2)',
+	                'rgba(75, 192, 192, 0.2)',
+	                'rgba(153, 102, 255, 0.2)',
+	                'rgba(255, 159, 64, 0.2)'
+	            ],
+	            borderColor: [
+	                'rgba(255, 99, 132, 1)',
+	                'rgba(54, 162, 235, 1)',
+	                'rgba(255, 206, 86, 1)',
+	                'rgba(75, 192, 192, 1)',
+	                'rgba(153, 102, 255, 1)',
+	                'rgba(255, 159, 64, 1)'
+	            ],
+	            borderWidth: 1,
+		    	
+	        }]
+	    },
+	    options: {
+	    	responsive: false,
+	    	   legend: { display: false },
+	    	title: {
+	              display: true,
+	              text: '가장많은 신고가 접수된 게시물'
+	        },
+	        scales: {
+	            yAxes: [{
+	                ticks: {
+	                    beginAtZero: true
+	                }
+	            }]
+	        }
+	    }
+	});
+}
+
+
+
+
+
+
+
+// 휴게소 상위 5개 구하기 차트2번
+
+function topArea(){
+	$.ajax({
+        url : "TopArea",
+        type : "POST",
+        success : function(data,status){
+            if(status == "success"){
+				postcharts(data)
+			}
+        }
+    });
+}
+
+
+
+function postcharts(JsonObj){
+    var items  = JsonObj.list;
+    var ctx2 = document.getElementById('postChart2');
+    var myChartLine = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: [items[0].ra_code, items[1].ra_code, items[2].ra_code, items[3].ra_code,items[4].ra_code],
+            datasets: [{
+                data: [
+                items[0].account, 
+                items[1].account, 
+                items[2].account,
+                items[3].account,
+                items[4].account],
+                
+                backgroundColor:  [ 
+                	'#D7F1FA',
+                    '#A0A0FF ',
+                    '#D2FFD2',
+                    '#3ED0C8',
+                    '#FFB2AF'
+                ],
+            }]
+        },
+        options: {
+           responsive: false,
+     	   title: {
+	              display: true,
+	              text: '가장많은 글이 작성된 휴게소'
+	        },
+        }
+    });
+}
+
+
+// 주간 게시글 작성수
+function listWeek(){
+    $.ajax({
+        url : "listWeek",
+        type : "POST",
+        success : function(data,status){
+            if(status == "success"){
+				lineCharts(data)
+			}
+        }
+    });
+}
+
+
+
+
+
+
+
+
+function lineCharts(JsonObj) {
+    var items  = JsonObj.list;
+    var ctxline = document.getElementById('linechart');
+    var count = JsonObj.count;
+    var i;
+  
+    var linecharts_ = new Chart(ctxline, {
+
+        type: 'line',
+        data: {
+            labels: [
+            	items[0].days,
+            	items[1].days,
+            	items[2].days,
+            	items[3].days,
+            	items[4].days,
+            ],
+            datasets: [
+                {
+                    label: "일별 게시물 개수",
+                    fillColor: "rgba(220,220,220,0.2)",
+                    strokeColor: "rgba(220,220,220,1)",
+                    pointColor: "rgba(220,220,220,1)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: "rgba(220,220,220,1)",
+                    data: [
+                    	items[0].dayscount,
+                    	items[1].dayscount,
+                    	items[2].dayscount,
+                    	items[3].dayscount,
+                    	items[4].dayscount,
+                    ]
+                },
+            ]
+        },
+        options: {
+           responsive: false,
+     	   title: {
+	              display: true,
+	              text: '주간 게시물 통계'
+	        },
+        }
+    });
+
+   
+
+  
+
 }
