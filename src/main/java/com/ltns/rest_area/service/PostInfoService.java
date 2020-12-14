@@ -1,5 +1,6 @@
 package com.ltns.rest_area.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,4 +46,23 @@ public class PostInfoService {
 		dao = sqlSession.getMapper(postInfoDAO.class);
 		return dao.selectAll();
 	}
+	
+	
+	public int deletePost (int [] post_id) {
+		dao = sqlSession.getMapper(postInfoDAO.class);
+		return dao.deleteByUid(post_id);
+	}
+
+	public List<DTO> seachTitle(String title) {
+		dao = sqlSession.getMapper(postInfoDAO.class);
+		return dao.selectByString(title);
+	}
+	
+	public List<DTO> seachNickname(String nickname) {
+		dao = sqlSession.getMapper(postInfoDAO.class);
+		return dao.selectByString(nickname);
+	}
+	
+	
+	
 }
