@@ -77,7 +77,6 @@ public class RestAreaController {
 		//dto 데이터
 		List<DTO> list=null;
 
-
 		// 페이징 관련 세팅 값들
 		int totalCnt=0;	//총 dto 갯수
 

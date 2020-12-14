@@ -7,7 +7,7 @@ INSERT INTO RestArea
 		VALUES
 			('1', 'a', 'a', 'a', 'a', 'a', 'a');
 
-SELECT * FROM restarea;
+SELECT * FROM restarea WHERE RA_ROUTENAME ='경부선';
 
 SELECT * FROM GASSTATION;
 
