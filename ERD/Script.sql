@@ -22,7 +22,7 @@ SELECT count(*) FROM USERMEMBER u;
 
 INSERT INTO userMember
 (um_uid, um_username, um_password ,um_nickname, UM_ENABLED) VALUES
-(8, '랄라라', '$2a$10$5Yy/c52u4Ped7j11mMxKEeuHAIRHjiZyg5NyltWqpW5MGIh6zk/Ky', '에프엑스','member');
+(9, 'iiidk', '$2a$10$5Yy/c52u4Ped7j11mMxKEeuHAIRHjiZyg5NyltWqpW5MGIh6zk/Ky', '미니미니',1);
 
 
 SELECT * FROM USERMEMBER u ;
@@ -53,7 +53,7 @@ SELECT * FROM GASSTATION g ;
 INSERT INTO POST 
 (post_id, post_title, POST_CONTENTS, UM_UID, UM_USERNAME, POST_REGDATE, RA_CODE, POST_REPORTED)
 VALUES
-(30,'난냔나','하하히히히', 2, 'hyunjun','2020-12-11', 'A00004','1')
+(31,'난냔나','하하히히히', 2, 'hyunjun',sysdate, 'A00004','1')
 
 SELECT* FROM post; 
 
@@ -200,4 +200,13 @@ SELECT * FROM RESTAREA r ;
 SELECT * FROM FOODMENU f ;
 
 
-SELECT count(*) AS total_acount  FROM USERMEMBER ;
+SELECT count(*) AS POST_REPORTED  FROM POST;
+SELECT * FROM USERMEMBER u2 ;
+
+SELECT count(*) AS POST_REPORTED FROM post
+WHERE TO_CHAR(POST_REGDATE ,'YYYYMMDD') = TO_CHAR(SYSDATE ,'YYYYMMDD');
+
+
+SELECT * FROM post;
+
+

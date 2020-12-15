@@ -4,12 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>오늘 신고된 신고 목록</title>
 </head>
 <body>
 	
-
-
-
+<h2> hello</h2>
 </body>
 </html>

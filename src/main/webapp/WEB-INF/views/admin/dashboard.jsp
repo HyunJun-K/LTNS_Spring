@@ -76,28 +76,29 @@
 	    <div class="card text-center">
 	      <div class="card-body">
 	        <h5 class="card-title">오늘 가입한 유저수</h5>
-	        <p id="numbers_acount" class="card-title">212,235명</p>
+	        <p id="numbers_today" class="card-title"> </p>
+	        <span id="numbers_acount" class="card-body"></span>
 	     	</div>
 	    </div>
 	  </div>
 	  
 	  
 	  <div class="col-sm-3">
-	    <div class="card">
+	    <div class="card text-center">
 	      <div class="card-body">
-	        <h5 class="card-title">Special title treatment</h5>
-	        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-	    
+	        <h5 class="card-title">오늘 작성된 게시글 수</h5>
+	        <p id="today_post" class="card-title"> </p>
+	        <span id="total_post" class="card-body"></span>
 	      </div>
 	    </div>
 	  </div>
 	  
 	  <div class="col-sm-3">
-	    <div class="card">
+	    <div class="card text-center">
 	      <div class="card-body">
-	        <h5 class="card-title">Special title treatment</h5>
-	        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-	       
+	        <h5 class="card-title">오늘 신고된 게시글 수</h5>
+	         <p id="today_reports_post" class="card-title"> </p>
+	         <span>신고된 게시물 갯수</span>
 	      </div>
 	    </div>
 	  </div>

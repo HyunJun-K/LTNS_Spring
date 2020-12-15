@@ -5,9 +5,35 @@
 
 
 
-	<select id="selectCnt">
-	 SELECT count(*) AS total_acount  FROM USERMEMBER ;
+	<select id="selectCnt"  resultType="int">
+	 SELECT count(*) AS total_acount  FROM USERMEMBER 
 	</select>
 
+	<select id="selectCnts" resultType="int">
+	<![CDATA[
+	SELECT count(*) AS today_acount FROM USERMEMBER
+	WHERE TO_CHAR(UM_REGDATE ,'YYYYMMDD') = TO_CHAR(SYSDATE ,'YYYYMMDD')
+	]]>
+	</select>
+	
+	<select id="select_totalPost"  resultType="int">
+	SELECT count(*) AS total_post  FROM POST
+	</select>
+
+	<select id="select_todayPost" resultType="int">
+	<![CDATA[
+	SELECT count(*) AS today_post FROM post
+	WHERE TO_CHAR(POST_REGDATE ,'YYYYMMDD') = TO_CHAR(SYSDATE ,'YYYYMMDD')
+	
+	]]>
+	</select>
+	
+	
+	<select id="select_todayReports_post" resultType="int">
+	SELECT count(*) AS POST_REPORTED FROM post
+	WHERE TO_CHAR(POST_REGDATE ,'YYYYMMDD') = TO_CHAR(SYSDATE ,'YYYYMMDD')
+	</select>
+	
+	
 
 </mapper>

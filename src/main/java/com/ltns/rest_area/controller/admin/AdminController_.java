@@ -33,23 +33,6 @@ public class AdminController_ {
 	
 	
 	
-	//일정 
-	
-	
-
-	
-	
-	
-	
-	//update PUT
-	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/schedule")
 	public void schedule(Model m) throws Exception
 	{
@@ -73,6 +56,10 @@ public class AdminController_ {
 	
 	@RequestMapping("/postInfo")
 	public void postInfo()	{}
+	
+	@RequestMapping("/repostPopup")
+	public void repostPopup()	{}
+	
 	
 	
 	
