@@ -1,8 +1,11 @@
+var	url=window.location.protocol+"/rest_area";
+
 $(document).ready(function(){
+	console.log(url);
 	
 	/* 페이지 로딩시, 노선 입력에 노선 값들을 집어 넣기 */
 	$.ajax({
-		url:"../restarea/routeName",
+		url:url+"/restarea/routeName",
 		type:'GET',
 		cache:false,
 		success:function(data,status){
@@ -16,6 +19,7 @@ $(document).ready(function(){
 			}
 		}
 	});
+	changeRouteNameValue($("#routeName").attr("value"))
 	
 	/* top_arrow 버튼 스크롤에 따른 fadeout 설정   
 	경로 : others/fixedbtn/fixedbtn.js */

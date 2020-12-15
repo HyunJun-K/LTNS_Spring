@@ -25,7 +25,6 @@ public class RestAreaController {
 	// 요청
 	@GetMapping("/{requestDataKind}")
 	public AjaxList requestDestinationList(@PathVariable String requestDataKind) {
-		System.out.println("확인 : "+requestDataKind);
 		AjaxList result=new AjaxList();
 		RestAreaVO vo=new RestAreaVO().builder().requestDataKind(requestDataKind).build();
 		List<DTO> list=searchService.requestComboList(vo);
@@ -56,7 +55,6 @@ public class RestAreaController {
 		if(numOfRows.equals("ALL")) {
 			_numOfRows=searchService.raCount();  //최대 휴게소 이상으로 정해줘야 함!
 		}else if(Pattern.matches("[0-9]",numOfRows)) {
-			System.out.println("아왜");
 			_numOfRows=Integer.parseInt(numOfRows);
 		}else {
 			_numOfRows=10;
@@ -70,6 +68,7 @@ public class RestAreaController {
 	@GetMapping("/{listSort}/{routeName}/{destination}/{orderBy}/{numOfRows}/{lastIndex}")
 	public AjaxList moreList(@PathVariable String listSort, @PathVariable String routeName, @PathVariable String destination, @PathVariable String orderBy, @PathVariable int numOfRows, @PathVariable int lastIndex) {
 
+		System.out.println("request : /"+listSort+"/"+routeName+"/"+destination+"/"+orderBy+"/"+numOfRows+"/"+lastIndex);
 		// response 에 필요한 값들
 		StringBuffer message = new StringBuffer();
 		String status = "FAIL";
@@ -129,7 +128,6 @@ public class RestAreaController {
 			}else {
 				status="OK";
 			}
-			System.out.println(list);//test용
 		}catch(Exception e) {
 			e.printStackTrace();
 			message.append("[트랜잭션 에러 : "+e.getMessage()+"]");
@@ -150,7 +148,6 @@ public class RestAreaController {
 		
 		result.setPagenationPage(pagenationPage);
 
-		System.out.println(result);
 		return result;
 	}
 

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <!-- css -->
-<link href='${pageContext.request.contextPath }/resources/css/footer.css'/>
+<link href='${pageContext.request.contextPath }/resources/css/footer.css' rel="stylesheet"/>
 
 <footer>
 

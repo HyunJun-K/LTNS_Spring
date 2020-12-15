@@ -1,54 +1,25 @@
-var	url=window.location.protocol+"/rest_area";
-var lastIndex=0;
-var lastIndexBoolean=false;
-var listSort;
-var routeName;
-var destination;
-var orderBy;
-
-function top_arrow_fadeout() {
-	if ($(this).scrollTop() > 200) {
-		$('#top_arrow').fadeIn();
-	} else {
-		$('#top_arrow').fadeOut();
-	}
-}
-
-function gototop() {
-	$( 'html, body' ).animate( { scrollTop : 0 }, 400 );
-	return false;
-}
-
-function scrollInfinteList(){
-	//	/{listSort}/{routeName}/{destination}/{orderBy}/{numOfRows}/{lastIndex}
-	var path='/restarea/'+listSort+"/"+routeName+"/"+destination+"/"+orderBy+"/1/"+lastIndex;
-	if(lastIndexBoolean){
-		return false;
-		}
-	lastIndexBoolean=true;
-	lastIndex++;
+$(document).ready(function(){
+	
+	/* 페이지 로딩시, 노선 입력에 노선 값들을 집어 넣기 */
 	$.ajax({
-		url:url+path,
+		url:"../restarea/routeName",
 		type:'GET',
-		cache:'false',
-		success:function(data,status){ 
+		cache:false,
+		success:function(data,status){
 			if(status=="success"){
-				
-				if(data.count==0){
+				var list=data.list;
+				var htmlval="";
+				for(i=0;i<list.length;i++){
+					htmlval+='<li><a class="dropdownRouteNameList" tabindex="-1" role="button" onclick="changeRouteNameValue(\''+list[i].ra_routeName+'\')">'+list[i].ra_routeName+'</a></li>';
 				}
-				else if(listSort=="ra"){
-					pageListReLoadToRA(data);					
-				}else if(listSort=="gs"){
-					pageListReLoadToGS(data);
-				}else if(listSort=="fm"){
-					pageListReLoadToFM(data);
-				}
+				$("#routeNameList").html(htmlval);
 			}
 		}
-	});//ajax 끝
-}
+	});
+	
+})//end - $(document).ready
 
-function inputValueChk(){
+function searchBtnClickLogic(){
 	listSort=$("#listSortBtn").attr('value');
 	routeName=$("input[name=routeName]").val();
 	destination=$("input[name=destination]").val();
@@ -70,100 +41,13 @@ function inputValueChk(){
 		$("input[name=destination]").val("");
 		return false;
 	}
-}
-function searchBtnClick(){
-	inputValueChk();
-	searchBtnClickLogic();
-}
-function searchBtnClickLogic(){
-	lastIndex=0;
-
-//	console.log('listSort : '+listSort+', routeName : '+routeName+', destination : '+destination+', orderBy : '+orderBy);
 	
-	//{listSort}/{routeName}/{destination}/{orderBy}
-	var path='/restarea/'+listSort+"/"+routeName+"/"+destination+"/"+orderBy;
-	$.ajax({
-		url:url+path,
-		type:'GET',
-		cache:'false',
-		success:function(data,status){ 
-			if(status=="success"){
-				lastIndex+=data.count;
-				$('#searchResultList').html("");
-				if(data.count==0){
-					applyWebPage("데이터가 없습니다!");
-				}
-				else if(listSort=="ra"){
-					pageListReLoadToRA(data);					
-				}else if(listSort=="gs"){
-					pageListReLoadToGS(data);
-				}else if(listSort=="fm"){
-					pageListReLoadToFM(data);
-				}
-			}
-		}
-	});//ajax 끝
+		//{listSort}/{routeName}/{destination}/{orderBy}
+	var value_url="/"+listSort+"/"+routeName+"/"+destination+"/"+orderBy;
+	let path_url='./list'+value_url;
+	location.replace(path_url);
 }
 
-function pageListReLoadToRA(jsonObj){
-	let str="";
-	let row=jsonObj.list;
-	for(i=0;i<row.length;i++){
-		str+=
-		'<a class="listelement" href="#">'+
-		'	<div class="card">			'+
-	  	'	<img src="..." alt="" />	'+
-	  	'	<div class="card-body">		'+
-	    '	<h5 class="card-title">'+row[i].ra_name+'</h5>'+
-	    '	<p class="card-text">위도 : '+row[i].ra_xValue+', 경도 : '+row[i].ra_yValue+'</p>'+
-		'	  </div>	'+
-		'	</div>		'+
-		'</a>			';
-	}
-	applyWebPage(str);
-}
-function pageListReLoadToGS(jsonObj){
-	let str="";
-	let row=jsonObj.list;
-	for(i=0;i<row.length;i++){
-		str+=
-		'<a class="listelement" href="#">	'+
-		'	<div class="card">				'+
-		'	  <img src="..." alt="" />		'+
-		'	  <div class="card-body">		'+
-		'	  	<p class="card-text">'+row[i].ra_name+'</p>	'+
-		'	    <h5 class="card-title">'+row[i].gs_name+'</h5>	'+
-		'	    <p class="card-text">경유 가격 : '+row[i].gs_diesel+'원,  휘발유 가격 : '+row[i].gs_gasoline+'원,  LPG 가격 : '+row[i].gs_lpg+'원</p>	'+
-		'	  </div>	'+
-		'	</div>		'+
-		'</a>			';
-	}
-	applyWebPage(str);
-}
-function pageListReLoadToFM(jsonObj){
-	let str="";
-	let row=jsonObj.list;
-	for(i=0;i<row.length;i++){
-		str+=
-		'<a class="listelement" href="#">			'+
-		'	<div class="card">						'+
-		'	  <img src="..." alt="" />				'+
-		'	  <div class="card-body">				'+
-		'	  	<p class="card-text">'+row[i].ra_name+'</p>		'+
-		'	    <h5 class="card-title">'+row[i].fm_name+'</h5>	'+
-		'	    <p class="card-text">가격 : '+row[i].fm_price+'</p>'+
-		'  	    <p class="card-text">재료 : '+row[i].fm_material+'</p>	'+
-		'   	    <p class="card-text">'+row[i].fm_etc+'</p>'+
-		'	  </div>	'+
-		'	</div>		'+
-		'</a>			';
-	}
-	applyWebPage(str);
-}
-function applyWebPage(str){
-	$('#searchResultList').append(str);
-	lastIndexBoolean=false;
-}
 
 function changeListSortValue(listSort){
 	let sortval_str;
@@ -228,10 +112,9 @@ function changeListSortValue(listSort){
 function changeRouteNameValue(routeName){
 	
 	$('#routeName').val(routeName);
-	$('#destination').val("");
 
 	$.ajax({
-		url:url+'/restarea/destination/'+routeName,
+		url:'../restarea/destination/'+routeName,
 		type:'GET',
 		cache:false,
 		success:function(data,status){ 

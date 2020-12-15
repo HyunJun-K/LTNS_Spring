@@ -52,7 +52,6 @@ public class SearchService {
 	public List<DTO> selectSomeFmDTOs(String routeName, String destination, String orderBy, int fromRow, int numOfRows) {
 		dao=sqlSession.getMapper(FoodMenuDAO.class);
 		//orderBy : default 는 암것도 없기~~ ra_Code 순, 
-		System.out.println("*********************fromRow:"+fromRow);
 		return dao.selectByVO(new RestAreaVO().builder().routeName(routeName).destination(destination).orderBy(orderBy).fromRow(fromRow).numOfRows(numOfRows).build());
 	}
 
