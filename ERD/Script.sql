@@ -45,7 +45,7 @@ SELECT * FROM GASSTATION g ;
 INSERT INTO POST 
 (post_id, post_title, POST_CONTENTS, UM_UID, UM_USERNAME, POST_REGDATE, RA_CODE, POST_REPORTED)
 VALUES
-(14,'쿠죵','쿠죵',1, 'hello',sysdate, 'A00001','20')
+(27,'개그','하하히히히',1, '나라라','2020-12-13', 'A00004','1')
 
 SELECT* FROM post; 
 
@@ -101,3 +101,56 @@ SELECT ROWNUM, POST_ID ,POST_REPORTED  FROM
 (SELECT * FROM POST ORDER BY POST_ID DESC)
 WHERE ROWNUM <=5;
 
+
+SELECT ROWNUM,RA_CODE,POST_TITLE FROM 
+(SELECT * FROM POST ORDER BY POST_ID DESC)
+WHERE ROWNUM <=5;
+
+SELECT * FROM post;
+
+SELECT ROWNUM, post_title, POST_REPORTED  FROM 
+		(SELECT * FROM POST ORDER BY POST_REPORTED DESC)
+		WHERE ROWNUM <=5
+
+SELECT * FROM post;
+
+
+SELECT RA_CODE ,COUNT(RA_CODE) FROM POST;
+
+SELECT RA_CODE, COUNT(*) AS ACCOUNT 
+FROM POST
+GROUP BY RA_CODE;
+
+
+SELECT UM_USERNAME , COUNT(*) AS ACCOUNT 
+FROM POST
+GROUP BY UM_USERNAME;
+
+SELECT * FROM post;
+
+
+
+SELECT to_char(trunc(sysdate, 'IW'),'mm-dd') FROM dual;
+
+
+SELECT to_char(post_regdate, 'yyyy-mm-dd') AS RESULTDATE, count(*) FROM POST 
+WHERE RESULTDATE BETWEEN  to_char(post_regdate, 'yyyy-mm-dd') AND to_char(sysdate, 'yyyy-mm-dd') 
+GROUP BY RESULTDATE ;
+SELECT  to_char(post_regdate, 'yyyy-mm-dd') , count(*)
+FROM post
+WHERE post_regdate BETWEEN to_char(post_regdate, 'IW') AND to_char(sysdate,'IW')
+
+SELECT post_regdate AS YEARs, count(*) 
+FROM post GROUP BY YEARs;
+
+WHERE TO_CHAR(POST_REGDATE, 'MM-DD') BETWEEN to_char(trunc(sysdate, 'IW'),'mm-dd')
+GROUP BY result;
+
+
+SELECT TO_CHAR(TRUNC(SYSDATE,'IW'),'MM-DD') FROM daul;
+SELECT POST_REGDATE FROM post;
+
+SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days ,count(*) DAYSCOUNT  FROM POST
+WHERE POST_REGDATE BETWEEN to_char(trunc(POST_REGDATE, 'iw')) and to_char(trunc(sysdate, 'iw'))
+GROUP BY TO_CHAR(POST_REGDATE ,'MM-DD')
+ORDER BY days;

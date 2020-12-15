@@ -74,8 +74,8 @@
 				<div class="clear"></div>
 
 				<form id="frmList" name="frmList">
-					<table>
-						<thead>
+					<table class="table">
+						<thead class="thead-dark">
 							<th>UID</th>
 							<th>POST_ID</th>
 							<th>POST_TITLE</th>
@@ -95,13 +95,13 @@
 		
 				<div class="d-flex justify-content-center">
 					<form name="sechForm" id="sechForm">
-					<select id="sele_option" class=" mr-2">
+					<select id="sele_option" class="mdb-select">
 						<option value="title" selected> 제목 </option>
 						<option value="nickName"> 닉네임 </option>
 					</select>
-					<input id="text_info"  type="text" name="text_Info">
-					<button type="button" class="btn ml-2 btn-info" onclick="addSerch();"> 검색 </button>
-				 	<button type="button" class="btn btn-info" id="btnDel"> 삭제 </button>
+					<input id="text_info"  class="input_seach" type="text" name="text_Info">
+					<button type="button" class="btn_infos" onclick="addSerch();"> 검색 </button>
+				 	<button type="button" class="btn_infos" onclick="click_delete();"> 삭제 </button>
 				 
 				  </form>
 				</div>
@@ -114,7 +114,20 @@
 		
 			<div class="clear"></div>
 	<hr>
-		<canvas id="myChart" width="450" height="400"></canvas>
+	
+		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
+		<canvas id="myChart" width="550" height="300" ></canvas>
+		</div>
+		
+		<div class="d-inline-block justify-content-end mr-2 ml-2">
+		<canvas id="postChart2" width="550" height="300" ></canvas>
+		</div>
+			<div class="clear"></div>
+	
+	<hr>
+		<div class="d-inline-block justify-content-center">
+		<canvas id="linechart" width="1150" height="300"></canvas>
+		</div>
 		
 		</main> <!-- article -->
 
