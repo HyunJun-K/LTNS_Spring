@@ -1,4 +1,4 @@
-package com.ltns.rest_area.controller;
+package com.ltns.rest_area.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;

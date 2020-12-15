@@ -7,6 +7,9 @@
 <title> 게시글 정보</title>
 </head>
 
+<!--  fontawesome -->
+<script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script> 
+
 <!--  chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
@@ -39,17 +42,20 @@
 			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
 				<div class="sidebar-sticky">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link "
-							href="${pageContext.request.contextPath}/admin/dashboard">
-								Dashboard </a></li>
-						<li class="nav-item"><a class="nav-link "
-							href="${pageContext.request.contextPath}/admin/schedule"> 일정
+						
+						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/dashboard"> <span
+								data-feather="shopping-cart"></span> <i class="fas fa-chart-line"></i>&nbsp;&nbsp; 메인
 						</a></li>
+						
+						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/schedule"> <span
+								data-feather="shopping-cart"></span>  <i class="far fa-calendar-check"></i>&nbsp;&nbsp; 일정
+						</a></li>
+						
 						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/memberInfo"> <span
-								data-feather="shopping-cart"></span> 회원정보
+								data-feather="shopping-cart"></span> <i class="far fa-user-circle"></i> &nbsp;&nbsp;회원정보
 						</a></li>
 						<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/admin/postInfo"> <span
-								data-feather="users"></span> 게시글 정보
+								data-feather="users"></span> <i class="fas fa-edit"></i>&nbsp;&nbsp;게시글 정보
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"> <span
 								data-feather="bar-chart-2"></span> Reports
@@ -128,6 +134,8 @@
 		<div class="d-inline-block justify-content-center">
 		<canvas id="linechart" width="1150" height="300"></canvas>
 		</div>
+	
+	
 		
 		</main> <!-- article -->
 
@@ -135,3 +143,4 @@
 
 	</div> <!-- end con -->
 </body>
+</html>

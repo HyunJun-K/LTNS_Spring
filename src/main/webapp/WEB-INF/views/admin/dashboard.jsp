@@ -7,23 +7,23 @@
 <title>관리자 페이지</title>
 </head>
 
-<!-- jquery  -->
-
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+<!--  fontawesome -->
+<script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script> 
 
 <!--  chart.js CDN -->
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+
+<!-- jquery  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 
 <!--  bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
-<!--  font awsome -->
-<script src="https://kit.fontawesome.com/bb29575d31.js"></script>
-
-<link href='${pageContext.request.contextPath }/admin/CSS/admin.css' rel='stylesheet' />
-<script src='${pageContext.request.contextPath }/admin/JS/admin.js'></script>
+<link href='${pageContext.request.contextPath }/admin/CSS/dashBoard.css' rel='stylesheet' />
+<script src='${pageContext.request.contextPath }/admin/JS/dashBoard.js'></script>
 
 <body>
 	<!-- dashboard nav -->
@@ -42,17 +42,20 @@
 			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
 				<div class="sidebar-sticky">
 					<ul class="nav flex-column">
-						<li class="nav-item"><a class="nav-link active"
-							href="${pageContext.request.contextPath}/admin/dashboard">
-								Dashboard </a></li>
-						<li class="nav-item"><a class="nav-link "
-							href="${pageContext.request.contextPath}/admin/schedule"> 일정
+						
+						<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/admin/dashboard"> <span
+								data-feather="shopping-cart"></span> <i class="fas fa-chart-line"></i>&nbsp;&nbsp; 메인
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/memberInfo"> <span
-								data-feather="shopping-cart"></span> 회원정보
+						
+						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/schedule"> <span
+								data-feather="shopping-cart"></span>  <i class="far fa-calendar-check"></i>&nbsp;&nbsp; 일정
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/admin/postInfo"> <span
-								data-feather="users"></span> 게시글 정보
+						
+						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/memberInfo"> <span
+								data-feather="shopping-cart"></span> <i class="far fa-user-circle"></i> &nbsp;&nbsp;회원정보
+						</a></li>
+						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/postInfo"> <span
+								data-feather="users"></span> <i class="fas fa-edit"></i>&nbsp;&nbsp;게시글 정보
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"> <span
 								data-feather="bar-chart-2"></span> Reports
@@ -66,23 +69,55 @@
 			</nav>
 		</div><!-- sidebar 라인 -->
 
-
-
+		<!-- section 1  -->
 		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-
-		<canvas id="myChart" width="200" height="200"></canvas>
-
-		</main>
-
+	<div class="row">
+	  <div class="col-sm-3">
+	    <div class="card text-center">
+	      <div class="card-body">
+	        <h5 class="card-title">오늘 가입한 유저수</h5>
+	        <p id="numbers_acount" class="card-title">212,235명</p>
+	     	</div>
+	    </div>
+	  </div>
+	  
+	  
+	  <div class="col-sm-3">
+	    <div class="card">
+	      <div class="card-body">
+	        <h5 class="card-title">Special title treatment</h5>
+	        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+	    
+	      </div>
+	    </div>
+	  </div>
+	  
+	  <div class="col-sm-3">
+	    <div class="card">
+	      <div class="card-body">
+	        <h5 class="card-title">Special title treatment</h5>
+	        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+	       
+	      </div>
+	    </div>
+	  </div>
+	  
+	  <div class="col-sm-3">
+	    <div class="card">
+	      <div class="card-body">
+	        <h5 class="card-title">Special title treatment</h5>
+	        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+	        
+	      </div>
+	    </div>
+	  </div>
+	  
+	</div> <!-- card row -->
+		
+		</main> <!-- article -->
 
 
 
 	</div> <!-- end con -->
-	
-	
-	
-
-
-
 </body>
 </html>

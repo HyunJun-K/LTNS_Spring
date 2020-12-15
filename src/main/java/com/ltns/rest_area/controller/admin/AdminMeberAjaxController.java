@@ -1,4 +1,4 @@
-package com.ltns.rest_area.controller;
+package com.ltns.rest_area.controller.admin;
 
 import java.util.List;
 import java.util.Map;

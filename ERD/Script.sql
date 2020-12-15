@@ -53,7 +53,7 @@ SELECT * FROM GASSTATION g ;
 INSERT INTO POST 
 (post_id, post_title, POST_CONTENTS, UM_UID, UM_USERNAME, POST_REGDATE, RA_CODE, POST_REPORTED)
 VALUES
-(29,'난냔나','하하히히히', 2, 'hyunjun','2020-12-13', 'A00004','1')
+(30,'난냔나','하하히히히', 2, 'hyunjun','2020-12-11', 'A00004','1')
 
 SELECT* FROM post; 
 
@@ -195,3 +195,9 @@ SELECT UM_USERNAME, count(*) AS cnt FROM POST
 
 SELECT * FROM SCHEDULE s ;
 
+SELECT * FROM GASSTATION g ;
+SELECT * FROM RESTAREA r ;
+SELECT * FROM FOODMENU f ;
+
+
+SELECT count(*) AS total_acount  FROM USERMEMBER ;

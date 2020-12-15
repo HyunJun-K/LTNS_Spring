@@ -14,6 +14,9 @@
 <meta charset='utf-8' />
 <title>일정</title>
 
+<!--  fontawesome -->
+<script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script> 
+
 <!-- google font -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -123,42 +126,29 @@
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
           <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link " href="${pageContext.request.contextPath}/admin/dashboard">
-                  Dashboard 
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="${pageContext.request.contextPath}/admin/schedule">
-                  	일정  
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/admin/memberInfo">
-                  <span data-feather="shopping-cart"></span>
-                  	회원정보
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/admin/postInfo">
-                  <span data-feather="users"></span>
-                   	게시글 정보
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
-                </a>
-              </li>
-            </ul>
+          <ul class="nav flex-column">
+						
+						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/dashboard"> <span
+								data-feather="shopping-cart"></span> <i class="fas fa-chart-line"></i>&nbsp;&nbsp; 메인
+						</a></li>
+						
+						<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/admin/schedule"> <span
+								data-feather="shopping-cart"></span>  <i class="far fa-calendar-check"></i>&nbsp;&nbsp; 일정
+						</a></li>
+						
+						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/memberInfo"> <span
+								data-feather="shopping-cart"></span> <i class="far fa-user-circle"></i> &nbsp;&nbsp;회원정보
+						</a></li>
+						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/postInfo"> <span
+								data-feather="users"></span> <i class="fas fa-edit"></i>&nbsp;&nbsp;게시글 정보
+						</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"> <span
+								data-feather="bar-chart-2"></span> Reports
+						</a></li>
+						<li class="nav-item"><a class="nav-link" href="#"> <span
+								data-feather="layers"></span> Integrations
+						</a></li>
+					</ul>
 
           </div>
         </nav>
