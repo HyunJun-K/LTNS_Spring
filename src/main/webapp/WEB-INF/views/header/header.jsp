@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 
 <!-- css -->
-<link href='${pageContext.request.contextPath }/resources/css/header.css'/>
+<link href='${pageContext.request.contextPath }/resources/css/header.css' rel="stylesheet"/>
 
 <header>
 	<nav id="search" class="navbar navbar-default">

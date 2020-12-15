@@ -4,13 +4,14 @@
 	position: fixed;
 	bottom: 30px;
 	right: 30px;
+	border-radius: 50%;
+	display : none;
 }
 
 #top i{
-	border-radius: 50%;
 	width: 50px;
 	height: 50px;
-	border: 1px solid black;
+	border: 1px solid trans;
 	padding: 15px 0;
 	box-sizing: border-box;
 }
