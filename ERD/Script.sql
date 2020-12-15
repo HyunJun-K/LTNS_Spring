@@ -12,14 +12,22 @@ FROM usermember;
 INSERT INTO USERMEMBER (UM_UID , UM_USERNAME, UM_PASSWORD, UM_NICKNAME, UM_REGDATE, UM_ENABLED)
 VALUES (1,'hello','hello','hello', sysdate, 1);
 
+UPDATE SCHEDULE SET 
+				subject= 'tt', startDate= '2020-12-16', endDate= '2020-12-16'
+			WHERE subject= 'test';
+
 
 SELECT count(*) FROM USERMEMBER u;
 
 
-INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(8, 'park', '$2a$10$5Yy/c52u4Ped7j11mMxKEeuHAIRHjiZyg5NyltWqpW5MGIh6zk/Ky', '박성언');
+INSERT INTO userMember
+(um_uid, um_username, um_password ,um_nickname, UM_ENABLED) VALUES
+(8, '랄라라', '$2a$10$5Yy/c52u4Ped7j11mMxKEeuHAIRHjiZyg5NyltWqpW5MGIh6zk/Ky', '에프엑스','member');
 
 
 SELECT * FROM USERMEMBER u ;
+
+SELECT * FROM USERMEMBER  WHERE UM_USERNAME = 'park' or UM_NICKNAME = 'null'; 
 
 
 	SELECT 
@@ -45,7 +53,7 @@ SELECT * FROM GASSTATION g ;
 INSERT INTO POST 
 (post_id, post_title, POST_CONTENTS, UM_UID, UM_USERNAME, POST_REGDATE, RA_CODE, POST_REPORTED)
 VALUES
-(27,'개그','하하히히히',1, '나라라','2020-12-13', 'A00004','1')
+(29,'난냔나','하하히히히', 2, 'hyunjun','2020-12-13', 'A00004','1')
 
 SELECT* FROM post; 
 
@@ -76,6 +84,10 @@ SELECT
 	  POST_REPORTED 
 	FROM post
 WHERE ROWNUM <= 100 ORDER BY POST_REPORTED;
+
+
+
+SELECT * FROM post;
 
 SELECT POST_TITLE , POST_REPORTED FROM post 
 WHERE ROWNUM <=5
@@ -154,3 +166,32 @@ SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days ,count(*) DAYSCOUNT  FROM POST
 WHERE POST_REGDATE BETWEEN to_char(trunc(POST_REGDATE, 'iw')) and to_char(trunc(sysdate, 'iw'))
 GROUP BY TO_CHAR(POST_REGDATE ,'MM-DD')
 ORDER BY days;
+
+
+SELECT * FROM USERMEMBER u ;
+
+SELECT TO_CHAR(UM_REGDATE ,'MM-DD') days ,count(*) DAYSCOUNT  FROM USERMEMBER
+WHERE UM_REGDATE  BETWEEN to_char(trunc(UM_REGDATE , 'iw')) and to_char(trunc(sysdate, 'iw'))
+GROUP BY TO_CHAR(UM_REGDATE  ,'MM-DD')
+ORDER BY days;
+
+SELECT * FROM post;
+SELECT * FROM COMMENTS c2 ;
+
+SELECT * FROM USERMEMBER u2 ;
+
+INSERT INTO COMMENTS (COMMENT_ID, COMMENT_CONTENTS, UM_UID, UM_USERNAME, UM_REGDATE , POST_ID, COMMENT_REPORTED)
+values(15,'닌닐리리','1','heejin','20-12-11',27,0); 
+
+SELECT * FROM COMMENTS c ;
+
+SELECT UM_USERNAME, count(*) AS cnt FROM COMMENTS 
+	GROUP BY UM_USERNAME  ORDER BY cnt DESC;
+
+
+SELECT UM_USERNAME, count(*) AS cnt FROM POST 
+	GROUP BY UM_USERNAME  ORDER BY cnt DESC;
+
+
+SELECT * FROM SCHEDULE s ;
+

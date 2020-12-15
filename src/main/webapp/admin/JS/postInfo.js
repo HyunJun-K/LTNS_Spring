@@ -323,12 +323,14 @@ function charts(JsonObj) {
 	              text: '가장많은 신고가 접수된 게시물'
 	        },
 	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero: true
-	                }
-	            }]
-	        }
+				yAxes: [{
+				   ticks: {
+					   beginAtZero: true,
+					   stepSize: 5,
+					   maxTicksLimit: 3
+				   }
+				}]
+			 }, 
 	    }
 	});
 }
@@ -451,7 +453,17 @@ function lineCharts(JsonObj) {
      	   title: {
 	              display: true,
 	              text: '주간 게시물 통계'
-	        },
+            },
+            scales: {
+				yAxes: [{
+				   ticks: {
+					   beginAtZero: false,
+					   stepSize: 1,
+					   maxTicksLimit: 3
+				   }
+				}]
+			 }, 
+
         }
     });
 

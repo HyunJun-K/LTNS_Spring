@@ -66,7 +66,7 @@
 		<!-- section 1  -->
 		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-			<div id="list" >
+			<div id="list">
 				<div class="d01 text-right font-lg">
 					<div id="pageinfo"></div>
 					<div id="pageRows"></div>
@@ -74,14 +74,13 @@
 				<div class="clear"></div>
 
 				<form id="frmList" name="frmList">
-					<table>
-						<thead>
+					<table class="table">
+						<thead class="thead-dark">
 							<th>UID</th>
 							<th>UID</th>
 							<th>아이디</th>
 							<th>닉네임</th>
 							<th>가입일</th>
-							<th>신고횟수</th>
 						</thead>
 						<tbody>
 
@@ -94,13 +93,14 @@
 		
 				<div class="d-flex justify-content-center">
 					<form name="sechForm" id="sechForm">
-					<select id="sele_option" class=" mr-2">
-						<option  value="id" selected> 아이디 </option>
+				<select id="sele_option" class="mdb-select">
+						<option value="id" selected> 아이디 </option>
 						<option value="nickName"> 닉네임 </option>
-						<option value="regdate"> 가입일 </option>
 					</select>
 					<input id="text_info"  type="text" name="text_Info">
-					<button type="button" class="btn ml-2 btn-info" onclick="addSerch();"> 검색 </button>
+					<button type="button" class="btn_infos" onclick="addSerch();"> 검색 </button>
+				 	<button type="button" class="btn_infos" onclick="click_delete();"> 삭제 </button>
+				 
 				  </form>
 				</div>
 		
@@ -111,11 +111,15 @@
 				
 		
 			<div class="clear"></div>
-	<hr>
-		
-		<canvas id="myChart" width="200" height="200"></canvas>
-		
 
+	<hr>
+		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
+		<canvas id="userCharts" width="550" height="300" ></canvas>
+		</div>
+		
+		<div class= "d-inline-block justify-content-end mr-4 ml-2" >
+		<canvas id="userCharts2" width="550" height="300" ></canvas>
+		</div>
 
 		</main> <!-- article -->
 

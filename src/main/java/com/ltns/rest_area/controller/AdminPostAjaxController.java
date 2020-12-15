@@ -21,160 +21,18 @@ import com.ltns.rest_area.service.PostInfoService;
 
 @RestController
 @RequestMapping(value="/admin")
-public class AdminController_Ajax {
+public class AdminPostAjaxController {
 	
 
 
 	int pageNo = 0;
 	int pagenationPage = 0;
 	
-	@Autowired
-	MemberInfoService member_service;
 	
 	
 	@Autowired
 	PostInfoService post_service;
 
-
-	
-	// 멤버 정보 
-	@GetMapping("/memberInfo/{pageNo}/{pagenationPage}")
-	@ResponseBody
-	public AjaxList list(
-			@PathVariable int pageNo,	//현재 페이지
-			@PathVariable int pagenationPage	) {
-	
-		
-		
-		
-		StringBuffer message = new StringBuffer();
-		String status ="FAIL";
-		
-		
-		int totalPage = 0;	//총 페이지 갯수
-		int WritePages = 10; //총 리스트 수
-		int totalCnt = 0; //총 회원수 
-		List<DTO> list = null;
-		
-		
-		try {
-
-			totalCnt = member_service.countAll();
-			totalPage = (int)Math.ceil(totalCnt / (double)pagenationPage);
-			
-			int from = ( pageNo - 1 ) * pagenationPage +1;
-			list = member_service.list(from, pagenationPage);
-			
-			if(list == null) {
-				message.append("[List data is not defind]");
-			} else {
-				status = "OK";
-			}
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			message.append("[Error]" + e.getMessage());
-		}
-		
-		AjaxList result = new AjaxList();
-		
-		result.setStatus(status);
-		result.setMessage(message.toString());
-		
-		if(list != null) {
-			result.setCount(list.size());
-			result.setList(list);
-		}
-		
-		result.setPageNo(pageNo);
-		result.setTotalPage(totalPage);
-		result.setWritePages(WritePages);
-		result.setPagenationPage(pagenationPage);
-		result.setTotalCnt(totalCnt);
-		
-		
-		
-		return result;
-		
-	} // end page
-	
-	
-	
-	@DeleteMapping("SEACH")
-	@ResponseBody
-	public AjaxList Serach(@RequestBody Map<String, String> data) {
-	
-			String name = "";
-			String nick = "";
-	
-		for (Entry<String, String> datas : data.entrySet()) {
-				if(datas.getKey().equals("option")) {
-					name = datas.getValue();
-					
-				}else {
-					nick = datas.getValue();
-				
-				}
-					
-		}
-		
-		
-		System.out.println(name + "아이디 " + " : " +  "nick:" + nick);
-		
-		
-		
-		
-		StringBuffer message = new StringBuffer();
-		String status ="FAIL";
-		
-		
-		List<DTO> list = null;
-		
-		try {
-
-			
-			list = member_service.seachId(nick);
-			
-			if(list == null) {
-				message.append("[List data is not defind]");
-			} else {
-				status = "OK";
-			}
-			
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-			message.append("[Error]" + e.getMessage());
-		}
-		
-		AjaxList result = new AjaxList();
-		
-		result.setStatus(status);
-		result.setMessage(message.toString());
-		
-		if(list != null) {
-			result.setCount(list.size());
-			result.setList(list);
-		}
-		
-	
-		return result;
-		
-	} // end page
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	//PostInfo 정보
 	@GetMapping("/postInfo/{pageNo}/{pagenationPage}")

@@ -13,6 +13,12 @@
 <head>
 <meta charset='utf-8' />
 <title>일정</title>
+
+<!-- google font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -38,7 +44,7 @@
 <script src='${pageContext.request.contextPath }/pakege/list/main.js'></script>
 
 <!-- css & js -->
-<link href='${pageContext.request.contextPath }/admin/CSS/admin.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath }/admin/CSS/schedule.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/schedule.js'></script>
    
 <script>
@@ -66,7 +72,7 @@
     	  
     	  
 %>
-    	  {
+    	      {
     		  title : '<%=dto.getSubject() %>',
         	  start :  '<%=dto.getStartDate() %>',
         	  end :   '<%=dto.getEndDate() %>'
@@ -92,7 +98,10 @@
   
 </script>
 <style>
-
+.fc-center, table,
+.fc-content{
+	font-family: 'Do Hyeon', sans-serif;
+}
 
 </style>
 </head>
