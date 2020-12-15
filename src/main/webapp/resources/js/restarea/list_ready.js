@@ -21,15 +21,11 @@ $(document).ready(function(){
 	경로 : others/fixedbtn/fixedbtn.js */
 	
 	$(window).scroll(function(){
-		console.log("a");
-		console.log("b");
-		console.log("$(window).scrollTop() : "+$(window).scrollTop()+", $(document).height() : "+$(document).height()+"$(window).height() : "+$(window).height());
-		if($(window).scrollTop()+1 >= $(document).height() - $(window).height()){
-			console.log("c");
-			console.log("d");
+
+//		console.log("$(window).scrollTop() : "+$(window).scrollTop()+", $(document).height() : "+$(document).height()+"$(window).height() : "+$(window).height());
+		if(parseInt($(window).scrollTop()+1) >= $(document).height() - $(window).height()){
 			scrollInfinteList();
 		}		
-		console.log("e");
 		top_arrow_fadeout();
 	});
 	

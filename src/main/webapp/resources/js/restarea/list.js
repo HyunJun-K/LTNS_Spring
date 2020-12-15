@@ -1,4 +1,5 @@
 var lastIndex=0;
+var lastIndexBoolean=false;
 var listSort;
 var routeName;
 var destination;
@@ -20,13 +21,20 @@ function gototop() {
 function scrollInfinteList(){
 	//	/{listSort}/{routeName}/{destination}/{orderBy}/{numOfRows}/{lastIndex}
 	var url='../restarea/'+listSort+"/"+routeName+"/"+destination+"/"+orderBy+"/1/"+lastIndex;
+	if(lastIndexBoolean){
+		console.log("안돼!!!")
+		return false;
+		}
+	lastIndexBoolean=true;
 	lastIndex++;
+	console.log(lastIndex);
 	$.ajax({
 		url:url,
 		type:'GET',
 		cache:'false',
 		success:function(data,status){ 
 			if(status=="success"){
+				
 				console.log(data);
 				if(data.count==0){
 				}
@@ -155,6 +163,7 @@ function pageListReLoadToFM(jsonObj){
 function applyWebPage(str){
 	$('#searchResultList').append(str);
 	console.log(lastIndex);
+	lastIndexBoolean=false;
 }
 
 function changeListSortValue(listSort){

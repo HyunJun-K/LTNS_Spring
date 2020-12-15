@@ -34,7 +34,7 @@
 				ORDER BY
 					<if test="orderBy == 'BY_LIKE'"> fm_like.fm_like_cnt DESC, </if>
 					<if test="orderBy == 'BY_PRICE'"> fm.fm_price,</if>
-					fm.ra_code
+					fm.ra_code,fm.fm_id
 			) a
 			WHERE ROWNUM <![CDATA[<]]> #{fromRow}+#{numOfRows}
 		)

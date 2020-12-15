@@ -28,6 +28,7 @@ public interface DAO {
 	
 	/*insert*/
 	int insertByDTO(DTO dto);
+	int insertByVO(VO vo);
 	int insertByObject(Object obj);			//다양한 자료형에 사용하세요
 	int insertAllByDTOs(List<DTO> dtos);	//foreach문에 사용하세요
 	
@@ -38,6 +39,7 @@ public interface DAO {
 	
 	/*update*/
 	int updateByDTO(DTO dto);
+	int updateByVO(VO vo);
 	int updateByObject(Object obj);			//다양한 자료형에 사용하세요
 	int updateAllByDTOs(List<DTO> dtos);	//foreach문에 사용하세요
 	
