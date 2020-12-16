@@ -1,0 +1,30 @@
+@charset "UTF-8";
+
+.clear-br{
+	clear : both;
+}
+nav#search{
+	border : 1px solid black;
+	border-radius : 2%;
+
+	
+}
+#search-top-margin{
+	line-height:90%;
+}
+#search-bottom-margin{
+	line-height:50%;
+}
+
+@media (min-width:1200px){
+	nav#search{
+		width : 40%;
+	}
+	.container-fluid>div{
+		width : 100%;
+	}
+	#searchBtn{
+		width : 40%;
+		float : right;
+	}
+}

@@ -5,6 +5,7 @@ import lombok.Data;
 @Data
 public class AuthDTO {
 
-    private String username;
-    private String authority;
+	  private long um_uid;
+	    private String authority;
+	    private String message;
 }

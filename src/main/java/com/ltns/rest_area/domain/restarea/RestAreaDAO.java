@@ -9,5 +9,5 @@ import com.ltns.rest_area.domain.DTO;
 
 @MapperScan
 public interface RestAreaDAO extends DAO{
-	
+
 }

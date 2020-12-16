@@ -2,18 +2,12 @@ package com.ltns.rest_area.domain.user;
 
 import java.util.List;
 
-public interface UserDAO {
+import com.ltns.rest_area.domain.DAO;
 
-	int joinUser(UserDTO user);
+public interface UserDAO extends DAO {
 
-	int deleteUser(String username);
-
-	int updateUser(UserDTO user);
-
-	List<UserDTO> allUserList();
-
-	UserDTO loginUserFindByUid(UserDTO user);
-
-	UserDTO myPageFindByUid(String username);
+	List<UserDTO> findByNickname(UserDTO user);
+	
+	int updateAllByUsername(UserDTO user);
 
 }

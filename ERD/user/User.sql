@@ -61,9 +61,10 @@ ALTER TABLE auth
 /* Create Views */
 
 CREATE OR REPLACE VIEW userView AS SELECT 
-um_username AS username,
-um_password AS passowrd,
-authority
+u.um_username AS username,
+u.um_password AS password,
+u.um_enabled AS enabled,
+a.authority
 FROM userMember u
 JOIN auth a
 ON
@@ -84,7 +85,7 @@ ROLE_ADMIN';
 INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'admin', '$2a$10$.ty2lbI.rSz7bjpmWXRop.S5SZZPGzNQuKmPFDgHscDhjijAPlhai',  '운영자');
 INSERT INTO auth(um_uid) VALUES(1);
 INSERT INTO auth VALUES('ROLE_ADMIN', 1);
-INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'hogn', '$2a$10$QneCaQwCDQIWEnnYT64/pOk.88K91rDL81LlZ4NxAzdJtRXiNMOoq',  '홍성혁');
+INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'hong', '$2a$10$QneCaQwCDQIWEnnYT64/pOk.88K91rDL81LlZ4NxAzdJtRXiNMOoq',  '홍성혁');
 INSERT INTO auth(um_uid) VALUES(2);
 INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'hyun', '$2a$10$6s1NtNSY3BEULN7krTuw3OfECZYR0WdICc/HYzRLVdK4ZiDR337nG',  '김현준');
 INSERT INTO auth(um_uid) VALUES(3);

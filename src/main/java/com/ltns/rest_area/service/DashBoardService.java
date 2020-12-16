@@ -1,0 +1,68 @@
+package com.ltns.rest_area.service;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.ltns.rest_area.domain.DAO;
+import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.admin.DashBoardDAO;
+
+@Service
+public class DashBoardService {
+
+	
+	@Autowired
+	SqlSession sqlSession;
+	
+	
+	
+	DashBoardDAO Ddao;
+	
+	public int total_acount(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.selectCnt();
+	}
+	
+	public int today_acount(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.selectCnts();
+	}
+	
+	public int total_post(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.select_totalPost();
+	}
+	
+	public int today_post(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.select_todayPost();
+	}
+	
+	public int today_report_post() {
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.select_todayReports_post();
+	}
+	
+	public List<DTO> today_report_Popup(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.selectAll();
+	}
+	
+	
+	
+	public int todayComent(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.select_todayComent();
+	}
+	
+	public int today_totalComent() {
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.select_total_coment();
+	}
+	
+	
+	
+}

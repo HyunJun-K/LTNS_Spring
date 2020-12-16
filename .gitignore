@@ -1,1 +1,7 @@
+#Spring
+target/
+
 *.class
+
+pom.properties
+MANIFEST.MF
