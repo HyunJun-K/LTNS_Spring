@@ -32,14 +32,32 @@
 
 <body class="bg-light">
 	<!-- dashboard nav -->
-   <nav class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a>
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          	<span>help</span>
-          	<span class="font-white">date</span>
-        </li>
-      </ul>
+   <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
+      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
+      
+      <ul class="navbar-nav  d-flex flex-row-reverse  ">
+      
+        
+          <li class="nav-item  mr-5">
+          		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
+         		<span class="welcomes" style="font-size: 12px;"> HyunJun </span>
+         		
+          </li>
+          <li class="nav-item mr-3">
+	          <div>
+	          <img src="${pageContext.request.contextPath }/admin/CSS/1.PNG">
+	          </div>
+  	      </li>
+			<li class="nav-item   mr-4 text-center">
+			<a class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
+			</li>
+
+			<li class="nav-item  mr-4 text-center">
+			<a class="nav-link text-dark" href="#"> <i class="fas fa-envelope"></i></a>
+			</li>
+		</ul>
+     
+	 
     </nav> <!-- nav header 라인 -->
 
 	<div class="container-fluid">
@@ -174,8 +192,9 @@
 	      </div>
 	    </div>
 	  </div>
-	</div> <!-- end card row section 1 -->
-
+	</div> <!-- end card row section 2 -->
+	<div class="clear"></div>
+	<hr>
 		
 		
 		</main> <!-- article -->

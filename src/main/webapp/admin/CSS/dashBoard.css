@@ -6,6 +6,18 @@
     font-size: 16px;
  }
 
+body img {
+	width:50px;
+	height: 40px;
+}
+
+<!-- nav !-->
+
+.navbar-nav .welcomes{	
+	font-size: 5px;
+	
+}
+
 
 
 <!-- dashboard !-->

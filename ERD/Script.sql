@@ -306,6 +306,7 @@ values('1','B00001');
 
 
 SELECT * FROM GASSTATION g;
+SELECT * FROM RESTAREA r ;
 
 
 
