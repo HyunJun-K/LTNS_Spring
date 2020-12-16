@@ -72,7 +72,7 @@
 		<!-- section 1  -->
 		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
-			<div id="list" >
+			   <div id="list" >
 				<div class="d01 text-right font-lg">
 					<div id="pageinfo"></div>
 					<div id="pageRows"></div>

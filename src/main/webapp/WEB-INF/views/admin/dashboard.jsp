@@ -7,6 +7,11 @@
 <title>관리자 페이지</title>
 </head>
 
+
+<!-- google font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
 <!--  fontawesome -->
 <script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script> 
 
@@ -71,13 +76,13 @@
 
 		<!-- section 1  -->
 		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
-	<div class="row">
+	<div id="rowsdata" class="row">
 	  <div class="col-sm-3">
 	    <div class="card text-center">
 	      <div class="card-body">
-	        <h5 class="card-title">오늘 가입한 유저수</h5>
+	        <h3 class="text-info"> 오늘 가입한 유저 </h3>
 	        <p id="numbers_today" class="card-title"> </p>
-	        <span id="numbers_acount" class="card-body"></span>
+	        <span id="numbers_acount" class="card-title"></span>
 	     	</div>
 	    </div>
 	  </div>
@@ -86,9 +91,9 @@
 	  <div class="col-sm-3">
 	    <div class="card text-center">
 	      <div class="card-body">
-	        <h5 class="card-title">오늘 작성된 게시글 수</h5>
+	        <h3 class="text-success">오늘 작성된 게시글 </h3>
 	        <p id="today_post" class="card-title"> </p>
-	        <span id="total_post" class="card-body"></span>
+	        <span id="total_post" class="card-title"></span>
 	      </div>
 	    </div>
 	  </div>
@@ -96,19 +101,19 @@
 	  <div class="col-sm-3">
 	    <div class="card text-center">
 	      <div class="card-body">
-	        <h5 class="card-title">오늘 신고된 게시글 수</h5>
-	         <p id="today_reports_post" class="card-title"> </p>
-	         <span>신고된 게시물 갯수</span>
+	        <h3 class="text-danger">오늘 신고된 게시글 </h3>
+	          <p id="icons_report" class="card-title"></p>
+	         <span id="today_reports_post" class="card-title"> </span>
 	      </div>
 	    </div>
 	  </div>
 	  
 	  <div class="col-sm-3">
-	    <div class="card">
+	    <div class="card text-center">
 	      <div class="card-body">
-	        <h5 class="card-title">Special title treatment</h5>
-	        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-	        
+	        <h3 class="text-warning" >오늘 작성된  댓글 </h3>
+	       <p id="today_coment" class="card-title"> </p>
+	        <span id="total_coment" class="card-title "></span>
 	      </div>
 	    </div>
 	  </div>

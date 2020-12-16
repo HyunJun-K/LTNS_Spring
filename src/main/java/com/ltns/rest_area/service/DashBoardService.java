@@ -18,12 +18,12 @@ public class DashBoardService {
 	SqlSession sqlSession;
 	
 	
-	DAO dao;
+	
 	DashBoardDAO Ddao;
 	
 	public int total_acount(){
-		dao = sqlSession.getMapper(DashBoardDAO.class);
-		return dao.selectCnt();
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.selectCnt();
 	}
 	
 	public int today_acount(){
@@ -45,6 +45,24 @@ public class DashBoardService {
 		Ddao = sqlSession.getMapper(DashBoardDAO.class);
 		return Ddao.select_todayReports_post();
 	}
+	
+	public List<DTO> today_report_Popup(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.selectAll();
+	}
+	
+	
+	
+	public int todayComent(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.select_todayComent();
+	}
+	
+	public int today_totalComent() {
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.select_total_coment();
+	}
+	
 	
 	
 }

@@ -24,9 +24,30 @@
 	<![CDATA[
 	SELECT count(*) AS today_post FROM post
 	WHERE TO_CHAR(POST_REGDATE ,'YYYYMMDD') = TO_CHAR(SYSDATE ,'YYYYMMDD')
-	
 	]]>
 	</select>
+	
+	
+	<select id="select_total_coment"  resultType="int">
+	SELECT count(*) AS total_coment FROM COMMENTS
+	</select>
+
+	<select id="select_todayComent" resultType="int">
+	<![CDATA[
+	SELECT count(*) AS today_coment  FROM COMMENTS
+	WHERE TO_CHAR(UM_REGDATE ,'YYYYMMDD') = TO_CHAR(SYSDATE ,'YYYYMMDD')
+
+	]]>
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<select id="select_todayReports_post" resultType="int">
@@ -35,5 +56,13 @@
 	</select>
 	
 	
+
+	<select id="selectAll" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
+	<![CDATA[
+		SELECT post_id, POST_TITLE, UM_USERNAME, RA_CODE, post_reported  FROM post
+		WHERE TO_CHAR(POST_REGDATE ,'YYYYMMDD') = TO_CHAR(SYSDATE ,'YYYYMMDD')
+		AND POST_REPORTED  >=10
+	]]>
+	</select>
 
 </mapper>

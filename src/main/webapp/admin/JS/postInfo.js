@@ -51,7 +51,6 @@ function pageLoad(pageNo){
         }
     });
 	
-	
 }
 
 
@@ -260,7 +259,6 @@ function seachData(JsonObj){
             result += "<td><span data-viewcnt='" + items[i].post_id + "'>" + items[i].ra_code + "</span></td>\n";
             result += "<td>" + items[i].um_USERNAME + "</td>\n"; 
             result += "<td>" + items[i].post_reported + "</td>\n"; 
-            
             result += "</tr>\n";
         }
 
