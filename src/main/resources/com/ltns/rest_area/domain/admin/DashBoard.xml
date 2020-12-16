@@ -41,15 +41,6 @@
 	</select>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<select id="select_todayReports_post" resultType="int">
 	SELECT count(*) AS POST_REPORTED FROM post
 	WHERE TO_CHAR(POST_REGDATE ,'YYYYMMDD') = TO_CHAR(SYSDATE ,'YYYYMMDD')
@@ -64,5 +55,49 @@
 		AND POST_REPORTED  >=10
 	]]>
 	</select>
+
+
+
+	<select id="bestArea" flushCache="true" resultType="com.ltns.rest_area.domain.admin.DashBoardDTO" >
+	SELECT ase.RA_CODE, rs.RA_NAME, count(*) AS BEST_RA
+	FROM RA_LIKE ase , RESTAREA rs
+	WHERE ase.RA_CODE  = rs.RA_CODE
+	GROUP BY ase.RA_CODE, rs.RA_NAME
+	ORDER BY BEST_RA desc
+	</select>
+	
+	<select id="bestFood" flushCache="true" resultType="com.ltns.rest_area.domain.admin.DashBoardDTO">
+	SELECT fk.FM_ID , fm.FM_NAME, count(*) AS BEST_RA, fm.FM_PRICE,
+	r.RA_NAME 
+	FROM FM_LIKE fk , FOODMENU fm , RESTAREA r 
+	WHERE fk.FM_ID  = fm.FM_ID and fm.RA_CODE = r.RA_CODE
+	GROUP BY fk.FM_ID, fm.FM_NAME,  fm.FM_PRICE, r.RA_NAME 
+	ORDER BY BEST_RA desc
+	</select>
+	
+	<select id="bestGas" flushCache="true" resultType="com.ltns.rest_area.domain.admin.DashBoardDTO">
+	
+	SELECT gk.GS_CODE , g.GS_NAME , g.GS_DIESEL, g.GS_GASOLINE ,g.GS_LPG  , count(*) AS BEST_RA
+	FROM GS_LIKE gk , GASSTATION g 
+	WHERE gk.GS_CODE  = g.GS_CODE 
+	GROUP BY gk.GS_CODE , g.GS_NAME , g.GS_DIESEL, g.GS_GASOLINE ,g.GS_LPG 
+	ORDER BY BEST_RA desc
+	
+	
+	</select>
+	
+	<select id="totalLike" flushCache="true" resultType="com.ltns.rest_area.domain.admin.DashBoardDTO">
+	<![CDATA[
+		SELECT
+		( SELECT count(*) FROM FM_LIKE )AS FMLIKE,
+		( SELECT count(*) FROM GS_LIKE )AS GSLIKE,
+		( SELECT count(*) FROM RA_LIKE )AS RALIKE
+		FROM dual 
+	]]>
+	</select>
+	
+	
+
+
 
 </mapper>

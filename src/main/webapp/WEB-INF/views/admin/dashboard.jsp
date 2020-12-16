@@ -30,10 +30,10 @@
 <link href='${pageContext.request.contextPath }/admin/CSS/dashBoard.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/dashBoard.js'></script>
 
-<body>
+<body class="bg-light">
 	<!-- dashboard nav -->
-   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a>
+   <nav class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 mt-0">
+      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           	<span>help</span>
@@ -44,22 +44,22 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+			<nav class="col-md-2 d-none d-md-block bg-dark sidebar">
 				<div class="sidebar-sticky">
 					<ul class="nav flex-column">
 						
-						<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/admin/dashboard"> <span
+						<li class="nav-item "><a class="nav-link bg-info text-white" href="${pageContext.request.contextPath}/admin/dashboard"> <span
 								data-feather="shopping-cart"></span> <i class="fas fa-chart-line"></i>&nbsp;&nbsp; 메인
 						</a></li>
 						
-						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/schedule"> <span
+						<li class="nav-item "><a class="nav-link text-white " href="${pageContext.request.contextPath}/admin/schedule"> <span
 								data-feather="shopping-cart"></span>  <i class="far fa-calendar-check"></i>&nbsp;&nbsp; 일정
 						</a></li>
 						
-						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/memberInfo"> <span
+						<li class="nav-item "><a class="nav-link text-white " href="${pageContext.request.contextPath}/admin/memberInfo"> <span
 								data-feather="shopping-cart"></span> <i class="far fa-user-circle"></i> &nbsp;&nbsp;회원정보
 						</a></li>
-						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/postInfo"> <span
+						<li class="nav-item "><a class="nav-link text-white " href="${pageContext.request.contextPath}/admin/postInfo"> <span
 								data-feather="users"></span> <i class="fas fa-edit"></i>&nbsp;&nbsp;게시글 정보
 						</a></li>
 						<li class="nav-item"><a class="nav-link" href="#"> <span
@@ -74,15 +74,17 @@
 			</nav>
 		</div><!-- sidebar 라인 -->
 
-		<!-- section 1  -->
-		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+		
+ <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
+	<!-- 일일 정산   -->
 	<div id="rowsdata" class="row">
+	
 	  <div class="col-sm-3">
 	    <div class="card text-center">
-	      <div class="card-body">
+	      <div class="card-body border border-info">
 	        <h3 class="text-info"> 오늘 가입한 유저 </h3>
 	        <p id="numbers_today" class="card-title"> </p>
-	        <span id="numbers_acount" class="card-title"></span>
+	        <span id="numbers_acount" class="card-body"></span>
 	     	</div>
 	    </div>
 	  </div>
@@ -90,40 +92,93 @@
 	  
 	  <div class="col-sm-3">
 	    <div class="card text-center">
-	      <div class="card-body">
+	      <div class="card-body border border-success">
 	        <h3 class="text-success">오늘 작성된 게시글 </h3>
 	        <p id="today_post" class="card-title"> </p>
-	        <span id="total_post" class="card-title"></span>
+	        <span id="total_post" class="card-body"></span>
 	      </div>
 	    </div>
 	  </div>
 	  
 	  <div class="col-sm-3">
 	    <div class="card text-center">
-	      <div class="card-body">
+	      <div class="card-body border border-danger">
 	        <h3 class="text-danger">오늘 신고된 게시글 </h3>
 	          <p id="icons_report" class="card-title"></p>
-	         <span id="today_reports_post" class="card-title"> </span>
+	         <span id="today_reports_post" class="card-body"> </span>
 	      </div>
 	    </div>
 	  </div>
 	  
 	  <div class="col-sm-3">
 	    <div class="card text-center">
-	      <div class="card-body">
+	      <div class="card-body border border-warning">
 	        <h3 class="text-warning" >오늘 작성된  댓글 </h3>
 	       <p id="today_coment" class="card-title"> </p>
-	        <span id="total_coment" class="card-title "></span>
+	        <span id="total_coment" class="card-body "></span>
+	      </div>
+	    </div>
+	  </div>
+	</div> <!-- end card row section 1 -->
+	<hr>
+	
+	<!-- section2 -->
+	<div id="rowsdata" class="row">
+	  <div class="col-sm-3">
+	    <div class="card text-center ">
+	      <div class="card-body border border-info">
+	        <h3 class="text-info">   BEST 휴게소 </h3>
+	        <p id="Best1" class="card-title2"> </p>
+	        <span id="Best2" class="card-body text-center"> </span> <br>
+	     	<span id="Best3" class="card-body text-center">  </span> <br>
+	        <span id="recomend_area" class="card-body text-center">  </span>
+	     
+	     	</div>
+	    </div>
+	  </div>
+	  
+	  
+	  <div class="col-sm-3">
+	    <div class="card text-center">
+	      <div class="card-body border border-success">
+	        <h3 class="text-success">  BEST 메뉴 </h3>
+	     <p id="Food_name" class="card-title2"> </p>
+	        <span id="Food_price" class="card-body text-center"> </span> <br>
+	     	<span id="Food_raea" class="card-body text-center">  </span> <br>
+	        <span id="recomend_food" class="card-body text-center">  </span>
+	    
 	      </div>
 	    </div>
 	  </div>
 	  
-	</div> <!-- card row -->
+	  <div class="col-sm-3">
+	    <div class="card text-center">
+	      <div class="card-body border border-danger">
+	        <h3 class="text-danger">  BEST 주유소</h3>
+	     	 <p id="gas_name" class="card-title2"> </p>
+	        <span id="gas_price" class="card-body text-center"> </span> <br>
+	        <span id="gas_price_lpg" class="card-body text-center"> </span> <br> 
+	         <span id="recomend_gas" class="card-body text-center">  </span>
+	     </div>
+	    </div>
+	  </div>
+	  
+	  <div class="col-sm-3 ">
+	    <div class="card text-center">
+	      <div class="card-body border border-warning">
+	        <h3 class="text-warning">전체 추천 개수</h3>
+	        <p id="total_recomend" class="card-title"> </p>
+	        <span id="total_area" class="card-body"></span> <br>
+	        <span id="total_food" class="card-body"></span> <br>
+	        <span id="total_gas" class="card-body"></span>
+	      </div>
+	    </div>
+	  </div>
+	</div> <!-- end card row section 1 -->
+
+		
 		
 		</main> <!-- article -->
-
-
-
 	</div> <!-- end con -->
 </body>
 </html>

@@ -25,10 +25,10 @@
 <link href='${pageContext.request.contextPath }/admin/CSS/postInfo.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/postInfo.js'></script>
 
-<body>
+<body class="bg-light">
 	<!-- dashboard nav -->
-   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a>
+   <nav class="navbar navbar-dark sticky-top bg-white flex-md-nowrap p-0 mt-0">
+      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a>
       <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
           	<span>help</span>
@@ -39,30 +39,25 @@
 
 	<div class="container-fluid">
 		<div class="row">
-			<nav class="col-md-2 d-none d-md-block bg-light sidebar">
+			<nav class="col-md-2 d-none d-md-block bg-dark sidebar">
 				<div class="sidebar-sticky">
 					<ul class="nav flex-column">
 						
-						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/dashboard"> <span
+						<li class="nav-item "><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/dashboard"> <span
 								data-feather="shopping-cart"></span> <i class="fas fa-chart-line"></i>&nbsp;&nbsp; 메인
 						</a></li>
 						
-						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/schedule"> <span
+						<li class="nav-item "><a class="nav-link text-white " href="${pageContext.request.contextPath}/admin/schedule"> <span
 								data-feather="shopping-cart"></span>  <i class="far fa-calendar-check"></i>&nbsp;&nbsp; 일정
 						</a></li>
 						
-						<li class="nav-item"><a class="nav-link " href="${pageContext.request.contextPath}/admin/memberInfo"> <span
+						<li class="nav-item "><a class="nav-link text-white " href="${pageContext.request.contextPath}/admin/memberInfo"> <span
 								data-feather="shopping-cart"></span> <i class="far fa-user-circle"></i> &nbsp;&nbsp;회원정보
 						</a></li>
-						<li class="nav-item"><a class="nav-link active" href="${pageContext.request.contextPath}/admin/postInfo"> <span
+						<li class="nav-item "><a class="nav-link bg-info text-white " href="${pageContext.request.contextPath}/admin/postInfo"> <span
 								data-feather="users"></span> <i class="fas fa-edit"></i>&nbsp;&nbsp;게시글 정보
 						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
-								data-feather="bar-chart-2"></span> Reports
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
-								data-feather="layers"></span> Integrations
-						</a></li>
+					
 					</ul>
 
 				</div>

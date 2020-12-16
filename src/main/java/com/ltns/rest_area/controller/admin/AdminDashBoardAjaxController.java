@@ -204,6 +204,158 @@ public class AdminDashBoardAjaxController {
 	}
 	
 	
+	//베스트 휴게소
+	@PostMapping("bestArea")
+	public AjaxList bestArea() {
+		
+		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+		List<DTO> list = null; 
+		
+		try {
+			list = Dservice.bestArea();
+			
+			if(list != null) {
+				status ="OK";
+			}		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			message.append("[Error]" + e.getMessage());
+		}
+		
+		AjaxList result = new AjaxList();
+		
+		result.setStatus(status);
+		result.setMessage(message.toString());
+		
+		if(list != null) {
+			result.setCount(list.size());
+			result.setList(list);
+		}
+			
+		
+		return result;
+		
+	}
+	
+	
+	//베스트 푸드 
+	
+	@PostMapping("bestFood")
+	public AjaxList bestFood() {
+		
+		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+		List<DTO> list = null; 
+		
+		try {
+			list = Dservice.bestFood();
+			
+			if(list != null) {
+				status ="OK";
+			}		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			message.append("[Error]" + e.getMessage());
+		}
+		
+		AjaxList result = new AjaxList();
+		
+		result.setStatus(status);
+		result.setMessage(message.toString());
+		
+		if(list != null) {
+			result.setCount(list.size());
+			result.setList(list);
+		}
+			
+		
+		return result;
+		
+	}
+	
+	
+	
+	//베스트 주유소
+	@PostMapping("bestGas")
+	public AjaxList bestGas() {
+		
+		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+		List<DTO> list = null; 
+		
+		try {
+			list = Dservice.bestGas();
+			
+			if(list != null) {
+				status ="OK";
+			}		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			message.append("[Error]" + e.getMessage());
+		}
+		
+		AjaxList result = new AjaxList();
+		
+		result.setStatus(status);
+		result.setMessage(message.toString());
+		
+		if(list != null) {
+			result.setCount(list.size());
+			result.setList(list);
+		}
+			
+		
+		return result;
+		
+	}
+	
+	
+	
+	
+	//추천수 총합
+	@PostMapping("totalLike")
+	public AjaxList totalLike() {
+		
+		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+		List<DTO> list = null; 
+		
+		try {
+			list = Dservice.totalLike();
+			
+			if(list != null) {
+				status ="OK";
+			}		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			message.append("[Error]" + e.getMessage());
+		}
+		
+		AjaxList result = new AjaxList();
+		
+		result.setStatus(status);
+		result.setMessage(message.toString());
+		
+		if(list != null) {
+			result.setCount(list.size());
+			result.setList(list);
+		}
+			
+		
+		return result;
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -64,5 +64,27 @@ public class DashBoardService {
 	}
 	
 	
+	public List<DTO> bestArea(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.bestArea();
+	}
+	
+	
+	public List<DTO> bestFood(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.bestFood();
+	}
+	
+	public List<DTO> bestGas(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.bestGas();
+	}
+	
+	public List<DTO> totalLike(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.totalLike();
+	}
+	
+	
 	
 }

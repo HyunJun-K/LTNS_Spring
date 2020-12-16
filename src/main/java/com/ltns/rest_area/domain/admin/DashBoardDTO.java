@@ -21,4 +21,31 @@ public class DashBoardDTO implements DTO {
 	
 	
 	
+	
+	//주유소 정보 
+	
+	private String gs_code;
+	private String gs_name;
+	
+	private String GS_DIESEL;
+	private String 	GS_GASOLINE;
+	private String 	GS_LPG;
+	//휴게소 정보들 
+	private String RA_code;
+	private String UM_USERNAME;  
+	private String RA_name;
+	private String FM_name;
+	private int FM_PRICE;
+	private int BEST_RA;    // 휴게소 추천수 
+	
+	
+	private int FMLIKE;
+	private int GSLIKE;
+	private int RALIKE;
+	
+	private int totaldata;
+	private int ACCOUNT;
+	
+	
+	
 }
