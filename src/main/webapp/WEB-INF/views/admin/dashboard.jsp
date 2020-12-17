@@ -8,6 +8,16 @@
 </head>
 
 
+<!-- jquery  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
 <!-- google font -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -19,18 +29,17 @@
 <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 
-<!-- jquery  -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
 <!--  bootstrap -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
 
 <link href='${pageContext.request.contextPath }/admin/CSS/dashBoard.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/dashBoard.js'></script>
 
 <body class="bg-light">
+
+
 	<!-- dashboard nav -->
    <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
       <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
@@ -49,11 +58,11 @@
 	          </div>
   	      </li>
 			<li class="nav-item   mr-4 text-center">
-			<a class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
+			<a type ="button" class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
 			</li>
 
 			<li class="nav-item  mr-4 text-center">
-			<a class="nav-link text-dark" href="#"> <i class="fas fa-envelope"></i></a>
+			<a class="nav-link text-dark"  href="#ex1" rel="modal:open"><i class="fas fa-bell"></i></a>
 			</li>
 		</ul>
      
@@ -92,8 +101,30 @@
 			</nav>
 		</div><!-- sidebar 라인 -->
 
+	
+		
+		
+		
+		
+		
+		
+		
+		
 		
  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
+ 
+ 
+ 
+	<div id="ex1" class="modal">
+	  <p>Thanks for clicking. That felt good.</p>
+	  <a href="#" rel="modal:close">Close</a>
+	</div>
+	 
+ 
+ 
+ 
+ 
+ 
 	<!-- 일일 정산   -->
 	<div id="rowsdata" class="row">
 	
@@ -207,9 +238,12 @@
 		<canvas id="memberListAdd" width="550" height="300" ></canvas>
 		</div>
 		
-		
+
+
+
 		
 		</main> <!-- article -->
 	</div> <!-- end con -->
+
 </body>
 </html>

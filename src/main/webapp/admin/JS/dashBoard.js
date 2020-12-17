@@ -5,6 +5,8 @@ $(document).ready(function() {
     today_post();
     Best()
     monthPostChart()
+    
+    
    
     
 })
@@ -53,18 +55,18 @@ function today_acount(){
         success : function(data,status){
             if(data.status == "OK"){
                 today_acounts(data)
+            }else{
+               
+                $("#numbers_today").html( "<span class='text-info'>" + "텅" + "</span>");
             }
         }
     });
 
     function today_acounts(JsonObj){
         var count = JsonObj.count;
-        if(count == null){
-            alert("데이터가 없습니다");
-            $("#numbers_today").html( "<span class='text-info'>" + 0 + "</span>");
-   
-        }
-        $("#numbers_today").html( "<span class='text-info'>" + count + "</span>");
+       
+            $("#numbers_today").html( "<span class='text-info'>" + count + "</span>");
+        
     }
 }
 
@@ -76,11 +78,10 @@ function today_post(){
         cashe : false,
         success : function(data, status){
             if(data.status == "OK"){
-                if(data.count == 0){
-                    $("#today_post").text(0 + " 개");
-                }else{
-                    $("#today_post").html( "<span class='text-success'>" + data.count + "</span>");
-                }
+                $("#today_post").html( "<span class='text-success'>" + data.count + "</span>");
+                
+            }else{
+                $("#today_post").html("<span class='text-success'>"+ " 텅 " + "</span>");
             }
         }
 
@@ -108,11 +109,6 @@ function today_post(){
             success : function(data,status){
                 if(data.status=="OK"){
 
-                    if(data.count =0){
-                        alert("데이터가 없습니다");
-                        $("#today_reports_post").html("<span id='reports_span' onclick='POPUP_REPORT();'>"  + " 텅 </span>");
-                    
-                    }
 
                     
                     $("#today_reports_post").html("<span id='reports_span' onclick='POPUP_REPORT();'>"  + data.count + " 개 </span>");
@@ -126,6 +122,9 @@ function today_post(){
                     }
                 
                 
+                }else{
+                    $("#icons_report").html("<i class='fas fa-pastafarianism'></i>");
+                    
                 }
             }
 
@@ -428,3 +427,7 @@ function monthPostChart() {
 } // end function 
 
 
+function modal_msg() {
+    $("#myModal").modal();
+    alert("test");
+}

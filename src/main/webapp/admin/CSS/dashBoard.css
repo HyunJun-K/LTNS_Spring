@@ -11,6 +11,19 @@ body img {
 	height: 40px;
 }
 
+
+
+.modal {
+       position: fixed;
+       height: 80px;
+       width: 200px;
+       left: 50%;
+       top: 50%;
+       margin-left: -40px;
+       margin-right: -100px;
+}
+
+
 <!-- nav !-->
 
 .navbar-nav .welcomes{	
