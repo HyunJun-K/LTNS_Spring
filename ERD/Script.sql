@@ -9,8 +9,7 @@ SELECT
 UM_UID , UM_USERNAME, UM_NICKNAME, UM_REGDATE, UM_ENABLED
 FROM usermember;
 
-INSERT INTO USERMEMBER (UM_UID , UM_USERNAME, UM_PASSWORD, UM_NICKNAME, UM_REGDATE, UM_ENABLED)
-VALUES (10,'asdqwd','dqwdqw','지니', sysdate, 1);
+
 
 UPDATE SCHEDULE SET 
 				subject= 'tt', startDate= '2020-12-16', endDate= '2020-12-16'
@@ -320,3 +319,75 @@ SELECT RA_CODE, COUNT(*) AS ACCOUNT
 		FROM POST
 		GROUP BY RA_CODE
 
+
+		
+		
+SELECT * FROM USERMEMBER ;
+
+SELECT count(*) AS today_acount FROM USERMEMBER
+	WHERE TO_CHAR(UM_REGDATE ,'YYYYMMDD') = TO_CHAR(SYSDATE ,'YYYYMMDD') AND 
+	
+	
+	SELECT TO_CHAR(UM_REGDATE ,'MM-DD') days ,count(*) dayscount  FROM USERMEMBER
+		WHERE UM_REGDATE BETWEEN to_char(trunc(UM_REGDATE, 'iw')) and to_char(trunc(sysdate, 'iw'))
+		GROUP BY TO_CHAR(UM_REGDATE ,'MM-DD')
+		order by days
+		
+SELECT * FROM USERMEMBER;
+	
+SELECT * FROM post
+
+INSERT INTO USERMEMBER (UM_UID , UM_USERNAME, UM_PASSWORD, UM_NICKNAME, UM_REGDATE, UM_ENABLED)
+VALUES (11,'a','sz','wqdwqdqwdqw', '2020-12-08', 1);
+
+	
+SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days ,count(*) dayscount  FROM POST
+		WHERE POST_REGDATE BETWEEN to_char(trunc(POST_REGDATE, 'iw')) and to_char(trunc(sysdate, 'iw'))
+		GROUP BY TO_CHAR(POST_REGDATE ,'MM-DD')
+		order by days
+
+
+	SELECT * FROM post;
+
+
+INSERT INTO POST 
+(post_id, post_title, POST_CONTENTS, UM_UID, UM_USERNAME, POST_REGDATE, RA_CODE, POST_REPORTED)
+VALUES
+(46,'유머','하하히히히', 2, 'ceo','20-12-07', 'A00004','11')
+
+
+
+SELECT SYSDATE AS 오늘 , 
+SYSDATE - 7 AS "7일전" , 
+TRUNC(SYSDATE, 'iW') AS  FROM  dual
+
+
+		SELECT TO_CHAR(TRUNC(POST_REGDATE,'iw'),'YY-MM-DD')  AS days , nvl(count(POST_REGDATE),0) as dayscount  FROM POST
+		WHERE POST_REGDATE BETWEEN TRUNC(SYSDATE,'iw') -7 and TRUNC(SYSDATE, 'iW') 
+		GROUP BY POST_REGDATE
+		order by POST_REGDATE ;
+		
+		SELECT POST_REGDATE FROM POST;
+
+		SELECT to_char(trunc(sysdate, 'iw')-7) AS start FROM dual;
+		SELECT to_char(trunc(sysdate, 'iw')) AS end FROM dual;
+	
+		SELECT TO_CHAR(POST_REGDATE ,'MM-DD') AS days  , count(*) cnt  FROM post
+		WHERE  POST_REGDATE BETWEEN to_date((TRUNC(sysdate,'MM')))  AND   to_date(LAST_DAY(sysdate)) 
+		GROUP BY TO_CHAR(POST_REGDATE ,'MM-DD') 
+		ORDER BY TO_CHAR(POST_REGDATE ,'MM-DD');
+	
+	
+	SELECT TO_CHAR(POST_REGDATE ,'MM-DD') as membersdays, count(*) month_total  FROM post
+		WHERE  POST_REGDATE BETWEEN to_date((TRUNC(sysdate,'MM')))  AND   to_date(LAST_DAY(sysdate)) 
+		GROUP BY TO_CHAR(POST_REGDATE ,'MM-DD') 
+		ORDER BY TO_CHAR(POST_REGDATE ,'MM-DD')	
+	
+		
+		SELECT TO_CHAR(UM_REGDATE ,'MM-DD') as membersdays, count(*) month_total  FROM USERMEMBER  
+		WHERE  UM_REGDATE BETWEEN to_date((TRUNC(sysdate,'MM')))  AND   to_date(LAST_DAY(sysdate)) 
+		GROUP BY TO_CHAR(UM_REGDATE ,'MM-DD') 
+		ORDER BY TO_CHAR(UM_REGDATE ,'MM-DD')	
+		
+	
+	

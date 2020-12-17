@@ -85,6 +85,16 @@ public class DashBoardService {
 		return Ddao.totalLike();
 	}
 	
+	public List<DTO> monthPostChart(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.monthPostChart();
+	}
+	
+	
+	public List<DTO> memberListChart(){
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.memberListChart();
+	}
 	
 	
 }

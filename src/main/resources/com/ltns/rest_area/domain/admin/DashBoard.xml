@@ -97,7 +97,22 @@
 	</select>
 	
 	
-
-
+	<select id="monthPostChart" flushCache="true" resultType="com.ltns.rest_area.domain.admin.DashBoardDTO">
+		<![CDATA[
+		SELECT TO_CHAR(POST_REGDATE ,'MM-DD') as membersdays, count(*) month_total  FROM post
+		WHERE  POST_REGDATE BETWEEN to_date((TRUNC(sysdate,'MM')))  AND   to_date(LAST_DAY(sysdate)) 
+		GROUP BY TO_CHAR(POST_REGDATE ,'MM-DD') 
+		ORDER BY TO_CHAR(POST_REGDATE ,'MM-DD')	
+		]]>
+	</select>
+	
+	<select id="memberListChart" flushCache="true" resultType="com.ltns.rest_area.domain.admin.DashBoardDTO">
+	<![CDATA[
+		SELECT TO_CHAR(UM_REGDATE ,'MM-DD') as addAcount, count(*) addAcountTotal  FROM USERMEMBER  
+		WHERE  UM_REGDATE BETWEEN to_date((TRUNC(sysdate,'MM')))  AND   to_date(LAST_DAY(sysdate)) 
+		GROUP BY TO_CHAR(UM_REGDATE ,'MM-DD') 
+		ORDER BY TO_CHAR(UM_REGDATE ,'MM-DD')
+	]]>
+	</select>
 
 </mapper>

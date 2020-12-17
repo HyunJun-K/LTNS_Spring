@@ -45,7 +45,7 @@
           </li>
           <li class="nav-item mr-3">
 	          <div>
-	          <img src="${pageContext.request.contextPath }/admin/CSS/1.PNG">
+	          <img src="${pageContext.request.contextPath }/admin/img/1.PNG">
 	          </div>
   	      </li>
 			<li class="nav-item   mr-4 text-center">
@@ -195,6 +195,18 @@
 	</div> <!-- end card row section 2 -->
 	<div class="clear"></div>
 	<hr>
+		
+		
+		
+		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
+		<canvas id="myChart" width="550" height="300" ></canvas>
+		</div>
+		
+		
+		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
+		<canvas id="memberListAdd" width="550" height="300" ></canvas>
+		</div>
+		
 		
 		
 		</main> <!-- article -->

@@ -17,5 +17,7 @@ public interface DashBoardDAO extends DAO{
 	List<DTO> bestFood();
 	List<DTO> bestGas();
 	List<DTO> totalLike();
-
+	List<DTO> memberListChart();
+	List<DTO> monthPostChart();
+	
 }

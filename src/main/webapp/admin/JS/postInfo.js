@@ -415,17 +415,16 @@ function lineCharts(JsonObj) {
     var ctxline = document.getElementById('linechart');
     var count = JsonObj.count;
     var i;
-  
-    var linecharts_ = new Chart(ctxline, {
 
+    
+
+
+    
+    var config = {
         type: 'line',
         data: {
             labels: [
-            	items[0].days,
-            	items[1].days,
-            	items[2].days,
-            	items[3].days,
-            	items[4].days,
+            
             ],
             datasets: [
                 {
@@ -437,14 +436,10 @@ function lineCharts(JsonObj) {
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
                     data: [
-                    	items[0].dayscount,
-                    	items[1].dayscount,
-                    	items[2].dayscount,
-                    	items[3].dayscount,
-                    	items[4].dayscount,
                     ]
                 },
             ]
+
         },
         options: {
            responsive: false,
@@ -462,11 +457,21 @@ function lineCharts(JsonObj) {
 				}]
 			 }, 
 
-        }
-    });
+        },
+    }; // end var 
 
-   
+    for(i=0; i<count; i++){
+        var dataset  = config.data.datasets ;
+        var data = dataset[0].data;
+        var label = config.data.labels;
+        
 
-  
+        label.push(items[i].days);
+        data.push(items[i].dayscount);
+    }
+
+    
+
+    var mycharts = new Chart(ctxline,config)  
 
 }

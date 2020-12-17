@@ -352,6 +352,79 @@ public class AdminDashBoardAjaxController {
 	}
 	
 	
+
+	//일일 그래프
+	@PostMapping("monthPostChart")
+	public AjaxList monthPostChart() {
+		
+		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+		List<DTO> list = null; 
+		
+		try {
+			list = Dservice.monthPostChart();
+			
+			if(list != null) {
+				status ="OK";
+			}		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			message.append("[Error]" + e.getMessage());
+		}
+		
+		AjaxList result = new AjaxList();
+		
+		result.setStatus(status);
+		result.setMessage(message.toString());
+		
+		if(list != null) {
+			result.setCount(list.size());
+			result.setList(list);
+		}
+			
+		
+		return result;
+		
+	}
+	
+	
+
+	//일일 그래프 회원 
+	@PostMapping("memberListChart")
+	public AjaxList memberListChart() {
+		
+		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+		List<DTO> list = null; 
+		
+		try {
+			list = Dservice.memberListChart();
+			
+			if(list != null) {
+				status ="OK";
+			}		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			message.append("[Error]" + e.getMessage());
+		}
+		
+		AjaxList result = new AjaxList();
+		
+		result.setStatus(status);
+		result.setMessage(message.toString());
+		
+		if(list != null) {
+			result.setCount(list.size());
+			result.setList(list);
+		}
+			
+		
+		return result;
+		
+	}
+	
 	
 	
 	

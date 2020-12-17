@@ -20,8 +20,7 @@ public class DashBoardDTO implements DTO {
 	private int today_coment;	 //오늘 작성된 댓글
 	
 	
-	
-	
+
 	//주유소 정보 
 	
 	private String gs_code;
@@ -30,6 +29,7 @@ public class DashBoardDTO implements DTO {
 	private String GS_DIESEL;
 	private String 	GS_GASOLINE;
 	private String 	GS_LPG;
+	
 	//휴게소 정보들 
 	private String RA_code;
 	private String UM_USERNAME;  
@@ -46,6 +46,12 @@ public class DashBoardDTO implements DTO {
 	private int totaldata;
 	private int ACCOUNT;
 	
+	// 메인 그래프 데이터 
+	private String addAcount ; 
+	private int addAcountTotal;
+	
+	private String membersdays;
+	private int month_total;
 	
 	
 }

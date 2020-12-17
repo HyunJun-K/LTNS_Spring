@@ -6,6 +6,11 @@
     font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
     font-size: 14px;
   }
+  
+  body img {
+	width:50px;
+	height: 40px;
+}
 
   #calendar {
     max-width: 950px;

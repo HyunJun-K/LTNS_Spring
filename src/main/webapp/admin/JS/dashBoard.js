@@ -4,7 +4,9 @@ $(document).ready(function() {
     today_acount();
     today_post();
     Best()
- 
+    monthPostChart()
+   
+    
 })
 
 
@@ -34,8 +36,11 @@ function total_Acount(){
 
     function totaldata(JsonObj){
         var count = JsonObj.count;
-    
-            $("#numbers_acount").text("총 회원수 " + count  + " 명");
+        if(count == null ){
+            alert("데이터가 없습니다")
+        }
+
+        $("#numbers_acount").text("총 회원수 " + count  + " 명");
 
     }
 }
@@ -54,6 +59,11 @@ function today_acount(){
 
     function today_acounts(JsonObj){
         var count = JsonObj.count;
+        if(count == null){
+            alert("데이터가 없습니다");
+            $("#numbers_today").html( "<span class='text-info'>" + 0 + "</span>");
+   
+        }
         $("#numbers_today").html( "<span class='text-info'>" + count + "</span>");
     }
 }
@@ -97,6 +107,14 @@ function today_post(){
             cashe : false,
             success : function(data,status){
                 if(data.status=="OK"){
+
+                    if(data.count =0){
+                        alert("데이터가 없습니다");
+                        $("#today_reports_post").html("<span id='reports_span' onclick='POPUP_REPORT();'>"  + " 텅 </span>");
+                    
+                    }
+
+                    
                     $("#today_reports_post").html("<span id='reports_span' onclick='POPUP_REPORT();'>"  + data.count + " 개 </span>");
                     
                     if(data.count <= 50){
@@ -222,3 +240,191 @@ function Best(){
     }
 
 }
+
+
+
+//회원가입 차트 
+function monthPostChart() {
+    memberListChart()
+
+    $.ajax({
+        url : "monthPostChart",
+        type : "POST",
+        cashe : false,
+        success : function(data, status){
+            if(data.status="OK"){
+                if(data.list != null)  {
+                    monthChart(data)    
+                }else{
+                    alert("데이터가 없습니다.");
+                } 
+            }
+        }
+    });
+
+
+    function monthChart(JsonObj){
+        var cnt = JsonObj.count;
+        var items  = JsonObj.list;
+        var i  =0;
+        var ctxMember = document.getElementById('myChart');
+
+        var config = {
+        type: 'line',
+        data: {
+            labels: [],
+            datasets: [{
+                label: '일일 게시물 수',
+                data: [
+                ],
+                backgroundColor: [
+                    
+                   
+                ],
+                borderColor: [
+                    '##F7F8E0',
+                ],
+                fill : false,
+                lineTension: 0,
+            }]
+        },
+        options: {
+              legend: { display: false },
+            responsive: false,
+            title: {
+                display: true,
+                text: '월별 게시물 통계'
+        },
+
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        stepSize: 5,
+                        maxTicksLimit: 3
+                    }
+                }]
+            }
+        }
+    }; // end config
+
+
+
+    for(i=0; i<cnt; i++){
+        var dataset  = config.data.datasets ;
+        var data = dataset[0].data;
+        var backgroundColor = dataset[0].backgroundColor
+        var label = config.data.labels;
+        
+
+        label.push(items[i].membersdays);
+        data.push(items[i].month_total);
+        backgroundColor.push('#000000');
+    }
+
+    
+
+    var mymemberlist = new Chart(ctxMember,config)  
+
+  
+
+    } // end function
+
+
+
+    //chart2 memberListChart
+
+    function memberListChart(){
+        $.ajax({
+            url : "memberListChart",
+            type : "POST",
+            cashe : false,
+            success : function(data, status){
+                if(data.status=="OK"){
+                    if(data.count == null){
+                        console.log("데이터가 없습니다")
+                    }else{
+                        memberChartsData(data);
+                    }
+                  
+                }
+            }
+        });
+    }
+
+    function memberChartsData(JsonObj){
+        var cnt = JsonObj.count;
+        var items  = JsonObj.list;
+        var i  = 0;
+        var ctxAcount = document.getElementById('memberListAdd');
+        var config = {
+            type: 'line',
+            data: {
+                labels: [
+                   ],
+                datasets: [{
+                    label: '일일 가입자 수 ',
+                    data: [
+                        
+                    ],
+                    backgroundColor: [
+                        
+                    ],
+                    borderColor: [
+                        '##BF00FF'
+                    ],
+                    borderWidth: 1,
+                    fill : false,
+                     lineTension: 0,
+                }]
+            },
+            options: {
+                legend: { display: false },
+                responsive: false,
+                title: {
+                    display: true,
+                    text: '신규 유저 통계'
+            },
+    
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            stepSize: 1,
+                            maxTicksLimit: 3
+                        }
+                    }]
+                }
+            }
+        }; // end chart data
+
+
+        
+
+
+    for(i=0; i<cnt; i++){
+        var dataset  = config.data.datasets ;
+        var data = dataset[0].data;
+        var backgroundColor = dataset[0].backgroundColor
+        var label = config.data.labels;
+        
+
+        label.push(items[i].addAcount);
+        data.push(items[i].addAcountTotal);
+        backgroundColor.push('#8A0829');
+    }
+
+    
+
+    var mymemberlist = new Chart(ctxAcount,config)  
+
+
+
+
+    } // end function 
+   
+   
+   
+} // end function 
+
+
