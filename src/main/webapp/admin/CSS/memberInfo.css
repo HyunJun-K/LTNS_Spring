@@ -10,12 +10,53 @@
   }
 
 
+.loadings  { 	   
+	   display : flex;
+	   justify-content : center;
+	   height:100%;
+       width: 100%;
+       margin-top : 10%;
+}
 
-body img {
+
+.imgs_under {
 	width:50px;
 	height: 40px;
 }
 
+
+
+/* modal */
+
+
+
+
+
+.modal {
+       position: fixed;
+       height:500px;
+       width: 600px;
+       margin-top : 5%;
+  	   margin-left : 40%;
+  	   
+
+}
+
+.modal a.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height : 0px;
+    
+}
+
+#info_btn{
+	//font-size: 10px;
+	//font-weight: bold;
+}
+
+
+/* end modal*/ 
 
 <!-- dashboard !-->
 
@@ -131,6 +172,14 @@ body img {
 	clear: both;
 }
 
+#list #showModal{
+		color :black;
+}
+
+#list #showModal:hover {
+	text-decoration: none;
+	color:tomato;
+}	
 
 /* 페이징 */
 
@@ -189,7 +238,7 @@ div .sele_option {
 	background-color: #EFFBFB;
 }
 
-button{
+.btn_infos{
   background:#2E2E2E;
   color:#fff;
   position:relative;
@@ -202,12 +251,12 @@ button{
   border-radius: 4px;
 }
 
-button:hover{
+.btn_infos:hover{
   background:#fff;
   color:#2E2E2E;
 }
 
-button:before,button:after{
+.btn_infos:before,.btn_infos:after{
   content:'';
   position:absolute;
   top:0px;
@@ -218,7 +267,7 @@ button:before,button:after{
   transition:400ms ease all;
 }
 
-button:after{
+.btn_infos:after{
   right:inherit;
   top:inherit;
   left:0;

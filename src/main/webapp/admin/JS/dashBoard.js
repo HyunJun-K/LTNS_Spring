@@ -3,8 +3,8 @@ $(document).ready(function() {
     total_Acount();
     today_acount();
     today_post();
-    Best()
-    monthPostChart()
+    Best();
+    monthPostChart();
     
     
    
@@ -427,7 +427,7 @@ function monthPostChart() {
 } // end function 
 
 
-function modal_msg() {
-    $("#myModal").modal();
-    alert("test");
-}
+
+
+
+

@@ -4,13 +4,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
+
+import org.apache.ibatis.executor.ReuseExecutor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,10 +24,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.AjaxResult;
 import com.ltns.rest_area.domain.DTO;
-import com.ltns.rest_area.domain.admin.ScheduleDTO;
+import com.ltns.rest_area.domain.memberInfo.mailDTO;
 import com.ltns.rest_area.service.MemberInfoService;
-import com.ltns.rest_area.service.PostInfoService;
-import com.ltns.rest_area.service.ScheduleService;
 
 @RestController
 @RequestMapping(value="/admin")
@@ -36,8 +39,8 @@ public class AdminMeberAjaxController {
 	@Autowired
 	MemberInfoService member_service;
 	
-
-
+	@Autowired
+	JavaMailSender mailSender;
 	
 	
 	// 멤버 정보 
@@ -234,6 +237,38 @@ public class AdminMeberAjaxController {
 		
 		
 		return result;
+	}
+	
+	
+	
+	
+	
+	
+	@PostMapping("mailSendAjax")
+	public AjaxResult mailSend(@RequestBody mailDTO dto) {
+		
+		MimeMessage message = mailSender.createMimeMessage();
+		AjaxResult result = new AjaxResult();
+		String status = "FAIL";
+		
+		try {
+			message.setSubject(dto.getTitle());// 제목
+			message.setRecipient(RecipientType.TO , new InternetAddress(dto.getUsername())); // 수신자
+			message.setText(dto.getTextMail());
+			
+			mailSender.send(message);
+			status = "OK";
+			
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		result.setStatus(status);
+		
+		
+		return result;
+		
 	}
 
 	

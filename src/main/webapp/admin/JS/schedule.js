@@ -135,7 +135,7 @@ function delete_ok(){
 		url : "schedule",
 		type : "DELETE",
 		dataType : "JSON",
-		contentType:'application/json;',
+		contentType:'application/json; charset=utf-8',
 		success : function(data,status) {
 			if(data.status =="OK"){
 				alert("일정이 삭제되었습니다.")

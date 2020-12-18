@@ -8,17 +8,18 @@ var viewItem = undefined;
 
 //로딩된후 실행시킴 
 $(document).ready(function(){
-	
+
 	pageLoad(pageNo);
 	TopComent();
 	TopPostUser();
+
+	$(".loadings").hide();
+
+
+	
+	
 })
 
-function click_move(){
-    $("#list #names").click(function(){
-        alert("test");
-    })
-}
 
 
 
@@ -33,8 +34,11 @@ function pageLoad(pageNo){
       	  success : function(data, status){
             if(status == "success"){
             
-                if(updateList(data)){}
-                
+				if(updateList(data)){
+					chk();
+				}
+				
+               
             }
             
         }
@@ -42,6 +46,9 @@ function pageLoad(pageNo){
 	
 	
 }
+
+
+
 
 
 
@@ -56,10 +63,12 @@ function updateList(JsonObj) {
     var i;
     var items  = JsonObj.list;
     for(i=0; i<count; i++){
+	
         result += "<tr>\n";
-        result += "<td><input type='checkbox' name='uid' value='" + items[i].um_UID + "'></td>\n";
+        result += "<td><input type='checkbox' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
         result += "<td>" + items[i].um_UID + "</td>\n";
-        result += "<td><span id='names' class='subject' data-uid='" + items[i].um_UID + "'>" + items[i].um_USERNAME + "</span></td>\n";
+		result += "<td> <a id='showModal' href='#ex1' rel='modal:open' ><span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span> </a>\n";
+		//result += "<td><span id='names' class='subject' data-uid='" + items[i].um_UID + "'>" + items[i].um_USERNAME + "</span></td>\n";
         result += "<td>" + items[i].um_NICKNAME + "</td>\n";
         result += "<td><span data-viewcnt='" + items[i].um_UID + "'>" + items[i].user_regdate + "</span></td>\n";
         result += "</tr>\n";
@@ -73,12 +82,26 @@ function updateList(JsonObj) {
     $("#pagination").html(pagination);
 
    
+
+
+
     return true;
    } else {
        alert("내용이 없습니다")
        return false;
    } 
+
 }
+
+
+
+function chk(){
+	$("#list .memberModal").click(function(){
+		var data = $(this).attr('data-age');
+		$("#userEmail").val($("#userEmail").val() + data);
+	})
+}
+
 
 
 function buildPagination(writePages, totalPage, curPage, pageRows){
@@ -158,6 +181,8 @@ function addSerch(){
 }
 
 
+
+
 function seachData(JsonObj){
 	  var result = ""; 
 
@@ -171,7 +196,7 @@ function seachData(JsonObj){
 			result += "<tr>\n";
 			result += "<td><input type='checkbox' name='uid' value='" + items[i].um_UID + "'></td>\n";
 			result += "<td>" + items[i].um_UID + "</td>\n";
-			result += "<td><span class='subject' data-uid='" + items[i].um_UID + "'>" + items[i].um_USERNAME + "</span></td>\n";
+			result += "<td><span class='subject'  data-uid='" + items[i].um_UID  + "'>" + items[i].um_USERNAME+ "</span></td>\n";
 			result += "<td>" + items[i].um_NICKNAME + "</td>\n";
 			result += "<td><span data-viewcnt='" + items[i].um_UID + "'>" + items[i].UM_REGDATE + "</span></td>\n";
 			result += "</tr>\n";
@@ -355,3 +380,130 @@ function donutChart(JsonObj){
 	
 	});
 }
+
+
+
+
+
+// modal event 
+function message_hello(){
+  $("#emailText").text(""); // 내용 초기화 
+  $("#emailText").text(
+	  "안녕하세요 LTNS 휴게소 정보 서비스 입니다. \n" +
+	  "매번 이용해주시는 고객님 정말 감사 드립니다. \n" + 
+	  "연말 연시 행복하시구 새해 복 많이받으세요 \n" + 
+	  "LTNS 휴게소 정보 서비스를 이용해주셔서 감사합니다"  
+   );
+}
+
+function message_report(){
+	$("#emailText").text("");
+	$("#emailText").text(
+		"안녕하세요 LTNS 휴게소 정보 서비스 입니다. \n" +
+		"고객님이 올리신 게시글이 대량의 신고가 접수 되어 \n" +
+		"다른 회원님들이 불편함을 겪고 있습니다 \n" + 
+		"그렇기 때문에 건전한 서비스 이용을 부탁드립니다. .\n"   
+	 );
+}
+
+
+
+function close_modal() {
+	$("#emailText").text(""); // 내용 초기화 
+	$.modal.close();
+}
+
+$.fn.serializeObject = function()
+
+{
+
+   var o = {};
+
+   var a = this.serializeArray();
+
+   $.each(a, function() {
+
+       if (o[this.name]) {
+
+           if (!o[this.name].push) {
+
+               o[this.name] = [o[this.name]];
+
+           }
+
+           o[this.name].push(this.value || '');
+
+       } else {
+
+           o[this.name] = this.value || '';
+
+       }
+
+   });
+
+   return o;
+
+};
+
+
+//submit
+function mailSend(){
+
+	var email = $("#userEmail").val();
+	var emailText = $("#emailText").val();
+
+	if(email == "" || email == null){
+		alert("이메일 주소가 잘못되었습니다.")
+		$("#userEmail").focus();
+		return false;
+	}
+
+
+	if(emailText == "" || emailText == null){
+		alert("내용이 비었습니다.")
+		$("#emailText").focus();
+		return false;
+	}
+
+	
+	var queryString = JSON.stringify($("form#mailForm").serializeObject());
+	
+	
+	
+	function mailSendAjax(queryString){
+		$.ajax({
+			url : "mailSendAjax",
+			type : "POST",
+			data : queryString,
+			dataType : "JSON",
+			contentType:'application/json;',
+			success : function(data,status){
+			
+
+
+				 if(data.status =="OK"){
+				 	alert("메일 전송이 성공 하였습니다.");
+				 	
+					 $("#bodys").show();
+					$(".loadings").hide();
+					$("#mybodys").attr('class','bg-light')
+				 }
+			}
+
+		})
+	}
+	mailSendAjax(queryString);
+	$("#bodys").hide();
+	$(".loadings").show();
+	$.modal.close();
+
+	$("#mybodys").attr('class','dark')
+	return true;
+	
+
+
+}
+
+
+
+

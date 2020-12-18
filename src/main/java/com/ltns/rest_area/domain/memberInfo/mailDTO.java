@@ -9,18 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class memberInfoDTO implements DTO   {
+public class mailDTO implements DTO   {
 	
-	private int UM_UID;
-	private String UM_USERNAME;
-	private String UM_NICKNAME;
-	private String UM_REGDATE;
-	private String user_regdate;
-	private String UM_ENABLED;
-	private int cnt;
+	private String username;
 	private String title;
 	private String textMail;
-	
+
 	
 	
 	

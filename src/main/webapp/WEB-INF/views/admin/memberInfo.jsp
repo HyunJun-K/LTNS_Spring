@@ -7,6 +7,8 @@
 <title> 회원 정보</title>
 </head>
 
+
+
 <!--  fontawesome -->
 <script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script> 
 
@@ -18,6 +20,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
+
+
+
 <!--  bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
@@ -25,8 +34,12 @@
 <link href='${pageContext.request.contextPath }/admin/CSS/memberInfo.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/memberInfo.js'></script>
 
-<body class="bg-light">
+<body id="mybodys" class="bg-light" >
 
+	<div  class="loadings">
+	  		<img src="https://static-steelkiwi-dev.s3.amazonaws.com/media/filer_public/4e/07/4e07eece-7c84-46e2-944d-1a6b856d7b5f/463ff844-6f36-4ffe-b051-fea983d39223.gif">
+	</div>
+	<div id="bodys">
 	 <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
       <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
       
@@ -40,7 +53,7 @@
           </li>
           <li class="nav-item mr-3">
 	          <div>
-	          <img src="${pageContext.request.contextPath }/admin/img/1.PNG">
+	          <img class="imgs_under" src="${pageContext.request.contextPath }/admin/img/1.PNG">
 	          </div>
   	      </li>
 			<li class="nav-item   mr-4 text-center">
@@ -84,6 +97,55 @@
 
 		<!-- section 1  -->
 		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+		
+
+	<div id="ex1" class="modal">
+			<form id="mailForm">
+					<div class="form-group mt-2">
+						<label for="exampleInputEmail1">Email</label> <input
+							type="text" class="form-control" name="username" id="userEmail"
+							placeholder="Enter email"> <small
+							id="emailHelp" class="form-text text-muted">
+							메일을 보낼때에는 신중하게 보냅시다.</small>
+					</div>
+					
+					<div class="form-group">
+					    <label for="exampleFormControlSelect1">Title</label>
+					    <select class="form-control" name="title" id="exampleFormControlSelect1">
+					      <option selected value="intro"> 안녕하세요 LTNS 팀입니다. </option>
+					      <option value="report"> 게시물의 신고가 많이 접수되어 있습니다.</option>
+					    </select>
+					    <small
+							id="emailHelp" class="form-text text-muted">
+							기본적인 메일을 보낼때는 인사말만 간단히 보내는게 좋아요
+						</small>
+				  </div>
+					
+					
+					<div class="form-group">
+						<label for="mailText">Text</label>
+						<textarea class="form-control" id="emailText" name="textMail"
+							rows="5"></textarea>
+					</div>
+
+
+					<div class="text-right">
+						<button type="button" id="info_btn" class="btn btn-outline-primary " onclick="message_hello();">Hello info </button>
+						<button type="button" id="info_btn" class="btn btn-outline-primary " onclick="message_report();">Report Info</button>
+							
+						
+						<button onclick="mailSend();" type="button" class="btn btn-outline-success">Submit</button>
+						<button class="btn btn-outline-danger"  onclick="close_modal();" >close</button>
+					</div>
+				</form>
+
+
+
+	</div> <!--  end modal -->
+
+
+
+
 
 			<div id="list">
 				<div class="d01 text-right font-lg">
@@ -144,15 +206,16 @@
 	<div class="clear"></div>	
 	
 	<hr>
-		
+	  
+	  
+	  
+	  
 
 		</main> <!-- article -->
 
 
 
 	</div> <!-- end con -->
-	
-
-	
+</div> <!--  hide body -->
 </body>
 </html>
