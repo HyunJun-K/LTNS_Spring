@@ -83,11 +83,10 @@ public class AdminNoticeAjaxController {
 	@GetMapping("/notice/{id}")
 	public AjaxList noticeView(@PathVariable int id) {
 		
-		System.out.println("진입했쌰??");
+	
 		List<DTO> list = null; 
 		StringBuffer message = new StringBuffer();
 		String status ="FAIL";
-		System.out.println(id);
 		list = service.noticeView(id);
 		try {
 		
