@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -26,13 +26,13 @@ public class AjaxList extends AjaxResult{
 
 
 	int pagenationPage;	//페이지네이션에 표시할 페이지 갯수
-	int WritePages ; // list 수 
+	int writePages ; // list 수 
 	
 	@Override
 	public String toString() {
 		return "AjaxList (count=" + getCount() + ", status=" + getStatus() + ", message=" + getMessage()
 				+ "totalCnt=" + totalCnt + ", pageNo=" + pageNo + ", numOfRows=" + numOfRows + ", totalPage="
-				+ totalPage + ", list=" + list + ", pagenationPage=" + pagenationPage + ", WritePages=" + WritePages
+				+ totalPage + ", list=" + list + ", pagenationPage=" + pagenationPage + ", writePages=" + writePages
 				+ ")";
 	}
 	

@@ -158,3 +158,8 @@ FROM(
 )
 WHERE rnum >= 1
 ;
+
+SELECT *
+FROM RESTAREA
+WHERE ra_code='A00001'
+;

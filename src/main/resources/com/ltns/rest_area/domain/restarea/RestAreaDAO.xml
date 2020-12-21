@@ -9,6 +9,13 @@
 			RestArea		
 	</select>
 	
+	<select id="selectByString" parameterType="String" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
+		SELECT *
+		FROM RestArea
+		WHERE 
+			ra_code=#{ra_code}
+	</select>
+	
 	<select id="selectByObject" parameterType="com.ltns.rest_area.domain.restarea.RestAreaVO" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 		SELECT
 			<choose>

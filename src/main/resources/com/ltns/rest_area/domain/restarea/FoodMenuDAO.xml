@@ -9,6 +9,12 @@
 			FoodMenu		
 	</select>
 	
+	<select id="selectByString" parameterType="String" resultType="com.ltns.rest_area.domain.restarea.FoodMenuDTO">
+		SELECT *
+		FROM FoodMenu
+		WHERE
+			ra_code=#{ra_code}
+	</select>
 	
 	<select id="selectByVO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaVO" resultType="com.ltns.rest_area.domain.restarea.FoodMenuDTO">
 		SELECT *
