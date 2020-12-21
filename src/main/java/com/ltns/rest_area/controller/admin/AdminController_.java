@@ -60,6 +60,8 @@ public class AdminController_ {
 	@RequestMapping("/repostPopup")
 	public void repostPopup()	{}
 	
+	@RequestMapping("/notice")
+	public void notice()	{}
 	
 	
 	
