@@ -47,7 +47,7 @@
     <security:authentication-manager>
         <security:authentication-provider>
             <security:password-encoder ref="bCryptPasswordEncoder"/>
-            <security:jdbc-user-service data-source-ref="data" users-by-username-query="SELECT username, password, enabled FROM userView WHERE username = ?" authorities-by-username-query="SELECT username, authority FROM userView WHERE username = ?"/>
+            <security:jdbc-user-service data-source-ref="data" users-by-username-query="select um_username username,um_password password, um_enabled enabled from usermember where um_username = ?" authorities-by-username-query="select u.um_username username, a.authority from usermember u, auth a where a.um_uid = u.um_uid and u.um_username = ?"/>
         </security:authentication-provider>
     </security:authentication-manager>
     

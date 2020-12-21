@@ -21,7 +21,7 @@ $(document).ready(function () {
             result += '<li class="list-group-item">' + content + '</li>';
           } else {
             content = '등록된 즐겨찾기가 없습니다.';
-            result += '<li class="list-group-item">' + content + '</li>';
+            result += '<li class="list-group-item text-muted">' + content + '</li>';
           }
         }
         if (data.dataList.foods.length > 5) {
@@ -37,7 +37,7 @@ $(document).ready(function () {
       } else {
         content = '등록된 즐겨찾기가 없습니다.';
         for (i = 0; i < 5; i++) {
-          result += '<li class="list-group-item">' + content + '</li>';
+          result += '<li class="list-group-item text-muted">' + content + '</li>';
         }
         content = '<a class="text-muted">더보기</a>';
         result +=
@@ -58,7 +58,7 @@ $(document).ready(function () {
             result += '<li class="list-group-item">' + content + '</li>';
           } else {
             content = '등록된 즐겨찾기가 없습니다.';
-            result += '<li class="list-group-item">' + content + '</li>';
+            result += '<li class="list-group-item text-muted">' + content + '</li>';
           }
         }
         if (data.dataList.gasStations.length > 5) {
@@ -74,7 +74,7 @@ $(document).ready(function () {
       } else {
         content = '등록된 즐겨찾기가 없습니다.';
         for (i = 0; i < 5; i++) {
-          result += '<li class="list-group-item">' + content + '</li>';
+          result += '<li class="list-group-item text-muted">' + content + '</li>';
         }
         content = '<a class="text-muted">더보기</a>';
         result +=
@@ -95,7 +95,7 @@ $(document).ready(function () {
             result += '<li class="list-group-item">' + content + '</li>';
           } else {
             content = '등록된 즐겨찾기가 없습니다.';
-            result += '<li class="list-group-item">' + content + '</li>';
+            result += '<li class="list-group-item text-muted">' + content + '</li>';
           }
         }
         if (data.dataList.restAreas.length > 5) {
@@ -111,7 +111,7 @@ $(document).ready(function () {
       } else {
         content = '등록된 즐겨찾기가 없습니다.';
         for (i = 0; i < 5; i++) {
-          result += '<li class="list-group-item">' + content + '</li>';
+          result += '<li class="list-group-item text-muted">' + content + '</li>';
         }
         content = '<a class="text-muted">더보기</a>';
         result +=
@@ -132,7 +132,7 @@ $(document).ready(function () {
             result += '<li class="list-group-item">' + content + '</li>';
           } else {
             content = '등록된 즐겨찾기가 없습니다.';
-            result += '<li class="list-group-item">' + content + '</li>';
+            result += '<li class="list-group-item text-muted">' + content + '</li>';
           }
         }
         if (data.dataList.likePosts.length > 5) {
@@ -148,7 +148,7 @@ $(document).ready(function () {
       } else {
         content = '등록된 즐겨찾기가 없습니다.';
         for (i = 0; i < 5; i++) {
-          result += '<li class="list-group-item">' + content + '</li>';
+          result += '<li class="list-group-item text-muted">' + content + '</li>';
         }
         content = '<a class="text-muted">더보기</a>';
         result +=
@@ -168,7 +168,7 @@ $(document).ready(function () {
             result += '<li class="list-group-item">' + content + '</li>';
           } else {
             content = '작성된 게시물이 없습니다.';
-            result += '<li class="list-group-item">' + content + '</li>';
+            result += '<li class="list-group-item text-muted">' + content + '</li>';
           }
         }
         if (data.dataList.posts.length > 5) {
@@ -184,7 +184,7 @@ $(document).ready(function () {
       } else {
         content = '작성된 게시물이 없습니다.';
         for (i = 0; i < 5; i++) {
-          result += '<li class="list-group-item">' + content + '</li>';
+          result += '<li class="list-group-item text-muted">' + content + '</li>';
         }
         content = '<a class="text-muted">더보기</a>';
         result +=
@@ -206,7 +206,7 @@ $(document).ready(function () {
             result += '<li class="list-group-item">' + content + '</li>';
           } else {
             content = '등록된 댓글이 없습니다.';
-            result += '<li class="list-group-item">' + content + '</li>';
+            result += '<li class="list-group-item text-muted">' + content + '</li>';
           }
         }
         if (data.dataList.comments.length > 5) {
@@ -222,7 +222,7 @@ $(document).ready(function () {
       } else {
         content = '등록된 댓글이 없습니다.';
         for (i = 0; i < 5; i++) {
-          result += '<li class="list-group-item">' + content + '</li>';
+          result += '<li class="list-group-item text-muted">' + content + '</li>';
         }
         content = '<a class="text-muted">더보기</a>';
         result +=
