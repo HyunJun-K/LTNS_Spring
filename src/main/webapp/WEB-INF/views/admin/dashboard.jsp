@@ -89,11 +89,8 @@
 						<li class="nav-item "><a class="nav-link text-white " href="${pageContext.request.contextPath}/admin/postInfo"> <span
 								data-feather="users"></span> <i class="fas fa-edit"></i>&nbsp;&nbsp;게시글 정보
 						</a></li>
-						<li class="nav-item"><a class="nav-link text-white" href="#"> <span
-								data-feather="bar-chart-2"></span> 공지사항
-						</a></li>
-						<li class="nav-item"><a class="nav-link" href="#"> <span
-								data-feather="layers"></span> Integrations
+						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
+								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 공지사항
 						</a></li>
 					</ul>
 
