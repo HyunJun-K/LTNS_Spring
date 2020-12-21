@@ -7,19 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.restarea.FoodMenuDTO;
+import com.ltns.rest_area.domain.restarea.GasStationDTO;
+import com.ltns.rest_area.domain.restarea.RestAreaDTO;
+import com.ltns.rest_area.domain.user.LikeDTO;
 import com.ltns.rest_area.domain.user.UserDAO;
+import com.ltns.rest_area.domain.user.UserDAOImpl;
 import com.ltns.rest_area.domain.user.UserDTO;
 
 public class UserService {
 
-	UserDAO userDAO;
+	UserDAOImpl userDAO;
 
 	AuthService authService;
 
 	BCryptPasswordEncoder bCryptPasswordEncoder;
 
 	@Autowired
-	public void setUserDAO(UserDAO userDAO) {
+	public void setUserDAO(UserDAOImpl userDAO) {
 		this.userDAO = userDAO;
 	}
 
@@ -93,13 +98,113 @@ public class UserService {
 
 	public int deleteByUesrname(UserDTO user) {
 		List<UserDTO> findUsers = findByUsername(user);
-		UserDTO findUser = findUsers.get(0);
-
+		UserDTO findUser = findUsers.get(0);	
+		userDAO.deleteByPost_like(findUser);
+		userDAO.deleteByPOST(findUser);
+		userDAO.deleteByFM_like(findUser);
+		userDAO.deleteByGS_like(findUser);
+		userDAO.deleteByRA_like(findUser);
+		userDAO.deleteByComments(findUser);
 		int result = authService.deleteAuth(findUser.getUm_uid());
 
 		if (result == 1)
 			result = userDAO.deleteByObject(user);
 
 		return result;
+	}
+	
+
+	public List<LikeDTO> findByRA_like_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return userDAO.findByRA_like_All(user);
+	}
+
+
+	public List<LikeDTO> findByGS_like_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return userDAO.findByGS_like_All(user);
+	}
+
+
+	public List<LikeDTO> findByFM_like_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return userDAO.findByFM_like_All(user);
+	}
+
+
+	public List<LikeDTO> findByPost_like_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return userDAO.findByPost_like_All(user);
+	}
+
+
+	public List<LikeDTO> findByPost_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return userDAO.findByPost_All(user);
+	}
+
+	public List<LikeDTO> findByComment_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return userDAO.findByComment_All(user);
+	}
+
+
+	public List<LikeDTO> findByRA_like(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return userDAO.findByRA_like(user, from, to);
+	}
+
+
+	public List<LikeDTO> findByGS_like(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return userDAO.findByGS_like(user, from, to);
+	}
+
+	public List<LikeDTO> findByFM_like(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return userDAO.findByFM_like(user, from, to);
+	}
+
+	public List<LikeDTO> findByPost_like(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return userDAO.findByPost_like(user, from, to);
+	}
+
+	public List<LikeDTO> findByPost(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return userDAO.findByPost(user, from, to);
+	}
+
+	public List<LikeDTO> findByComments(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return userDAO.findByComments(user, from, to);
+	}
+
+	public List<FoodMenuDTO> findByFoodMenu(LikeDTO like) {
+		// TODO Auto-generated method stub
+		return userDAO.findByFoodMenu(like);
+	}
+
+	public List<GasStationDTO> findByGasStation(LikeDTO like) {
+		// TODO Auto-generated method stub
+		return userDAO.findByGasStation(like);
+	}
+
+	public List<RestAreaDTO> findByRestArea(LikeDTO like) {
+		// TODO Auto-generated method stub
+		return userDAO.findByRestArea(like);
+	}
+
+	public void findByLikePost(LikeDTO like) {
+		// TODO Auto-generated method stub
+		// return userDAO.findByLikePost(like);
+	}
+	
+	public int deleteLike(long uid, String table, String column, String[] strCode) {
+		return userDAO.deleteStrLike(uid, table,column, strCode);
+	}
+	
+	public int deleteLike(long uid, String table, String column, int[] numCode) {
+		return userDAO.deleteNumLike(uid, table,column, numCode);
 	}
 }

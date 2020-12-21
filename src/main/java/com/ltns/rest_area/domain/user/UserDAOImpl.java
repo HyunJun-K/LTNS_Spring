@@ -6,6 +6,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.restarea.FoodMenuDTO;
+import com.ltns.rest_area.domain.restarea.GasStationDTO;
+import com.ltns.rest_area.domain.restarea.RestAreaDTO;
 
 public class UserDAOImpl implements UserDAO {
 
@@ -54,7 +57,7 @@ public class UserDAOImpl implements UserDAO {
 	@Override
 	public int updateAllByUsername(UserDTO user) {
 		// TODO Auto-generated method stub
-		return 0;
+		return session.getMapper(UserDAO.class).updateAllByUsername(user);
 	}
 
 
@@ -170,6 +173,155 @@ public class UserDAOImpl implements UserDAO {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public int deleteByPost_like(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).deleteByPost_like(user);
+	}
+
+	@Override
+	public int deleteByPOST(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).deleteByPOST(user);
+	}
+
+	@Override
+	public int deleteByFM_like(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).deleteByFM_like(user);
+	}
+
+
+	@Override
+	public int deleteByGS_like(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).deleteByGS_like(user);
+	}
+
+	@Override
+	public int deleteByRA_like(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).deleteByRA_like(user);
+	}
+
+
+	@Override
+	public int deleteByComments(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).deleteByComments(user);
+	}
+
+	@Override
+	public List<LikeDTO> findByRA_like_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByRA_like_All(user);
+	}
+
+	@Override
+	public List<LikeDTO> findByGS_like_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByGS_like_All(user);
+	}
+
+	@Override
+	public List<LikeDTO> findByFM_like_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByFM_like_All(user);
+	}
+
+	@Override
+	public List<LikeDTO> findByPost_like_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByPost_like_All(user);
+	}
+
+	@Override
+	public List<LikeDTO> findByPost_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByPost_All(user);
+	}
+
+	@Override
+	public List<LikeDTO> findByComment_All(UserDTO user) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByComment_All(user);
+	}
+
+	@Override
+	public List<LikeDTO> findByRA_like(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByRA_like(user, from, to);
+	}
+
+	@Override
+	public List<LikeDTO> findByGS_like(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByGS_like(user, from, to);
+	}
+
+	@Override
+	public List<LikeDTO> findByFM_like(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByFM_like(user, from, to);
+	}
+
+	@Override
+	public List<LikeDTO> findByPost_like(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByPost_like(user, from, to);
+	}
+
+	@Override
+	public List<LikeDTO> findByPost(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByPost(user, from, to);
+	}
+
+	@Override
+	public List<LikeDTO> findByComments(UserDTO user, int from, int to) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByComments(user, from, to);
+	}
+
+	@Override
+	public List<FoodMenuDTO> findByFoodMenu(LikeDTO like) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByFoodMenu(like);
+	}
+
+	@Override
+	public List<GasStationDTO> findByGasStation(LikeDTO like) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByGasStation(like);
+	}
+
+	@Override
+	public List<RestAreaDTO> findByRestArea(LikeDTO like) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).findByRestArea(like);
+	}
+
+	@Override
+	public void findByLikePost(LikeDTO like) {
+		// TODO Auto-generated method stub
+		// return session.getMapper(UserDAO.class).findByLikePost(like);
+	}
+
+	@Override
+	public int deleteStrLike(long uid, String table, String column, String[] strCode) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).deleteStrLike(uid, table, column, strCode);
+	}
+
+	@Override
+	public int deleteNumLike(long uid, String table, String column, int[] numCode) {
+		// TODO Auto-generated method stub
+		return session.getMapper(UserDAO.class).deleteNumLike(uid, table, column, numCode);
+	}
+
+
+	
 
 
 
