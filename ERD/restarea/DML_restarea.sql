@@ -7,11 +7,11 @@ INSERT INTO RestArea
 		VALUES
 			('1', 'a', 'a', 'a', 'a', 'a', 'a');
 
-SELECT * FROM restarea;
+SELECT * FROM restarea WHERE RA_ROUTENAME ='경부선';
 
 SELECT * FROM GASSTATION;
 
-SELECT * FROM FOODMENU;
+SELECT * FROM FOODMENU WHERE FM_NAME ='자장면';
 
 
 SELECT RestArea.*
@@ -129,4 +129,32 @@ FROM(
 --	WHERE ROWNUM <1+10
 )
 --WHERE rnum >=1
+;
+
+
+
+SELECT RA_DESTINATION 
+FROM RESTAREA
+WHERE RA_ROUTENAME ='경부선'
+GROUP BY RA_DESTINATION ;
+
+
+SELECT *
+FROM(
+	SELECT ROWNUM rnum, a.*
+	FROM(
+		SELECT
+			fm.*, ra.ra_routeName, ra.ra_destination
+		FROM
+			FoodMenu fm
+			LEFT OUTER JOIN
+				RestArea ra ON fm.ra_code=ra.ra_code
+		WHERE 
+			ra.ra_routeName='경부선'
+		ORDER BY
+			fm.ra_code, fm.fm_id
+	) a
+--	WHERE ROWNUM < 1+10
+)
+WHERE rnum >= 1
 ;

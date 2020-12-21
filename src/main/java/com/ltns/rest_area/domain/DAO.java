@@ -14,6 +14,7 @@ public interface DAO {
 	int selectCnt();						//조건없이 갯수 전부 셀 때 사용하세요
 	int selectCntByInt(int i);
 	int selectCntByString(String str);
+	int selectCntByVO(VO vo);
 	int selectCntByObject(Object obj);		//이외의 다양한 자료형에 사용하세요
 	
 	/*select : 컬럼을 가져올 때 사용합니다*/
@@ -21,35 +22,36 @@ public interface DAO {
 	List<DTO> selectByInt(int i);
 	List<DTO> selectByString(String str);
 	List<DTO> selectByDTO(DTO dto);
+	List<DTO> selectByVO(VO vo);
 	List<DTO> selectByObject(Object obj);	//이외의 다양한 자료형에 사용하세요
 	
 	
 	/*insert*/
 	int insertByDTO(DTO dto);
+	int insertByVO(VO vo);
 	int insertByObject(Object obj);			//다양한 자료형에 사용하세요
 	int insertAllByDTOs(List<DTO> dtos);	//foreach문에 사용하세요
 	
-	//이단
-	int test(String s); //Object를 매개변수로 받으면 됩니다만..
-	int inset_(String s, String d, String e, String dd); //builder 패턴을 잘 활용하면 dto를 통해 쉽게 보내기 가능합니다만.. 혹은 해당 갯수의 생성자를 만들어주시던지..
+	//이단 제거완료
 
 	
 	/*update*/
 	int updateByDTO(DTO dto);
+	int updateByVO(VO vo);
 	int updateByObject(Object obj);			//다양한 자료형에 사용하세요
 	int updateAllByDTOs(List<DTO> dtos);	//foreach문에 사용하세요
 	
-	//이단
-	int update_(String a, String s, String d, String e, String dd);	//builder 패턴을 잘 활용하면 dto를 통해 쉽게 보내기 가능합니다만.. 혹은 해당 갯수의 생성자를 만들어주시던지..
 
 	
 	/*delete*/
 	int deleteAll();						//조건없이 전부 지울 때 사용하세요
 	int deleteByInt(int i);
 	int deleteByString(String str);
+	int deleteByVO(VO vo);
 	int deleteByObject(Object obj);			//이외의 다양한 자료형에 사용하세요
-
 	
+	//vo를 사용합시다...
+	int deleteByUid(int [] uids);
 	public List<DTO> selectFromRow(
 			@Param("from") int from, @Param("pagenationPage") int pagenationPage
 	);

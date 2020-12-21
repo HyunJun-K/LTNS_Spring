@@ -27,26 +27,22 @@ public class ScheduleService {
 	}
 	
 	//달력서비스 insert 
-	public int addSchedule(String subject, String startdate, String enddate, String memo) {
+	public int addSchedule(DTO dto) {
 		dao = sqlSession.getMapper(ScheduleDAO.class);
-		
-	
-		return dao.inset_(subject, startdate, enddate, memo);
+		return dao.insertByDTO(dto);
 	}
 	
 	// delete 
-	public int deleteSchedule(String subject) {
+	public int deleteSchedule(String str) {
 		dao = sqlSession.getMapper(ScheduleDAO.class);
-		return dao.deleteByString(subject);
+		return dao.deleteByString(str);
 	}
 	
 	// update 
 	
-	public int updateSchedule(String add_subject, String subject, String startdate, String enddate, String memo) {
+	public int updateSchedule(DTO dto) {
 		dao = sqlSession.getMapper(ScheduleDAO.class);
-		
-		
-		return dao.update_(add_subject, subject, startdate, enddate, memo);
+		return dao.updateByDTO(dto);
 	}
 
 	

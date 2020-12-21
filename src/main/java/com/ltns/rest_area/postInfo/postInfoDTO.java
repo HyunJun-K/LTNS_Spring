@@ -15,11 +15,15 @@ public class postInfoDTO implements DTO {
 	
 	private int post_id;
 	private String post_title;
-	private String UM_USERNAME;  
 	private String post_regdate;
 	private String post_contents;
-	private String RA_code;
 	private String post_reported;
+	private String ra_code;
+	private String um_USERNAME;
+	
+	private String days;
+	private int dayscount;
+	private int ACCOUNT;
 	
 	
 }

@@ -14,6 +14,21 @@
     <bean id="securityDeniedHandler" class="com.ltns.rest_area.security.handler.SecurityDeniedHandler"/>
     <bean name="loginSuccessHandler" class="com.ltns.rest_area.security.handler.LoginSuccessHandler" p:jdbc-ref="jdbc"/>
     <bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+      <property name="host" value="smtp.gmail.com" /> 
+      <property name="port" value="587" />
+      <property name="username" value="ltnsreport@gmail.com" />
+      <property name="password" value="!admin123" /> 
+      <property name="javaMailProperties"> <props>
+      <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop> 
+      <prop key="mail.smtp.starttls.enable">true</prop> 
+      <prop key="mail.smtp.auth">true</prop> </props> 
+      </property>
+    </bean>
+
+
+ 
+ 
  	<security:http>
         <!-- 
     	<security:csrf disabled="true"/>
@@ -35,5 +50,9 @@
             <security:jdbc-user-service data-source-ref="data" users-by-username-query="SELECT username, password, enabled FROM userView WHERE username = ?" authorities-by-username-query="SELECT username, authority FROM userView WHERE username = ?"/>
         </security:authentication-provider>
     </security:authentication-manager>
+    
+    
+    
+    
     
 </beans>

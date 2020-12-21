@@ -1,6 +1,6 @@
 package com.ltns.rest_area.domain.restarea;
 
-import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.VO;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class RestAreaCDTO implements DTO {
+public class RestAreaVO implements VO{
 	private String routeName;
 	private String destination;	//전체 'ALL'
 	
@@ -21,4 +21,5 @@ public class RestAreaCDTO implements DTO {
 	private int fromRow;
 	private int numOfRows;
 	
+	private String requestDataKind; //노선 요청 routeName, 방향 요청 destination => routeName을 담아서 요청
 }

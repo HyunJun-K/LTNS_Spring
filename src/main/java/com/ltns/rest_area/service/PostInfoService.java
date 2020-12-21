@@ -8,9 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.ltns.rest_area.domain.DAO;
 import com.ltns.rest_area.domain.DTO;
-import com.ltns.rest_area.domain.memberInfo.memberInfoDAO;
 import com.ltns.rest_area.postInfo.postInfoDAO;
-import com.ltns.rest_area.postInfo.postInfoDTO;
 
 @Service
 public class PostInfoService {
@@ -21,6 +19,8 @@ public class PostInfoService {
 	SqlSession sqlSession;
 	
 	DAO dao;
+	postInfoDAO daos;
+	
 	
 	
 	
@@ -45,4 +45,33 @@ public class PostInfoService {
 		dao = sqlSession.getMapper(postInfoDAO.class);
 		return dao.selectAll();
 	}
+	
+	
+	public int deletePost (int [] post_id) {
+		dao = sqlSession.getMapper(postInfoDAO.class);
+		return dao.deleteByUid(post_id);
+	}
+
+	public List<DTO> seachTitle(String title) {
+		dao = sqlSession.getMapper(postInfoDAO.class);
+		return dao.selectByString(title);
+	}
+	
+	public List<DTO> seachNickname(String nickname) {
+		dao = sqlSession.getMapper(postInfoDAO.class);
+		return dao.selectByString(nickname);
+	}
+	
+	public List<DTO> selectArea(){
+		daos = sqlSession.getMapper(postInfoDAO.class);
+		return daos.selectAlls();
+	}
+	
+	public List<DTO> selectWeek(){
+		daos = sqlSession.getMapper(postInfoDAO.class);
+		return daos.Allselect();
+	}
+	
+	
+	
 }

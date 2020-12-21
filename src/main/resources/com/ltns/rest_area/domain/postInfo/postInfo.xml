@@ -27,11 +27,53 @@
 	
 	<select id="selectAll" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
 		<![CDATA[
-		SELECT ROWNUM, POST_TITLE,POST_REPORTED  FROM 
-		(SELECT * FROM POST ORDER BY POST_REPORTED DESC)
+		SELECT ROWNUM, POST_ID, POST_TITLE , POST_REPORTED  FROM 
+		(SELECT * FROM POST ORDER BY POST_ID, POST_REPORTED  DESC)
 		WHERE ROWNUM <=5
 		]]>
 	</select>
+
+
+
+	<delete id="deleteByUid" flushCache="true" parameterType="java.util.ArrayList">
+		DELETE FROM POST 
+			WHERE post_id in (
+			
+				<foreach collection="array" index="index" item="item" separator=",">
+					${item}
+				</foreach>
+			)
+	</delete>
+
+
+
+	<select id="selectByString" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
+		SELECT * FROM POST  WHERE POST_TITLE = #{title} or UM_USERNAME = #{nickname} 
+	</select>
+
+
+	<select id="selectAlls" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO"> 
+	<![CDATA[
+		SELECT RA_CODE, COUNT(*) AS ACCOUNT 
+		FROM POST
+		GROUP BY RA_CODE
+		]]>
+	</select>
+	
+	<!-- 월요일 기준 7일  통계 -->
+	<select id="Allselect" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
+	<![CDATA[
+		SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days , nvl(count(*) ,0) dayscount  FROM POST
+		WHERE POST_REGDATE BETWEEN to_char(trunc(sysdate, 'iw')-7) and to_char(trunc(sysdate, 'iw'))
+		GROUP BY TO_CHAR(POST_REGDATE ,'MM-DD')
+		order by days
+	]]>
+	
+	</select>
+
+
+
+	
 
 
 

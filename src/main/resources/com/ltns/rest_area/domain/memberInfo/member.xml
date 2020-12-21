@@ -6,7 +6,7 @@
 	<select id="selectFromRow" resultType="com.ltns.rest_area.domain.memberInfo.memberInfoDTO">
 		<![CDATA[
 		SELECT 
-			UM_UID , UM_USERNAME, UM_NICKNAME, UM_REGDATE, UM_ENABLED
+			UM_UID , UM_USERNAME, UM_NICKNAME, to_char(UM_REGDATE,'yy-mm-dd') as user_regdate, UM_ENABLED
 		FROM 
 			(SELECT ROWNUM AS RNUM, T.* FROM
 				(SELECT * FROM USERMEMBER ORDER BY UM_UID DESC) T)
@@ -26,10 +26,25 @@
 
 	<select id="selectByString" flushCache="true" resultType="com.ltns.rest_area.domain.memberInfo.memberInfoDTO">
 	
-		SELECT * FROM USERMEMBER  WHERE UM_USERNAME = #{param1}
-		
+	SELECT * FROM USERMEMBER  WHERE UM_USERNAME = #{id} or UM_NICKNAME = #{nickname} 
 	
 	</select>
-
+	
+	<select id="selectAll" flushCache="true" resultType="com.ltns.rest_area.domain.memberInfo.memberInfoDTO">
+	<![CDATA[
+	
+	SELECT UM_USERNAME, count(*) AS cnt FROM COMMENTS 
+	GROUP BY UM_USERNAME  ORDER BY cnt DESC
+	
+	]]>
+	
+	</select>
+	
+	<select id="Allselect" flushCache="true" resultType="com.ltns.rest_area.domain.memberInfo.memberInfoDTO">
+	<![CDATA[
+		SELECT UM_USERNAME, count(*) AS cnt FROM POST 
+		GROUP BY UM_USERNAME  ORDER BY cnt DESC
+	]]>
+	</select>
 
 </mapper>
