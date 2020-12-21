@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.VO;
 
 public class AuthDAOImpl implements AuthDAO {
 
@@ -74,10 +75,7 @@ public class AuthDAOImpl implements AuthDAO {
 
 
 
-    @Override
-    public int test(String s) {
-        return 0;
-    }
+
 
     @Override
     public int updateByDTO(DTO dto) {
@@ -102,11 +100,7 @@ public class AuthDAOImpl implements AuthDAO {
 		return 0;
 	}
 
-	@Override
-	public int inset_(String s, String d, String e, String dd) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public int updateAllByDTOs(List<DTO> dtos) {
@@ -114,11 +108,6 @@ public class AuthDAOImpl implements AuthDAO {
 		return 0;
 	}
 
-	@Override
-	public int update_(String a, String s, String d, String e, String dd) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int deleteByString(String str) {
@@ -155,6 +144,48 @@ public class AuthDAOImpl implements AuthDAO {
 	public List<DTO> selectFromRow(int from, int pagenationPage) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+
+	@Override
+	public int selectCntByVO(VO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public List<DTO> selectByVO(VO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public int insertByVO(VO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int updateByVO(VO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int deleteByVO(VO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+	@Override
+	public int deleteByUid(int[] uids) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 

@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.VO;
 import com.ltns.rest_area.domain.restarea.FoodMenuDTO;
 import com.ltns.rest_area.domain.restarea.GasStationDTO;
 import com.ltns.rest_area.domain.restarea.RestAreaDTO;
@@ -90,11 +91,6 @@ public class UserDAOImpl implements UserDAO {
 		return 0;
 	}
 
-	@Override
-	public int test(String s) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int deleteByInt(int i) {
@@ -120,11 +116,7 @@ public class UserDAOImpl implements UserDAO {
 		return 0;
 	}
 
-	@Override
-	public int inset_(String s, String d, String e, String dd) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public int updateAllByDTOs(List<DTO> dtos) {
@@ -132,11 +124,7 @@ public class UserDAOImpl implements UserDAO {
 		return 0;
 	}
 
-	@Override
-	public int update_(String a, String s, String d, String e, String dd) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 	@Override
 	public int deleteByString(String str) {
@@ -318,6 +306,42 @@ public class UserDAOImpl implements UserDAO {
 	public int deleteNumLike(long uid, String table, String column, int[] numCode) {
 		// TODO Auto-generated method stub
 		return session.getMapper(UserDAO.class).deleteNumLike(uid, table, column, numCode);
+	}
+
+	@Override
+	public int selectCntByVO(VO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List<DTO> selectByVO(VO vo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int insertByVO(VO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int updateByVO(VO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteByVO(VO vo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteByUid(int[] uids) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
