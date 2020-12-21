@@ -27,8 +27,8 @@
 	
 	<select id="selectAll" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
 		<![CDATA[
-		SELECT ROWNUM, post_title, POST_REPORTED  FROM 
-		(SELECT * FROM POST ORDER BY POST_REPORTED DESC)
+		SELECT ROWNUM, POST_ID, POST_TITLE , POST_REPORTED  FROM 
+		(SELECT * FROM POST ORDER BY POST_ID, POST_REPORTED  DESC)
 		WHERE ROWNUM <=5
 		]]>
 	</select>
@@ -60,15 +60,20 @@
 		]]>
 	</select>
 	
+	<!-- 월요일 기준 7일  통계 -->
 	<select id="Allselect" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
 	<![CDATA[
-		SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days ,count(*) dayscount  FROM POST
-		WHERE POST_REGDATE BETWEEN to_char(trunc(POST_REGDATE, 'iw')) and to_char(trunc(sysdate, 'iw'))
+		SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days , nvl(count(*) ,0) dayscount  FROM POST
+		WHERE POST_REGDATE BETWEEN to_char(trunc(sysdate, 'iw')-7) and to_char(trunc(sysdate, 'iw'))
 		GROUP BY TO_CHAR(POST_REGDATE ,'MM-DD')
 		order by days
 	]]>
 	
 	</select>
+
+
+
+	
 
 
 

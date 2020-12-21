@@ -27,8 +27,9 @@ CREATE TABLE schedule
 
 select * from schedule;
 
-insert into(s_sid, subject, startdate, enddate, memo)
-values(s_sid_seq.nextval, 'todo', '2020-12-9', '2020-12-9', '싄나');
+insert into(s_sid, subject, startdate, enddate)
+values(s_sid_seq.nextval, 'todo', '2020-12-9', '2020-12-9');
+
 
 
 

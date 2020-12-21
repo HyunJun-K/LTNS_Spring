@@ -20,7 +20,10 @@ $(document).ready(function(){
 function topLists(){
 	$.ajax({
 		url : "Toplist",
-		type : "POST",
+        type : "POST",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
 		success : function(data, status){
 			if(status == "success"){
 				charts(data)
@@ -51,10 +54,7 @@ function pageLoad(pageNo){
         }
     });
 	
-	
 }
-
-
 
 
 
@@ -132,6 +132,9 @@ function click_delete() {
                 url :  "DELETEPOST",
                 type : "POST",
                 data : data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 cache : false,
                 success : function(data, status){
              
@@ -226,7 +229,10 @@ function addSerch(){
 	$.ajax({
 		data : JSON.stringify(data), 
 		url : "SEACHPOSTINFO",
-		type : "DELETE",
+        type : "DELETE",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
 		dataType : "JSON",
 		contentType:'application/json;',
 		 success : function(data, status){
@@ -260,7 +266,6 @@ function seachData(JsonObj){
             result += "<td><span data-viewcnt='" + items[i].post_id + "'>" + items[i].ra_code + "</span></td>\n";
             result += "<td>" + items[i].um_USERNAME + "</td>\n"; 
             result += "<td>" + items[i].post_reported + "</td>\n"; 
-            
             result += "</tr>\n";
         }
 
@@ -323,12 +328,14 @@ function charts(JsonObj) {
 	              text: '가장많은 신고가 접수된 게시물'
 	        },
 	        scales: {
-	            yAxes: [{
-	                ticks: {
-	                    beginAtZero: true
-	                }
-	            }]
-	        }
+				yAxes: [{
+				   ticks: {
+					   beginAtZero: true,
+					   stepSize: 5,
+					   maxTicksLimit: 3
+				   }
+				}]
+			 }, 
 	    }
 	});
 }
@@ -345,6 +352,9 @@ function topArea(){
 	$.ajax({
         url : "TopArea",
         type : "POST",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
         success : function(data,status){
             if(status == "success"){
 				postcharts(data)
@@ -395,6 +405,9 @@ function listWeek(){
     $.ajax({
         url : "listWeek",
         type : "POST",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
         success : function(data,status){
             if(status == "success"){
 				lineCharts(data)
@@ -415,17 +428,16 @@ function lineCharts(JsonObj) {
     var ctxline = document.getElementById('linechart');
     var count = JsonObj.count;
     var i;
-  
-    var linecharts_ = new Chart(ctxline, {
 
+    
+
+
+    
+    var config = {
         type: 'line',
         data: {
             labels: [
-            	items[0].days,
-            	items[1].days,
-            	items[2].days,
-            	items[3].days,
-            	items[4].days,
+            
             ],
             datasets: [
                 {
@@ -437,26 +449,42 @@ function lineCharts(JsonObj) {
                     pointHighlightFill: "#fff",
                     pointHighlightStroke: "rgba(220,220,220,1)",
                     data: [
-                    	items[0].dayscount,
-                    	items[1].dayscount,
-                    	items[2].dayscount,
-                    	items[3].dayscount,
-                    	items[4].dayscount,
                     ]
                 },
             ]
+
         },
         options: {
            responsive: false,
      	   title: {
 	              display: true,
 	              text: '주간 게시물 통계'
-	        },
-        }
-    });
+            },
+            scales: {
+				yAxes: [{
+				   ticks: {
+					   beginAtZero: false,
+					   stepSize: 1,
+					   maxTicksLimit: 3
+				   }
+				}]
+			 }, 
 
-   
+        },
+    }; // end var 
 
-  
+    for(i=0; i<count; i++){
+        var dataset  = config.data.datasets ;
+        var data = dataset[0].data;
+        var label = config.data.labels;
+        
+
+        label.push(items[i].days);
+        data.push(items[i].dayscount);
+    }
+
+    
+
+    var mycharts = new Chart(ctxline,config)  
 
 }

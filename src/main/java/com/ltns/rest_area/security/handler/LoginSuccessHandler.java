@@ -3,6 +3,8 @@ package com.ltns.rest_area.security.handler;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,6 +16,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 import com.ltns.rest_area.domain.user.UserDTO;
@@ -48,8 +51,14 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		}, new BeanPropertyRowMapper<UserDTO>(UserDTO.class));
 
 		request.getSession().setAttribute("user", name);
-		request.getSession().setAttribute("userObj", list.get(0));
-		response.sendRedirect(request.getContextPath() + "/member/user/mypage");
+		request.getSession().setAttribute("userObj", list.get(0));	
+		List<String> role = new ArrayList<String>();	
+		authentication.getAuthorities().forEach(auth -> role.add(auth.getAuthority()));
+		if(role.contains("ROLE_ADMIN")) {
+			response.sendRedirect(request.getContextPath() + "/admin/dashboard");
+			return;
+		}	
+		response.sendRedirect(request.getContextPath() + "/member/user/info");
 	}
 
 }

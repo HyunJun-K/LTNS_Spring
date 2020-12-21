@@ -33,5 +33,10 @@
     <beans:bean id="userService" class="com.ltns.rest_area.service.user.UserService"/>
     <beans:bean id="authSerVice" class="com.ltns.rest_area.service.user.AuthService"/>
     <context:annotation-config></context:annotation-config>
+    
+
+
+
+	
 
 </beans:beans>

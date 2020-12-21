@@ -7,12 +7,22 @@
 
 <%
 	List<ScheduleDTO> list = (ArrayList<ScheduleDTO>) request.getAttribute("showSchedule");
+
 %>
     
 <html>
 <head>
 <meta charset='utf-8' />
 <title>일정</title>
+
+<!--  fontawesome -->
+<script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script> 
+
+<!-- google font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
 
@@ -38,7 +48,7 @@
 <script src='${pageContext.request.contextPath }/pakege/list/main.js'></script>
 
 <!-- css & js -->
-<link href='${pageContext.request.contextPath }/admin/CSS/admin.css' rel='stylesheet' />
+<link href='${pageContext.request.contextPath }/admin/CSS/schedule.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/schedule.js'></script>
    
 <script>
@@ -66,7 +76,7 @@
     	  
     	  
 %>
-    	  {
+    	      {
     		  title : '<%=dto.getSubject() %>',
         	  start :  '<%=dto.getStartDate() %>',
         	  end :   '<%=dto.getEndDate() %>'
@@ -92,70 +102,69 @@
   
 </script>
 <style>
-
+.fc-center, table,
+.fc-content{
+	font-family: 'Do Hyeon', sans-serif;
+}
 
 </style>
 </head>
-<body>
-
-
+<body class="bg-light"> 
 	<!-- dashboard nav -->
-   <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a>
-      <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-          	<span>help</span>
-          	<span calss="font-white">date</span>
-        </li>
-      </ul>
-    </nav>
+   <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
+      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
+      
+      <ul class="navbar-nav  d-flex flex-row-reverse  ">
+      
+        
+          <li class="nav-item  mr-5">
+          		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
+         		<span class="welcomes" style="font-size: 12px;"> HyunJun </span>
+         		
+          </li>
+          <li class="nav-item mr-3">
+	          <div>
+	          <img src="${pageContext.request.contextPath }/admin/img/1.PNG">
+	          </div>
+  	      </li>
+			<li class="nav-item   mr-4 text-center">
+			<a class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
+			</li>
 
- <div class="container-fluid">
-      <div class="row">
-        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-          <div class="sidebar-sticky">
-            <ul class="nav flex-column">
-              <li class="nav-item">
-                <a class="nav-link " href="${pageContext.request.contextPath}/admin/dashboard">
-                  Dashboard 
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="${pageContext.request.contextPath}/admin/schedule">
-                  	일정  
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/admin/memberInfo">
-                  <span data-feather="shopping-cart"></span>
-                  	회원정보
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="${pageContext.request.contextPath}/admin/postInfo">
-                  <span data-feather="users"></span>
-                   	게시글 정보
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="bar-chart-2"></span>
-                  Reports
-                </a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">
-                  <span data-feather="layers"></span>
-                  Integrations
-                </a>
-              </li>
-            </ul>
+			<li class="nav-item  mr-4 text-center">
+			<a class="nav-link text-dark" href="#"> <i class="fas fa-envelope"></i></a>
+			</li>
+		</ul>
+     
+	 
+    </nav> <!-- nav header 라인 -->
 
-          </div>
-        </nav>
-     </div>
-</div>
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+				<div class="sidebar-sticky">
+					<ul class="nav flex-column">
+						
+						<li class="nav-item "><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/dashboard"> <span
+								data-feather="shopping-cart"></span> <i class="fas fa-chart-line"></i>&nbsp;&nbsp; 메인
+						</a></li>
+						
+						<li class="nav-item "><a class="nav-link bg-info text-white " href="${pageContext.request.contextPath}/admin/schedule"> <span
+								data-feather="shopping-cart"></span>  <i class="far fa-calendar-check"></i>&nbsp;&nbsp; 일정
+						</a></li>
+						
+						<li class="nav-item "><a class="nav-link   text-white " href="${pageContext.request.contextPath}/admin/memberInfo"> <span
+								data-feather="shopping-cart"></span> <i class="far fa-user-circle"></i> &nbsp;&nbsp;회원정보
+						</a></li>
+						<li class="nav-item "><a class="nav-link  text-white " href="${pageContext.request.contextPath}/admin/postInfo"> <span
+								data-feather="users"></span> <i class="fas fa-edit"></i>&nbsp;&nbsp;게시글 정보
+						</a></li>
+					
+					</ul>
 
+				</div>
+			</nav>
+		</div><!-- sidebar 라인 -->
 
 
 

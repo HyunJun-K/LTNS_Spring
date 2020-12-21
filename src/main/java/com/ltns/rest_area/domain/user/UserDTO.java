@@ -17,10 +17,11 @@ public class UserDTO implements DTO {
     private String um_regdate;
     private char um_enabled;
     private String message;
+    String kind;
 	
 
 	public void setUm_regdate(Timestamp um_regdate) {
-		this.um_regdate = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(um_regdate);
+		this.um_regdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(um_regdate);
 	}
 
     

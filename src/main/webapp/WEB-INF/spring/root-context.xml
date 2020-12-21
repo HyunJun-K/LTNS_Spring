@@ -14,26 +14,45 @@
     <bean id="securityDeniedHandler" class="com.ltns.rest_area.security.handler.SecurityDeniedHandler"/>
     <bean name="loginSuccessHandler" class="com.ltns.rest_area.security.handler.LoginSuccessHandler" p:jdbc-ref="jdbc"/>
     <bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+    <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+      <property name="host" value="smtp.gmail.com" /> 
+      <property name="port" value="587" />
+      <property name="username" value="ltnsreport@gmail.com" />
+      <property name="password" value="!admin123" /> 
+      <property name="javaMailProperties"> <props>
+      <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop> 
+      <prop key="mail.smtp.starttls.enable">true</prop> 
+      <prop key="mail.smtp.auth">true</prop> </props> 
+      </property>
+    </bean>
+
+
+ 
+ 
  	<security:http>
-    	<security:csrf disabled="true"/>
-        <security:intercept-url pattern="/*" access="permitAll"/>
         <!-- 
+    	<security:csrf disabled="true"/>
+        <security:intercept-url pattern="/*" access="hasRole('ROLE_MEMBER')"/>
+     	 -->
         <security:intercept-url pattern="/auth/**" access="permitAll"/>
         <security:intercept-url pattern="/member/**" access="hasRole('ROLE_MEMBER')"/>
         <security:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')"/>
-     	 -->
         
         <security:form-login login-page="/auth/user/login" login-processing-url="/loginProcess"
                              authentication-success-handler-ref="loginSuccessHandler"
                              authentication-failure-handler-ref="loginFailureHandler"/>
-     	<!-- <security:logout logout-url="" logout-success-url="" invalidate-session="true"/> -->
+     	<security:logout logout-url="/logoutProcess" logout-success-url="/auth/user/login" invalidate-session="true" delete-cookies="JSESSIONID"/>
         <security:access-denied-handler ref="securityDeniedHandler"/>
     </security:http>
     <security:authentication-manager>
         <security:authentication-provider>
             <security:password-encoder ref="bCryptPasswordEncoder"/>
-            <security:jdbc-user-service data-source-ref="data" users-by-username-query="SELECT username, password, enabled FROM userView WHERE username = ?" authorities-by-username-query="SELECT username, authority FROM userView WHERE username = ?"/>
+            <security:jdbc-user-service data-source-ref="data" users-by-username-query="select um_username username,um_password password, um_enabled enabled from usermember where um_username = ?" authorities-by-username-query="select u.um_username username, a.authority from usermember u, auth a where a.um_uid = u.um_uid and u.um_username = ?"/>
         </security:authentication-provider>
     </security:authentication-manager>
+    
+    
+    
+    
     
 </beans>

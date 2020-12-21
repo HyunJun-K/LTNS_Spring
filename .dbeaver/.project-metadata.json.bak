@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 {"resources":{"ERD/DDL.sql":{"default-schema":"LTNS2","sql-editor-data-source-id":"oracle_thin-1763dcb2df5-a10471494312ce","default-datasource":"oracle_thin-1763dcb2df5-a10471494312ce"},"ERD/restarea/DML_restarea.sql":{"default-schema":"LTNS2","sql-editor-data-source-id":"oracle_thin-1763dcb2df5-a10471494312ce","default-datasource":"oracle_thin-1763dcb2df5-a10471494312ce"}}}
+=======
+{"resources":{"ERD/DDL.sql":{"default-schema":"LTNS2","sql-editor-data-source-id":"oracle_thin-1763dcb2df5-a10471494312ce","default-datasource":"oracle_thin-1763dcb2df5-a10471494312ce"},"ERD/Script.sql":{"default-schema":"LTNS2","sql-editor-data-source-id":"oracle_thin-17641688d2d-2f2d5118c9267b02","default-datasource":"oracle_thin-17641688d2d-2f2d5118c9267b02"},"ERD/restarea/DML_restarea.sql":{"default-schema":"LTNS2","sql-editor-data-source-id":"oracle_thin-1763dcb2df5-a10471494312ce","default-datasource":"oracle_thin-1763dcb2df5-a10471494312ce"}}}
+>>>>>>> branch 'master' of https://github.com/HyunJun-K/LTNS_Spring.git
