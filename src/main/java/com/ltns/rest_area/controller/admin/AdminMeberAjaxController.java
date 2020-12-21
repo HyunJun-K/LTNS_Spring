@@ -25,7 +25,7 @@ import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.AjaxResult;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.memberInfo.mailDTO;
-import com.ltns.rest_area.service.MemberInfoService;
+import com.ltns.rest_area.service.admin.MemberInfoService;
 
 @RestController
 @RequestMapping(value="/admin")
@@ -250,9 +250,17 @@ public class AdminMeberAjaxController {
 		MimeMessage message = mailSender.createMimeMessage();
 		AjaxResult result = new AjaxResult();
 		String status = "FAIL";
+		String titles = "";
+		if(dto.getTitle().equals("intro")) {
+			titles = "안녕하세요 LTNS 팀입니다.";
+		}else {
+			titles = "게시물의 신고가 많이 접수되어 있습니다.";
+		}
+		
+		
 		
 		try {
-			message.setSubject(dto.getTitle());// 제목
+			message.setSubject(titles);// 제목
 			message.setRecipient(RecipientType.TO , new InternetAddress(dto.getUsername())); // 수신자
 			message.setText(dto.getTextMail());
 			

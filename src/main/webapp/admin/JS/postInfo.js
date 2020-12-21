@@ -226,6 +226,7 @@ function addSerch(){
         target : tex ,
         content : text_info
     }
+    
 	$.ajax({
 		data : JSON.stringify(data), 
 		url : "SEACHPOSTINFO",

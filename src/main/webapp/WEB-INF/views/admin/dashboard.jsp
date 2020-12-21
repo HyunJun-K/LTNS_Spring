@@ -50,7 +50,7 @@
         
           <li class="nav-item  mr-5">
           		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
-         		<span class="welcomes" style="font-size: 12px;"> HyunJun </span>
+         		<span class="welcomes" style="font-size: 12px;">${id}</span>
          		
           </li>
           <li class="nav-item mr-3">
