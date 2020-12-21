@@ -6,7 +6,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ltns.rest_area.domain.DAO;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.admin.DashBoardDAO;
 
