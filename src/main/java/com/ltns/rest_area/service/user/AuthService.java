@@ -7,18 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.user.AuthDAO;
+import com.ltns.rest_area.domain.user.AuthDAOImpl;
 import com.ltns.rest_area.domain.user.AuthDTO;
 import com.ltns.rest_area.domain.user.UserAuthDTO;
 import com.ltns.rest_area.domain.user.UserDTO;
 
 public class AuthService {
 
-	AuthDAO authDAO;
+	AuthDAOImpl authDAO;
 
 	UserService service;
 
 	@Autowired
-	public void setAuthDAO(AuthDAO authDAO) {
+	public void setAuthDAO(AuthDAOImpl authDAO) {
 		this.authDAO = authDAO;
 	}
 

@@ -23,7 +23,7 @@ public class UserAuthDTO implements DTO{
 	String message;
 	
 	public void setRegdate(Timestamp regdate) {
-		this.regdate = new SimpleDateFormat("yyyy-mm-dd HH:mm:ss").format(regdate);
+		this.regdate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(regdate);
 	}
 	
 }

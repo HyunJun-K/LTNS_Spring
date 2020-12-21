@@ -49,7 +49,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 
 		request.getSession().setAttribute("user", name);
 		request.getSession().setAttribute("userObj", list.get(0));
-		response.sendRedirect(request.getContextPath() + "/member/user/mypage");
+		response.sendRedirect(request.getContextPath() + "/member/user/info");
 	}
 
 }
