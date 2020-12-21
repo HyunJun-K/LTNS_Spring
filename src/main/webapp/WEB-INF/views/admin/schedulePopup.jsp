@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
 <!DOCTYPE html>
 <html>
+
 <head>
 <meta charset="UTF-8">
 <title>일정 추가</title>
@@ -58,6 +61,7 @@ font-family: 'Do Hyeon', sans-serif;
 			 	<h3 > 종료일 </h3>
 			 	<input class="form-control" id="endDate" type="text" name ="endDate" id="endDate">
 			 </div>
+			 <input type="hidden" name="csrfToken" value="${_csrf.token}" />
 		</form>
 		
 		<button class="btn mt-2 btn-outline-success text-center" type="button" onclick="click_ok();"> 확인 </button>

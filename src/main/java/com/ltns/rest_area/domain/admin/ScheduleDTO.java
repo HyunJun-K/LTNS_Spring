@@ -17,4 +17,5 @@ public class ScheduleDTO implements DTO {
 	private String endDate;
 
 
+
 }

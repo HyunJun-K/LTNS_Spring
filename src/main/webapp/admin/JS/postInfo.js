@@ -20,7 +20,10 @@ $(document).ready(function(){
 function topLists(){
 	$.ajax({
 		url : "Toplist",
-		type : "POST",
+        type : "POST",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
 		success : function(data, status){
 			if(status == "success"){
 				charts(data)
@@ -52,8 +55,6 @@ function pageLoad(pageNo){
     });
 	
 }
-
-
 
 
 
@@ -131,6 +132,9 @@ function click_delete() {
                 url :  "DELETEPOST",
                 type : "POST",
                 data : data,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
                 cache : false,
                 success : function(data, status){
              
@@ -225,7 +229,10 @@ function addSerch(){
 	$.ajax({
 		data : JSON.stringify(data), 
 		url : "SEACHPOSTINFO",
-		type : "DELETE",
+        type : "DELETE",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
 		dataType : "JSON",
 		contentType:'application/json;',
 		 success : function(data, status){
@@ -345,6 +352,9 @@ function topArea(){
 	$.ajax({
         url : "TopArea",
         type : "POST",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
         success : function(data,status){
             if(status == "success"){
 				postcharts(data)
@@ -395,6 +405,9 @@ function listWeek(){
     $.ajax({
         url : "listWeek",
         type : "POST",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
         success : function(data,status){
             if(status == "success"){
 				lineCharts(data)

@@ -44,6 +44,7 @@ font-family: 'Do Hyeon', sans-serif;
 			 <div class="mt-2">
 				<input class="form-control" id="subject" type="text" name="subject" placeholder="제목 입력해주세요">
 			 </div>
+				 <input type="hidden" name="csrfToken" value="${_csrf.token}" />
 		</form>
 		<button class="btn mt-2 btn-outline-success text-center" type="button" onclick="delete_ok();"> 확인 </button>
 	</div> 

@@ -3,7 +3,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+<!--  csrf token 읽기 -->
+<meta charset="UTF-8" name="csrf-token" content="${_csrf.token}">
+
 <title>관리자 페이지</title>
 </head>
 
@@ -38,7 +40,6 @@
 <script src='${pageContext.request.contextPath }/admin/JS/dashBoard.js'></script>
 
 <body class="bg-light">
-
 
 	<!-- dashboard nav -->
    <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
@@ -135,6 +136,8 @@
 						<button type="submit" class="btn btn-primary">Submit</button>
 						<button class="btn btn-primary"  onclick="close_modal();" >close</button>
 					</div>
+					
+	
 				</form>
 
 

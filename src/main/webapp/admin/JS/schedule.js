@@ -86,7 +86,6 @@ function click_ok(){
 		
 	}
 
-	
 
 	var startDate = $('#startDate').val();
 	var endDate = $('#endDate').val();
@@ -96,12 +95,17 @@ function click_ok(){
 		return false;
 	}
 	var scheduleData = JSON.stringify($('form#scheduleData').serializeObject());
+	var token =  $('input[name="csrfToken"]').attr('value'); 
+
 
 	$.ajax({
 		data : scheduleData,
 		url : "schedule",
 		type : "POST",
 		dataType : "JSON",
+		headers: {
+			'X-CSRF-Token': token 
+	    },
 		contentType:'application/json;',
 		success : function(data,status) {
 			if(data.status == "OK"){
@@ -114,7 +118,7 @@ function click_ok(){
 			}
 		}
 	});
-	
+
 	
 };
 
@@ -128,13 +132,17 @@ function delete_ok(){
 		
 	}
 
-	
+	var token =  $('input[name="csrfToken"]').attr('value'); 
 	var scheduleData = JSON.stringify($('form#deleteForm').serializeObject());
 	$.ajax({
 		data : scheduleData,
 		url : "schedule",
 		type : "DELETE",
 		dataType : "JSON",
+		// security token은 헤더에 실어서 보내야한다.
+		headers: {
+			'X-CSRF-Token': token 
+	    },
 		contentType:'application/json; charset=utf-8',
 		success : function(data,status) {
 			if(data.status =="OK"){
@@ -160,7 +168,7 @@ function update_ok(){
 
 	var add_subject = $('#add_subject').val();
 	var subject = $('#subject').val();
-
+	var token =  $('input[name="csrfToken"]').attr('value'); 
 	if(add_subject == null || add_subject == ""){
 		alert("기존 일정의 제목이 비었습니다.");
 		$('#add_subject').focus();
@@ -196,6 +204,9 @@ function update_ok(){
 		type : "PUT",
 		dataType : "JSON",
 		contentType:'application/json;',
+		headers: {
+			'X-CSRF-Token': token 
+	    },
 		success : function(data,status) {
 				if(data.status == "OK"){
 					alert("일정이 수정되었습니다.")
@@ -213,17 +224,6 @@ function update_ok(){
 
 
 
-$(document).ready(function(){
-	changeColor()
-	
-})
-
-function changeColor(){
-	$(".fc-content").click(function(){
-        alert("test");
-    })
-}
-  
   
  
  

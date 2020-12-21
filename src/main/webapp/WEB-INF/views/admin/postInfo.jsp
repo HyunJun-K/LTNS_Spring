@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!--  csrf token 읽기 -->
+<meta name="csrf-token" content="${_csrf.token}">
 <title> 게시글 정보</title>
 </head>
 

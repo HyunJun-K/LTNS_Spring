@@ -7,6 +7,7 @@
 
 <%
 	List<ScheduleDTO> list = (ArrayList<ScheduleDTO>) request.getAttribute("showSchedule");
+
 %>
     
 <html>
@@ -108,7 +109,7 @@
 
 </style>
 </head>
-<body class="bg-light">
+<body class="bg-light"> 
 	<!-- dashboard nav -->
    <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
       <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->

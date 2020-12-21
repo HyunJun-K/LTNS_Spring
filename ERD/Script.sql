@@ -9,6 +9,7 @@ SELECT
 UM_UID , UM_USERNAME, UM_NICKNAME, UM_REGDATE, UM_ENABLED
 FROM usermember;
 
+SELECT * FROM USERMEMBER u ;
 
 
 UPDATE SCHEDULE SET 
@@ -338,7 +339,7 @@ SELECT * FROM USERMEMBER;
 SELECT * FROM post
 
 INSERT INTO USERMEMBER (UM_UID , UM_USERNAME, UM_PASSWORD, UM_NICKNAME, UM_REGDATE, UM_ENABLED)
-VALUES (12,'nbnloper@gmail.com','sz','난난누', sysdate, 1);
+VALUES (13,'admin','admin','admins', sysdate, 1);
 
 	
 SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days ,count(*) dayscount  FROM POST
@@ -389,5 +390,31 @@ TRUNC(SYSDATE, 'iW') AS  FROM  dual
 		GROUP BY TO_CHAR(UM_REGDATE ,'MM-DD') 
 		ORDER BY TO_CHAR(UM_REGDATE ,'MM-DD')	
 		
+		
+		INSERT INTO auth(um_uid) VALUES(2);
+INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'hyunjuns', '123',  '에핑');
+
+		
+		SELECT * FROM USERMEMBER u 
+		
+		INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'acount', '789',  '운영자');
+		SELECT SEQ_usermember_um_uid.NEXTVAL FROM USERMEMBER ;
 	
+	
+	
+INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'park', '$2a$10$5Yy/c52u4Ped7j11mMxKEeuHAIRHjiZyg5NyltWqpW5MGIh6zk/Ky', '박성언');
+
+SELECT * FROM USERVIEW u; 
+
+INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'ssd', '$2a$10$.ty2lbI.rSz7bjpmWXRop.S5SZZPGzNQuKmPFDgHscDhjijAPlhai',  '운영자3');
+
+
+SELECT * FROM USERMEMBER u ;
+
+
+INSERT INTO auth VALUES('ROLE_ADMIN', 30);
+
+SELECT to_char(UM_REGDATE,'yy-mm-dd') as user_regdate, UM_UID, um_USERNAME ,UM_NICKNAME  FROM USERMEMBER  WHERE UM_USERNAME = 'nbnloper@gmail.com' or UM_NICKNAME = 'null';
+
+
 	

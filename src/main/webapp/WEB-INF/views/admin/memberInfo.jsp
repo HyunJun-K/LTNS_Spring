@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!--  csrf token 읽기 -->
+<meta name="csrf-token" content="${_csrf.token}">
 <title> 회원 정보</title>
 </head>
 
@@ -137,6 +139,9 @@
 						<button onclick="mailSend();" type="button" class="btn btn-outline-success">Submit</button>
 						<button class="btn btn-outline-danger"  onclick="close_modal();" >close</button>
 					</div>
+					
+					 <input type="hidden" name="csrfToken" value="${_csrf.token}" />
+	
 				</form>
 
 
@@ -181,7 +186,8 @@
 					<input id="text_info"  type="text" name="text_Info">
 					<button type="button" class="btn_infos" onclick="addSerch();"> 검색 </button>
 				 	<button type="button" class="btn_infos" onclick="click_delete();"> 삭제 </button>
-				 
+				 	<input type="hidden" name="csrfToken" value="${_csrf.token}" />
+	
 				  </form>
 				</div>
 		

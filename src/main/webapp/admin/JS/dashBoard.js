@@ -5,7 +5,8 @@ $(document).ready(function() {
     today_post();
     Best();
     monthPostChart();
-    
+   
+
     
    
     
@@ -29,6 +30,9 @@ function total_Acount(){
         url : "total_Acount",
         type : "POST",
         cashe : false,
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
         success : function(data,status){
             if(data.status == "OK"){
                 totaldata(data)
@@ -52,6 +56,9 @@ function today_acount(){
         url : "today_acount",
         type : "POST",
         cashe : false,
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
         success : function(data,status){
             if(data.status == "OK"){
                 today_acounts(data)
@@ -75,6 +82,9 @@ function today_post(){
     $.ajax({
         url : "today_post",
         type : "POST",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
         cashe : false,
         success : function(data, status){
             if(data.status == "OK"){
@@ -93,6 +103,9 @@ function today_post(){
             url : "total_post",
             type : "POST",
             cashe : false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success : function(data,status){
                 if(data.status=="OK"){
                     $("#total_post").text("총 게시글 수 " + data.count);
@@ -106,6 +119,9 @@ function today_post(){
             url : "today_report",
             type : "POST",
             cashe : false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success : function(data,status){
                 if(data.status=="OK"){
 
@@ -138,6 +154,9 @@ function today_post(){
             url : "today_coment",
             type : "POST",
             cashe : false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success : function(data,status){
                 if(data.status=="OK"){
                     $("#today_coment").html("<span class='text-warning'>" + data.count +"  </span>");
@@ -164,6 +183,9 @@ function Best(){
             url : "bestArea",
             type : "POST",
             cashe : false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success : function(data, status){
                 if(data.status=="OK"){
                     var items = data.list;
@@ -182,6 +204,9 @@ function Best(){
             url : "bestFood",
             type : "POST",
             cashe : false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success : function(data, status){
                 if(data.status=="OK"){
                     var items = data.list;
@@ -202,6 +227,9 @@ function Best(){
             url : "bestGas",
             type : "POST",
             cashe : false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success : function(data, status){
                 if(data.status=="OK"){
                     var items = data.list;
@@ -223,6 +251,9 @@ function Best(){
             url : "totalLike",
             type : "POST",
             cashe : false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success : function(data, status){
                 if(data.status=="OK"){
                     var items = data.list;
@@ -250,6 +281,9 @@ function monthPostChart() {
         url : "monthPostChart",
         type : "POST",
         cashe : false,
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
         success : function(data, status){
             if(data.status="OK"){
                 if(data.list != null)  {
@@ -337,6 +371,9 @@ function monthPostChart() {
         $.ajax({
             url : "memberListChart",
             type : "POST",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             cashe : false,
             success : function(data, status){
                 if(data.status=="OK"){

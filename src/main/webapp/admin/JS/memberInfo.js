@@ -15,7 +15,6 @@ $(document).ready(function(){
 
 	$(".loadings").hide();
 
-
 	
 	
 })
@@ -152,7 +151,7 @@ function addSerch(){
 	
 	var taget = $("#sele_option").val();
 	var text_info = $("#text_info").val();
-	
+	var token =  $('input[name="csrfToken"]').attr('value'); 
 	
 	if(text_info == null || text_info ==""){
 		alert("검색 내용이 비었습니다.");
@@ -168,6 +167,10 @@ function addSerch(){
 		url : "SEACH",
 		type : "DELETE",
 		dataType : "JSON",
+		headers: {
+			'X-CSRF-Token': token 
+			
+	    },
 		contentType:'application/json;',
 		 success : function(data, status){
 	            if(status == "success"){
@@ -194,11 +197,12 @@ function seachData(JsonObj){
 	    var items  = JsonObj.list;
 	    for(i=0; i<count; i++){
 			result += "<tr>\n";
-			result += "<td><input type='checkbox' name='uid' value='" + items[i].um_UID + "'></td>\n";
+			result += "<td><input type='checkbox' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
 			result += "<td>" + items[i].um_UID + "</td>\n";
-			result += "<td><span class='subject'  data-uid='" + items[i].um_UID  + "'>" + items[i].um_USERNAME+ "</span></td>\n";
+			result += "<td> <a id='showModal' href='#ex1' rel='modal:open' ><span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span> </a>\n";
+			//result += "<td><span id='names' class='subject' data-uid='" + items[i].um_UID + "'>" + items[i].um_USERNAME + "</span></td>\n";
 			result += "<td>" + items[i].um_NICKNAME + "</td>\n";
-			result += "<td><span data-viewcnt='" + items[i].um_UID + "'>" + items[i].UM_REGDATE + "</span></td>\n";
+			result += "<td><span data-viewcnt='" + items[i].um_UID + "'>" + items[i].user_regdate + "</span></td>\n";
 			result += "</tr>\n";
 	    }
 
@@ -226,6 +230,9 @@ function TopComent(){
 		url : "TopComent",
 		type : "POST",
 		cache : false,
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
 		success : function(data,status){
 			if(data.status =="OK")
 			{
@@ -316,6 +323,9 @@ function TopPostUser(){
 	$.ajax({
 		url : "TopPostUser",
 		type : "GET",
+		headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
 		success : function(data,status){
 			if(data.status == "OK"){
 				donutChart(data)
@@ -451,7 +461,7 @@ function mailSend(){
 
 	var email = $("#userEmail").val();
 	var emailText = $("#emailText").val();
-
+	var token =  $('input[name="csrfToken"]').attr('value'); 
 	if(email == "" || email == null){
 		alert("이메일 주소가 잘못되었습니다.")
 		$("#userEmail").focus();
@@ -476,6 +486,9 @@ function mailSend(){
 			type : "POST",
 			data : queryString,
 			dataType : "JSON",
+			headers: {
+				'X-CSRF-Token': token 
+			},
 			contentType:'application/json;',
 			success : function(data,status){
 			

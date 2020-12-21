@@ -30,7 +30,6 @@ public class AdminScheduleAjaxController {
 		StringBuffer message = new StringBuffer();
 		cnt = service.addSchedule(dto);
 		AjaxResult result = new AjaxResult();
-		
 		if(cnt != 0) {
 			status = "OK";
 			message.append("성공");
