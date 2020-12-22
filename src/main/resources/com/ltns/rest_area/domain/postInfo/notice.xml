@@ -25,5 +25,20 @@
 		 FROM ADMINNOTICE WHERE notice_id = #{id}
 	
 	</select>
+	
+	 
+	<insert id="insertByDTO_Notice"  flushCache="true" >
+	
+			INSERT INTO ADMINNotice (notice_id, notice_subject, notice_regdate, NOTICE_WRITER ,notice_content)
+			values(notice_id_seq.nextval, #{title}, sysdate, #{id}, #{dataSet})
+	</insert>
 
+
+	<select id="FileAllselect" flushCache="true">
+	</select>
+
+
+	<update id="updateByDTOS" flushCache="true">
+	UPDATE ADMINNOTICE SET notice_subject = #{title} WHERE notice_id = #{n_id}
+	</update>
 </mapper>

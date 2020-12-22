@@ -440,3 +440,21 @@ FROM ADMINNOTICE WHERE notice_id = 17
 				(SELECT * FROM ADMINNotice ORDER BY notice_id DESC) T)
 		WHERE
 			RNUM >= 1 AND RNUM < (1 + 10)
+
+			
+		
+					INSERT INTO ADMINNotice (notice_id, notice_subject, notice_regdate, NOTICE_WRITER ,notice_content)
+			values(notice_id_seq.nextval, 'ss', sysdate, 'ssd', 'ss')
+	
+			
+			
+INSERT INTO ADMINNotice (notice_id, notice_subject, notice_regdate, NOTICE_WRITER ,notice_content)
+values(notice_id_seq.nextval, #{title}, sysdate, #{id}, #{content})
+
+SELECT * FROM ADMINNOTICE a ;
+
+ALTER TABLE ADMINNOTICE MODIFY notice_subject varchar2(100);
+
+UPDATE ADMINNOTICE SET notice_subject ='ㅎㅎ'  WHERE  notice_id= 1;
+
+SELECT * FROM ADMINNOTICE a  WHERE NOTICE_ID =12

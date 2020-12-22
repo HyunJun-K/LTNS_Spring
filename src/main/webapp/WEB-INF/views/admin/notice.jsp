@@ -15,10 +15,6 @@
 
 
 
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
 
 <!-- google font -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -35,6 +31,10 @@
 
 <link href='${pageContext.request.contextPath }/admin/CSS/notice.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/notice.js'></script>
+
+
+
+
 <body class="bg-light">
 
 
@@ -97,19 +97,20 @@
 		</div><!-- sidebar 라인 -->
 	
 		 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
+	
+	<!-- 게시글 리스트 부분 -->
+		 <div id="list" >
+			<div class="text-right mb-2">
+					<button type="button" class="mr-2 btn btn-outline-danger "> 공지 </button>
+					<button type="button" onclick='writeNotice();' class="btn btn-outline-success">글작성</button>
+			</div>
 			
-			<div id="list" >
-				<div class="d01 text-right font-lg">
-					<div id="pageinfo"></div>
-					<div id="pageRows"></div>
-				</div>
 				<div class="clear"></div>
-
 				<form id="frmList" name="frmList">
 					<table class="table table-hover text-center">
-						<thead class="thead-success">
+						<thead class="thead-dark">
 							<th>번호</th>
-							<th>제목</th>
+							<th colspan="3">제목</th>
 							<th>작성일</th>
 							<th>작성자</th>
 						</thead>
@@ -118,10 +119,15 @@
 						</tbody>
 					</table>
 				</form> 
-				<div class="d-flex justify-content-end">
+				<div class="d-flex justify-content-center">
 					<ul class="pagination " id="pagination">
 					</ul>
 				</div>
+				
+				
+				
+				
+				
 			</div> <!-- end list table -->
 			
 				
@@ -129,39 +135,16 @@
 			
 			
 			
-			<div class="viewList">
-				<h1 class="viewTitle"> 공지사항입니다</h1>
-				<hr>	
-				<div>	
-				<span class="viewNo">18</span>  <span class="text-right float-right" id="viewDate"></span> 
-				<span id="viewId" class="float-right ml-4 mr-2"></span> 
-				</div>
-				<hr>
-				<div class="viewContent">
-				</div>
-				<hr>
-				
-				<div class="text-right">
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/notice'"> 취소 </button>
-				<button > 수정 </button>
-				</div>
-			</div> <!-- viewList -->
+			<!-- view -->
+			<jsp:include page="${request.getRequestURI}/admin/notice/view" flush="true"/>
 			
-<!-- 
-			<form>
-				<div class="input-group mb-3">
-					<input type="text" class="form-control"
-						placeholder="관리자 공지사항 제목 입니다.">
-					<div class="input-group-append"></div>
-				</div>
+	
+			<!-- 글작성-->
+			<jsp:include page="${request.getRequestURI}/admin/notice/writer" flush="true" />
 
-				<div class="form-group">
-					<label for="exampleFormControlTextarea1"> 내용</label>
-					<textarea class="form-control" id="textarea" name="content"
-						rows="10"></textarea>
-				</div>
-			</form>
- -->
+	 		<jsp:include page="${request.getRequestURI}/admin/notice/update" flush="true" />
+			
+		
 		</main> <!-- article -->
 	</div> <!-- end con -->
 </body>
