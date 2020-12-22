@@ -275,12 +275,6 @@ public class RefreshTableDAO extends AbstractDAO {
 	}
 
 	@Override
-	public int test(String s) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
 	public int updateByDTO(DTO dto) {
 		// TODO Auto-generated method stub
 		return 0;
@@ -416,12 +410,6 @@ public class RefreshTableDAO extends AbstractDAO {
 	}
 
 
-	@Override
-	public int inset_(String s, String d, String e, String dd) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 	@Override
 	public int updateAllByDTOs(List<DTO> dtos) {
@@ -429,12 +417,6 @@ public class RefreshTableDAO extends AbstractDAO {
 		return 0;
 	}
 
-
-	@Override
-	public int update_(String a, String s, String d, String e, String dd) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 
 	@Override
