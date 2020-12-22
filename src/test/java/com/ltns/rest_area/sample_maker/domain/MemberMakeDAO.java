@@ -1,11 +1,14 @@
 package com.ltns.rest_area.sample_maker.domain;
 
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ltns.rest_area.domain.DAO;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.VO;
+import com.ltns.rest_area.domain.user.UserDTO;
 
 public class MemberMakeDAO extends AbstractDAO {
 
@@ -32,10 +35,9 @@ public class MemberMakeDAO extends AbstractDAO {
 	//makeMember(int num) : num 만큼 멤버 무작위 생성
 	public void makeMember(int num) throws SQLException {
 		
-		
 		for(int i=0;i<num;i++) {
 			pstmt=conn.prepareStatement(INSERT_USERMEMBER_RAMDOM);
-			pstmt.setInt(0, x);
+//			pstmt.setInt(0, x);
 			pstmt=conn.prepareStatement(INSERT_USER_AUTHORITY);
 		}
 	}	
@@ -55,159 +57,21 @@ public class MemberMakeDAO extends AbstractDAO {
 	}
 	
 	public List<DTO> selectAllUser(){
+		List<DTO> result=new ArrayList<DTO>();
+		try {
+		pstmt=conn.prepareStatement(SELECT_ALL_USER);
+		ResultSet rs = pstmt.executeQuery();
+		while(rs.next()) {
+			String um_username=rs.getString("um_username");
+			result.add(new UserDTO().builder().um_username(um_username).build());
+		}
+		} catch (SQLException e) {
+			System.out.println("MemberMakerDAO selectAllUser SQL 에러!");
+			e.printStackTrace();
+		}
 		
-	}
-	
-	@Override
-	public int selectCnt() {
-		// TODO Auto-generated method stub
-		return 0;
+		return  result;
 	}
 
-	@Override
-	public int selectCntByInt(int i) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int selectCntByString(String str) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int selectCntByVO(VO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int selectCntByObject(Object obj) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<DTO> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DTO> selectByInt(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DTO> selectByString(String str) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DTO> selectByDTO(DTO dto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DTO> selectByVO(VO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DTO> selectByObject(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int insertByDTO(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insertByVO(VO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insertByObject(Object obj) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insertAllByDTOs(List<DTO> dtos) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateByDTO(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateByVO(VO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateByObject(Object obj) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateAllByDTOs(List<DTO> dtos) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	@Override
-	public int deleteByInt(int i) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteByString(String str) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteByVO(VO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteByObject(Object obj) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteByUid(int[] uids) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public List<DTO> selectFromRow(int from, int pagenationPage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }
