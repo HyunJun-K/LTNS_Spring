@@ -84,5 +84,5 @@ public class AdminController_ {
 	public void repostPopup()	{}
 	
 	
-	
+	//어드민 컨틀롤러
 }
