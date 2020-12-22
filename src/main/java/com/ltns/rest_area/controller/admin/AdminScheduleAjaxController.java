@@ -1,3 +1,4 @@
+
 package com.ltns.rest_area.controller.admin;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ltns.rest_area.domain.AjaxResult;
 import com.ltns.rest_area.domain.admin.ScheduleDTO;
-import com.ltns.rest_area.service.ScheduleService;
+import com.ltns.rest_area.service.admin.ScheduleService;
 
 @RestController
 @RequestMapping(value="/admin")

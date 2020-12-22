@@ -1,69 +1,31 @@
 @charset "UTF-8";
 
 
-  body {
+ body {
+	font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+    font-size: 16px;
+ }
 
-    font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-    font-size: 14px;
-  }
-  
-  body img {
+body img {
 	width:50px;
 	height: 40px;
 }
 
-  #calendar {
-    max-width: 950px;
-    margin: auto;
-  }
-  
-  .add-button {
-  	position : absolute;
-  	top: 0.5px;
-  	padding :5px;
-  	right : 90px;
-  	background : #2C3E50;
-  	border : 0;
-  	color : white;
-  height : 33.5px;
-  	border-radius: 3px;
-  	width : 55px;
-  	
-  } 
-  
-  .delete-button{
-  	position : absolute;
-  	top: 0.5px;
-  	right : 183px;
-  	background : #2C3E50;
-  	border : 0;
-  	color : white;
-  height : 33.5px;
-  	border-radius: 3px;
-  	width : 55px;
-  } 
-  
-  .update-button{
-  	position : absolute;
-  		top: 0.5px;
-  	right : 140px;
-  	background : #2C3E50;
-  	border : 0;
-  	color : white;
-  height : 33.5px;
-  	border-radius: 3px;
-  	width : 55px;
-  
-  	
-  } 
 
+
+
+<!-- nav !-->
+
+.navbar-nav .welcomes{	
+	font-size: 5px;
+	
+}
 
 
 
 <!-- dashboard !-->
-
-
 .feather {
+  
   width: 16px;
   height: 16px;
   vertical-align: text-bottom;
@@ -159,9 +121,44 @@
 }
 
 
-
-#calendar {
-	margin-left : 25%;
+#reports_span:hover{
+	cursor: pointer;
+	color:tomato;
+	text-decoration: underline;
 }
 
+
+#rowsdata{
+		font-family: 'Do Hyeon', sans-serif;
+	
+}
+
+
+
+/* 페이징 */
+
+ul.pagination {
+	text-align: center;
+}
+ul.pagination li{
+    display: inline-block;
+}
+
+ul.pagination a {
+    color: black;
+    float: left;
+    padding: 4px 8px;
+    text-decoration: none;
+    transition: background-color .3s;
+    margin: 0px;
+    border-radius: 4px;
+}
+
+ul.pagination a.active {
+    background-color: #2E2E2E;
+    color: white;
+    border: 1px solid #2E2E2E;
+}
+
+ul.pagination a:hover:not(.active) {background-color: #ddd;}
 

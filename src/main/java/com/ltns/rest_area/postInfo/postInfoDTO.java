@@ -26,4 +26,17 @@ public class postInfoDTO implements DTO {
 	private int ACCOUNT;
 	
 	
+	///notice 
+	private String notice_id;
+	private String notice_subject;
+	private String notice_regdate;
+	private String notice_writer;
+	private String notice_content;
+	
+	private int pageno;
+	private int pagenationPage;
+	
+	
+	
+	
 }

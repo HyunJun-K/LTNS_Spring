@@ -2,6 +2,8 @@ package com.ltns.rest_area.controller.admin;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +18,7 @@ import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.AjaxResult;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.admin.ScheduleDTO;
-import com.ltns.rest_area.service.ScheduleService;
+import com.ltns.rest_area.service.admin.ScheduleService;
 
 @RequestMapping(value="/admin")
 @Controller
@@ -29,19 +31,46 @@ public class AdminController_ {
 	
 
 	@RequestMapping("/dashboard")
-	public void dashboard() {}
-	
-	
-	
-	@RequestMapping("/schedule")
-	public void schedule(Model m) throws Exception
-	{
-		m.addAttribute("showSchedule", service.showSchedule());
-		
+	public void dashboard(Model m, HttpServletRequest request) {
+		String id =  (String)request.getSession().getAttribute("user");
+		m.addAttribute("id", id);
 	}
 	
 	
 	
+	@RequestMapping("/schedule")
+	public void schedule(Model m, HttpServletRequest request) throws Exception
+	{
+		m.addAttribute("showSchedule", service.showSchedule());
+		String id =  (String)request.getSession().getAttribute("user");
+		m.addAttribute("id", id);
+	}
+	
+	
+
+	
+	@RequestMapping("/memberInfo")
+	public void memberInfo(Model m, HttpServletRequest request)	{
+		String id =  (String)request.getSession().getAttribute("user");
+		m.addAttribute("id", id);
+	}
+	
+	@RequestMapping("/postInfo")
+	public void postInfo(Model m, HttpServletRequest request)	{
+		String id =  (String)request.getSession().getAttribute("user");
+		m.addAttribute("id", id);
+	}
+	
+	
+	
+	@RequestMapping("/notice")
+	public void notice(Model m, HttpServletRequest request)	{
+		String id =  (String)request.getSession().getAttribute("user");
+		m.addAttribute("id", id);
+	}
+	
+	
+	//팝업 
 	@RequestMapping("/schedulePopup")
 	public void Popup()	{}
 	
@@ -51,17 +80,8 @@ public class AdminController_ {
 	@RequestMapping("/updatePopup")
 	public void updatePopup()	{}
 	
-	@RequestMapping("/memberInfo")
-	public void memberInfo()	{}
-	
-	@RequestMapping("/postInfo")
-	public void postInfo()	{}
-	
 	@RequestMapping("/repostPopup")
 	public void repostPopup()	{}
-	
-	@RequestMapping("/notice")
-	public void notice()	{}
 	
 	
 	

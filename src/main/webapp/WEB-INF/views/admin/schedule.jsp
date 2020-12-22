@@ -119,7 +119,7 @@
         
           <li class="nav-item  mr-5">
           		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
-         		<span class="welcomes" style="font-size: 12px;"> HyunJun </span>
+         		<span class="welcomes" style="font-size: 12px;"> ${id } </span>
          		
           </li>
           <li class="nav-item mr-3">
@@ -160,6 +160,9 @@
 								data-feather="users"></span> <i class="fas fa-edit"></i>&nbsp;&nbsp;게시글 정보
 						</a></li>
 					
+						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
+								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 공지사항
+						</a></li>
 					</ul>
 
 				</div>
@@ -172,7 +175,6 @@
 
 
 	<!-- 캘린더  -->
-
   <div class="mt-4" id='calendar' style="position : relative;"> 
 	  <div>
 	  	<button class="add-button" type="button" onclick="click_add();">  추가 </button>
@@ -180,6 +182,9 @@
 	 	<button class="update-button" type="button" onclick="click_update();"> 수정</button>
 	  </div>
   </div>
-
+  
+  
+  
+</div>
 </body>
 </html>

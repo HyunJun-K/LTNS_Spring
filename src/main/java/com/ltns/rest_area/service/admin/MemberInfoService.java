@@ -1,4 +1,4 @@
-package com.ltns.rest_area.service;
+package com.ltns.rest_area.service.admin;
 
 
 import java.util.List;

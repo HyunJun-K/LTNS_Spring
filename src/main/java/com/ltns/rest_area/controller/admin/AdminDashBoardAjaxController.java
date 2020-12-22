@@ -12,7 +12,7 @@ import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.AjaxResult;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.admin.ResultData;
-import com.ltns.rest_area.service.DashBoardService;
+import com.ltns.rest_area.service.admin.DashBoardService;
 
 @RestController
 @RequestMapping(value="/admin")

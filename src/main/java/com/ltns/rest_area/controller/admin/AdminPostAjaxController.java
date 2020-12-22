@@ -1,3 +1,4 @@
+
 package com.ltns.rest_area.controller.admin;
 
 import java.util.List;
@@ -16,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.DTO;
-import com.ltns.rest_area.service.MemberInfoService;
-import com.ltns.rest_area.service.PostInfoService;
+import com.ltns.rest_area.service.admin.MemberInfoService;
+import com.ltns.rest_area.service.admin.PostInfoService;
 
 @RestController
 @RequestMapping(value="/admin")
@@ -319,7 +320,6 @@ public class AdminPostAjaxController {
 			return result;
 			
 		} // end page
-	
 	
 	
 	

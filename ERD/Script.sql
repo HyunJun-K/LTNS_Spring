@@ -416,5 +416,27 @@ INSERT INTO auth VALUES('ROLE_ADMIN', 30);
 
 SELECT to_char(UM_REGDATE,'yy-mm-dd') as user_regdate, UM_UID, um_USERNAME ,UM_NICKNAME  FROM USERMEMBER  WHERE UM_USERNAME = 'nbnloper@gmail.com' or UM_NICKNAME = 'null';
 
+SELECT notice_id, notice_subject, to_char(notice_regdate ,'yyyy-mm-dd') notice_regdate, notice_writer, notice_content FROM ADMINNotice;
 
-	
+
+INSERT INTO ADMINNotice 
+(notice_id, notice_subject, notice_regdate, notice_writer,notice_content) 
+values(notice_id_seq.nextval, '공지사항', sysdate, '김현준', '요즘 신고건수가 많습니다')
+
+
+
+SELECT notice_id, notice_subject, to_char(notice_regdate ,'mm-dd') notice_regdate, notice_writer, notice_content
+FROM ADMINNOTICE WHERE notice_id = 17
+
+ ALTER TABLE ADMINNotice RENAME COLUMN notice_title TO notice_writer;
+
+		SELECT * FROM ADMINNOTICE WHERE notice_id = 18
+
+
+	SELECT 
+			*
+		FROM 
+			(SELECT ROWNUM AS RNUM, T.* FROM
+				(SELECT * FROM ADMINNotice ORDER BY notice_id DESC) T)
+		WHERE
+			RNUM >= 1 AND RNUM < (1 + 10)
