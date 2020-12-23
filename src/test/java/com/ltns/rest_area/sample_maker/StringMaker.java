@@ -87,7 +87,7 @@ public class StringMaker {
 			String um_password=randomSwitch((int)(Math.random()*8));
 			
 			//dto를 생성한다.
-			DTO dto = new UserDTO().builder().um_username(um_username).um_password(um_password)
+			DTO dto = new UserDTO().builder().um_username(um_username).um_password(um_password).build();
 			
 		}
 		
