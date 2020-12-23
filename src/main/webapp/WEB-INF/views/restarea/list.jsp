@@ -278,6 +278,7 @@
 	<br>
 	<jsp:include page="../footer/footer.jsp" />
 	<jsp:include page="../others/fixedbtn.jsp"/>
+	<jsp:include page="../board/restareaview.jsp"/>
 </body>
 <script type="text/javascript" src='${pageContext.request.contextPath }/resources/js/restarea/list_ready.js'></script>
 

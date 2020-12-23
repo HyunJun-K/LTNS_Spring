@@ -22,4 +22,6 @@ public class PostDTO implements DTO {
 	private Timestamp post_regdate;
 	private String ra_code;
 	private String post_reported;
+	
+	private int post_like_cnt;
 }
