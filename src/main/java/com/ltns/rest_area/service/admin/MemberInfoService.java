@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.ltns.rest_area.domain.DAO;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.memberInfo.memberInfoDAO;
+import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
+import com.ltns.rest_area.postInfo.postInfoDTO;
 
 @Service
 public class MemberInfoService {
@@ -59,6 +61,20 @@ public class MemberInfoService {
 		return memberInfoDAO.Allselect();
 	}
 	
+	// uid serch
+	
+	public List<memberInfoDTO> uidSerch(int UM_UID){
+		memberInfoDAO = sqlSession.getMapper(memberInfoDAO.class);
+		return memberInfoDAO.selectByUids(UM_UID);
+		
+	}
+	
+	// update RoleMember
+	
+	public int updateGrade(memberInfoDTO list){
+		memberInfoDAO = sqlSession.getMapper(memberInfoDAO.class);
+		return memberInfoDAO.updateByAuth(list);
+	}
 	
 	
 	

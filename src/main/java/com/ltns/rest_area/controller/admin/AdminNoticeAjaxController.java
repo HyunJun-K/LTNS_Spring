@@ -1,9 +1,17 @@
 package com.ltns.rest_area.controller.admin;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.List;
+import java.util.Map;
 
-import org.junit.runner.Request;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,6 +22,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.admin.FIleDatas;
+import com.ltns.rest_area.domain.admin.ResultData;
 import com.ltns.rest_area.postInfo.postInfoDTO;
 import com.ltns.rest_area.service.admin.NoticeService;
 
@@ -24,7 +34,7 @@ public class AdminNoticeAjaxController {
 	
 	
 	@Autowired
-	NoticeService service;
+	NoticeService notice_Service;
 	
 	@GetMapping("/notice/{pageNo}/{pagenationPage}")
 	@ResponseBody
@@ -41,11 +51,11 @@ public class AdminNoticeAjaxController {
 		int WritePages = 10; 
 		try {
 			
-			totalCnt = service.selectTotal();
+			totalCnt = notice_Service.selectTotal();
 			totalPage = (int)Math.ceil(totalCnt / (double)pagenationPage);
 			
 			int from = ( pageNo - 1 ) * pagenationPage +1;
-			list = service.list(from, pagenationPage);
+			list = notice_Service.list(from, pagenationPage);
 			
 			if(list == null) {
 				message.append("[List data is not defind]");
@@ -80,14 +90,22 @@ public class AdminNoticeAjaxController {
 	}
 	
 	
-	@GetMapping("/notice/{id}")
-	public AjaxList noticeView(@PathVariable int id) {
-		
 	
-		List<DTO> list = null; 
+	//뷰
+	@GetMapping("/notice/{id}")
+	public ResultData noticeView(@PathVariable int id , HttpServletRequest request) {
+		
+		String line ="";
+		List<postInfoDTO> list = null; 
 		StringBuffer message = new StringBuffer();
 		String status ="FAIL";
-		list = service.noticeView(id);
+		list = notice_Service.noticeView(id);
+		String filename ="";
+		for (postInfoDTO postInfoDTO : list) {
+		
+			filename = postInfoDTO.getNotice_content();
+		}
+		
 		try {
 		
 			
@@ -98,17 +116,216 @@ public class AdminNoticeAjaxController {
 			message.append(e.getMessage() + "트랜잭션 오류");
 		}
 		
-		AjaxList result = new AjaxList();
+		ResultData result = new ResultData();
 		
 		result.setMessage(message.toString());
 		result.setStatus(status);
 		result.setList(list);
 		
+		String path =
+				request.getSession().getServletContext().getRealPath("/resource/data/");
 	
+		String directory = path + filename + ".txt";
+		
+		String resultData ="";
+		
+		
+		try {
+			File f = new File(directory);
+			FileReader fr = new FileReader(f);
+			BufferedReader bufReader = new BufferedReader(fr);
+			
+		while((line = bufReader.readLine()) != null) {
+			resultData += line;
+		}
+		   bufReader.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			
+		}
+		
+		
+		
+		
+		result.setResultData(resultData);
+		
+		
+		
 		
 		
 		
 		return result;
 	}
+	
+	
+	@PostMapping("insertNotice")
+	public AjaxList insertNotice(@RequestBody postInfoDTO dto,  HttpServletRequest request ) {
+		int totalCnt = 0; 
+		StringBuffer message = new StringBuffer();
+		String status ="FAIL";
+		totalCnt = notice_Service.noticeInsert(dto);
+		try {
+			
+			if(totalCnt != 0) {
+				status ="OK";
+			}
+		} catch (Exception e) {
+			message.append(e.getMessage() + "트랜잭션 오류");
+		}
+		
+		AjaxList result = new AjaxList();
+		
+		result.setMessage(message.toString());
+		result.setStatus(status);
+		System.out.println(result.getStatus());
+		result.setTotalCnt(totalCnt);
+		
+		String path =
+				request.getSession().getServletContext().getRealPath("/resource/data/");
+
+		FIleDatas f = new FIleDatas(dto.getContent(), path,  dto.getDataSet());
+		
+		
+		
+		
+		
+		return result;
+	}
+	
+	
+	@PostMapping("updateNotice")
+	public ResultData updateNotice(@RequestBody postInfoDTO dto,  HttpServletRequest request ) {
+		int totalCnt = 0; 
+		StringBuffer message = new StringBuffer();
+		String status ="FAIL";
+		String line= "";
+		String filepath ="";
+		
+		List<postInfoDTO> list = notice_Service.allSelect();
+		totalCnt = notice_Service.noticeUpdate(dto);
+		
+		try {
+		
+			for (postInfoDTO postInfoDTO : list) {
+				filepath = postInfoDTO.getNotice_content();
+			}
+			
+			
+			
+			if(totalCnt != 0) {
+				status ="OK";
+			}
+			
+			
+		} catch (Exception e) {
+			message.append(e.getMessage() + "트랜잭션 오류");
+		}
+		
+		ResultData result = new ResultData();
+		result.setMessage(message.toString());
+		result.setStatus(status);
+		
+		
+		
+		//파일 읽기
+
+		String path =
+				request.getSession().getServletContext().getRealPath("/resource/data/");
+	
+		String directory = path + filepath + ".txt";
+		String resultData ="";
+		
+		
+		try {
+			File f = new File(directory);
+			FileReader fr = new FileReader(f);
+			BufferedReader bufReader = new BufferedReader(fr);
+			
+			while((line = bufReader.readLine()) != null) {
+			resultData += line;
+		}
+		 	
+		   bufReader.close();
+		   
+		   // 파일 내용 수정하기 
+		    BufferedWriter bufw = new BufferedWriter(new FileWriter(f));
+		    bufw.write(dto.getChangeD());
+		    bufw.flush();
+		    bufw.close();
+		    		
+		   
+		
+		} catch (Exception e) {
+			// TODO: handle exception
+		} finally {
+			
+		}
+		
+		result.setResultData(dto.getChangeD());
+		return result;
+	}
+	
+	
+	
+	@DeleteMapping("DeleteNotice")
+	public ResultData deleteNotice(@RequestBody postInfoDTO dto,  HttpServletRequest request ) {
+		int cnt = 0; 
+		StringBuffer message = new StringBuffer();
+		String status ="FAIL";
+		String filepath = "";
+		List<postInfoDTO> list = notice_Service.allSelect();
+		cnt = notice_Service.NoticeDelete(dto.getN_id());
+		try {
+			
+			if(cnt != 0) {
+				status ="OK";
+			}
+			
+			for (postInfoDTO postInfoDTO : list) {
+				filepath = postInfoDTO.getNotice_content();
+			}
+			
+			
+			String path =
+					request.getSession().getServletContext().getRealPath("/resource/data/");
+		
+			String directory = path + filepath + ".txt";
+			File f = new File(directory);
+			f.delete();
+			
+			
+		} catch (Exception e) {
+			message.append(e.getMessage() + " 트랜잭션 오류");
+		}
+		
+		ResultData result = new ResultData();
+		result.setMessage(message.toString());
+		result.setStatus(status);
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

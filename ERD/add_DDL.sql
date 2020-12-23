@@ -3,9 +3,10 @@
 
  
 DROP SEQUENCE s_sid_seq;
-DROP SEQUENCE notice_id_seq;
 DROP TABLE schedule CASCADE CONSTRAINTS;
-DROP TABLE ADMINNotice;
+
+DROP SEQUENCE notice_id_seq;
+DROP TABLE ADMINNOTICE;
 
 
 
@@ -40,30 +41,31 @@ CREATE TABLE schedule
 
 
 
-CREATE TABLE ADMINNotice
+CREATE TABLE ADMINNOTICE
 (
-    notice_id         INT             NOT NULL, 
-    notice_subject    VARCHAR2(20)    NULL, 
-    notice_regdate    date    		  NULL, 
-    notice_title      VARCHAR2(20)    NULL, 
- 	notice_content    VARCHAR2(200)   NULL, 
+    notice_id         INT          NOT NULL, 
+    notice_subject    VARCHAR2(40)    NOT NULL, 
+    notice_regdate    DATE  		  NOT NULL, 
+    notice_writer     VARCHAR2(20)    NOT NULL, 
+ 	notice_content    VARCHAR2(200)   NOT NULL,
 
-    CONSTRAINT ADMINNOTICE_PK PRIMARY KEY (notice_id)
+    PRIMARY KEY (notice_id)
 )
 
 
 
 select * from schedule;
-SELECT * FROM ADMINNotice;
-
+SELECT s_sid_seq.nextval FROM DUAL ;
+SELECT * FROM ADMINNOTICE;
+SELECT notice_id_seq.nextval FROM DUAL ;
 
 insert into(s_sid, subject, startdate, enddate)
 values(s_sid_seq.nextval, 'todo', '2020-12-9', '2020-12-9');
 
-SELECT notice_id_seq.nextval FROM DUAL ;
-SELECT s_sid_seq.nextval FROM DUAL ;
 
-INSERT INTO ADMINNotice (notice_id, notice_subject, notice_regdate, notice_title,notice_content) values(notice_id_seq.nextval, '공지사항', sysdate, 'title', '요즘 신고건수가 많습니다')
+
+
+INSERT INTO ADMINNotice (notice_id, notice_subject, notice_regdate, NOTICE_WRITER ,notice_content) values(notice_id_seq.nextval, '공지사항', sysdate, 'title', '요즘 신고건수가 많습니다')
 
 
 

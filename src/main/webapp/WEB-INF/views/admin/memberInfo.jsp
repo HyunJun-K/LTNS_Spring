@@ -28,7 +28,6 @@
 
 
 
-
 <!--  bootstrap -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
@@ -165,7 +164,7 @@
 				<form id="frmList" name="frmList">
 					<table class="table">
 						<thead class="thead-dark">
-							<th>UID</th>
+							<th>Check</th>
 							<th>UID</th>
 							<th>아이디</th>
 							<th>닉네임</th>
@@ -188,12 +187,16 @@
 					</select>
 					<input id="text_info"  type="text" name="text_Info">
 					<button type="button" class="btn_infos" onclick="addSerch();"> 검색 </button>
-				 	<button type="button" class="btn_infos" onclick="click_delete();"> 삭제 </button>
+				 	
 				 	<input type="hidden" name="csrfToken" value="${_csrf.token}" />
-	
 				  </form>
 				</div>
 		
+		 <div class="text-right mb-3">
+				 	<button type="button" class="btn_infos" onclick="change_grade();"> 권한 변경 </button>
+				 	<button type="button" class="btn_infos" onclick="delete_grade();"> 권한 삭제 </button>
+		</div>
+				 	
 				<div class="d-flex justify-content-end">
 					<ul class="pagination " id="pagination">
 					</ul>

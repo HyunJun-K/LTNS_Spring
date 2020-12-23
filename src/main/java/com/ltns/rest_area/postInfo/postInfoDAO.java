@@ -10,9 +10,16 @@ import com.ltns.rest_area.domain.DTO;
 public interface postInfoDAO extends DAO{
 	List<DTO> selectAlls();	//dao 상속받아서 써버리깅
 	List<DTO> Allselect();	//dao 상속받아서 써버리깅
-	List<DTO> selectByInts(int id);
+	List<postInfoDTO> selectByInts(int id);
 	int allselect();
 	
+	int insertByDTO_Notice(postInfoDTO dto);
+	
+	
+	
+	List<postInfoDTO> FileAllselect();
+	int updateByDTOS(postInfoDTO dto);
+	int deleteByInts(int i);	
 	public List<DTO> select_Rows(
 			@Param("from") int from, @Param("pagenationPage") int pagenationPage
 	);

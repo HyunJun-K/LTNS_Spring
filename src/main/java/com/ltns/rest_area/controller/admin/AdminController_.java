@@ -83,6 +83,25 @@ public class AdminController_ {
 	@RequestMapping("/repostPopup")
 	public void repostPopup()	{}
 	
+
+	@RequestMapping("/notice/writer")
+	public void writer(Model m, HttpServletRequest request){
+		String id =  (String)request.getSession().getAttribute("user");
+		m.addAttribute("id", id);
+	}
 	
-	//어드민 컨틀롤러
+	@RequestMapping("/notice/view")
+	public void View(Model m, HttpServletRequest request){
+		String id =  (String)request.getSession().getAttribute("user");
+		m.addAttribute("id", id);
+	}
+	
+	@RequestMapping("/notice/update")
+	public void update(){}
+	
+	@RequestMapping("/notice/noticeModal")
+	public void noticeModal(){}
+	
+	
+	
 }
