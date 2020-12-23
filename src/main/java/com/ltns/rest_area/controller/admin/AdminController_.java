@@ -99,6 +99,9 @@ public class AdminController_ {
 	@RequestMapping("/notice/update")
 	public void update(){}
 	
+	@RequestMapping("/notice/noticeModal")
+	public void noticeModal(){}
+	
 	
 	
 }

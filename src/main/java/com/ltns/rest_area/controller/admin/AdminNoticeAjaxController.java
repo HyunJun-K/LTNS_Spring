@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -198,14 +199,19 @@ public class AdminNoticeAjaxController {
 		int totalCnt = 0; 
 		StringBuffer message = new StringBuffer();
 		String status ="FAIL";
-		String filename ="";
 		String line= "";
-		System.out.println("진입하니?" + dto.getN_id()  + ": " + dto.getChangeD());
-		System.out.println("진입하냐?" + dto.getTitle());
+		String filepath ="";
 		
+		List<postInfoDTO> list = notice_Service.allSelect();
 		totalCnt = notice_Service.noticeUpdate(dto);
 		
 		try {
+		
+			for (postInfoDTO postInfoDTO : list) {
+				filepath = postInfoDTO.getNotice_content();
+			}
+			
+			
 			
 			if(totalCnt != 0) {
 				status ="OK";
@@ -217,66 +223,88 @@ public class AdminNoticeAjaxController {
 		}
 		
 		ResultData result = new ResultData();
-		
 		result.setMessage(message.toString());
 		result.setStatus(status);
+		
+		
 		
 		//파일 읽기
 
 		String path =
 				request.getSession().getServletContext().getRealPath("/resource/data/");
 	
-		String directory = path + filename + ".txt";
-		
+		String directory = path + filepath + ".txt";
 		String resultData ="";
 		
 		
 		try {
 			File f = new File(directory);
 			FileReader fr = new FileReader(f);
-			
-			BufferedWriter bufw = new BufferedWriter(new FileWriter(f));
-			bufw.write(dto.getChangeD());
-			bufw.flush();
-			bufw.close();
-			
-			
-			
-			
 			BufferedReader bufReader = new BufferedReader(fr);
 			
 			while((line = bufReader.readLine()) != null) {
 			resultData += line;
 		}
-		
-		
+		 	
 		   bufReader.close();
+		   
+		   // 파일 내용 수정하기 
+		    BufferedWriter bufw = new BufferedWriter(new FileWriter(f));
+		    bufw.write(dto.getChangeD());
+		    bufw.flush();
+		    bufw.close();
+		    		
+		   
+		
 		} catch (Exception e) {
 			// TODO: handle exception
 		} finally {
 			
 		}
 		
-		
-		
-		
-		result.setResultData(resultData);
-		
-		
-
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		result.setResultData(dto.getChangeD());
 		return result;
 	}
 	
 	
+	
+	@DeleteMapping("DeleteNotice")
+	public ResultData deleteNotice(@RequestBody postInfoDTO dto,  HttpServletRequest request ) {
+		int cnt = 0; 
+		StringBuffer message = new StringBuffer();
+		String status ="FAIL";
+		String filepath = "";
+		List<postInfoDTO> list = notice_Service.allSelect();
+		cnt = notice_Service.NoticeDelete(dto.getN_id());
+		try {
+			
+			if(cnt != 0) {
+				status ="OK";
+			}
+			
+			for (postInfoDTO postInfoDTO : list) {
+				filepath = postInfoDTO.getNotice_content();
+			}
+			
+			
+			String path =
+					request.getSession().getServletContext().getRealPath("/resource/data/");
+		
+			String directory = path + filepath + ".txt";
+			File f = new File(directory);
+			f.delete();
+			
+			
+		} catch (Exception e) {
+			message.append(e.getMessage() + " 트랜잭션 오류");
+		}
+		
+		ResultData result = new ResultData();
+		result.setMessage(message.toString());
+		result.setStatus(status);
+		
+		return result;
+	}
 	
 	
 	

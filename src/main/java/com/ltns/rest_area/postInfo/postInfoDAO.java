@@ -17,12 +17,9 @@ public interface postInfoDAO extends DAO{
 	
 	
 	
-	
 	List<postInfoDTO> FileAllselect();
 	int updateByDTOS(postInfoDTO dto);
-	
-	
-
+	int deleteByInts(int i);	
 	public List<DTO> select_Rows(
 			@Param("from") int from, @Param("pagenationPage") int pagenationPage
 	);

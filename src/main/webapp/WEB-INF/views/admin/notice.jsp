@@ -10,24 +10,30 @@
 </head>
 
 
-<!-- jquery  -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
 
 
 <!-- google font -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
-<!--  fontawesome -->
-<script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script> 
 
+
+
+<!-- jquery  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 
 <!--  bootstrap -->
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+<!--  fontawesome -->
+<script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script> 
 
 <link href='${pageContext.request.contextPath }/admin/CSS/notice.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/notice.js'></script>
@@ -36,6 +42,8 @@
 
 
 <body class="bg-light">
+
+		
 
 
 	<!-- dashboard nav -->
@@ -98,10 +106,19 @@
 	
 		 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
 	
+	
+	
+		<!--  모달 -->
+		<jsp:include page="${request.getRequestURI}/admin/notice/noticeModal" flush="true"/>
+			
+		 
+			
+	
+	
 	<!-- 게시글 리스트 부분 -->
 		 <div id="list" >
 			<div class="text-right mb-2">
-					<button type="button" class="mr-2 btn btn-outline-danger "> 공지 </button>
+					<button type="button" onclick="noticeModal();" class="mr-2 btn btn-outline-danger "> 공지 </button>
 					<button type="button" onclick='writeNotice();' class="btn btn-outline-success">글작성</button>
 			</div>
 			
@@ -138,12 +155,12 @@
 			<!-- view -->
 			<jsp:include page="${request.getRequestURI}/admin/notice/view" flush="true"/>
 			
-	
 			<!-- 글작성-->
 			<jsp:include page="${request.getRequestURI}/admin/notice/writer" flush="true" />
 
 	 		<jsp:include page="${request.getRequestURI}/admin/notice/update" flush="true" />
 			
+		
 		
 		</main> <!-- article -->
 	</div> <!-- end con -->

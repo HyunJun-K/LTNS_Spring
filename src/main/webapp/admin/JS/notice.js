@@ -6,6 +6,12 @@ $(document).ready(function(){
     $(".viewList").hide();
     $("#writeNotices").hide();
     $("#updateNotices").hide();
+  
+
+    
+
+
+
 })
 
 
@@ -103,7 +109,7 @@ function pageinateions(writepages, totalPage, curPage, pageRows){
 
 
 
-//view 
+//view (update, delete)
 function view(id){
 	$("#list").hide();
 	$(".viewList").show();
@@ -126,7 +132,8 @@ function view(id){
 
                     var ids = $("#hidens").val();
                     if(data.list[0].notice_writer == ids){
-                        $("#updatesBtn").attr("class","d-lineblock");
+                        $("#updatesBtn").attr("class","d-lineblock btn btn-outline-info ");
+                        $("#deleteBtn").attr("class","d-lineblock btn btn-outline-danger");
                         $("#updatesBtn").click(function(){
                             $(".viewList").hide();
                             $("#writeNotices").hide();
@@ -135,7 +142,7 @@ function view(id){
                             CKEDITOR.instances["editor2"].setData(content_D);
                         
                         })
-                   
+                        //update
                         $("#updateGo").click(function(){
                             
                             var title = $("#title2").val();
@@ -191,9 +198,39 @@ function view(id){
                          
                         })
 
-                        
+
+                        //delete
+                        $("#deleteBtn").click(function(){
+                                 
+                            var jsondata = {
+                                n_id : notice_id
+                            }
+
+                            $.ajax({
+                                url : "DeleteNotice",
+                                type : "delete",
+                                data : JSON.stringify(jsondata),
+                                cashe : false,
+                                headers: {
+                                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                                },
+                                contentType:'application/json;',
+                                success : function(data,status){
+                                    if(data.status=="OK"){
+                                        alert("삭제되었습니다.")
+                                        location.reload();
+                                    }
+                                }
+
+
+                            })
+
+                        })
+
+
+
                     
-                    }
+                    }// end 작성자 일때 
                 }//end success
         }
     });
@@ -293,6 +330,18 @@ function writeOk(){
 }
 
 
+/* modal 
 
-//update
+*/
+function noticeModal(){
 
+    $('a[href="#ex1"]').show(function(event) {
+        $(this).modal({
+          fadeDuration: 250
+        });
+      });
+}
+
+function modalClose(){
+    $.modal.close();
+}

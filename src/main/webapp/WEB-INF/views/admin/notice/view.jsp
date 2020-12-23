@@ -26,8 +26,9 @@
 				<hr>
 				
 				<div class="text-right">
-				<button type="button" onclick="location.href='${pageContext.request.contextPath}/admin/notice'"> 취소 </button>
-				<button type="button" id="updatesBtn"  class="d-none" > 수정 </button> 
+				<button type="button" class="btn btn-outline-success"onclick="location.href='${pageContext.request.contextPath}/admin/notice'"> 취소 </button>
+				<button type="button" id="updatesBtn" class="d-none" > 수정 </button>
+				<button type="button" id="deleteBtn" class="d-none" > 삭제 </button>  
 				</div>
 			</div> <!-- viewList -->
 			
