@@ -15,10 +15,6 @@
 
 
 
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
 
 <!-- google font -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -32,40 +28,18 @@
 
 
 <!--  bootstrap -->
-<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <link href='${pageContext.request.contextPath }/admin/CSS/dashBoard.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/dashBoard.js'></script>
 
 <body class="bg-light">
 
-	<!-- dashboard nav -->
-   <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
-      
-      <ul class="navbar-nav  d-flex flex-row-reverse  ">
-      
-        
-          <li class="nav-item  mr-5">
-          		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
-         		<span class="welcomes" style="font-size: 12px;">${id}</span>
-         		
-          </li>
-          <li class="nav-item mr-3">
-	          <div>
-	          <img src="${pageContext.request.contextPath }/admin/img/1.PNG">
-	          </div>
-  	      </li>
-			<li class="nav-item   mr-4 text-center">
-			<a type ="button" class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
-			</li>
-		</ul>
-     
-	 
-    </nav> <!-- nav header 라인 -->
-
+	<jsp:include page="${request.getRequestURI}/admin/nav/navs" flush="true" />
+	
+	
 	<div class="container-fluid">
 		<div class="row">
 			<nav class="col-md-2 d-none d-md-block bg-dark sidebar">
@@ -214,11 +188,17 @@
 		</div>
 		
 
-
-
+	 
+			
 		
+			
+			
+			
+			
 		</main> <!-- article -->
+		
 	</div> <!-- end con -->
 
+	
 </body>
 </html>

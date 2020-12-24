@@ -30,33 +30,10 @@
 <script src='${pageContext.request.contextPath }/admin/JS/postInfo.js'></script>
 
 <body class="bg-light">
- <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
-      
-      <ul class="navbar-nav  d-flex flex-row-reverse  ">
-      
-        
-          <li class="nav-item  mr-5">
-          		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
-         		<span class="welcomes" style="font-size: 12px;"> ${id}  </span>
-         		
-          </li>
-          <li class="nav-item mr-3">
-	          <div>
-	          <img src="${pageContext.request.contextPath }/admin/img/1.PNG">
-	          </div>
-  	      </li>
-			<li class="nav-item   mr-4 text-center">
-			<a class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
-			</li>
 
-			<li class="nav-item  mr-4 text-center">
-			<a class="nav-link text-dark" href="#"> <i class="fas fa-envelope"></i></a>
-			</li>
-		</ul>
-     
-	 
-    </nav> <!-- nav header 라인 -->
+    <!-- nav -->
+	<jsp:include page="${request.getRequestURI}/admin/nav/navs" flush="true" />
+
 
 	<div class="container-fluid">
 		<div class="row">
@@ -121,7 +98,7 @@
 				<div class="d-flex justify-content-center">
 					<form name="sechForm" id="sechForm">
 					<select id="sele_option" class="mdb-select">
-						<option value="title" selected> 제목 </option>
+						<option value="title" selected> 타이틀 </option>
 						<option value="nickName"> 닉네임 </option>
 					</select>
 					<input id="text_info"  class="input_seach" type="text" name="text_Info">

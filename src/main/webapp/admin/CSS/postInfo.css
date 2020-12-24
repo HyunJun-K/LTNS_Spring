@@ -189,7 +189,7 @@ div .sele_option {
 	background-color: #EFFBFB;
 }
 
-button{
+.btn_infos{
   background:#2E2E2E;
   color:#fff;
   position:relative;
@@ -202,12 +202,12 @@ button{
   border-radius: 4px;
 }
 
-button:hover{
+.btn_infos:hover{
   background:#fff;
   color:#2E2E2E;
 }
 
-button:before,button:after{
+.btn_infos:before, .btn_infos:after{
   content:'';
   position:absolute;
   top:0px;
@@ -218,14 +218,14 @@ button:before,button:after{
   transition:400ms ease all;
 }
 
-button:after{
+.btn_infos:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
 
-button:hover:before,button:hover:after{
+.btn_infos:hover:before,.btn_infos:hover:after{
   width:100%;
   transition:800ms ease all;
 }

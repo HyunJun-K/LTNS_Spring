@@ -158,7 +158,7 @@ public class AdminNoticeAjaxController {
 		return result;
 	}
 	
-	
+	//글 등록
 	@PostMapping("insertNotice")
 	public AjaxList insertNotice(@RequestBody postInfoDTO dto,  HttpServletRequest request ) {
 		int totalCnt = 0; 
@@ -193,7 +193,7 @@ public class AdminNoticeAjaxController {
 		return result;
 	}
 	
-	
+	//글 수정
 	@PostMapping("updateNotice")
 	public ResultData updateNotice(@RequestBody postInfoDTO dto,  HttpServletRequest request ) {
 		int totalCnt = 0; 
@@ -267,7 +267,7 @@ public class AdminNoticeAjaxController {
 	}
 	
 	
-	
+	//글삭제
 	@DeleteMapping("DeleteNotice")
 	public ResultData deleteNotice(@RequestBody postInfoDTO dto,  HttpServletRequest request ) {
 		int cnt = 0; 

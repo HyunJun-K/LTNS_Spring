@@ -61,7 +61,7 @@
       header: {
         left: 'prev,next today',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay,listMonth'
+        right: ''
       },
       navLinks: true, // can click day/week names to navigate views
       businessHours: true, // display business hours
@@ -110,35 +110,10 @@
 </style>
 </head>
 <body class="bg-light"> 
-	<!-- dashboard nav -->
-   <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
-      
-      <ul class="navbar-nav  d-flex flex-row-reverse  ">
-      
-        
-          <li class="nav-item  mr-5">
-          		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
-         		<span class="welcomes" style="font-size: 12px;"> ${id } </span>
-         		
-          </li>
-          <li class="nav-item mr-3">
-	          <div>
-	          <img src="${pageContext.request.contextPath }/admin/img/1.PNG">
-	          </div>
-  	      </li>
-			<li class="nav-item   mr-4 text-center">
-			<a class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
-			</li>
-
-			<li class="nav-item  mr-4 text-center">
-			<a class="nav-link text-dark" href="#"> <i class="fas fa-envelope"></i></a>
-			</li>
-		</ul>
-     
-	 
-    </nav> <!-- nav header 라인 -->
-
+	
+    <!-- nav header 라인 -->
+	<jsp:include page="${request.getRequestURI}/admin/nav/navs" flush="true" />
+	
 	<div class="container-fluid">
 		<div class="row">
 			<nav class="col-md-2 d-none d-md-block bg-dark sidebar">

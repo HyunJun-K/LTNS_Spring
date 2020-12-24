@@ -5,9 +5,8 @@ $(document).ready(function() {
     today_post();
     Best();
     monthPostChart();
-   
 
-    
+  
    
     
 })
@@ -139,7 +138,7 @@ function today_post(){
                 
                 
                 }else{
-                    $("#icons_report").html("<i class='fas fa-pastafarianism'></i>");
+                    $("#icons_report").html("<span class='text-danger'> 텅</span>");
                     
                 }
             }
@@ -159,9 +158,15 @@ function today_post(){
             },
             success : function(data,status){
                 if(data.status=="OK"){
-                    $("#today_coment").html("<span class='text-warning'>" + data.count +"  </span>");
+                    if(data.count == 0){
+                        $("#today_coment").html("<span class='text-warning'>" + " 텅 </span>");
+                    }else{
+                        $("#today_coment").html("<span class='text-warning'>" + data.count +"  </span>");
+                    }
+
                     $("#total_coment").html("<span> 총 댓글 수 " + data.totalCounts + "</span>");
                 }
+                
             }
         });
     }
@@ -351,7 +356,7 @@ function monthPostChart() {
 
         label.push(items[i].membersdays);
         data.push(items[i].month_total);
-        backgroundColor.push('#000000');
+        backgroundColor.push('#8181F7');
     }
 
     
@@ -418,7 +423,7 @@ function monthPostChart() {
                 responsive: false,
                 title: {
                     display: true,
-                    text: '신규 유저 통계'
+                    text: '월별 유저 통계'
             },
     
                 scales: {
@@ -466,4 +471,35 @@ function monthPostChart() {
 
 
 
+/* 
+var cnt =0;
 
+// popover 
+function popover(){
+    if(cnt==1 ){
+    $(".popovers").hide();
+    cnt=0;
+    }else{
+        $(".popovers").show();
+        
+        $.ajax({
+
+            url : "alram",
+            type : "POST",
+            cashe : false,
+            success : function(data, status){
+                if(data.status=="OK"){
+                    if( data.count !=0 ){
+                        $(".popupBody").html("읽지 않은 공지사항이 " + data.count + " 개 있습니다.");
+                    }else{
+                        $(".popupBody").html("오늘 공지사항은 없습니다.");
+                    }
+                }
+            }
+
+        })
+        cnt ++;
+    }
+}
+
+*/

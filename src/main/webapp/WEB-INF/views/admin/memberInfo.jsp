@@ -40,34 +40,13 @@
 	<div  class="loadings">
 	  		<img src="https://static-steelkiwi-dev.s3.amazonaws.com/media/filer_public/4e/07/4e07eece-7c84-46e2-944d-1a6b856d7b5f/463ff844-6f36-4ffe-b051-fea983d39223.gif">
 	</div>
+	
 	<div id="bodys">
-	 <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
-      
-      <ul class="navbar-nav  d-flex flex-row-reverse  ">
-      
-        
-          <li class="nav-item  mr-5">
-          		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
-         		<span class="welcomes" style="font-size: 12px;"> ${id} </span>
-         		
-          </li>
-          <li class="nav-item mr-3">
-	          <div>
-	          <img class="imgs_under" src="${pageContext.request.contextPath }/admin/img/1.PNG">
-	          </div>
-  	      </li>
-			<li class="nav-item   mr-4 text-center">
-			<a class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
-			</li>
-
-			<li class="nav-item  mr-4 text-center">
-			<a class="nav-link text-dark" href="#"> <i class="fas fa-envelope"></i></a>
-			</li>
-		</ul>
-     
 	 
-    </nav> <!-- nav header 라인 -->
+    <!-- nav -->
+	<jsp:include page="${request.getRequestURI}/admin/nav/navs" flush="true" />
+	 
+	 
 
 	<div class="container-fluid">
 		<div class="row">

@@ -299,13 +299,12 @@ function writeOk(){
     var jsondata = {
         title : $("#title").val(),
         content :  data, 
-        id : $("#hidens").val(),
+        id : 'ssd', //$("#hidens").val(),
         dataSet :  date.yyyymmddhhmmss()
     }
 
 
     $.ajax({
-
         url : "insertNotice",
         type : "POST",
         cashe : false,

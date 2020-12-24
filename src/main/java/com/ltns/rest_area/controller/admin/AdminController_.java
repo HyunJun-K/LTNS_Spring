@@ -102,6 +102,12 @@ public class AdminController_ {
 	@RequestMapping("/notice/noticeModal")
 	public void noticeModal(){}
 	
+	@RequestMapping("/nav/navs")
+	public void navs(Model m, HttpServletRequest request){
+		String id =  (String)request.getSession().getAttribute("user");
+		m.addAttribute("id", id);
+	}
+	
 	
 	
 }

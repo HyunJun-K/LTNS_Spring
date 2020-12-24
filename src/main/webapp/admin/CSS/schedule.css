@@ -21,11 +21,11 @@
   	position : absolute;
   	top: 0.5px;
   	padding :5px;
-  	right : 90px;
+  	right : 0;
   	background : #2C3E50;
   	border : 0;
   	color : white;
-  height : 33.5px;
+    height : 33.5px;
   	border-radius: 3px;
   	width : 55px;
   	
@@ -34,7 +34,7 @@
   .delete-button{
   	position : absolute;
   	top: 0.5px;
-  	right : 183px;
+  	right : 100px;
   	background : #2C3E50;
   	border : 0;
   	color : white;
@@ -46,7 +46,7 @@
   .update-button{
   	position : absolute;
   		top: 0.5px;
-  	right : 140px;
+  	right : 50px;
   	background : #2C3E50;
   	border : 0;
   	color : white;
@@ -162,6 +162,28 @@
 
 #calendar {
 	margin-left : 25%;
+}
+
+
+.popovers {
+	position: absolute;
+	background-color: white;
+	right : 0;
+	margin-right:10%;
+	margin-top: 10%;
+	display: none;
+}
+
+.popovers .popupBody {
+	padding : 10px;
+	font-size : 12px;
+}
+
+
+.popovers .popupTitle{
+	margin-top:5px;
+	padding : 10px;
+	font-size : 14px;
 }
 
 
