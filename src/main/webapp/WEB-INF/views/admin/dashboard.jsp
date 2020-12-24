@@ -61,10 +61,6 @@
 			<li class="nav-item   mr-4 text-center">
 			<a type ="button" class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
 			</li>
-
-			<li class="nav-item  mr-4 text-center">
-			<a class="nav-link text-dark"  href="#ex1" rel="modal:open"><i class="fas fa-bell"></i></a>
-			</li>
 		</ul>
      
 	 
@@ -103,52 +99,7 @@
 		
 		
  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
-	<div id="ex1" class="modal">
 
-				<form>
-					<div class="form-group mt-2">
-						<label for="exampleInputEmail1">Email</label> <input
-							type="email" class="form-control" id="exampleInputEmail1"
-							aria-describedby="emailHelp" placeholder="Enter email"> <small
-							id="emailHelp" class="form-text text-muted">
-							메일을 보낼때에는 신중하게 보냅시다.</small>
-					</div>
-					
-					<div class="form-group mt-2">
-						<label for="mailTitle">Title</label>
-						 <input type="text" class="form-control" id="mailTitle"
-							placeholder="Enter title"> 
-					</div>
-					
-					
-					<div class="form-group">
-						<label for="exampleFormControlTextarea1">Example textarea</label>
-						<textarea class="form-control" id="emailText"
-							rows="5"></textarea>
-					</div>
-
-
-					<div class="text-right">
-						<button type="button" onclick="message_hello();">안부 인사 </button>
-						<button type="button" onclick="message_report();">신고 안내</button>
-							
-						
-						<button type="submit" class="btn btn-primary">Submit</button>
-						<button class="btn btn-primary"  onclick="close_modal();" >close</button>
-					</div>
-					
-	
-				</form>
-
-
-
-	</div> <!--  end modal -->
-	 
- 
- 
- 
- 
- 
 	<!-- 일일 정산   -->
 	<div id="rowsdata" class="row">
 	

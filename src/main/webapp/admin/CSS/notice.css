@@ -192,4 +192,8 @@ ul.pagination a:hover:not(.active) {background-color: #ddd;}
 	line-height:27px;
 }
 
- 
+
+.titles_notice:hover {
+	text-decoration: underline;
+	color:tomato;
+}

@@ -311,11 +311,10 @@ function monthPostChart() {
                 data: [
                 ],
                 backgroundColor: [
-                    
-                   
+                  
                 ],
                 borderColor: [
-                    '##F7F8E0',
+                    '#8181F7',
                 ],
                 fill : false,
                 lineTension: 0,
@@ -407,7 +406,7 @@ function monthPostChart() {
                         
                     ],
                     borderColor: [
-                        '##BF00FF'
+                        '#FF0000'
                     ],
                     borderWidth: 1,
                     fill : false,
@@ -447,7 +446,7 @@ function monthPostChart() {
 
         label.push(items[i].addAcount);
         data.push(items[i].addAcountTotal);
-        backgroundColor.push('#8A0829');
+        backgroundColor.push('#FF0000');
     }
 
     
