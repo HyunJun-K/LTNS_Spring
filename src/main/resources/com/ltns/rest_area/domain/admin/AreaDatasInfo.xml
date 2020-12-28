@@ -44,7 +44,6 @@
 	</select>
 	
 	
-	
 	<select id="selectFromRow" flushCache="true" resultType="com.ltns.rest_area.domain.admin.AreaDataDTO">
 	<![CDATA[
 	SELECT  
@@ -58,6 +57,19 @@
 	
 	</select>
 
+
+
+	<select id="SerachFoodMenu" resultType="com.ltns.rest_area.domain.admin.AreaDataDTO">
+	SELECT * FROM FOODMENU WHERE fm_name LIKE #{foodName}
+	</select>
+
+	<select id="ReastAreaName" resultType="com.ltns.rest_area.domain.admin.AreaDataDTO">
+		SELECT * FROM RESTAREA WHERE RA_NAME LIKE #{RNAME}
+	</select>
+
+	<select id="GasstionName" resultType="com.ltns.rest_area.domain.admin.AreaDataDTO">
+		SELECT * FROM GASSTATION WHERE GS_NAME LIKE #{GNAME}
+	</select>
 
 
 </mapper>

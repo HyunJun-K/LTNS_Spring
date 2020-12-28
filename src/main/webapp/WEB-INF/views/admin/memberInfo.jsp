@@ -164,7 +164,7 @@
 						<option value="id" selected> 아이디 </option>
 						<option value="nickName"> 닉네임 </option>
 					</select>
-					<input id="text_info"  type="text" name="text_Info">
+					<input id="text_info"  type="text" name="text_Info" class="input_seach">
 					<button type="button" class="btn_infos" onclick="addSerch();"> 검색 </button>
 				 	
 				 	<input type="hidden" name="csrfToken" value="${_csrf.token}" />

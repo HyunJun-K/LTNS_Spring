@@ -5,12 +5,18 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.AjaxResult;
 import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.admin.AreaDataDTO;
+import com.ltns.rest_area.domain.admin.ResultData;
+import com.ltns.rest_area.domain.admin.ScheduleDTO;
 import com.ltns.rest_area.service.admin.AreaDataService;
 
 @RestController
@@ -181,5 +187,57 @@ public class AdminAreaDataInfoAjaxController {
 			
 		}
 		
+		
+		//
+		
+
+		//Seach
+			
+		@PostMapping("areaInFoSeach")
+		public AjaxList areaInFoSeach(@RequestBody AreaDataDTO dto) {
+
+			StringBuffer message = new StringBuffer();
+			String status ="FAIL";
+			List<DTO> list = null;
+			
+			
+			if(dto.getTarget().equals("values_1")) {
+				list = Aservice.seachArea(dto.getContent()+"%");
+				try {
+					if(list != null ) {
+						status = "OK";
+					}
+				} catch (Exception e) {
+					message.append(e.getMessage() + "트랜잭션 오류");
+				}
+				
+			}else if(dto.getTarget().equals("values_2")) {
+				
+				list = Aservice.seachGas(dto.getContent()+"%");
+				try {
+					if(list != null ) {
+						status = "OK";
+					}
+				} catch (Exception e) {
+					message.append(e.getMessage() + "트랜잭션 오류");
+				}
+			}else {
+				list = Aservice.seachFood(dto.getContent()+"%");
+				try {
+					if(list != null ) {
+						status = "OK";
+					}
+				} catch (Exception e) {
+					message.append(e.getMessage() + "트랜잭션 오류");
+				}
+			}
+			AjaxList result = new AjaxList();
+			result.setMessage(message.toString());
+			result.setStatus(status);
+			result.setList(list);
+			result.setCount(list.size());
+			return result;
+		}
+	
 	
 }

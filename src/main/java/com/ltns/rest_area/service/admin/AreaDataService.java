@@ -37,6 +37,21 @@ public class AreaDataService {
 		return vo.selectFromMenuRow(from, pagenationPage);
 	}
 	
+	public List<DTO> seachFood(String foodName){
+		vo = sqlSession.getMapper(AreaDataDAO.class);
+		return vo.SerachFoodMenu(foodName);
+	}
+	
+	public List<DTO> seachArea(String RName){
+		vo = sqlSession.getMapper(AreaDataDAO.class);
+		return vo.ReastAreaName(RName);
+	}
+	
+	public List<DTO> seachGas(String GName){
+		vo = sqlSession.getMapper(AreaDataDAO.class);
+		return vo.GasstionName(GName);
+	}
+	
 	
 	
 	public int AreaTotal() {

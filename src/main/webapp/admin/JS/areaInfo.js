@@ -1,11 +1,12 @@
 var pageNo =1 ;
 var pagenationPage = 10;
 var pagination = "" ;
-
+var gas = "";
+var rest = "";
+var food = "";
 $(document).ready(function() {
     
     pageLoad(pageNo);
-
     
 })
 
@@ -15,6 +16,9 @@ function pageLoad(pageNo){
     	  url : "./areaInfo/" + pageNo + "/" + pagenationPage,
           type : "GET",
           cache : false,
+          headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
           contentType : 'application/json; charset=UTF-8',
           dataType : 'json',
       	  success : function(data, status){
@@ -45,6 +49,33 @@ function thead(JsonObj){
     for(var i =0; i< length; i++){
         $("#heads").children().eq(i).html(data[i]);
     }
+}
+
+
+function seachHead(chkData){
+    
+    switch (chkData){
+        case 'rest' : 
+        var data = [ '주유소 이름','주유소 코드', '경유','휘발류','LPG']
+        $("thead").attr("class", 'bg-danger text-white')
+        break;
+
+        case 'gas' : 
+        $("thead").attr("class", 'bg-info text-white')
+        var data = ['휴게소 이름','휴게소 코드','고속도로 이름','휴게소 방향','고속도로 번호']
+        break;
+
+        default : 
+        $("thead").attr("class", 'bg-success text-white')
+        var data = ['휴게소 이름','휴게소 코드','메뉴 코드','메뉴 이름','메뉴 가격']
+       break;
+    }
+   
+    var length = $("#heads").children().length
+    for(var i =0; i< length; i++){
+        $("#heads").children().eq(i).html(data[i]);
+    }
+
 }
 
 
@@ -137,6 +168,9 @@ function updateG(pageNo){
         url : "./Gasstion/" + pageNo + "/" + pagenationPage,
         type : "GET",
         cache : false,
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
         contentType : 'application/json; charset=UTF-8',
         dataType : 'json',
           success : function(data, status){
@@ -150,6 +184,15 @@ function updateG(pageNo){
 }
 
 
+
+
+
+
+
+
+
+
+// 주유소 
 
 
 function updateGas(JsonObj) {
@@ -226,6 +269,8 @@ function updateGas(JsonObj) {
 
 }
 
+
+
 // 메뉴
 
 
@@ -235,19 +280,20 @@ function updateM(pageNo){
         url : "./FoodMenu/" + pageNo + "/" + pagenationPage,
         type : "GET",
         cache : false,
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
         contentType : 'application/json; charset=UTF-8',
         dataType : 'json',
           success : function(data, status){
           if(status == "success"){
                 thead(data);
                 updateMenu(data)
-          }
+        }
           
       }
   });
 }
-
-
 
 
 function updateMenu(JsonObj) {
@@ -324,3 +370,65 @@ function updateMenu(JsonObj) {
 
 
 }
+
+
+
+
+//검색 
+
+
+function info_Serch(){
+    var tex = $("#sele_option").val();
+    var text_info = $(".input_seach").val();
+
+    if(text_info == null || text_info ==""){
+        alert("검색 내용이 비었습니다.");
+        $(".input_seach").focus();
+		return false;
+	}
+	
+	var data = { 
+        target : tex ,
+        content : text_info
+    }
+    
+	$.ajax({
+		data : JSON.stringify(data), 
+		url : "areaInFoSeach",
+        type : "POST",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		},
+		dataType : "JSON",
+		contentType:'application/json;',
+		 success : function(data, status){
+	            if(status == "success"){
+                    if(tex == "values_1"){
+                        if(data.count == 0){
+                            alert("검색 결과가 없습니다.");
+                        }
+                            updateList(data);
+                            seachHead(rest);
+                    }else if(tex == "values_2"){
+
+                        if(data.count == 0){
+                             alert("검색 결과가 없습니다.");
+                        }
+                            updateGas(data);
+                            seachHead(gas);
+                      
+                    }else{
+                        if(data.count ==0 ){
+                            alert("검색 결과가 없습니다.");
+                        }
+                        updateMenu(data);
+                        seachHead(food);
+                    }
+                
+	             }
+	         }
+        });
+    
+}
+
+

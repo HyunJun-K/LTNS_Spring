@@ -81,11 +81,11 @@
 					<table class="table text-center">
 						<thead  class="bg-info text-white" >
 							<tr id="heads">
-							<th>1</th>
-							<th>2</th>
-							<th>3</th>
-							<th>4</th>
-							<th>5</th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -93,12 +93,32 @@
 						</tbody>
 					</table>
 				</form> 
+				
+				<br>
+				<div class="d-flex justify-content-center">
+					<form name="sechForm" id="sechForm">
+				<select id="sele_option" class="mdb-select mr-2">
+						<option value="values_1" selected> 휴게소 이름  </option>
+						<option value="values_2"> 주유소 이름</option>
+						<option value="values_3"> 메뉴 이름 </option>
+					</select>
+					<input  type="text" name="text_Info" class="input_seach">
+					<button type="button" class="btn_infos ml-2" onclick="info_Serch();"> 검색 </button>
+				  </form>
+				</div>
+				
+				
+				<br>
+				
+				
 				<div class="d-flex justify-content-center">
 					<ul class="pagination " id="pagination">
 					</ul>
 				</div>
 				
 			</div> <!-- end list table -->
+			
+		
 			
 			<button type="button" onclick="pageLoad(1);">휴게소 정보</button>
 			<button type="button" onclick="updateG(1);">주유소 정보</button>

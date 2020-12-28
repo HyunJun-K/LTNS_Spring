@@ -176,12 +176,13 @@ div .sele_option {
 	padding : 5px;
 	text-align: center;
 	border-radius: 4px;
+	margin-right: 5px;
 }
 
 .input_seach {
 	margin-left : 2px;
 	padding : 3px;	
-	width: 250px;	
+	width: 300px;	
 	border-radius: 4px;
 }
 

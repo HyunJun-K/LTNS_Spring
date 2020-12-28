@@ -31,7 +31,7 @@ public class AreaDataDTO implements DTO {
 	
 	
 	int CNT;
-	
-
+	private String target;
+	private String content; 
 	
 }
