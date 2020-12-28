@@ -61,6 +61,12 @@ public class AdminController_ {
 		m.addAttribute("id", id);
 	}
 	
+	@RequestMapping("/areaInfo")
+	public void areaInfo(Model m, HttpServletRequest request)	{
+		String id =  (String)request.getSession().getAttribute("user");
+		m.addAttribute("id", id);
+	}
+	
 	
 	
 	@RequestMapping("/notice")
@@ -71,13 +77,13 @@ public class AdminController_ {
 	
 	
 	//팝업 
-	@RequestMapping("/schedulePopup")
+	@RequestMapping("/schdule/schedulePopup")
 	public void Popup()	{}
 	
-	@RequestMapping("/deletePopup")
+	@RequestMapping("/schdule/deletePopup")
 	public void deletePopup()	{}
 	
-	@RequestMapping("/updatePopup")
+	@RequestMapping("/schdule/updatePopup")
 	public void updatePopup()	{}
 	
 	@RequestMapping("/repostPopup")

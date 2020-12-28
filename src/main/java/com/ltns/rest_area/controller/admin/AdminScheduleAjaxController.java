@@ -23,7 +23,7 @@ public class AdminScheduleAjaxController {
 
 	
 	//스케줄 인설트 
-	@PostMapping("schedule")
+	@PostMapping("/schdule/schedule")
 	public AjaxResult addSchedule(@RequestBody ScheduleDTO dto , Model m) {
 		
 		int cnt = 0 ;
@@ -48,7 +48,7 @@ public class AdminScheduleAjaxController {
 	
 	
 	//스케줄 업데이트 
-	@PutMapping("/schedule")
+	@PutMapping("/schdule/schedule")
 	public AjaxResult updateSchedules( @RequestBody ScheduleDTO dto) {
 			
 		int cnt = 0 ;
@@ -76,7 +76,7 @@ public class AdminScheduleAjaxController {
 	
 	
 	//일정 삭제 
-	@DeleteMapping("/schedule")
+	@DeleteMapping("/schdule/schedule")
 	public AjaxResult deleteSchedule(@RequestBody ScheduleDTO dto) {
 		
 		int cnt = 0 ;

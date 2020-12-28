@@ -3,8 +3,6 @@
 <mapper namespace="com.ltns.rest_area.domain.admin.DashBoardDAO">
 
 
-
-
 	<select id="selectCnt"  resultType="int">
 	 SELECT count(*) AS total_acount  FROM USERMEMBER 
 	</select>

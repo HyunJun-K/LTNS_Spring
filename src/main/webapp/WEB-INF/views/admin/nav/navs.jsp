@@ -12,7 +12,7 @@
 <!-- dashboard nav -->
 
    <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
+      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="${pageContext.request.contextPath}/admin/dashboard">LTNS DashBoard</a> <!--  barnd 설정  -->
       
       <ul class="navbar-nav  d-flex flex-row-reverse  ">
       

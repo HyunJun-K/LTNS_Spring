@@ -118,17 +118,18 @@
 	<hr>
 	
 		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
-		<canvas id="myChart" width="550" height="300" ></canvas>
+		<canvas id="myChart" style="height:300px; width:70vh" ></canvas>
 		</div>
 		
-		<div class="d-inline-block justify-content-end mr-2 ml-2">
-		<canvas id="postChart2" width="550" height="300" ></canvas>
+		<div class="d-inline-block justify-content-start mr-2 ml-2">
+		<canvas id="postChart2" style="height:300px; width:70vh" ></canvas>
 		</div>
+		
 			<div class="clear"></div>
 	
 	<hr>
 		<div class="d-inline-block justify-content-center">
-		<canvas id="linechart" width="1150" height="300"></canvas>
+		<canvas id="linechart" style="height:30vh; width:75vw" ></canvas>
 		</div>
 	
 	

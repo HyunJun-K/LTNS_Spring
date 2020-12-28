@@ -63,6 +63,10 @@
 						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
 								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 공지사항
 						</a></li>
+						
+						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/areaInfo"> <span
+								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 휴게소 정보
+						</a></li>
 					</ul>
 
 				</div>
@@ -178,13 +182,14 @@
 		
 		
 		
-		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
-		<canvas id="myChart" width="550" height="300" ></canvas>
+		<div class= "d-inline-block justify-content-start ml-4" >
+	
+		<canvas id="myChart" style="position: relative; height:30vh; width:75vw" ></canvas>
 		</div>
 		
 		
-		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
-		<canvas id="memberListAdd" width="550" height="300" ></canvas>
+		<div class= "d-inline-block justify-content-start ml-4" >
+		<canvas id="memberListAdd" style="height:30vh; width:75vw" ></canvas>
 		</div>
 		
 

@@ -170,7 +170,7 @@
 				 	<input type="hidden" name="csrfToken" value="${_csrf.token}" />
 				  </form>
 				</div>
-		
+		<br>
 		 <div class="text-right mb-3">
 				 	<button type="button" class="btn_infos" onclick="change_grade();"> 권한 변경 </button>
 				 	<button type="button" class="btn_infos" onclick="delete_grade();"> 권한 삭제 </button>
@@ -185,20 +185,17 @@
 			<div class="clear"></div>
 
 	<hr>
-		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
-		<canvas id="userCharts" width="550" height="300" ></canvas>
+
+		<div class= "d-inline-block justify-content-start  " >
+		<canvas id="userCharts"style="height:300px; width:70vh" ></canvas>
 		</div>
 		
-		<div class= "d-inline-block justify-content-end mr-4 ml-2" >
-		<canvas id="userCharts2" width="550" height="300" ></canvas>
+		<div class= "d-inline-block justify-content-start ml-4" >
+		<canvas id="userCharts2" style="height:300px; width:70vh"></canvas>
 		</div>
 
-
-	<div class="clear"></div>	
-	
-	<hr>
-	  
-	  
+  	<hr>
+	  	<div class="clear"></div>
 	  
 	  
 
