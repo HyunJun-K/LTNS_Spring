@@ -26,6 +26,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
+<!-- google font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
 
 <!--  bootstrap -->
@@ -37,9 +40,9 @@
 
 <body id="mybodys" class="bg-light" >
 
-	<div  class="loadings">
-	  		<img src="https://static-steelkiwi-dev.s3.amazonaws.com/media/filer_public/4e/07/4e07eece-7c84-46e2-944d-1a6b856d7b5f/463ff844-6f36-4ffe-b051-fea983d39223.gif">
-	</div>
+	<div class="loading mt-5">
+			<img src="${pageContext.request.contextPath }/admin/img/loading.gif">
+		</div>
 	
 	<div id="bodys">
 	 
@@ -69,9 +72,15 @@
 								data-feather="users"></span> <i class="fas fa-edit"></i>&nbsp;&nbsp;게시글 정보
 						</a></li>
 					
-					<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
+						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
 								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 공지사항
 						</a></li>
+						
+						
+					<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/areaInfo"> <span
+								data-feather="bar-chart-2"></span> <i class="fas fa-utensils"></i>&nbsp;&nbsp; 휴게소 정보
+						</a></li>
+						
 					</ul>
 
 				</div>
@@ -79,7 +88,8 @@
 		</div><!-- sidebar 라인 -->
 
 		<!-- section 1  -->
-		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+		<main role="main" id="main_article" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+		
 		
 
 	<div id="ex1" class="modal">
@@ -118,7 +128,7 @@
 							
 						
 						<button onclick="mailSend();" type="button" class="btn btn-outline-success">Submit</button>
-						<button class="btn btn-outline-danger"  onclick="close_modal();" >close</button>
+						 <a type="button" class="btn btn-outline-danger" href="#" rel="modal:close" id="close">Close</a>
 					</div>
 					
 					 <input type="hidden" name="csrfToken" value="${_csrf.token}" />
@@ -143,11 +153,13 @@
 				<form id="frmList" name="frmList">
 					<table class="table">
 						<thead class="thead-dark">
+						<tr>
 							<th>Check</th>
 							<th>UID</th>
 							<th>아이디</th>
 							<th>닉네임</th>
 							<th>가입일</th>
+						</tr>
 						</thead>
 						<tbody>
 

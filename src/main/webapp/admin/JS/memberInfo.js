@@ -12,11 +12,8 @@ $(document).ready(function(){
 	pageLoad(pageNo);
 	TopComent();
 	TopPostUser();
+	$(".loading").hide();
 
-	$(".loadings").hide();
-
-	
-	
 })
 
 
@@ -66,7 +63,7 @@ function updateList(JsonObj) {
         result += "<tr>\n";
         result += "<td><input type='radio' class='radios' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
         result += "<td>" + items[i].um_UID + "</td>\n";
-		result += "<td> <a id='showModal' href='#ex1' rel='modal:open' ><span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span> </a>\n";
+		result += "<td> <a id='showModal' href='#ex1' rel='modal:open' class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td>  </a>\n";
 		//result += "<td><span id='names' class='subject' data-uid='" + items[i].um_UID + "'>" + items[i].um_USERNAME + "</span></td>\n";
         result += "<td>" + items[i].um_NICKNAME + "</td>\n";
         result += "<td><span data-viewcnt='" + items[i].um_UID + "'>" + items[i].user_regdate + "</span></td>\n";
@@ -97,7 +94,8 @@ function updateList(JsonObj) {
 function chk(){
 	$("#list .memberModal").click(function(){
 		var data = $(this).attr('data-age');
-		$("#userEmail").val($("#userEmail").val() + data);
+		$("#userEmail").val(data);
+	
 	})
 }
 
@@ -200,6 +198,9 @@ function seachData(JsonObj){
 			result += "<td><input type='radio' class='radios' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
         	result += "<td>" + items[i].um_UID + "</td>\n";
 			result += "<td> <a id='showModal' href='#ex1' rel='modal:open' ><span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span> </a>\n";
+		
+			//result += "<td>  <span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span>\n";
+		
 			result += "<td>" + items[i].um_NICKNAME + "</td>\n";
 			result += "<td><span data-viewcnt='" + items[i].um_UID + "'>" + items[i].user_regdate + "</span></td>\n";
 			result += "</tr>\n";
@@ -540,8 +541,6 @@ function mailSend(){
 	
 	var queryString = JSON.stringify($("form#mailForm").serializeObject());
 	
-	
-	
 	function mailSendAjax(queryString){
 		$.ajax({
 			url : "mailSendAjax",
@@ -558,8 +557,8 @@ function mailSend(){
 
 				 if(data.status =="OK"){
 				 	alert("메일 전송이 성공 하였습니다.");
-				 	
-					 $("#bodys").show();
+				 	location.reload();
+					$("#bodys").show();
 					$(".loadings").hide();
 					$("#mybodys").attr('class','bg-light')
 				 }
@@ -569,7 +568,7 @@ function mailSend(){
 	}
 	mailSendAjax(queryString);
 	$("#bodys").hide();
-	$(".loadings").show();
+	$(".loading").show();
 	$.modal.close();
 
 	$("#mybodys").attr('class','dark')
@@ -578,7 +577,4 @@ function mailSend(){
 
 
 }
-
-
-
 

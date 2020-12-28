@@ -6,12 +6,6 @@ $(document).ready(function(){
     $(".viewList").hide();
     $("#writeNotices").hide();
     $("#updateNotices").hide();
-  
-
-    
-
-
-
 })
 
 
@@ -333,7 +327,6 @@ function writeOk(){
 
 */
 function noticeModal(){
-
     $('a[href="#ex1"]').show(function(event) {
         $(this).modal({
           fadeDuration: 250

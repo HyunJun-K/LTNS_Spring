@@ -26,6 +26,11 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
+<!-- google font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+
 <link href='${pageContext.request.contextPath }/admin/CSS/postInfo.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/postInfo.js'></script>
 
@@ -59,6 +64,11 @@
 						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
 								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 공지사항
 						</a></li>
+						
+						
+						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/areaInfo"> <span
+								data-feather="bar-chart-2"></span> <i class="fas fa-utensils"></i>&nbsp;&nbsp; 휴게소 정보
+						</a></li>
 					</ul>
 
 				</div>
@@ -66,7 +76,7 @@
 		</div><!-- sidebar 라인 -->
 
 		<!-- section 1  -->
-		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+		<main role="main" id="main_article" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
 			   <div id="list" >
 				<div class="d01 text-right font-lg">
@@ -78,13 +88,15 @@
 				<form id="frmList" name="frmList">
 					<table class="table">
 						<thead class="thead-dark">
-							<th>UID</th>
+						<tr>
+							<th>Check</th>
 							<th>POST_ID</th>
 							<th>POST_TITLE</th>
 							<th>POST_CONTENTS</th>
 							<th>RA_CODE</th>
 							<th>UM_USERNAME</th>
 							<th>POST_REPORTED</th>
+						</tr>
 						</thead>
 						<tbody>
 

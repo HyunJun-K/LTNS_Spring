@@ -75,8 +75,14 @@
 	
 		
 		
-	    <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
+	    <main role="main" id="main_article" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
 	    <div id="list" >
+	    	<div class="btn_team text-right mt-2 mb-2">
+			<button type="button" id="btns" onclick="pageLoad(1);"> 휴게소</button>
+			<button type="button" id="btns" onclick="updateG(1);"> 주유소 </button>
+			<button type="button" id="btns" onclick="updateM(1);"> 음식 </button>
+			</div>
+			
 				<form id="frmList" name="frmList">
 					<table class="table text-center">
 						<thead  class="bg-info text-white" >
@@ -102,8 +108,8 @@
 						<option value="values_2"> 주유소 이름</option>
 						<option value="values_3"> 메뉴 이름 </option>
 					</select>
-					<input  type="text" name="text_Info" class="input_seach">
-					<button type="button" class="btn_infos ml-2" onclick="info_Serch();"> 검색 </button>
+					<input  type="text"  name="text_Info" class="input_seach">
+					<button type="button"  class="btn_infos ml-2" onclick="info_Serch();"> 검색 </button>
 				  </form>
 				</div>
 				
@@ -120,10 +126,6 @@
 			
 		
 			
-			<button type="button" onclick="pageLoad(1);">휴게소 정보</button>
-			<button type="button" onclick="updateG(1);">주유소 정보</button>
-			<button type="button" onclick="updateM(1);">메뉴 정보</button>
-		
 			
 			
 		</main> <!-- article -->

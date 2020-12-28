@@ -36,7 +36,7 @@
      	
 			<div class="popovers border border-dark text-center">
 				<div class="popupTitle"> 알림 </div>
-				<div class="popupBody"> </div>
+				<div class="popupBody">금일 공지사항은 없습니다.</div>
 			</div>
 	 
     </nav> <!-- nav header 라인 -->

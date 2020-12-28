@@ -73,6 +73,10 @@
 						<li class="nav-item"><a class="nav-link  bg-info text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
 								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 공지사항
 						</a></li>
+						
+						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/areaInfo"> <span
+								data-feather="bar-chart-2"></span> <i class="fas fa-utensils"></i>&nbsp;&nbsp; 휴게소 정보
+						</a></li>
 					</ul>
 
 				</div>

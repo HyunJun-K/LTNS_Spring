@@ -354,7 +354,7 @@ SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days ,count(*) dayscount  FROM POST
 INSERT INTO POST 
 (post_id, post_title, POST_CONTENTS, UM_UID, UM_USERNAME, POST_REGDATE, RA_CODE, POST_REPORTED)
 VALUES
-(46,'유머','하하히히히', 2, 'ceo','20-12-07', 'A00004','11')
+(47,'유머','하하히히히', 2, 'ceo',sysdate, 'A00004','11')
 
 
 

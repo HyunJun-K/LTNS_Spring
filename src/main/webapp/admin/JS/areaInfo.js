@@ -4,10 +4,11 @@ var pagination = "" ;
 var gas = "";
 var rest = "";
 var food = "";
+var length = $("#heads").children().length
 $(document).ready(function() {
     
     pageLoad(pageNo);
-    
+   
 })
 
 
@@ -34,6 +35,7 @@ function pageLoad(pageNo){
 
 function thead(JsonObj){
 
+
     if(JsonObj.list[0].gs_LPG != null){
         var data = [ '주유소 이름','주유소 코드', '경유','휘발류','LPG']
         $("thead").attr("class", 'bg-danger text-white')
@@ -52,31 +54,6 @@ function thead(JsonObj){
 }
 
 
-function seachHead(chkData){
-    
-    switch (chkData){
-        case 'rest' : 
-        var data = [ '주유소 이름','주유소 코드', '경유','휘발류','LPG']
-        $("thead").attr("class", 'bg-danger text-white')
-        break;
-
-        case 'gas' : 
-        $("thead").attr("class", 'bg-info text-white')
-        var data = ['휴게소 이름','휴게소 코드','고속도로 이름','휴게소 방향','고속도로 번호']
-        break;
-
-        default : 
-        $("thead").attr("class", 'bg-success text-white')
-        var data = ['휴게소 이름','휴게소 코드','메뉴 코드','메뉴 이름','메뉴 가격']
-       break;
-    }
-   
-    var length = $("#heads").children().length
-    for(var i =0; i< length; i++){
-        $("#heads").children().eq(i).html(data[i]);
-    }
-
-}
 
 
 function updateList(JsonObj) {
@@ -378,6 +355,7 @@ function updateMenu(JsonObj) {
 
 
 function info_Serch(){
+    
     var tex = $("#sele_option").val();
     var text_info = $(".input_seach").val();
 
@@ -403,26 +381,21 @@ function info_Serch(){
 		contentType:'application/json;',
 		 success : function(data, status){
 	            if(status == "success"){
-                    if(tex == "values_1"){
-                        if(data.count == 0){
-                            alert("검색 결과가 없습니다.");
-                        }
-                            updateList(data);
-                            seachHead(rest);
-                    }else if(tex == "values_2"){
+                    
+                    if(data.count == 0){
+                        alert("검색 결과가 없습니다.");
+                        return false;
+                    }
 
-                        if(data.count == 0){
-                             alert("검색 결과가 없습니다.");
-                        }
-                            updateGas(data);
-                            seachHead(gas);
-                      
+                    if(tex == "values_1"){
+                            updateList(data);
+                            thead(data);
+                    }else if(tex == "values_2"){
+                         updateGas(data);
+                         thead(data);
                     }else{
-                        if(data.count ==0 ){
-                            alert("검색 결과가 없습니다.");
-                        }
                         updateMenu(data);
-                        seachHead(food);
+                        thead(data);
                     }
                 
 	             }

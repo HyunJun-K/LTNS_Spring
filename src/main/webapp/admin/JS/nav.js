@@ -16,9 +16,7 @@ function popover(){
             success : function(data, status){
                 if(data.status=="OK"){
                     if( data.count !=0 ){
-                        $(".popupBody").html("읽지 않은 공지사항이 " + data.count + " 개 있습니다.");
-                    }else{
-                        $(".popupBody").html("오늘 공지사항은 없습니다.");
+                        $(".popupBody").html("오늘 작성된 공지사항이 " + data.count + " 개 있습니다.");
                     }
                 }
             }
