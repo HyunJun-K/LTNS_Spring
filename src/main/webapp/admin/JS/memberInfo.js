@@ -14,6 +14,9 @@ $(document).ready(function(){
 	TopPostUser();
 	$(".loading").hide();
 
+	$("#close").click(function(){
+		$("#emailText").val("");
+	})
 })
 
 
@@ -93,7 +96,7 @@ function updateList(JsonObj) {
 
 function chk(){
 	$("#list .memberModal").click(function(){
-		$("#emailText").val("");
+	//
 		var data = $(this).attr('data-age');
 		$("#userEmail").val(data);
 	
@@ -461,7 +464,7 @@ function donutChart(JsonObj){
 
 // modal event 
 function message_hello(){
-  $("#emailText").text(""); // 내용 초기화 
+  $("#emailText").text("");
   $("#emailText").text(
 	  "안녕하세요 LTNS 휴게소 정보 서비스 입니다. \n" +
 	  "매번 이용해주시는 고객님 정말 감사 드립니다. \n" + 
@@ -573,4 +576,5 @@ function mailSend(){
 
 
 }
+
 

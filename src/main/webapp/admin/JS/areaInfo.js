@@ -394,7 +394,7 @@ function info_Serch(){
                     if(tex == "values_1"){
                         updateList(data);
                         thead(data);
-                        insertdata();
+                        popUp()
                     }else if(tex == "values_2"){
                          updateGas(data);
                          thead(data);
@@ -420,7 +420,7 @@ function popUp(){
         var option = "width = 800, height = 600 left = 400, top=100,location=no";
         var chiled;
         $("#parent").val(data);
-        
+
         chiled = window.open(url,name,option)
         
 
