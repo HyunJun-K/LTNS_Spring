@@ -15,7 +15,7 @@ $(document).ready(function(){
 	$(".loading").hide();
 
 	$("#close").click(function(){
-		$("#emailText").val("");
+		$("#emailText").text("");
 	})
 })
 
