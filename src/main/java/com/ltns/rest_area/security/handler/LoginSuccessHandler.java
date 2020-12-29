@@ -58,7 +58,7 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 			response.sendRedirect(request.getContextPath() + "/admin/dashboard");
 			return;
 		}	
-		response.sendRedirect(request.getContextPath() + "/member/user/info");
+		response.sendRedirect(request.getContextPath() + "/member/user/mypage");
 	}
 
 }

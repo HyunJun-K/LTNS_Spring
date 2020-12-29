@@ -1,4 +1,4 @@
-import { logout } from '../../JS/user/logout.js';
+import { logout } from '../../js/user/logout.js';
 var check = false;
 var nick = $('#um_nickname').val();
 $(document).ready(function () {

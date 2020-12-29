@@ -14,7 +14,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/CSS/user/list.css" />
+	href="${pageContext.request.contextPath }/resources/css/user/list.css" />
 <title>음식 즐겨찾기</title>
 </head>
 <body class="container">
@@ -46,6 +46,6 @@
 		<ul class="pagination" id="pagination">
 		</ul>
 	</div>
-	<script src="<%=request.getContextPath()%>/resources/JS/user/foods.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/user/foods.js"></script>
 </body>
 </html>

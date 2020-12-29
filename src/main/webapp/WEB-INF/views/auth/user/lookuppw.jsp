@@ -13,7 +13,7 @@
     <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet"
-          href="<%=request.getContextPath()%>/resources/CSS/user/lookuppw.css"/>
+          href="<%=request.getContextPath()%>/resources/css/user/lookuppw.css"/>
     <title>비밀번호 찾기</title>
 </head>
 <body>
@@ -43,6 +43,6 @@
     </form>
 </div>
 <script
-        src="<%=request.getContextPath()%>/resources/JS/user/lookuppw.js"></script>
+        src="<%=request.getContextPath()%>/resources/js/user/lookuppw.js"></script>
 </body>
 </html>

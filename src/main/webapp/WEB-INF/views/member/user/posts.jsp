@@ -14,7 +14,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/CSS/user/list.css" />
+	href="${pageContext.request.contextPath }/resources/css/user/list.css" />
 <title>내가 작성한 글</title>
 </head>
 <body class="container">
@@ -25,6 +25,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th class="text-center">#</th>
 						<th class="text-center table__no">번호</th>
 						<th class="text-center table__title">제목</th>
 						<th class="text-center table__user">글쓴이</th>
@@ -35,7 +36,9 @@
 				</tbody>
 			</table>
 			<input type="hidden" id="message" name="message" value="gs_like" />
-			<input type="hidden" id="token" name="${_csrf.parameterName }"
+			<input type="hidden" id="table" name="table" value="post" /> <input
+				type="hidden" id="column" name="column" value="post_id" /> <input
+				type="hidden" id="token" name="${_csrf.parameterName }"
 				value="${_csrf.token }" />
 		</form>
 		<button id="removeBtn" class="btn btn-success float-right">삭제</button>
@@ -44,6 +47,6 @@
 		<ul class="pagination" id="pagination">
 		</ul>
 	</div>
-	<script src="<%=request.getContextPath()%>/resources/JS/user/posts.js"></script>
+	<script src="<%=request.getContextPath()%>/resources/js/user/posts.js"></script>
 </body>
 </html>

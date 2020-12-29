@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/CSS/user/sign-upCSS.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath }/resources/css/user/sign-upCSS.css">
 
 <title>회원가입</title>
 </head>
@@ -121,7 +121,7 @@
 
 	
 	</div>
-<script src="${pageContext.request.contextPath }/resources/JS/user/sign-upJS.js"></script>
-<script src="${pageContext.request.contextPath }/resources/JS/user/emailJS.js"></script>	
+<script src="${pageContext.request.contextPath }/resources/js/user/sign-upJS.js"></script>
+<script src="${pageContext.request.contextPath }/resources/js/user/emailJS.js"></script>	
 </body>
 </html>

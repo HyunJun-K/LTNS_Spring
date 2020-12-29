@@ -13,7 +13,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/CSS/user/autherror.css"/>
+<link rel="stylesheet" href="<%=request.getContextPath()%>/resources/css/user/autherror.css"/>
 <title>Auth Error</title>
 </head>
 <body>

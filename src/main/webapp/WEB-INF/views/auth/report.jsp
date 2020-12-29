@@ -12,8 +12,8 @@
 </head>
 
 <!-- css link  -->
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/CSS/user/report.css"> 
-<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/CSS/user/emailLoading.css">
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/user/report.css"> 
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/resources/css/user/emailLoading.css">
 <!-- javascript link -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -114,6 +114,6 @@
 </div>
 <jsp:include page="/WEB-INF/views/auth/emailLoading.jsp" />
 
-<script src="<%=request.getContextPath() %>/resources/JS/user/report.js"></script>
+<script src="<%=request.getContextPath() %>/resources/js/user/report.js"></script>
 </body>
 </html>

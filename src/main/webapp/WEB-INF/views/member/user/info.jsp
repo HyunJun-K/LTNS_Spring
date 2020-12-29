@@ -14,14 +14,63 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/CSS/user/info.css" />
+	href="${pageContext.request.contextPath }/resources/css/user/info.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/CSS/user/logout.css" />
+	href="${pageContext.request.contextPath }/resources/css/user/logout.css" />
 <title>회원 정보 수정</title>
 </head>
 <body>
-	<div class="container">
-		<form id="modiyfyForm"
+
+		
+	<!-- dashboard nav -->
+   <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
+      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
+      
+      <ul class="navbar-nav  d-flex flex-row-reverse  ">
+      
+      <li class="nav-item  mr-5">
+      <button class="btn btn-primary" onclick="$('#logoutForm').submit();">로그아웃</button>
+      </li>   
+          <li class="nav-item  mr-5">
+         		<span class="welcomes" style="font-size: 12px;">${userObj.um_username}</span>
+          </li>
+          <li class="nav-item mr-3">
+	          <div>
+	          <img src="${pageContext.request.contextPath }/resources/img/1.PNG">
+	          </div>
+  	      </li>
+			<li class="nav-item   mr-4 text-center">
+			<a type ="button" class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
+			</li>
+
+			<li class="nav-item  mr-4 text-center">
+			<a class="nav-link text-dark"  href="#ex1" rel="modal:open"><i class="fas fa-bell"></i></a>
+			</li>
+		</ul>
+     
+	 
+    </nav> <!-- nav header 라인 -->
+
+<div class="box">
+	<nav class="col-md-2 d-none d-md-block bg-dark sidebar">
+		<div class="sidebar-sticky">
+			<ul class="nav flex-column">
+						
+						<li class="nav-item "><a class="nav-link bg-info text-white" href="${pageContext.request.contextPath}/member/user/info"> <span
+								data-feather="shopping-cart"></span> <i class="fas fa-chart-line"></i>&nbsp;&nbsp; 나의 정보
+						</a></li>
+						
+						<li class="nav-item "><a class="nav-link text-white " href="${pageContext.request.contextPath}/member/user/mypage"> <span
+								data-feather="shopping-cart"></span>  <i class="far fa-calendar-check"></i>&nbsp;&nbsp; 내 페이지
+						</a></li>
+						
+					</ul>
+
+		</div>
+	</nav>
+		<div class="contents">
+		<div class="column_box">
+		  <form id="modiyfyForm"
 			action="${pageContext.request.contextPath }/member/user/modify">
 			<table class="table table-hover table-bordered">
 				<thead>
@@ -71,11 +120,14 @@
 			정보 변경</button>
 		<button id="deleteBtn" class="btn btn-danger form-control mt-2">회원
 			탈퇴</button>
-	</div>
+		</div>
+		</div>
+</div>
 	<div id="logout"></div>
+	
 	<script type="module"
-		src="${pageContext.request.contextPath }/resources/JS/user/info.js"></script>
+		src="${pageContext.request.contextPath }/resources/js/user/info.js"></script>
 	<script type="module"
-		src="${pageContext.request.contextPath }/resources/JS/user/logout.js"></script>
+		src="${pageContext.request.contextPath }/resources/js/user/logout.js"></script>
 </body>
 </html>
