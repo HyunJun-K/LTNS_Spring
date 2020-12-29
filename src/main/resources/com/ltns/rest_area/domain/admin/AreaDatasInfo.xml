@@ -70,6 +70,13 @@
 	<select id="GasstionName" resultType="com.ltns.rest_area.domain.admin.AreaDataDTO">
 		SELECT * FROM GASSTATION WHERE GS_NAME LIKE #{GNAME}
 	</select>
+	
+	
+	<select id="SeachXY" flushCache="true"  resultType="com.ltns.rest_area.domain.admin.AreaDataDTO">
+			SELECT * FROM RESTAREA WHERE RA_NAME = #{names}
+	</select>
+	
 
+	
 
 </mapper>

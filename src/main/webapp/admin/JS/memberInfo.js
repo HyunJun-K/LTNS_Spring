@@ -93,6 +93,7 @@ function updateList(JsonObj) {
 
 function chk(){
 	$("#list .memberModal").click(function(){
+		$("#emailText").val("");
 		var data = $(this).attr('data-age');
 		$("#userEmail").val(data);
 	
@@ -480,11 +481,6 @@ function message_report(){
 }
 
 
-
-function close_modal() {
-	$("#emailText").text(""); // 내용 초기화 
-	$.modal.close();
-}
 
 $.fn.serializeObject = function()
 

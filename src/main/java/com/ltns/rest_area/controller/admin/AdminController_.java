@@ -108,6 +108,11 @@ public class AdminController_ {
 	@RequestMapping("/notice/noticeModal")
 	public void noticeModal(){}
 	
+	
+	@RequestMapping("/areaInfoPopUp/areaInfoUpdate")
+	public void areaInfoUpdate(){}
+	
+	
 	@RequestMapping("/nav/navs")
 	public void navs(Model m, HttpServletRequest request){
 		String id =  (String)request.getSession().getAttribute("user");

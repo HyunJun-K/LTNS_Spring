@@ -19,6 +19,30 @@ body img {
 		font-family: 'Do Hyeon', sans-serif;
 	
 }
+
+/*modal*/
+
+
+
+.modal {
+       position: fixed;
+       height:500px;
+       width: 600px;
+       margin-top : 5%;
+  	   margin-left : 40%;
+  	   
+
+}
+
+.modal a.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    height : 0px;
+    
+}
+
+
 <!-- nav !-->
 
 .navbar-nav .welcomes{	
@@ -227,3 +251,9 @@ button:hover:before,button:hover:after{
   transition:800ms ease all;
 }
 
+
+#list a:hover {
+	text-decoration: underline;
+	cursor: pointer;
+	color:tomato;
+}
