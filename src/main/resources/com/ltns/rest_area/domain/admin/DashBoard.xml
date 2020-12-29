@@ -3,8 +3,6 @@
 <mapper namespace="com.ltns.rest_area.domain.admin.DashBoardDAO">
 
 
-
-
 	<select id="selectCnt"  resultType="int">
 	 SELECT count(*) AS total_acount  FROM USERMEMBER 
 	</select>
@@ -113,6 +111,12 @@
 		GROUP BY TO_CHAR(UM_REGDATE ,'MM-DD') 
 		ORDER BY TO_CHAR(UM_REGDATE ,'MM-DD')
 	]]>
+	</select>
+	
+	
+	<select id="select_todayNotice" flushCache="true" resultType="int">
+	SELECT count(*) count  FROM ADMINNOTICE a 
+	WHERE to_char(NOTICE_REGDATE,'yyyy-mm-dd')  = to_char(sysdate,'yyyy-mm-dd')  
 	</select>
 
 </mapper>

@@ -1,6 +1,6 @@
 
 var pageNo = 1; 
-var pagenationPage = 5;
+var pagenationPage = 8;
 var viewItem = undefined; 
 
 
@@ -12,11 +12,8 @@ $(document).ready(function(){
 	pageLoad(pageNo);
 	TopComent();
 	TopPostUser();
+	$(".loading").hide();
 
-	$(".loadings").hide();
-
-	
-	
 })
 
 
@@ -64,9 +61,9 @@ function updateList(JsonObj) {
     for(i=0; i<count; i++){
 	
         result += "<tr>\n";
-        result += "<td><input type='checkbox' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
+        result += "<td><input type='radio' class='radios' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
         result += "<td>" + items[i].um_UID + "</td>\n";
-		result += "<td> <a id='showModal' href='#ex1' rel='modal:open' ><span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span> </a>\n";
+		result += "<td> <a id='showModal' href='#ex1' rel='modal:open' class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td>  </a>\n";
 		//result += "<td><span id='names' class='subject' data-uid='" + items[i].um_UID + "'>" + items[i].um_USERNAME + "</span></td>\n";
         result += "<td>" + items[i].um_NICKNAME + "</td>\n";
         result += "<td><span data-viewcnt='" + items[i].um_UID + "'>" + items[i].user_regdate + "</span></td>\n";
@@ -97,7 +94,8 @@ function updateList(JsonObj) {
 function chk(){
 	$("#list .memberModal").click(function(){
 		var data = $(this).attr('data-age');
-		$("#userEmail").val($("#userEmail").val() + data);
+		$("#userEmail").val(data);
+	
 	})
 }
 
@@ -197,10 +195,12 @@ function seachData(JsonObj){
 	    var items  = JsonObj.list;
 	    for(i=0; i<count; i++){
 			result += "<tr>\n";
-			result += "<td><input type='checkbox' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
-			result += "<td>" + items[i].um_UID + "</td>\n";
+			result += "<td><input type='radio' class='radios' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
+        	result += "<td>" + items[i].um_UID + "</td>\n";
 			result += "<td> <a id='showModal' href='#ex1' rel='modal:open' ><span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span> </a>\n";
-			//result += "<td><span id='names' class='subject' data-uid='" + items[i].um_UID + "'>" + items[i].um_USERNAME + "</span></td>\n";
+		
+			//result += "<td>  <span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span>\n";
+		
 			result += "<td>" + items[i].um_NICKNAME + "</td>\n";
 			result += "<td><span data-viewcnt='" + items[i].um_UID + "'>" + items[i].user_regdate + "</span></td>\n";
 			result += "</tr>\n";
@@ -221,6 +221,69 @@ function seachData(JsonObj){
 	   } 
 	
 }
+
+
+
+
+
+function change_grade(){
+	if($("#list tbody input[name=um_UID]").is(":checked")){
+		if(confirm("정말 권한을 부여 하시겠습니까?")) 
+		var checkData = $("#list tbody input[name='um_UID']:checked").val();
+
+		$.ajax({
+			url : "Change_Grage/" + checkData,
+			type : "GET",
+			headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+			dataType : "JSON",
+			contentType:'application/json;',
+			success : function(data, status){
+				if(data.status =="OK"){
+					alert("변경되었습니다.")
+				}else{
+					alert("변경 오류")
+				}
+			}
+		});
+		
+	}else{
+		alert("변경하실 유저를 Check를 해주세요")
+	}
+	
+}
+
+
+function delete_grade(){
+	if($("#list tbody input[name=um_UID]").is(":checked")){
+		if(confirm("정말 권한을 삭제 하시겠습니까?")) 
+		var checkData = $("#list tbody input[name='um_UID']:checked").val();
+
+		$.ajax({
+			url : "delete_Grage/" + checkData,
+			type : "GET",
+			headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+			dataType : "JSON",
+			contentType:'application/json;',
+			success : function(data, status){
+				if(data.status =="OK"){
+					alert("변경되었습니다.")
+				}else{
+					alert("변경 오류")
+				}
+			}
+		});
+		
+	}else{
+		alert("변경하실 유저를 Check를 해주세요")
+	}
+}
+
+
+
 
 
 
@@ -478,8 +541,6 @@ function mailSend(){
 	
 	var queryString = JSON.stringify($("form#mailForm").serializeObject());
 	
-	
-	
 	function mailSendAjax(queryString){
 		$.ajax({
 			url : "mailSendAjax",
@@ -496,8 +557,8 @@ function mailSend(){
 
 				 if(data.status =="OK"){
 				 	alert("메일 전송이 성공 하였습니다.");
-				 	
-					 $("#bodys").show();
+				 	location.reload();
+					$("#bodys").show();
 					$(".loadings").hide();
 					$("#mybodys").attr('class','bg-light')
 				 }
@@ -507,7 +568,7 @@ function mailSend(){
 	}
 	mailSendAjax(queryString);
 	$("#bodys").hide();
-	$(".loadings").show();
+	$(".loading").show();
 	$.modal.close();
 
 	$("#mybodys").attr('class','dark')
@@ -516,7 +577,4 @@ function mailSend(){
 
 
 }
-
-
-
 

@@ -110,7 +110,8 @@ function pageListReLoadToRA(jsonObj){
 	let row=jsonObj.list;
 	for(i=0;i<row.length;i++){
 		str+=
-		'<a class="listelement" href="#">'+
+		'<a class="listelement" onclick="setPopup(\''+row[i].ra_code+'\')" href="javascript:void(0);" >'+
+		'<p class="ra_code undisplay">'+row[i].ra_code+'</p>'+
 		'	<div class="card">			'+
 	  	'	<img src="..." alt="" />	'+
 	  	'	<div class="card-body">		'+
@@ -127,7 +128,8 @@ function pageListReLoadToGS(jsonObj){
 	let row=jsonObj.list;
 	for(i=0;i<row.length;i++){
 		str+=
-		'<a class="listelement" href="#">	'+
+		'<a class="listelement" onclick="setPopup(\''+row[i].ra_code+'\')" href="javascript:void(0);" >	'+
+		'<p class="ra_code undisplay">'+row[i].ra_code+'</p>'+
 		'	<div class="card">				'+
 		'	  <img src="..." alt="" />		'+
 		'	  <div class="card-body">		'+
@@ -145,7 +147,8 @@ function pageListReLoadToFM(jsonObj){
 	let row=jsonObj.list;
 	for(i=0;i<row.length;i++){
 		str+=
-		'<a class="listelement" href="#">			'+
+		'<a class="listelement" onclick="setPopup(\''+row[i].ra_code+'\')" href="javascript:void(0);" >			'+
+		'<p class="ra_code undisplay">'+row[i].ra_code+'</p>'+
 		'	<div class="card">						'+
 		'	  <img src="..." alt="" />				'+
 		'	  <div class="card-body">				'+

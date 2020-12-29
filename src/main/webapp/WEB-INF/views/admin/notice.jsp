@@ -10,24 +10,30 @@
 </head>
 
 
-<!-- jquery  -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-
 
 
 <!-- google font -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
-<!--  fontawesome -->
-<script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script> 
 
+
+
+<!-- jquery  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
 
 <!--  bootstrap -->
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
+<!--  fontawesome -->
+<script src="https://kit.fontawesome.com/5ccafa9b7a.js" crossorigin="anonymous"></script> 
 
 <link href='${pageContext.request.contextPath }/admin/CSS/notice.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/notice.js'></script>
@@ -37,35 +43,12 @@
 
 <body class="bg-light">
 
+		
 
-	<!-- dashboard nav -->
-   <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
-      
-      <ul class="navbar-nav  d-flex flex-row-reverse  ">
-      
-        
-          <li class="nav-item  mr-5">
-          		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
-         		<span class="welcomes" style="font-size: 12px;"> ${id} </span>
-         		
-          </li>
-          <li class="nav-item mr-3">
-	          <div>
-	          <img src="${pageContext.request.contextPath }/admin/img/1.PNG">
-	          </div>
-  	      </li>
-			<li class="nav-item   mr-4 text-center">
-			<a type ="button" class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
-			</li>
+    <!-- nav -->
+	<jsp:include page="${request.getRequestURI}/admin/nav/navs" flush="true" />
 
-			<li class="nav-item  mr-4 text-center">
-			<a class="nav-link text-dark"  href="#ex1" rel="modal:open"><i class="fas fa-bell"></i></a>
-			</li>
-		</ul>
-     
-	 
-    </nav> <!-- nav header 라인 -->
+
 
 	<div class="container-fluid">
 		<div class="row">
@@ -90,6 +73,10 @@
 						<li class="nav-item"><a class="nav-link  bg-info text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
 								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 공지사항
 						</a></li>
+						
+						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/areaInfo"> <span
+								data-feather="bar-chart-2"></span> <i class="fas fa-utensils"></i>&nbsp;&nbsp; 휴게소 정보
+						</a></li>
 					</ul>
 
 				</div>
@@ -98,10 +85,19 @@
 	
 		 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
 	
+	
+	
+		<!--  모달 -->
+		<jsp:include page="${request.getRequestURI}/admin/notice/noticeModal" flush="true"/>
+			
+		 
+			
+	
+	
 	<!-- 게시글 리스트 부분 -->
 		 <div id="list" >
 			<div class="text-right mb-2">
-					<button type="button" class="mr-2 btn btn-outline-danger "> 공지 </button>
+					<button type="button" onclick="noticeModal();" class="mr-2 btn btn-outline-danger "> 공지 </button>
 					<button type="button" onclick='writeNotice();' class="btn btn-outline-success">글작성</button>
 			</div>
 			
@@ -138,12 +134,12 @@
 			<!-- view -->
 			<jsp:include page="${request.getRequestURI}/admin/notice/view" flush="true"/>
 			
-	
 			<!-- 글작성-->
 			<jsp:include page="${request.getRequestURI}/admin/notice/writer" flush="true" />
 
 	 		<jsp:include page="${request.getRequestURI}/admin/notice/update" flush="true" />
 			
+			<a class="nav-link text-dark d-none"  href="#ex1" rel="modal:open"><i class="fas fa-bell"></i></a>
 		
 		</main> <!-- article -->
 	</div> <!-- end con -->

@@ -2,8 +2,8 @@ UPDATE SCHEDULE SET
 			subject= 'hello2' , startdate='2020-12-10', enddate= '2020-12-10', memo= 'test'
 WHERE subject = 'hello';
 
-SELECT * FROM SCHEDULE s ;
-
+DELETE SCHEDULE  ;
+DELETE * FROM SCHEDULE  WHERE S_SID =141;
 
 SELECT 
 UM_UID , UM_USERNAME, UM_NICKNAME, UM_REGDATE, UM_ENABLED
@@ -240,7 +240,7 @@ INSERT INTO FM_LIKE (UM_UID, FM_ID)
 values('2','11');
 
 DELETE  FROM FM_LIKE ;
-
+DELETE FROM SCHEDULE s 
 
 
 SELECT count(*), RA_CODE  FROM RA_LIKE rl ;
@@ -354,7 +354,7 @@ SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days ,count(*) dayscount  FROM POST
 INSERT INTO POST 
 (post_id, post_title, POST_CONTENTS, UM_UID, UM_USERNAME, POST_REGDATE, RA_CODE, POST_REPORTED)
 VALUES
-(46,'유머','하하히히히', 2, 'ceo','20-12-07', 'A00004','11')
+(47,'유머','하하히히히', 2, 'ceo',sysdate, 'A00004','11')
 
 
 
@@ -400,7 +400,8 @@ INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ
 		INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'acount', '789',  '운영자');
 		SELECT SEQ_usermember_um_uid.NEXTVAL FROM USERMEMBER ;
 	
-	
+SELECT * FROM USERVIEW u;
+UPDATE USERVIEW SET AUTHORITY = 'ROLE_MEMBER' WHERE USERNAME = 'hello';
 	
 INSERT INTO userMember(um_uid, um_username, um_password ,um_nickname) VALUES(SEQ_usermember_um_uid.NEXTVAL, 'park', '$2a$10$5Yy/c52u4Ped7j11mMxKEeuHAIRHjiZyg5NyltWqpW5MGIh6zk/Ky', '박성언');
 
@@ -443,8 +444,8 @@ FROM ADMINNOTICE WHERE notice_id = 17
 
 			
 		
-					INSERT INTO ADMINNotice (notice_id, notice_subject, notice_regdate, NOTICE_WRITER ,notice_content)
-			values(notice_id_seq.nextval, 'ss', sysdate, 'ssd', 'ss')
+			INSERT INTO ADMINNotice (notice_id, notice_subject, notice_regdate, NOTICE_WRITER ,notice_content)
+			values(notice_id_seq.nextval, 'ss', sysdate, 'sd', '202020')
 	
 			
 			
@@ -458,3 +459,45 @@ ALTER TABLE ADMINNOTICE MODIFY notice_subject varchar2(100);
 UPDATE ADMINNOTICE SET notice_subject ='ㅎㅎ'  WHERE  notice_id= 1;
 
 SELECT * FROM ADMINNOTICE a  WHERE NOTICE_ID =12
+
+
+SELECT * FROM ADMINNOTICE a ;
+
+DELETE FROM ADMINNOTICE WHERE NOTICE_ID = 1;
+
+DELETE FROM ADMINNOTICE 
+
+
+SELECT * FROM USERMEMBER WHERE UM_UID = #{UM_UID};
+
+SELECT * FROM USERVIEW u ;
+
+UPDATE USERVIEW SET AUTHORITY = #{AUTHORITY} WHERE USERNAME = #{username}
+
+SELECT count(*) count FROM ADMINNOTICE a 
+WHERE to_char(NOTICE_REGDATE,'yyyy-mm-dd')  = to_char(sysdate,'yyyy-mm-dd')  
+
+
+SELECT * FROM GASSTATION g2 ;
+SELECT * FROM RESTAREA r ;
+SELECT  * FROM FOODMENU f WHERE fm_name ='떡라면';
+
+SELECT count(*) AS CNT FROM  GASSTATION ;
+
+
+SELECT * FROM FOODMENU 
+WHERE fm_name LIKE '라면%';
+
+SELECT * FROM RESTAREA 
+WHERE RA_NAME LIKE '강릉%';
+
+SELECT * FROM GASSTATION 
+WHERE GS_NAME LIKE '인천%';
+
+
+SELECT * FROM GASSTATION g 
+
+
+
+
+

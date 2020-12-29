@@ -2,7 +2,7 @@
 
 //crud 
 function click_delete() {
-		var url = "deletePopup";
+		var url = "schdule/deletePopup";
 		var name = "deletePopup";
 		var option = "width = 800, height = 180 left = 200, top=150,location=no";
 		window.open(url,name,option)
@@ -11,7 +11,7 @@ function click_delete() {
 
 
 function click_add() {
-	var url = "schedulePopup";
+	var url = "schdule/schedulePopup";
 	var name = "schedulePopup";
 	var option = "width = 600, height = 350 left = 200, top=150,location=no";
 	window.open(url,name,option)
@@ -19,7 +19,7 @@ function click_add() {
 
 
 function click_update() {
-	var url = "updatePopup";
+	var url = "schdule/updatePopup";
 	var name = "updatePopup";
 	var option = "width = 600, height = 450 left = 200, top=150,location=no";
 	window.open(url,name,option)

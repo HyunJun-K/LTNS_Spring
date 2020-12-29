@@ -429,6 +429,29 @@ public class AdminDashBoardAjaxController {
 	
 	
 	
+	@PostMapping("alram")
+	public AjaxList alram() {
+		int cnt = 0;
+		StringBuffer message = new StringBuffer();
+		String status = "FAIL";
+		AjaxList result = new AjaxList();
+		
+		cnt = Dservice.select_ToDAY();
+		try {
+			if(cnt != 0) {
+				status = "OK";
+			}
+		} catch (Exception e) {
+			message.append(e.getMessage()+ "트랜잭션 에러");
+		}
+		
+		result.setCount(cnt);
+		result.setStatus(status);
+		result.setMessage(message.toString());
+		return result;
+		
+	}
+	
 	
 	
 	

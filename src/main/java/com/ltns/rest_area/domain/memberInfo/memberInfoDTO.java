@@ -20,7 +20,8 @@ public class memberInfoDTO implements DTO   {
 	private int cnt;
 	private String title;
 	private String textMail;
-	
+
+	private String AUTHORITY;
 	
 	
 	

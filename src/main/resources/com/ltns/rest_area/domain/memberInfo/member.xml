@@ -48,5 +48,15 @@
 		GROUP BY UM_USERNAME  ORDER BY cnt DESC
 	]]>
 	</select>
+	
+	
+	<select id="selectByUids" flushCache="true" resultType="com.ltns.rest_area.domain.memberInfo.memberInfoDTO">
+	SELECT * FROM USERMEMBER WHERE UM_UID = #{UM_UID}
+	</select>
+	
+
+	<update id="updateByAuth" flushCache="true" >
+		UPDATE USERVIEW SET AUTHORITY = #{AUTHORITY} WHERE USERNAME = #{UM_USERNAME}
+	</update>
 
 </mapper>

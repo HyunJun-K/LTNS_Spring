@@ -96,4 +96,9 @@ public class DashBoardService {
 	}
 	
 	
+	public int select_ToDAY() {
+		Ddao = sqlSession.getMapper(DashBoardDAO.class);
+		return Ddao.select_todayNotice();
+	}
+	
 }

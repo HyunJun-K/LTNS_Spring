@@ -34,11 +34,21 @@
 	</insert>
 
 
-	<select id="FileAllselect" flushCache="true">
+	<select id="FileAllselect" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
+		select * from ADMINNOTICE
 	</select>
 
 
 	<update id="updateByDTOS" flushCache="true">
 	UPDATE ADMINNOTICE SET notice_subject = #{title} WHERE notice_id = #{n_id}
 	</update>
+	
+	
+	<delete id="deleteByInts" flushCache="true">
+	DELETE FROM ADMINNOTICE WHERE NOTICE_ID = #{n_id}
+	</delete>
+	
+	
+	
+	
 </mapper>

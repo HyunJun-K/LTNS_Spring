@@ -53,5 +53,5 @@ public class DashBoardDTO implements DTO {
 	private String membersdays;
 	private int month_total;
 	
-	
+	private int count;
 }

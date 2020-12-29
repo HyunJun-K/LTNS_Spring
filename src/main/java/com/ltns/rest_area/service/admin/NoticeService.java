@@ -45,4 +45,15 @@ public class NoticeService {
 		DAO = sqlSession.getMapper(postInfoDAO.class);
 		return DAO.updateByDTOS(dto);
 	}
+	
+	public List<postInfoDTO> allSelect(){
+		DAO = sqlSession.getMapper(postInfoDAO.class);
+		return DAO.FileAllselect();
+	}
+	
+	public int NoticeDelete (int notice_id) {
+		DAO = sqlSession.getMapper(postInfoDAO.class);
+		return DAO.deleteByInts(notice_id);
+	}
+	
 }

@@ -26,6 +26,9 @@ import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.AjaxResult;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.memberInfo.mailDTO;
+import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
+import com.ltns.rest_area.domain.post.PostDTO;
+import com.ltns.rest_area.postInfo.postInfoDTO;
 import com.ltns.rest_area.service.admin.MemberInfoService;
 
 @RestController
@@ -281,7 +284,73 @@ public class AdminMeberAjaxController {
 	}
 
 	
+	//권한 변경
+	@GetMapping("Change_Grage/{checkData}")
+	public AjaxList Change_Grage(@PathVariable int checkData) {
+		
+		AjaxList result = new AjaxList();
+		String status = "FAIL";
+		int cnt = 0;
+		List<memberInfoDTO> list = null;
+		list = member_service.uidSerch(checkData);
+		
+		try {
+			if( list != null ) {
+				for (memberInfoDTO memberInfoDTO : list) {
+						memberInfoDTO.setAUTHORITY("ROLE_ADMIN");
+						cnt = member_service.updateGrade(memberInfoDTO);
+				}
+			}
+			
+			if(cnt !=0 ) {
+				status = "OK";
+			}
+			
+			
+		} catch (Exception e) {e.getStackTrace();}
+		
+		
+		result.setStatus(status);
+		result.setCount(cnt);
+		
+		return result;
+		
+	}
 	
+	
+	@GetMapping("delete_Grage/{checkData}")
+	public AjaxList delete_Grage(@PathVariable int checkData) {
+		
+		AjaxList result = new AjaxList();
+		String status = "FAIL";
+		int cnt = 0;
+		List<memberInfoDTO> list = null;
+		list = member_service.uidSerch(checkData);
+		
+		try {
+			if( list != null ) {
+				for (memberInfoDTO memberInfoDTO : list) {
+					
+					memberInfoDTO.setAUTHORITY("ROLE_MEMBER");
+					cnt = member_service.updateGrade(memberInfoDTO);
+				}
+				
+			}
+			
+			if(cnt !=0 ) {
+				status = "OK";
+			}
+			
+			
+		} catch (Exception e) {e.getStackTrace();}
+		
+		
+		result.setStatus(status);
+		result.setCount(cnt);
+		
+		return result;
+		
+	}
 	
 	
 	
