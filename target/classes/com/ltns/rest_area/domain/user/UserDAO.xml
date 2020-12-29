@@ -59,14 +59,18 @@
 	<select id="findByPost_like_All" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="com.ltns.rest_area.domain.user.LikeDTO">
 	select um_uid "uid", post_id numLike from post_like where um_uid = #{um_uid}
 	</select>
-	<!-- 
-	<select id="findByPost_All" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="">
-	select * from post where um_uid = #{um_uid}
+	<select id="findByPost_All" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="com.ltns.rest_area.domain.post.PostDTO">
+	select * from post where um_uid = #{um_uid} order by post_regdate desc
 	</select>
-	<select id="findByComment_All" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="">
-	select * from comment where um_uid = #{um_uid}
+	<select id="findByComment_All" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="com.ltns.rest_area.domain.post.CommentDTO">
+	select * from comments where um_uid = #{um_uid} order by comment_id desc
 	</select>
-	 -->
+	<select id="findByPost" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="com.ltns.rest_area.domain.post.PostDTO">
+	select * from(select rownum "row",post_id,post_title,post_contents,um_uid,um_username,post_regdate, ra_code,post_reported  from post where um_uid = #{user.um_uid} order by post_regdate desc)where "row" <![CDATA[>=]]> #{from}  and "row" <![CDATA[<=]]> #{to}
+	</select>
+	<select id="findByComments" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="com.ltns.rest_area.domain.post.CommentDTO">
+	select * from(select rownum "row", comment_id, comment_contents,um_uid, um_username, post_id,comment_reported  from comments where um_uid = #{user.um_uid})where "row" <![CDATA[>=]]> #{from}  and "row" <![CDATA[<=]]> #{to}
+	</select>	
 	<select id="findByRA_like" resultType="com.ltns.rest_area.domain.user.LikeDTO">
 	select * from(select rownum "row",   um_uid "uid", ra_code strLike from RA_like where um_uid= #{user.um_uid})where "row" <![CDATA[>=]]> #{from}  and "row" <![CDATA[<=]]> #{to}
 	</select>
@@ -79,14 +83,6 @@
 	<select id="findByPost_like"  resultType="com.ltns.rest_area.domain.user.LikeDTO">
 	select * from(select rownum "row",  um_uid "uid", post_id numLike from post_like where um_uid = #{user.um_uid})where "row" <![CDATA[>=]]> #{from}  and "row" <![CDATA[<=]]> #{to}
 	</select>
-	<!-- 
-	<select id="findByPost" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="">
-	select * from(select rownum "row",post_id,post_title,post_contents,um_uid,um_username,post_regdate, ra_code,post_reported  from post where um_uid = #{um_uid})where "row" <![CDATA[>=]]> #{from}  and "row" <![CDATA[<=]]> #{to}
-	</select>
-	<select id="findByComments" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="">
-	select * from(select rownum "row", comment_id, comment_contents,um_uid, um_username, post_id,comment_reported  from comment where um_uid = #{um_uid})where "row" <![CDATA[>=]]> #{from}  and "row" <![CDATA[<=]]> #{to}
-	</select>
-	 -->
 	 <select id="findByRestArea" parameterType="com.ltns.rest_area.domain.user.LikeDTO" resultType="com.ltns.rest_area.domain.restarea.RestAreaDTO">
 	select * from RestArea where ra_code = #{strLike} order by ra_name asc
 	</select>
@@ -96,14 +92,9 @@
 	<select id="findByFoodMenu" parameterType="com.ltns.rest_area.domain.user.LikeDTO" resultType="com.ltns.rest_area.domain.restarea.FoodMenuDTO">
 	select * from FoodMenu where fm_id = #{strLike} order by fm_name asc
 	</select>
-	<!-- 
-	<select id="findByLikePost" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="">
+	<select id="findByLikePost" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="com.ltns.rest_area.domain.post.PostDTO">
 	select * from post where post_id = #{numLike} order by post_regdate desc
 	</select>
-	<select id="findByComments" parameterType="com.ltns.rest_area.domain.user.UserDTO" resultType="">
-	select * from comments where
-	</select>
-	 -->
 	 	<delete id="deleteStrLike" flushCache="true">
 		delete from ${table}
 		where um_uid = ${uid} and ${column} in

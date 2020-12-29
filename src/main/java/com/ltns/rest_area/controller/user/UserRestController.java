@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ltns.rest_area.domain.AjaxResult;
+import com.ltns.rest_area.domain.post.CommentDTO;
+import com.ltns.rest_area.domain.post.PostDTO;
 import com.ltns.rest_area.domain.restarea.FoodMenuDTO;
 import com.ltns.rest_area.domain.restarea.GasStationDTO;
 import com.ltns.rest_area.domain.restarea.RestAreaDTO;
@@ -141,11 +143,12 @@ public class UserRestController {
 			UserDTO findUser = null;
 			String subject = null;
 			String contentText = null;
+			long number = System.currentTimeMillis() / 1000000000;
 			if (kind.equals("authentication")) {
 				subject = "[회원가입] 인증번호";
-				contentText = subject + " : " + System.currentTimeMillis();
+				contentText = subject + " : " + number;
 				new Gmail(request).emailSend("joinAdmin", user.getUm_username(), subject, contentText);
-				result.setCount((int) Long.parseLong(contentText));
+				result.setCount((int)number);
 				result.setStatus("OK");
 				result.setMessage("이메일 전송 성공");
 			} else if (kind.equals("findIdByUsername")) {
@@ -435,16 +438,22 @@ public class UserRestController {
 				if (restAreas.size() != 0) {
 					map.put("restAreas", restAreas);
 				}
-//			List<LikeDTO> postLikes = service.findByPost_like(user);
-//			List<RestAreaDTO> likePosts = new ArrayList<RestAreaDTO>();
-//			if(postLikes.size() != 0) {
-//				postLikes.forEach(like -> likePosts.add(service.findByLikePost(like).get(0)));
-//			}
-//			if(likePosts.size() != 0) {
-//				map.put("likePosts", likePosts);
-//			}
-//			List<PostDTO> posts = service.findByPost(user);
-//			List<CommentDTO> comments = service.findByComments(user);
+			List<LikeDTO> postLikes = service.findByPost_like_All(user);
+			List<PostDTO> likePosts = new ArrayList<PostDTO>();
+			if(postLikes.size() != 0) {
+				postLikes.forEach(like -> likePosts.add(service.findByLikePost(like).get(0)));
+			}
+			if(likePosts.size() != 0) {
+				map.put("likePosts", likePosts);
+			}
+			List<PostDTO> posts = service.findByPost_All(user);
+			if(posts.size() != 0) {
+				map.put("posts", posts);
+			}
+			List<CommentDTO> comments = service.findByComment_All(user);
+			if(comments.size() != 0) {
+				map.put("comments", comments);
+			}
 				result.setMap(map);
 				result.setStatus("OK");
 				result.setMessage("정보전송 성공");
@@ -499,11 +508,31 @@ public class UserRestController {
 			result.setStatus("OK");
 			result.setListAll(restAreas);
 		} else if (type.equals("likePosts")) {
-
+			result.setTotalCnt(service.findByPost_like_All(user).size());
+			result.setPageNo(page);
+			result.setNumOfRows(pageRows);
+			result.setWritePages(pageRows);
+			likes = service.findByPost_like(user, from, to);
+			List<PostDTO> likePosts = new ArrayList<PostDTO>();
+			likes.forEach(like -> likePosts.add(service.findByLikePost(like).get(0)));
+			result.setStatus("OK");
+			result.setListAll(likePosts);
 		} else if (type.equals("posts")) {
-
+			result.setTotalCnt(service.findByPost_All(user).size());
+			result.setPageNo(page);
+			result.setNumOfRows(pageRows);
+			result.setWritePages(pageRows);
+			List<PostDTO> posts = service.findByPost(user, from, to);
+			result.setStatus("OK");
+			result.setListAll(posts);
 		} else if (type.equals("comments")) {
-
+			result.setTotalCnt(service.findByComment_All(user).size());
+			result.setPageNo(page);
+			result.setNumOfRows(pageRows);
+			result.setWritePages(pageRows);
+			List<CommentDTO> comments = service.findByComments(user, from, to);
+			result.setStatus("OK");
+			result.setListAll(comments);
 		}
 		return result;
 	}

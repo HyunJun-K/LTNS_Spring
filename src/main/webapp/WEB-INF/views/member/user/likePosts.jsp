@@ -14,7 +14,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/CSS/user/list.css" />
+	href="${pageContext.request.contextPath }/resources/css/user/list.css" />
 <title>게시글 즐겨찾기</title>
 </head>
 <body class="container">
@@ -48,6 +48,6 @@
 		</ul>
 	</div>
 	<script
-		src="<%=request.getContextPath()%>/resources/JS/user/likePosts.js"></script>
+		src="<%=request.getContextPath()%>/resources/js/user/likePosts.js"></script>
 </body>
 </html>

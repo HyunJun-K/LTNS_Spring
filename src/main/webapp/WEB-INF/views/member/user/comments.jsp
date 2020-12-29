@@ -14,7 +14,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath }/resources/CSS/user/list.css" />
+	href="${pageContext.request.contextPath }/resources/css/user/list.css" />
 <title>즐겨찾기</title>
 </head>
 <body class="container">
@@ -26,6 +26,7 @@
 			<table class="table table-bordered table-hover">
 				<thead>
 					<tr>
+						<th class="text-center">#</th>
 						<th class="text-center table__no">게시물 번호</th>
 						<th class="text-center table__title">댓글 내용</th>
 					</tr>
@@ -34,7 +35,9 @@
 				</tbody>
 			</table>
 			<input type="hidden" id="message" name="message" value="gs_like" />
-			<input type="hidden" id="token" name="${_csrf.parameterName }"
+			<input type="hidden" id="table" name="table" value="comments" /> <input
+				type="hidden" id="column" name="column" value="comment_id" /> <input
+				type="hidden" id="token" name="${_csrf.parameterName }"
 				value="${_csrf.token }" />
 		</form>
 		<button id="removeBtn" class="btn btn-success float-right">삭제</button>
@@ -44,6 +47,6 @@
 		</ul>
 	</div>
 	<script
-		src="<%=request.getContextPath()%>/resources/JS/user/comments.js"></script>
+		src="<%=request.getContextPath()%>/resources/js/user/comments.js"></script>
 </body>
 </html>

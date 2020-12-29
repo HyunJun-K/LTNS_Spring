@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class UserController {
-
+	
 	@RequestMapping("/auth/user/login")
 	public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
 

@@ -8,17 +8,17 @@ $(document).ready(function () {
   $('#removeBtn').click(function () {
 	console.log($('#listForm').serialize());
     var uids = [];
-    $('#listForm input[name=gs_code]').each(function () {
+    $('#listForm input[name=numCode]').each(function () {
       if ($(this).is(':checked')) {
         uids.push($(this).val());
       }
     });
 
     if (uids.length == 0) {
-      alert('즐겨찾기 해제할 항목을 체크해주세요');
+      alert('삭제할 항목을 체크해주세요');
 	  return;
     } else {
-      if (!confirm(uids.length + '개의 글을 삭제하시겠습니까?')) return;
+      if (!confirm(uids.length + '개의 댓글을 삭제하시겠습니까?')) return;
     }
     $.ajax({
       url: '/rest_area/member/user/list',
@@ -56,6 +56,10 @@ function loadPage(page) {
         var result = '';
         for (i = 0; i < data.data.length; i++) {
           result += '<tr>';
+          result +=
+            '<td class="text-center"><input type="checkbox" name="numCode" value="' +
+            data.data[i].comment_id +
+            '" /></td>';
           result += '<td>' + data.data[i].post_id + '</td>';
           result += '<td>' + data.data[i].comment_contents + '</td>';
           result += '</tr>';

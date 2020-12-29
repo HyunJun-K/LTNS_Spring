@@ -54,11 +54,12 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
 		request.getSession().setAttribute("userObj", list.get(0));	
 		List<String> role = new ArrayList<String>();	
 		authentication.getAuthorities().forEach(auth -> role.add(auth.getAuthority()));
+		request.getSession().setAttribute("auth", role);
 		if(role.contains("ROLE_ADMIN")) {
 			response.sendRedirect(request.getContextPath() + "/admin/dashboard");
 			return;
 		}	
-		response.sendRedirect(request.getContextPath() + "/member/user/info");
+		response.sendRedirect(request.getContextPath() + "/member/user/mypage");
 	}
 
 }
