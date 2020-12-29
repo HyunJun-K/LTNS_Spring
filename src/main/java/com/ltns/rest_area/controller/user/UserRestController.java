@@ -143,11 +143,12 @@ public class UserRestController {
 			UserDTO findUser = null;
 			String subject = null;
 			String contentText = null;
+			long number = System.currentTimeMillis() / 1000000000;
 			if (kind.equals("authentication")) {
 				subject = "[회원가입] 인증번호";
-				contentText = subject + " : " + System.currentTimeMillis();
+				contentText = subject + " : " + number;
 				new Gmail(request).emailSend("joinAdmin", user.getUm_username(), subject, contentText);
-				result.setCount((int) Long.parseLong(contentText));
+				result.setCount((int)number);
 				result.setStatus("OK");
 				result.setMessage("이메일 전송 성공");
 			} else if (kind.equals("findIdByUsername")) {

@@ -1,6 +1,7 @@
 <%@page import="com.ltns.rest_area.domain.user.UserDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -24,17 +25,31 @@
 	<!-- dashboard nav -->
 	<nav
 		class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-		<a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS
+		<a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="${pageContext.request.contextPath }/member/user/mypage">LTNS
 			DashBoard</a>
 		<!--  barnd 설정  -->
 
 		<ul class="navbar-nav  d-flex flex-row-reverse  ">
 
 			<li class="nav-item  mr-5">
-				<button class="btn btn-primary" onclick="logout();">로그아웃</button>
+				<button class="btn btn-outline-primary" onclick="logout();">로그아웃</button>
 			</li>
-			<li class="nav-item  mr-5"><span class="welcomes"
-				style="font-size: 12px;">${userObj.um_username}</span></li>
+			<li class="nav-item  mr-5"><span class="font-weight-bold mt-2"
+				style="font-size: 14px;"> <c:set var="bool" value="false" />
+					<c:forEach var="item" items="${auth}">
+						<c:if test="${item eq 'ROLE_ADMIN' }">
+							<c:set var="bool" value="true" />
+						</c:if>
+					</c:forEach> <c:choose>
+						<c:when test="${bool eq 'true' }">
+							<c:out value="Hello Master" />
+
+						</c:when>
+						<c:otherwise>
+							<c:out value="Hello Member" />
+						</c:otherwise>
+					</c:choose>
+			</span> <br /> <span class="welcomes" style="font-size: 12px;">${userObj.um_nickname}</span></li>
 			<li class="nav-item mr-3">
 				<div>
 					<img src="${pageContext.request.contextPath }/resources/img/1.PNG">
@@ -70,6 +85,18 @@
 							<span data-feather="shopping-cart"></span> <i
 							class="far fa-calendar-check"></i>&nbsp;&nbsp; 내 페이지
 					</a></li>
+
+					<c:forEach var="item" items="${auth}">
+
+						<c:if test="${item eq 'ROLE_ADMIN' }">
+							<li class="nav-item"><a class="nav-link text-white"
+								href="${pageContext.request.contextPath}/admin/dashboard"> <span
+									data-feather="shopping-cart"></span> <i
+									class="far fa-calendar-check"></i>&nbsp;&nbsp; 관리자 페이지
+							</a></li>
+						</c:if>
+
+					</c:forEach>
 
 				</ul>
 

@@ -8,6 +8,10 @@ body img {
 	height: 40px;
 }
 
+.navbar-brand {
+	padding: 0.57rem;
+}
+
 .error {
 	color: red;
 }
