@@ -1,11 +1,12 @@
-var	url=window.location.protocol+"/rest_area";
+var	BASE_URL="http://localhost:8089/rest_area";
 
 $(document).ready(function(){
-	console.log(url);
+	
+	console.log(BASE_URL);
 	
 	/* 페이지 로딩시, 노선 입력에 노선 값들을 집어 넣기 */
 	$.ajax({
-		url:url+"/restarea/routeName",
+		url:BASE_URL+"/restarea/routeName",
 		type:'GET',
 		cache:false,
 		success:function(data,status){
@@ -16,6 +17,8 @@ $(document).ready(function(){
 					htmlval+='<li><a class="dropdownRouteNameList" tabindex="-1" role="button" onclick="changeRouteNameValue(\''+list[i].ra_routeName+'\')">'+list[i].ra_routeName+'</a></li>';
 				}
 				$("#routeNameList").html(htmlval);
+				
+				changeUrl();
 			}
 		}
 	});
@@ -32,5 +35,6 @@ $(document).ready(function(){
 		}		
 		top_arrow_fadeout();
 	});
+	
 	
 })//end - $(document).ready

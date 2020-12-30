@@ -17,5 +17,5 @@ public class ViewDTO implements DTO {
 	DTO raDTO;
 	List<DTO> gsDTOs;
 	List<DTO> fmDTOs;
-	List<DTO> postDtos;
+	List<DTO> postDTOs;
 }
