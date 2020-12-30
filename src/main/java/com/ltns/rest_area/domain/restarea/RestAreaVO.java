@@ -22,4 +22,5 @@ public class RestAreaVO implements VO{
 	private int numOfRows;
 	
 	private String requestDataKind; //노선 요청 routeName, 방향 요청 destination => routeName을 담아서 요청
+	
 }

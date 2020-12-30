@@ -28,7 +28,7 @@ function scrollInfinteList(){
 	lastIndexBoolean=true;
 	lastIndex++;
 	$.ajax({
-		url:url+path,
+		url:BASE_URL+path,
 		type:'GET',
 		cache:'false',
 		success:function(data,status){ 
@@ -234,7 +234,7 @@ function changeRouteNameValue(routeName){
 	$('#destination').val("");
 
 	$.ajax({
-		url:url+'/restarea/destination/'+routeName,
+		url:BASE_URL+'/restarea/destination/'+routeName,
 		type:'GET',
 		cache:false,
 		success:function(data,status){ 
