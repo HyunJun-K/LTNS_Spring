@@ -13,7 +13,7 @@
 	   		<div id="usernav" class="right">
 			<c:choose>
 				<c:when test="${userObj != null }">
-				<p class="undisplay">${userObj.um_uid }</p>
+				<p id="header_um_uid" class="undisplay">${userObj.um_uid }</p>
 	   			<a id="header_um_username" class="undisplay" href="#">${userObj.um_username }</a>
 	   			<a href="#" onclick="logout();">로그아웃</a>
 	   				<c:forEach var="item" items="${auth}">

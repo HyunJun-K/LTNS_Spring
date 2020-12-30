@@ -17,8 +17,6 @@ $(document).ready(function(){
 					htmlval+='<li><a class="dropdownRouteNameList" tabindex="-1" role="button" onclick="changeRouteNameValue(\''+list[i].ra_routeName+'\')">'+list[i].ra_routeName+'</a></li>';
 				}
 				$("#routeNameList").html(htmlval);
-				
-				changeUrl();
 			}
 		}
 	});

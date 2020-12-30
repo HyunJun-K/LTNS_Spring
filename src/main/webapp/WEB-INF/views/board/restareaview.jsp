@@ -16,12 +16,14 @@
             <p id="ra_code" class="undisplay">ra_code</p>
             <div id="rabox">
                 <p>휴게소 이름</p>
+                <span><button><image src="${pageContext.request.contextPath }/resources/img/like.png"></image></button>좋아요 수</span>
                 <p>노선 이름</p><p>노선 방향</p><p>위치(경도,위도) : 경도, 위도</p>
             </div>
 			<div id="kakao_map"></div>
           
             <div id="gsbox">
                 <p>주유소 이름</p>
+                <span><button><image src="${pageContext.request.contextPath }/resources/img/like.png"></image></button>좋아요 수</span>
                 <p>휘발유 가격 : 원</p>
                 <p>경유 가격 : 원</p>
                 <p>LPG 가격 : 원</p>
@@ -31,7 +33,8 @@
 	                <h4>음식 메뉴</h4>
 	                <ul>
 	                    <li>
-	                        <p>음식 이름</p>
+	                        <p>음식 이름</p> 
+	                        <span><button><image src="${pageContext.request.contextPath }/resources/img/like.png"></image></button>좋아요 수</span>
 	                        <p>소비자가 : 원
 	                        <br>재료 : 
 	                        <br>음식 설명</p>

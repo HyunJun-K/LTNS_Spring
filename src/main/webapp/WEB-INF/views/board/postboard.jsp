@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>    
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <!DOCTYPE html>
+<meta name="csrf-token" content="${_csrf.token}">
 <link href='${pageContext.request.contextPath }/resources/css/board/postboard.css' rel="stylesheet"/>
 <script src="${pageContext.request.contextPath }/resources/js/board/postboard.js"></script>
 

@@ -12,6 +12,11 @@ function postboard_refresh(){
 	
 }
 
+
+/* 회원 확인 */
+function chk_usermember(){
+	$()
+}
 /* post write */
 
 //글작성 클릭 시
@@ -21,21 +26,25 @@ function open_post_new(){
 }
 
 function post_new(){
-
+	console.log("포스트 뉴 왔다");
 	var PostVO={
 		post_id:'',
-		post_title:$('.post_title').attr('value'),
-		post_contents:$('.post_content').attr('value'),
-		um_uid:$('#restareaview p#ra_code').html(),
-		um_username:'',
+		post_title:$('.write_post_title').val(),
+		post_contents:$('.write_post_content').val(),
+		um_uid:$('header #header_um_uid').html(),
+		um_username:$('header #header_um_username').html(),
 		post_regdate:'',
-		ra_code:'',
+		ra_code:$('#restareaview p#ra_code').html(),
 		post_reported:''
 	};
+	console.log(PostVO);
 	//post 전송
 	$.ajax({
 		url:BASE_URL+'/board/post',
-		type:'POST',
+		headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+		type:'PUT',
 		dataType:'JSON',
 		contentType:'application/json',
 		data:JSON.stringify(PostVO),
