@@ -1,8 +1,10 @@
+var	BASE_URL="http://localhost:8089/rest_area";
+
 $(document).ready(function(){
 	
 	/* 페이지 로딩시, 노선 입력에 노선 값들을 집어 넣기 */
 	$.ajax({
-		url:"../restarea/routeName",
+		url:BASE_URL+"/restarea/routeName",
 		type:'GET',
 		cache:false,
 		success:function(data,status){
@@ -114,7 +116,7 @@ function changeRouteNameValue(routeName){
 	$('#routeName').val(routeName);
 
 	$.ajax({
-		url:'../restarea/destination/'+routeName,
+		url:BASE_URL+'/restarea/destination/'+routeName,
 		type:'GET',
 		cache:false,
 		success:function(data,status){ 

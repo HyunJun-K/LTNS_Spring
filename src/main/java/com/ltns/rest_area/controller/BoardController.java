@@ -103,6 +103,7 @@ public class BoardController {
 	//새글 집어넣기
 	@PutMapping("/post")
 	public AjaxResult post_insert(PostVO vo) {	//PostVO에 내용을 넣을 것
+		System.out.println("insert Post : "+vo);
 		AjaxResult result = boardService.insertPost(vo);
 		return result;
 	}
