@@ -5,11 +5,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ltns.rest_area.domain.DAO;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.VO;
+import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
 
 public class RefreshTableDAO extends AbstractDAO {
 	
@@ -17,7 +19,9 @@ public class RefreshTableDAO extends AbstractDAO {
 	final static String DROP_USERMEMBER_SEQ="DROP SEQUENCE SEQ_usermember_um_uid";
 	final static String DROP_POST_SEQ =	"DROP SEQUENCE Post_SEQ";
 	final static String DROP_COMMENTS_SEQ="DROP SEQUENCE Comments_SEQ";
-
+	final static String DROP_SCHDULE_SEQ = "DROP SEQUENCE s_sid_seq";
+	final static String DROP_NOTICE_SEQ ="notice_id_seq"; 
+	
 	final static String DROP_USERMEMBER_TABLE="DROP TABLE UserMember CASCADE CONSTRAINTS";
 	final static String DROP_AUTH_TABLE="DROP TABLE Auth CASCADE CONSTRAINTS";
 	final static String DROP_RESTAREA_TABLE="DROP TABLE RestArea CASCADE CONSTRAINTS";
@@ -29,7 +33,12 @@ public class RefreshTableDAO extends AbstractDAO {
 	final static String DROP_GS_LIKE_TABLE="DROP TABLE GS_like CASCADE CONSTRAINTS";
 	final static String DROP_FM_LIKE_TABLE="DROP TABLE FM_like CASCADE CONSTRAINTS";
 	final static String DROP_POST_LIKE_TABLE="DROP TABLE Post_like CASCADE CONSTRAINTS";
-
+	
+	final static String DROP_SCHEDULE_TABLE="DROP TABLE schedule CASCADE CONSTRAINTS";
+	final static String DROP_NOTICE_TABLE="DROP TABLE ADMINNOTICE";
+	
+	
+	
 	final static String DROP_USER_VIEW="DROP VIEW userView";
 	
 	
@@ -199,6 +208,28 @@ public class RefreshTableDAO extends AbstractDAO {
 			"    comment_reported    VARCHAR2(100)      ,  " + 
 			"    CONSTRAINT COMMENT_PK PRIMARY KEY (comment_id) " + 
 			")";
+	
+	final static String CREATE_SCHEDULE_TABLE = "CREATE TABLE schedule " + 
+			"(" + 
+			"	s_sid number NOT NULL," + 
+			"	subject varchar2(20) NOT NULL," + 
+			"	startdate varchar2(20) NOT NULL," + 
+			"	enddate varchar2(20) NOT NULL," + 
+			"	memo varchar2(100)," + 
+			"	PRIMARY KEY (s_sid)" + 
+			")";
+	
+	final static String CREATE_NOTICE_TABLE ="CREATE TABLE ADMINNOTICE " + 
+			"("  + 
+			"    notice_id         INT            NOT NULL, " + 
+			"    notice_subject    VARCHAR2(40)   NOT NULL, " + 
+			"    notice_regdate    DATE  		  NOT NULL, " + 
+			"    notice_writer     VARCHAR2(20)   NOT NULL, " + 
+			" 	 notice_content    VARCHAR2(200)   NOT NULL, " + 
+			"    PRIMARY KEY (notice_id)" + 
+			")";
+	
+	
 	final static String ALTER_COMMENTS_POST_ID_FOREIGN_KEY="ALTER TABLE Comments " + 
 			"    ADD CONSTRAINT FK_Comment_post_id_Post_post_i FOREIGN KEY (post_id) " + 
 			"        REFERENCES Post (post_id)";
@@ -209,6 +240,17 @@ public class RefreshTableDAO extends AbstractDAO {
 	final static String CREATE_COMMENTS_SEQ ="CREATE SEQUENCE Comments_SEQ " + 
 			"START WITH 1 " + 
 			"INCREMENT BY 1";
+	
+	final static String CREATE_SEQUENCE_SCHDULE = "CREATE SEQUENCE s_sid_seq " + 
+			"START WITH 1";
+	
+	final static String CREATE_SEQUENCE_NOTICE = "CREATE SEQUENCE notice_id_seq " + 
+			"START WITH 1";
+	
+	
+	//select 
+	
+	 final static String SELECT_USERMEMBER = "SELECT * FROM USERMEMBER " ;
 	
 	
 	public RefreshTableDAO() {
@@ -236,6 +278,24 @@ public class RefreshTableDAO extends AbstractDAO {
 		}
 	}
 	
+	//조회해서 가져오기 
+	public String memberInfo() throws SQLException {
+		int cnt = 0;
+		List<memberInfoDTO> list = null;
+		String result = "";
+		try {
+			pstmt=conn.prepareStatement(SELECT_USERMEMBER);
+			pstmt.executeQuery();
+			rs = pstmt.executeQuery(SELECT_USERMEMBER); 
+			while(rs.next()) {
+				result = rs.getString(4);
+			}
+		} finally {
+			close();
+		}
+		return result;
+	}
+	
 
 	@Override
 	public int deleteAll() {
@@ -255,6 +315,8 @@ public class RefreshTableDAO extends AbstractDAO {
 			justExcuteBySQL(DROP_FM_LIKE_TABLE);
 			justExcuteBySQL(DROP_POST_LIKE_TABLE);
 			justExcuteBySQL(DROP_USER_VIEW);
+			justExcuteBySQL(DROP_SCHEDULE_TABLE);
+			justExcuteBySQL(DROP_NOTICE_TABLE);
 		} catch (SQLException e) {
 			System.out.println("drop 에러");
 			e.printStackTrace();
@@ -298,6 +360,11 @@ public class RefreshTableDAO extends AbstractDAO {
 			justExcuteBySQL(ALTER_COMMENTS_POST_ID_FOREIGN_KEY);
 			justExcuteBySQL(CREATE_COMMENTS_SEQ);
 			
+			
+			justExcuteBySQL(CREATE_SCHEDULE_TABLE);
+			justExcuteBySQL(CREATE_NOTICE_TABLE);
+			justExcuteBySQL(CREATE_SEQUENCE_SCHDULE);
+			justExcuteBySQL(CREATE_SEQUENCE_NOTICE);
 		} catch (SQLException e) {
 			System.out.println("create 에러");
 			e.printStackTrace();

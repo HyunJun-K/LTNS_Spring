@@ -1,14 +1,12 @@
 package com.ltns.rest_area.sample_maker;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-import org.junit.jupiter.api.Test;
+import com.ltns.rest_area.sample_maker.domain.AbstractDAO;
 
-class MemberMaker {
+class MemberMaker extends AbstractDAO  {
 
-	@Test
-	void test() {
-		fail("Not yet implemented");
-	}
+	
 
 }

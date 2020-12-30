@@ -65,5 +65,7 @@ INSERT INTO ADMINNotice (notice_id, notice_subject, notice_regdate, NOTICE_WRITE
 
 
 
+SELECT * FROM POST;
 
+SELECT * FROM USERMEMBER ;
 
