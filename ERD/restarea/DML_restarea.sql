@@ -163,3 +163,10 @@ SELECT *
 FROM RESTAREA
 WHERE ra_code='A00001'
 ;
+
+
+SELECT *
+FROM usermember;
+
+SELECT *
+FROM auth;
