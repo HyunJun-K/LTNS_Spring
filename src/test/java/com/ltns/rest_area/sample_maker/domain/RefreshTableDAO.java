@@ -258,7 +258,7 @@ public class RefreshTableDAO extends AbstractDAO {
 				"INSERT INTO POST"
 				+"(POST_ID,POST_TITLE,POST_CONTENTS,UM_UID,UM_USERNAME,POST_REGDATE,RA_CODE,POST_REPORTED) "
 				+"VALUES "
-				+"(Post_SEQ.NEXTVAL, ?, ?, ?, ?, SYSTIMESTAMP, ?, ?)";
+				+"(Post_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 	 
 	 
 	 
@@ -332,7 +332,7 @@ public class RefreshTableDAO extends AbstractDAO {
 	
 	//insert 
 	
-	public int Post_Go(String title, String cotent, int uid, String nick, String code, int report ) {
+	public int Post_Go(String title, String cotent, int uid, String nick, String dates, String code, int report ) {
 		int cnt = 0;
 		System.out.println(title + " : " + cotent + " : " + uid + " : " + nick + " : " + code + " : " + report + " :");
 		try {
@@ -341,8 +341,9 @@ public class RefreshTableDAO extends AbstractDAO {
 			pstmt.setString(2, cotent);
 			pstmt.setInt(3, uid);
 			pstmt.setString(4, nick);
-			pstmt.setString(5, code);
-			pstmt.setInt(6, report);
+			pstmt.setString(5, dates);
+			pstmt.setString(6, code);
+			pstmt.setInt(7, report);
 			cnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("에러! : "+ SQL_INSERT_POST);

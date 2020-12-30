@@ -75,7 +75,6 @@ function updateList(JsonObj) {
         result += "<td><input type='checkbox' name='post_id' value='" + items[i].post_id + "'></td>\n";
         result += "<td>" + items[i].post_id + "</td>\n";
         result += "<td><span class='subject' data-post_id='" + items[i].post_id + "'>" + items[i].post_title + "</span></td>\n";
-        result += "<td>" + items[i].post_contents + "</td>\n";
         result += "<td><span data-viewcnt='" + items[i].post_id + "'>" + items[i].ra_code + "</span></td>\n";
         result += "<td>" + items[i].um_USERNAME + "</td>\n"; 
         result += "<td>" + items[i].post_reported + "</td>\n"; 
@@ -258,7 +257,6 @@ function seachData(JsonObj){
             result += "<td><input type='checkbox' name='post_id' value='" + items[i].post_id + "'></td>\n";
             result += "<td>" + items[i].post_id + "</td>\n";
             result += "<td><span class='subject' data-post_id='" + items[i].post_id + "'>" + items[i].post_title + "</span></td>\n";
-            result += "<td>" + items[i].post_contents + "</td>\n";
             result += "<td><span data-viewcnt='" + items[i].post_id + "'>" + items[i].ra_code + "</span></td>\n";
             result += "<td>" + items[i].um_USERNAME + "</td>\n"; 
             result += "<td>" + items[i].post_reported + "</td>\n"; 

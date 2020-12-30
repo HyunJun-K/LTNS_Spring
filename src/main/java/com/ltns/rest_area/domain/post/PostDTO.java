@@ -24,4 +24,5 @@ public class PostDTO implements DTO {
 	private String post_reported;
 	
 	private int post_like_cnt;
+	private int count;
 }

@@ -80,12 +80,20 @@ public class PostMaker extends AbstractDAO  {
 		
 	}
 	
+	public String postDate() {
+		String result ="2020-12-";
+		int random = (int)(Math.random()*30);
+		result+= random;
+		return result;
+	}
+	
+	
 	
 	public static void main(String[] args) throws SQLException {
 		PostMaker p = new PostMaker();
 
 		
-		int random = (int)(Math.random()*5);
+		int random = 0;
 		RefreshTableDAO dao = new RefreshTableDAO();
 		ArrayList<String> list = new ArrayList<String>();
 		ArrayList<Integer> counts = new ArrayList<Integer>();
@@ -98,15 +106,15 @@ public class PostMaker extends AbstractDAO  {
 		int dataCnt = 0;
 		int cnt = 0;
 		
-		int randomsize = 4;
+		int randomsize = 50;
 		for (int i = 0; i < randomsize; i++) {
+			random = (int)(Math.random()*5);
 			p.mkTitle(); //타이틀
 			p.mkContent(); // 내용 
-			
 			p.mkRacode();
 			p.mkReport();  // 신고횟수 
-			
-			dao.Post_Go(p.mkTitle(), p.mkContent(), counts.get(random), list.get(random), p.mkRacode(), p.mkReport());
+			p.postDate();
+			dao.Post_Go(p.mkTitle(), p.mkContent(), counts.get(random), list.get(random), p.postDate(), p.mkRacode(), p.mkReport());
 		}
 	
 
