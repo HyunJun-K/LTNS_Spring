@@ -144,10 +144,10 @@ public class RefreshTableDAO extends AbstractDAO {
 			"    ADD CONSTRAINT FK_Post_um_uid_UserMember_um_u FOREIGN KEY (um_uid) " + 
 			"        REFERENCES UserMember (um_uid)";
 	
-	final static String ALTER_POST_RA_CODE_FOREIGN_KEY="ALTER TABLE Post " + 
-			"    ADD CONSTRAINT FK_Post_ra_code_RestArea_ra_co FOREIGN KEY (ra_code) " + 
-			"        REFERENCES RestArea (ra_code)";
-	
+//	final static String ALTER_POST_RA_CODE_FOREIGN_KEY="ALTER TABLE Post " + 
+//			"    ADD CONSTRAINT FK_Post_ra_code_RestArea_ra_co FOREIGN KEY (ra_code) " + 
+//			"        REFERENCES RestArea (ra_code)";
+//	
 
 	final static String CREATE_RA_LIKE_TABLE="CREATE TABLE RA_like " + 
 			"( " + 
@@ -397,7 +397,7 @@ public class RefreshTableDAO extends AbstractDAO {
 			justExcuteBySQL(CREATE_POST_TABLE);
 			justExcuteBySQL(CREATE_POST_SEQ);
 			justExcuteBySQL(ALTER_POST_UM_UID_FOREIGN_KEY);
-			justExcuteBySQL(ALTER_POST_RA_CODE_FOREIGN_KEY);
+//			justExcuteBySQL(ALTER_POST_RA_CODE_FOREIGN_KEY); //api 초기화를 염두함..
 			
 			justExcuteBySQL(CREATE_RA_LIKE_TABLE);
 			justExcuteBySQL(ALTER_RA_LIKE_UM_UID_FOREIGN_KEY);
