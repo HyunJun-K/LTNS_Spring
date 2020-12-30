@@ -158,7 +158,7 @@ public class UserRestController {
 					findUser = users.get(0);
 					subject = "[아이디 찾기] 결과";
 					contentText = "조회하신 유저 아이디는 " + findUser.getUm_username() + " 입니다.";
-					new Gmail(request).emailSend("findAdmin", user.getUm_username(), subject, contentText);
+					new Gmail(request).emailSend("findAdmin", findUser.getUm_username(), subject, contentText);
 					result.setCount(users.size());
 					result.setStatus("OK");
 					result.setMessage("이메일 전송 성공");
@@ -171,7 +171,7 @@ public class UserRestController {
 					findUser = users.get(0);
 					subject = "[아이디 찾기] 결과";
 					contentText = "조회하신 유저 아이디는 " + findUser.getUm_username() + " 입니다.";
-					new Gmail(request).emailSend("findAdmin", user.getUm_username(), subject, contentText);
+					new Gmail(request).emailSend("findAdmin", findUser.getUm_username(), subject, contentText);
 					result.setCount(users.size());
 					result.setStatus("OK");
 					result.setMessage("이메일 전송 성공");

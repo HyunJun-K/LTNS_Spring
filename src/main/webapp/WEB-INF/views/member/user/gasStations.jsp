@@ -17,7 +17,9 @@
 	href="${pageContext.request.contextPath }/resources/css/user/list.css" />
 <title>주유소 즐겨찾기</title>
 </head>
-<body class="container">
+<body>
+<jsp:include page="../../header/header.jsp" />
+<div class="container body">
 	<div class="table">
 		<form id="listForm">
 			<input type="hidden" id="uid" name="um_uid"
@@ -47,6 +49,7 @@
 	<div class="center">
 		<ul class="pagination" id="pagination">
 		</ul>
+	</div>
 	</div>
 	<script
 		src="<%=request.getContextPath()%>/resources/js/user/gasStations.js"></script>
