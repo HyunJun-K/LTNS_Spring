@@ -80,13 +80,26 @@ public class PostMaker extends AbstractDAO_test  {
 		
 	}
 	
+	public String postDate() {
+		String result ="2020-12-";
+		int random = (int)(Math.random()*30);
+		result+= random;
+		return result;
+	}
+	
+	
 	
 	public static void main(String[] args) throws SQLException {
 		PostMaker p = new PostMaker();
 
 		
+<<<<<<< HEAD
 		int random = (int)(Math.random()*5);
 		RefreshTableDAO_test dao = new RefreshTableDAO_test();
+=======
+		int random = 0;
+		RefreshTableDAO dao = new RefreshTableDAO();
+>>>>>>> branch 'master' of https://github.com/HyunJun-K/LTNS_Spring.git
 		ArrayList<String> list = new ArrayList<String>();
 		ArrayList<Integer> counts = new ArrayList<Integer>();
 		HashMap<Integer, String> map = dao.memberInfo();
@@ -98,15 +111,15 @@ public class PostMaker extends AbstractDAO_test  {
 		int dataCnt = 0;
 		int cnt = 0;
 		
-		int randomsize = 4;
+		int randomsize = 50;
 		for (int i = 0; i < randomsize; i++) {
+			random = (int)(Math.random()*5);
 			p.mkTitle(); //타이틀
 			p.mkContent(); // 내용 
-			
 			p.mkRacode();
 			p.mkReport();  // 신고횟수 
-			
-			dao.Post_Go(p.mkTitle(), p.mkContent(), counts.get(random), list.get(random), p.mkRacode(), p.mkReport());
+			p.postDate();
+			dao.Post_Go(p.mkTitle(), p.mkContent(), counts.get(random), list.get(random), p.postDate(), p.mkRacode(), p.mkReport());
 		}
 	
 

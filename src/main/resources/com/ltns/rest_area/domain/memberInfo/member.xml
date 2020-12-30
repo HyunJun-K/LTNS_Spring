@@ -32,12 +32,11 @@
 	
 	</select>
 	
-	<select id="selectAll" flushCache="true" resultType="com.ltns.rest_area.domain.memberInfo.memberInfoDTO">
+	<select id="selectAll" flushCache="true" resultType="com.ltns.rest_area.domain.post.PostDTO">
 	<![CDATA[
-	
-	SELECT UM_USERNAME, count(*) AS cnt FROM COMMENTS 
-	GROUP BY UM_USERNAME  ORDER BY cnt DESC
-	
+	SELECT count(POST_REPORTED) count, UM_USERNAME FROM POST
+	GROUP BY UM_USERNAME
+	ORDER BY count desc
 	]]>
 	
 	</select>
@@ -55,8 +54,6 @@
 	</select>
 	
 
-	<update id="updateByAuth" flushCache="true" >
-		UPDATE USERVIEW SET AUTHORITY = #{AUTHORITY} WHERE USERNAME = #{UM_USERNAME}
-	</update>
+
 
 </mapper>

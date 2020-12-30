@@ -12,6 +12,9 @@ public interface memberInfoDAO extends DAO{
 	List<DTO> Allselect();	//dao 상속받아서 써버리깅
 	List<memberInfoDTO> selectByUids(int i);
 	int updateByAuth(memberInfoDTO dto);
+	int insertByAuth(memberInfoDTO dto);
+	
+	
 	
 	
 }

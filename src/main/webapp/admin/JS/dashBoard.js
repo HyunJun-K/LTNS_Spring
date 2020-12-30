@@ -147,10 +147,10 @@ function today_post(){
     }
 
 
-    function today_coment(){
-        //오늘달린 댓글 개수 요청
+    function ChipGas(){
+        //가장 저렴한 주유소
         $.ajax({
-            url : "today_coment",
+            url : "ChipGas",
             type : "POST",
             cashe : false,
             headers: {
@@ -158,22 +158,17 @@ function today_post(){
             },
             success : function(data,status){
                 if(data.status=="OK"){
-                    if(data.count == 0){
-                        $("#today_coment").html("<span class='text-warning'>" + " 텅 </span>");
-                    }else{
-                        $("#today_coment").html("<span class='text-warning'>" + data.count +"  </span>");
-                    }
-
-                    $("#total_coment").html("<span> 총 댓글 수 " + data.totalCounts + "</span>");
+                    $("#chip_gas").html("<span>" + data.list[0].gs_NAME + "</span>");
+                    $("#chip_gas_D").text("경유 : " + data.list[0].gs_DIESEL);
+                    $("#chip_gas_O").text("휘발류 : " + data.list[0].gs_GASOLINE);
                 }
-                
             }
         });
     }
 
     
     //호출
-    today_coment();
+    ChipGas();
     today_report();
     total_post();
 }

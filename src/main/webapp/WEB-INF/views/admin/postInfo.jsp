@@ -92,7 +92,6 @@
 							<th>Check</th>
 							<th>POST_ID</th>
 							<th>POST_TITLE</th>
-							<th>POST_CONTENTS</th>
 							<th>RA_CODE</th>
 							<th>UM_USERNAME</th>
 							<th>POST_REPORTED</th>

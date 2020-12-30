@@ -46,7 +46,7 @@ function pageLoad(pageNo){
             if(status == "success"){
             
                 if(updateList(data)){
-                    click_move()
+                  
                 }
               
             }
@@ -75,7 +75,6 @@ function updateList(JsonObj) {
         result += "<td><input type='checkbox' name='post_id' value='" + items[i].post_id + "'></td>\n";
         result += "<td>" + items[i].post_id + "</td>\n";
         result += "<td><span class='subject' data-post_id='" + items[i].post_id + "'>" + items[i].post_title + "</span></td>\n";
-        result += "<td>" + items[i].post_contents + "</td>\n";
         result += "<td><span data-viewcnt='" + items[i].post_id + "'>" + items[i].ra_code + "</span></td>\n";
         result += "<td>" + items[i].um_USERNAME + "</td>\n"; 
         result += "<td>" + items[i].post_reported + "</td>\n"; 
@@ -258,7 +257,6 @@ function seachData(JsonObj){
             result += "<td><input type='checkbox' name='post_id' value='" + items[i].post_id + "'></td>\n";
             result += "<td>" + items[i].post_id + "</td>\n";
             result += "<td><span class='subject' data-post_id='" + items[i].post_id + "'>" + items[i].post_title + "</span></td>\n";
-            result += "<td>" + items[i].post_contents + "</td>\n";
             result += "<td><span data-viewcnt='" + items[i].post_id + "'>" + items[i].ra_code + "</span></td>\n";
             result += "<td>" + items[i].um_USERNAME + "</td>\n"; 
             result += "<td>" + items[i].post_reported + "</td>\n"; 
@@ -292,7 +290,7 @@ function charts(JsonObj) {
 	    
 		data: {
 	        labels: 
-	        	[item[0].post_title , item[1].post_title, item[2].post_title, item[3].post_title, item[4].post_title ],
+	        	[item[0].um_USERNAME , item[1].um_USERNAME, item[2].um_USERNAME, item[3].um_USERNAME, item[4].um_USERNAME ],
 	        	
 	        datasets: [{
 	            data: [item[0].post_reported , item[1].post_reported, item[2].post_reported, item[3].post_reported, item[4].post_reported],

@@ -27,7 +27,7 @@
 	
 	<select id="selectAll" flushCache="true" resultType="com.ltns.rest_area.postInfo.postInfoDTO">
 		<![CDATA[
-		SELECT ROWNUM, POST_ID, POST_TITLE , POST_REPORTED  FROM 
+		SELECT ROWNUM, POST_ID, POST_TITLE , POST_REPORTED, UM_USERNAME  FROM 
 		(SELECT * FROM POST ORDER BY POST_ID, POST_REPORTED  DESC)
 		WHERE ROWNUM <=5
 		]]>

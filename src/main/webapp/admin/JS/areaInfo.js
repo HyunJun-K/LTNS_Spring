@@ -427,3 +427,22 @@ function popUp(){
       
     })
 }
+
+
+function dataUpdate(){
+    $.ajax({
+        url : "../api/allapi",
+        Type : "GET",
+        headers: {
+			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success : function(data,status){
+            if(data.status=="OK"){
+                alert("업데이트 완료");
+            }
+        }
+
+
+    })
+
+}

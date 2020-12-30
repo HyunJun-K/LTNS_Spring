@@ -292,11 +292,10 @@ public class AdminMeberAjaxController {
 		int cnt = 0;
 		List<memberInfoDTO> list = null;
 		list = member_service.uidSerch(checkData);
-		
+		System.out.println(checkData);
 		try {
 			if( list != null ) {
 				for (memberInfoDTO memberInfoDTO : list) {
-						memberInfoDTO.setAUTHORITY("ROLE_ADMIN");
 						cnt = member_service.updateGrade(memberInfoDTO);
 				}
 			}

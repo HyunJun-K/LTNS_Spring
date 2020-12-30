@@ -57,9 +57,9 @@ public class DashBoardService {
 		return Ddao.select_todayComent();
 	}
 	
-	public int today_totalComent() {
+	public List<DTO> chip_Gas() {
 		Ddao = sqlSession.getMapper(DashBoardDAO.class);
-		return Ddao.select_total_coment();
+		return Ddao.chipGas();
 	}
 	
 	

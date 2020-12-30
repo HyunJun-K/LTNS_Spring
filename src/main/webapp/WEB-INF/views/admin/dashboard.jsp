@@ -112,16 +112,18 @@
 	    </div>
 	  </div>
 	  
-	  <div class="col-sm-3">
+	    <div class="col-sm-3 ">
 	    <div class="card text-center">
 	      <div class="card-body border border-warning">
-	        <h3 class="text-warning" >오늘 작성된  댓글 </h3>
-	       <p id="today_coment" class="card-title"> </p>
-	        <span id="total_coment" class="card-body "></span>
+	        <h3 class="text-warning">전체 추천 개수</h3>
+	        <p id="total_recomend" class="card-title"> </p>
+	        <br>
 	      </div>
 	    </div>
 	  </div>
-	</div> <!-- end card row section 1 -->
+	</div> <!-- end card row section 2 -->
+	<div class="clear"></div>
+	
 	<hr>
 	
 	<!-- section2 -->
@@ -164,20 +166,19 @@
 	     </div>
 	    </div>
 	  </div>
-	  
-	  <div class="col-sm-3 ">
+	 
+	  <div class="col-sm-3">
 	    <div class="card text-center">
 	      <div class="card-body border border-warning">
-	        <h3 class="text-warning">전체 추천 개수</h3>
-	        <p id="total_recomend" class="card-title"> </p>
-	        <span id="total_area" class="card-body"></span> <br>
-	        <span id="total_food" class="card-body"></span> <br>
-	        <span id="total_gas" class="card-body"></span>
+	        <h3 class="text-warning" >가장 저렴한 주유소</h3>
+	       <p id="chip_gas" class="card-title">  </p>
+	        <span id="chip_gas_D" class="card-body "> </span> <br>
+	        <span id="chip_gas_O" class="card-body "> </span>
 	      </div>
 	    </div>
 	  </div>
-	</div> <!-- end card row section 2 -->
-	<div class="clear"></div>
+	</div> <!-- end card row section 1 -->
+	
 	<hr>
 		
 		

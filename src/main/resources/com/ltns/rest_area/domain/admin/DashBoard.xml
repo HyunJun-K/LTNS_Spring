@@ -26,17 +26,19 @@
 	</select>
 	
 	
-	<select id="select_total_coment"  resultType="int">
-	SELECT count(*) AS total_coment FROM COMMENTS
-	</select>
-
-	<select id="select_todayComent" resultType="int">
+	
+	<select id="chipGas"  resultType="com.ltns.rest_area.domain.admin.AreaDataDTO">
 	<![CDATA[
-	SELECT count(*) AS today_coment  FROM COMMENTS
-	WHERE TO_CHAR(UM_REGDATE ,'YYYYMMDD') = TO_CHAR(SYSDATE ,'YYYYMMDD')
-
+	SELECT GS_NAME, GS_DIESEL , GS_GASOLINE FROM 
+		(SELECT * FROM GASSTATION ORDER BY GS_DIESEL ,GS_GASOLINE DESC)
+		WHERE ROWNUM <=5	
 	]]>
+				
 	</select>
+
+
+
+
 	
 	
 	<select id="select_todayReports_post" resultType="int">
