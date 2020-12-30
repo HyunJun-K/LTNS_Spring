@@ -10,7 +10,7 @@ import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.VO;
 import com.ltns.rest_area.domain.user.UserDTO;
 
-public class MemberMakeDAO extends AbstractDAO {
+public class MemberMakeDAO extends AbstractDAO_test {
 
 	final static String DELETE_ALL_USERMEMBER="";
 	final static String INSERT_USERMEMBER_RAMDOM="";

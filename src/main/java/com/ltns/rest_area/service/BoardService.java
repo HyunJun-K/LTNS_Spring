@@ -14,6 +14,8 @@ import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.VO;
 import com.ltns.rest_area.domain.post.CommentDAO;
 import com.ltns.rest_area.domain.post.CommentVO;
+import com.ltns.rest_area.domain.post.LikeDAO;
+import com.ltns.rest_area.domain.post.LikeVO;
 import com.ltns.rest_area.domain.post.PostDAO;
 import com.ltns.rest_area.domain.post.PostVO;
 import com.ltns.rest_area.domain.post.ViewDTO;
@@ -133,6 +135,26 @@ public class BoardService {
 		dao=sqlSession.getMapper(CommentDAO.class);
 		int _result=dao.deleteByVO(vo);
 		return returnResult(_result);
+	}
+
+	//like 작업
+	public AjaxResult likeProcess(LikeVO vo) {
+		LikeDAO dao=sqlSession.getMapper(LikeDAO.class);
+		
+		if(dao.selectByVO(vo).isEmpty()) {
+			dao.insertByVO(vo);
+		}else {
+			dao.deleteByVO(vo);
+		}
+		AjaxResult result=new AjaxResult();
+		
+		try {
+			result.setObj(dao.selectCntByVO(vo));//이거 0일때 문제생긴다...
+		}catch(Exception e) {
+			System.out.println("like cnt 추출에서 0 문제 [LikeVO : "+vo+"]");
+			result.setObj(0);
+		}
+		return result;
 	}
 
 

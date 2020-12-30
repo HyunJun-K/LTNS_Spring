@@ -170,3 +170,21 @@ FROM usermember;
 
 SELECT *
 FROM auth;
+
+SELECT *
+FROM post;
+
+SELECT RestArea.*, a.ra_like_cnt   
+FROM RestArea LEFT OUTER JOIN(     
+	SELECT ra_code, COUNT(*) AS ra_like_cnt    
+	FROM ra_like     
+	GROUP BY ra_code    
+) a   ON restarea.ra_code=a.ra_code
+WHERE     RestArea.ra_code='A00001'
+;
+
+
+SELECT COUNT(*)
+FROM  ra_LIKE
+WHERE ra_code='A00001'
+GROUP BY ra_code;

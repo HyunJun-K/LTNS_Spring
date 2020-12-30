@@ -12,7 +12,7 @@ function fmbox_toggle(){
 /*closeModal 버튼 */
 function closeModal(){
 	$.when($('#fmbox>button').html('접기')).done(function(){fmbox_toggle();});
-	
+	post_cancle();
 	$('#restareaview').hide();
 }
 
@@ -30,13 +30,13 @@ function setPopup(ra_code){
             }
         }
 
-    })
-
+    });
     
 }
 
 function setView(jsonObj){
     rabox_str='<h1>'+jsonObj.obj.raDTO.ra_name+'</h1>'+
+	'<span><button class="like_btn" onclick="like_btn(\''+$('header #header_um_uid').html()+'\', \'ra\', \''+jsonObj.obj.raDTO.ra_code+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="ra_like_cnt_text">'+jsonObj.obj.raDTO.ra_like_cnt+'</span></span>'+
     '<p>노선 : '+jsonObj.obj.raDTO.ra_routeName+
     ' <br>방향 : '+jsonObj.obj.raDTO.ra_destination+
     ' <br>위치(경도,위도) : '+jsonObj.obj.raDTO.ra_xValue+', '+jsonObj.obj.raDTO.ra_yValue+
@@ -46,6 +46,7 @@ function setView(jsonObj){
     row=jsonObj.obj.gsDTOs;
     for(i=0;i<row.length;i++){
         gsbox_str+='<h4>'+row[i].gs_name+'</h4>'+
+	'<span><button class="like_btn" onclick="like_btn(\''+$('header #header_um_uid').html()+'\', \'gs\', \''+row[i].gs_code+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="gs_like_cnt_text">'+row[i].gs_like_cnt+'</span></span>'+
     '    <p>휘발유 가격 : '+row[i].gs_gasoline+
     '       <br>경유 가격 : '+row[i].gs_diesel+
     '       <br>LPG 가격 : '+row[i].gs_lpg+
@@ -57,6 +58,7 @@ function setView(jsonObj){
     for(i=0;i<row.length;i++){
         fmbox_str+='<li>'+
     '    <p>'+row[i].fm_name+'</p>'+
+	'<span><button class="like_btn" onclick="like_btn(\''+$('header #header_um_uid').html()+'\', \'fm\', \''+row[i].fm_id+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="fm_like_cnt_text_'+row[i].fm_id+'">'+row[i].fm_like_cnt+'</span></span>'+
     '    <p>소비자가 : '+row[i].fm_price+'원'+
     '    <br>재료 : '+row[i].fm_material+
     '    <br>'+row[i].fm_etc+'</p>'+
@@ -67,7 +69,12 @@ function setView(jsonObj){
     $('#gsbox').html(gsbox_str);
     $('#fmbox ul').html(fmbox_str);
 
-    setPostboard(jsonObj.obj.postDTOs);
+    
+	//위치 : postboard.js
+	ra_code=jsonObj.obj.raDTO.ra_code;
+	orderBy='default';
+	postboard_refresh();
+	
 	
 	place={x:jsonObj.obj.raDTO.ra_xValue,y:jsonObj.obj.raDTO.ra_yValue,place_name:jsonObj.obj.raDTO.ra_name};
 	
@@ -119,3 +126,38 @@ function panTo(place) {
     // 만약 이동할 거리가 지도 화면보다 크면 부드러운 효과 없이 이동합니다
     kakao_map.panTo(moveLatLon);          
 }       
+
+/* like_btn */
+function like_btn(um_uid, kind, kind_id){
+	//토글 작업 => 해당 좋아요 테이블 조회 => 1.조회결과없으면 생성 2.조회결과있으면 삭제 => 해당 {kind}_like_cnt 값을 다시 받음. 초기화 할 것..
+	var LikeVO={
+		um_uid:um_uid,
+		kind:kind,
+		kind_id:kind_id
+	};
+	console.log("LikeVO 확인 : ")
+	console.log(LikeVO);
+	$.ajax({
+		url:BASE_URL+'/board/like',
+		headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+		type:'PATCH',
+		dataType:'JSON',
+		contentType:'application/json',
+		data:JSON.stringify(LikeVO),
+		cache:false,
+		success:function(data){
+			if(LikeVO.kind=='ra'){
+				$('#ra_like_cnt_text').html(data.obj)
+			}else if(LikeVO.kind=='gs'){
+				$('#gs_like_cnt_text').html(data.obj)
+			}else if(LikeVO.kind=='fm'){
+				$('#fm_like_cnt_text_'+LikeVO.kind_id).html(data.obj)
+			}else if(LikeVO.kind=='post'){
+				$('#post_like_cnt_text_'+LikeVO.kind_id).html(data.obj)
+			}	
+		}
+	});
+	
+}

@@ -14,12 +14,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
-import com.ltns.rest_area.sample_maker.domain.AbstractDAO;
-import com.ltns.rest_area.sample_maker.domain.RefreshTableDAO;
+import com.ltns.rest_area.sample_maker.domain.AbstractDAO_test;
+import com.ltns.rest_area.sample_maker.domain.RefreshTableDAO_test;
 import com.ltns.rest_area.service.admin.DashBoardService;
 
 
-public class PostMaker extends AbstractDAO  {
+public class PostMaker extends AbstractDAO_test  {
 
 	
 	
@@ -69,7 +69,7 @@ public class PostMaker extends AbstractDAO  {
 	
 	
 	public String mkRacode() throws SQLException {
-		RefreshTableDAO dao = new RefreshTableDAO();
+		RefreshTableDAO_test dao = new RefreshTableDAO_test();
 		ArrayList<String> list = dao.RAcode();
 		//System.out.println(list.size());
 		int random = (int)(Math.random()*200);
@@ -86,7 +86,7 @@ public class PostMaker extends AbstractDAO  {
 
 		
 		int random = (int)(Math.random()*5);
-		RefreshTableDAO dao = new RefreshTableDAO();
+		RefreshTableDAO_test dao = new RefreshTableDAO_test();
 		ArrayList<String> list = new ArrayList<String>();
 		ArrayList<Integer> counts = new ArrayList<Integer>();
 		HashMap<Integer, String> map = dao.memberInfo();

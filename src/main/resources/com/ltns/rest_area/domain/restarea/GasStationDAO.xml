@@ -10,10 +10,14 @@
 	</select>
 	
 	<select id="selectByString" parameterType="String" resultType="com.ltns.rest_area.domain.restarea.GasStationDTO">
-		SELECT *
-		FROM GasStation
-		WHERE
-			ra_code=#{ra_code}
+		SELECT GasStation.*, a.gs_like_cnt
+		FROM GasStation LEFT OUTER JOIN(
+				SELECT gs_code, COUNT(*) AS gs_like_cnt
+				FROM gs_like
+				GROUP BY gs_code
+			)  a ON GasStation.gs_code=a.gs_code
+		WHERE 
+			GasStation.ra_code=#{ra_code}
 	</select>
 	
 	<select id="selectByVO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaVO" resultType="com.ltns.rest_area.domain.restarea.GasStationDTO">

@@ -54,15 +54,14 @@
 		
 	<insert id="insertByVO" flushCache="true" parameterType="com.ltns.rest_area.domain.post.PostVO" >
 		INSERT INTO 
-			Post(post_id, post_title, post_contents, um_uid, um_username, post_regdate, ra_code) 
+			Post(post_id, post_title, post_contents, um_uid, um_username, ra_code) 
 		VALUES 
-			(Post_SEQ.NEXTVAL, #{post_title}, #{post_contents}, #{um_uid}, #{um_username}, SYSDATE, #{ra_code}) 
+			(Post_SEQ.NEXTVAL, #{post_title}, #{post_contents}, #{um_uid}, #{um_username}, #{ra_code}) 
 	</insert>
 	
 	<update id="updateByVO" flushCache="true" parameterType="com.ltns.rest_area.domain.post.PostVO" >
 		UPDATE Post 
-		SET post_title=#{post_title}, post_contents=#{post_contents} 
-		<if test="post_reported!==''"> ,post_reported=#{post_reported} </if>
+		SET post_contents=#{post_contents} 
 		WHERE post_id=#{post_id}
 	</update>
 

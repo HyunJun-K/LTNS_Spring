@@ -19,7 +19,7 @@ public class PostDTO implements DTO {
 	private String post_contents;
 	private int um_uid;	//작성자 - 회원 uid(외래키)
 	private String um_username;
-	private Timestamp post_regdate;
+	private String post_regdate;
 	private String ra_code;
 	private String post_reported;
 	
