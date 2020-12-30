@@ -262,22 +262,22 @@ function ComentCharts(JsonObj){
 		type: 'horizontalBar',
 		data: {
 			labels: [
-				items[0].um_USERNAME,
-				items[1].um_USERNAME,
-				items[2].um_USERNAME,
-				items[3].um_USERNAME,
-				items[4].um_USERNAME,
+				items[0].um_username,
+				items[1].um_username,
+				items[2].um_username,
+				items[3].um_username,
+				items[4].um_username,
 
 
 			],
 			datasets: [{
 				data: [
 
-					items[0].cnt,
-					items[1].cnt,
-					items[2].cnt,
-					items[3].cnt,
-					items[4].cnt,
+					items[0].count,
+					items[1].count,
+					items[2].count,
+					items[3].count,
+					items[4].count,
 
 
 				],
@@ -305,7 +305,7 @@ function ComentCharts(JsonObj){
 			responsive: false,
 			title: {
 				display: true,
-				text: '댓글을 가장 많이 생성한 유저'
+				text: '신고를 많이 받은 유저'
 			  },
 			  scales: {
 				xAxes: [{
