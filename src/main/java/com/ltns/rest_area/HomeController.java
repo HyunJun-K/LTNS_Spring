@@ -36,7 +36,7 @@ public class HomeController {
 
 		model.addAttribute("serverTime", formattedDate);
 
-		return "auth/user/loginmain";
+		return "front/front";
 	}
 	
 	@RequestMapping("/member/autherror")

@@ -70,9 +70,9 @@ public class PostMaker extends AbstractDAO  {
 		System.out.println(data);
 		int randomsize = 10;
 		for (int i = 0; i < randomsize; i++) {
-			//p.mkTitle(); //타이틀
-			//p.mkContent(); // 내용 
-			//p.mkReport();  // 신고횟수 
+			p.mkTitle(); //타이틀
+			p.mkContent(); // 내용 
+			p.mkReport();  // 신고횟수 
 		}
 		
 	}

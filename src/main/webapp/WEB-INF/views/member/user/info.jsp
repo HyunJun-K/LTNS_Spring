@@ -26,8 +26,8 @@
 	<!-- dashboard nav -->
 	<nav
 		class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-		<a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="${pageContext.request.contextPath }/member/user/mypage">LTNS
-			DashBoard</a>
+		<a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0 text-center" href="${pageContext.request.contextPath }${pageContext.request.contextPath }/front">LTNS HOME
+			</a>
 		<!--  barnd 설정  -->
 
 		<ul class="navbar-nav  d-flex flex-row-reverse  ">
