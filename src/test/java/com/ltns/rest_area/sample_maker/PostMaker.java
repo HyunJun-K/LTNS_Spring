@@ -15,7 +15,7 @@ import java.util.Map.Entry;
 
 import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
 import com.ltns.rest_area.sample_maker.domain.AbstractDAO_test;
-import com.ltns.rest_area.sample_maker.domain.RefreshTableDAO_test;
+import com.ltns.rest_area.sample_maker.domain.RefreshTableDAO;
 import com.ltns.rest_area.service.admin.DashBoardService;
 
 
@@ -69,7 +69,7 @@ public class PostMaker extends AbstractDAO_test  {
 	
 	
 	public String mkRacode() throws SQLException {
-		RefreshTableDAO_test dao = new RefreshTableDAO_test();
+		RefreshTableDAO dao = new RefreshTableDAO();
 		ArrayList<String> list = dao.RAcode();
 		//System.out.println(list.size());
 		int random = (int)(Math.random()*200);
@@ -93,13 +93,10 @@ public class PostMaker extends AbstractDAO_test  {
 		PostMaker p = new PostMaker();
 
 		
-<<<<<<< HEAD
-		int random = (int)(Math.random()*5);
-		RefreshTableDAO_test dao = new RefreshTableDAO_test();
-=======
+//		int random = (int)(Math.random()*5);
+//		RefreshTableDAO_test dao = new RefreshTableDAO_test();
 		int random = 0;
 		RefreshTableDAO dao = new RefreshTableDAO();
->>>>>>> branch 'master' of https://github.com/HyunJun-K/LTNS_Spring.git
 		ArrayList<String> list = new ArrayList<String>();
 		ArrayList<Integer> counts = new ArrayList<Integer>();
 		HashMap<Integer, String> map = dao.memberInfo();

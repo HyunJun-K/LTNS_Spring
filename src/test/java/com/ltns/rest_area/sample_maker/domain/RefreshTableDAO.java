@@ -14,7 +14,7 @@ import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.VO;
 import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
 
-public class RefreshTableDAO extends AbstractDAO {
+public class RefreshTableDAO extends AbstractDAO_test {
 	
 	//drop
 	final static String DROP_USERMEMBER_SEQ="DROP SEQUENCE SEQ_usermember_um_uid";
