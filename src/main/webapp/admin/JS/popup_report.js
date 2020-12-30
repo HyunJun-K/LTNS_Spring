@@ -10,7 +10,10 @@ function repostPopup(){
 	    $.ajax({
 	        url : "repostPopup",
 	        type : "POST",
-	        cashe : false,
+            cashe : false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
 	        success : function(data, status){
 	            if(data.status=="OK"){
 	                popup_table(data)

@@ -13,6 +13,9 @@ function popover(){
             url : "alram",
             type : "POST",
             cashe : false,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success : function(data, status){
                 if(data.status=="OK"){
                     if( data.count !=0 ){

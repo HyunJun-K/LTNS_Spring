@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.ltns.rest_area.domain.DAO;
@@ -20,7 +21,7 @@ public class RefreshTableDAO extends AbstractDAO {
 	final static String DROP_POST_SEQ =	"DROP SEQUENCE Post_SEQ";
 	final static String DROP_COMMENTS_SEQ="DROP SEQUENCE Comments_SEQ";
 	final static String DROP_SCHDULE_SEQ = "DROP SEQUENCE s_sid_seq";
-	final static String DROP_NOTICE_SEQ ="notice_id_seq"; 
+	final static String DROP_NOTICE_SEQ ="DROP SEQUENCE notice_id_seq"; 
 	
 	final static String DROP_USERMEMBER_TABLE="DROP TABLE UserMember CASCADE CONSTRAINTS";
 	final static String DROP_AUTH_TABLE="DROP TABLE Auth CASCADE CONSTRAINTS";
@@ -242,17 +243,26 @@ public class RefreshTableDAO extends AbstractDAO {
 			"INCREMENT BY 1";
 	
 	final static String CREATE_SEQUENCE_SCHDULE = "CREATE SEQUENCE s_sid_seq " + 
-			"START WITH 1";
+			"START WITH 1 "+ 
+			"INCREMENT BY 1";
 	
 	final static String CREATE_SEQUENCE_NOTICE = "CREATE SEQUENCE notice_id_seq " + 
-			"START WITH 1";
-	
+			"START WITH 1 "+ 
+			"INCREMENT BY 1";
 	
 	//select 
 	
 	 final static String SELECT_USERMEMBER = "SELECT * FROM USERMEMBER " ;
-	
-	
+	 final static String SELECT_AREA = "SELECT * FROM RESTAREA";
+	 public static final String SQL_INSERT_POST =
+				"INSERT INTO POST"
+				+"(POST_ID,POST_TITLE,POST_CONTENTS,UM_UID,UM_USERNAME,POST_REGDATE,RA_CODE,POST_REPORTED) "
+				+"VALUES "
+				+"(Post_SEQ.NEXTVAL, ?, ?, ?, ?, SYSTIMESTAMP, ?, ?)";
+	 
+	 
+	 
+	 
 	public RefreshTableDAO() {
 		super();
 	}
@@ -279,22 +289,70 @@ public class RefreshTableDAO extends AbstractDAO {
 	}
 	
 	//조회해서 가져오기 
-	public String memberInfo() throws SQLException {
+	public HashMap<Integer,String> memberInfo() throws SQLException {
 		int cnt = 0;
-		List<memberInfoDTO> list = null;
-		String result = "";
+		int i=0;
+		HashMap<Integer,String> Map = new HashMap<Integer, String>();
+	
 		try {
 			pstmt=conn.prepareStatement(SELECT_USERMEMBER);
 			pstmt.executeQuery();
 			rs = pstmt.executeQuery(SELECT_USERMEMBER); 
 			while(rs.next()) {
-				result = rs.getString(4);
+				i++;
+				if(i<=5) {
+				Map.put(rs.getInt(1), rs.getString(4));
+				}else {
+					break;
+				}
 			}
-		} finally {
-			close();
+		}catch (Exception e) {
+			e.getMessage();
 		}
-		return result;
+		
+		return Map;
 	}
+	
+	public ArrayList<String> RAcode() throws SQLException {
+	
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			pstmt=conn.prepareStatement(SELECT_AREA);
+			pstmt.executeQuery();
+			rs = pstmt.executeQuery(SELECT_AREA); 
+			while(rs.next()) {
+				list.add(rs.getString(1));
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return list;
+	}
+	
+	
+	//insert 
+	
+	public int Post_Go(String title, String cotent, int uid, String nick, String code, int report ) {
+		int cnt = 0;
+		System.out.println(title + " : " + cotent + " : " + uid + " : " + nick + " : " + code + " : " + report + " :");
+		try {
+			pstmt = conn.prepareStatement(SQL_INSERT_POST);
+			pstmt.setString(1, title);
+			pstmt.setString(2, cotent);
+			pstmt.setInt(3, uid);
+			pstmt.setString(4, nick);
+			pstmt.setString(5, code);
+			pstmt.setInt(6, report);
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("에러! : "+ SQL_INSERT_POST);
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+	
+	
 	
 
 	@Override
@@ -315,8 +373,14 @@ public class RefreshTableDAO extends AbstractDAO {
 			justExcuteBySQL(DROP_FM_LIKE_TABLE);
 			justExcuteBySQL(DROP_POST_LIKE_TABLE);
 			justExcuteBySQL(DROP_USER_VIEW);
+			
 			justExcuteBySQL(DROP_SCHEDULE_TABLE);
 			justExcuteBySQL(DROP_NOTICE_TABLE);
+			
+			justExcuteBySQL(DROP_SCHDULE_SEQ);
+			justExcuteBySQL(DROP_NOTICE_SEQ);
+			
+			
 		} catch (SQLException e) {
 			System.out.println("drop 에러");
 			e.printStackTrace();

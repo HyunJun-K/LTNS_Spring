@@ -4,6 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+
+<meta name="csrf-token" content="${_csrf.token}">
 <title>Insert title here</title>
 </head>
 <script src='${pageContext.request.contextPath }/admin/JS/nav.js'></script>

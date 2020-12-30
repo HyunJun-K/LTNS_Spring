@@ -210,7 +210,6 @@ public class AdminMeberAjaxController {
 	
 	
 	//가장 많은글을 쓴유저 
-	
 	@GetMapping("TopPostUser")
 	public AjaxResult TopPostUser() {
 		StringBuffer message = new StringBuffer();
