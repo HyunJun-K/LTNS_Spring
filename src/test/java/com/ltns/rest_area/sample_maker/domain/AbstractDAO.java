@@ -38,6 +38,11 @@ public abstract class AbstractDAO implements DAO {
 		if(conn != null) conn.close(); 
 	}//end close()
 	
+	//커밋
+	public void commit() throws SQLException {
+		if(conn!=null) conn.commit();
+	}
+	
 	
 	@Override
 	public int selectCnt() {
