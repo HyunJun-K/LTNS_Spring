@@ -8,7 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
 import com.ltns.rest_area.sample_maker.domain.AbstractDAO;
@@ -29,14 +32,15 @@ public class PostMaker extends AbstractDAO  {
 		int random  = (int)(Math.random()*size);
 		
 		result = arr[random];
-		System.out.println(result);
+		
 		return result;
 	}
 	
 	//report 
 	int mkReport() {
 		int random = (int)(Math.random()*100);
-		System.out.println(random);
+		
+	
 		return random;
 	}
 	
@@ -55,26 +59,59 @@ public class PostMaker extends AbstractDAO  {
 					randomchar+=(int)(Math.random()*10);
 				result+=randomchar;
 			}
-			System.out.println(result + "cotent");
 			
 			return result;
 	}
 	
 	
-	public static void main(String[] args) throws SQLException {
-		PostMaker p = new PostMaker();
+	
+	
+	
+	
+	public String mkRacode() throws SQLException {
 		
 		RefreshTableDAO dao = new RefreshTableDAO();
+		ArrayList<String> list = dao.RAcode();
+		
+		int random = (int)(Math.random()*200);
+		String result = list.get(random);
+		
+		return result;
+		
+		
+	}
+	
+	
+	public static void main(String[] args) throws SQLException {
+		PostMaker p = new PostMaker();
 
-		String data = dao.memberInfo();
-		System.out.println(data);
+		
+		int random = (int)(Math.random()*4);
+		RefreshTableDAO dao = new RefreshTableDAO();
+		ArrayList<String> list = new ArrayList<String>();
+		ArrayList<Integer> counts = new ArrayList<Integer>();
+		HashMap<Integer, String> map = dao.memberInfo();
+		for (Entry<Integer, String> data : map.entrySet()) {
+			list.add(data.getValue());
+			counts.add(data.getKey());
+		}
+		String datas = "";
+		int dataCnt = 0;
+		int cnt = 0;
+		
 		int randomsize = 10;
 		for (int i = 0; i < randomsize; i++) {
 			p.mkTitle(); //타이틀
 			p.mkContent(); // 내용 
+			datas = list.get(random);
+			dataCnt = counts.get(random);
+			p.mkRacode();
 			p.mkReport();  // 신고횟수 
+			
+			dao.Post_Go(p.mkTitle(), p.mkContent(), dataCnt, datas, p.mkRacode(), p.mkReport());
 		}
-		
+	
+
 	}
 	
 }

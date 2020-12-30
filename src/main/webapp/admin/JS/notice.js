@@ -293,7 +293,7 @@ function writeOk(){
     var jsondata = {
         title : $("#title").val(),
         content :  data, 
-        id : 'ssd', //$("#hidens").val(),
+        id : $("#hidens").val(),
         dataSet :  date.yyyymmddhhmmss()
     }
 

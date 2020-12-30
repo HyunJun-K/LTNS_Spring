@@ -21,10 +21,10 @@ public abstract class AbstractDAO implements DAO {
 	
 	public AbstractDAO() {
 		try {
-			System.out.println("DAO 생성 중..");
+			//System.out.println("DAO 생성 중..");
 			Class.forName(DB.DRIVER);
 			conn=DriverManager.getConnection(DB.URL,DB.USERID,DB.USERPW);
-			System.out.println("Master_DAO_tester 생성 성공!, DB 연결");
+			//System.out.println("Master_DAO_tester 생성 성공!, DB 연결");
 		}catch (Exception e) {
 			e.printStackTrace();
 		}// end try
