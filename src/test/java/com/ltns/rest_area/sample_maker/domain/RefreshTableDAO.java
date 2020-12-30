@@ -340,7 +340,7 @@ public class RefreshTableDAO extends AbstractDAO {
 			justExcuteBySQL(CREATE_POST_TABLE);
 			justExcuteBySQL(CREATE_POST_SEQ);
 			justExcuteBySQL(ALTER_POST_UM_UID_FOREIGN_KEY);
-//			justExcuteBySQL(ALTER_POST_RA_CODE_FOREIGN_KEY);
+//			justExcuteBySQL(ALTER_POST_RA_CODE_FOREIGN_KEY); //api 초기화를 염두함..
 			
 			justExcuteBySQL(CREATE_RA_LIKE_TABLE);
 			justExcuteBySQL(ALTER_RA_LIKE_UM_UID_FOREIGN_KEY);

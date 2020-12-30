@@ -54,9 +54,9 @@
 		
 	<insert id="insertByVO" flushCache="true" parameterType="com.ltns.rest_area.domain.post.PostVO" >
 		INSERT INTO 
-			Post(post_id, post_title, post_contents, um_uid, um_username, post_regdate, ra_code, post_reported) 
+			Post(post_id, post_title, post_contents, um_uid, um_username, post_regdate, ra_code) 
 		VALUES 
-			(#{post_id}, #{post_title}, #{post_contents}, #{um_uid}, #{um_username}, #{post_regdate}, #{ra_code}, #{post_reported}) 
+			(Post_SEQ.NEXTVAL, #{post_title}, #{post_contents}, #{um_uid}, #{um_username}, SYSDATE, #{ra_code}) 
 	</insert>
 	
 	<update id="updateByVO" flushCache="true" parameterType="com.ltns.rest_area.domain.post.PostVO" >

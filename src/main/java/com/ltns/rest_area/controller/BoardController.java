@@ -102,13 +102,7 @@ public class BoardController {
 	
 	//새글 집어넣기
 	@PutMapping("/post")
-	public AjaxResult post_insert(PostVO vo, Model model) {	//PostVO에 내용을 넣을 것
-		vo.setPost_id(post_id);
-		vo.setUm_uid(um_uid);
-		vo.setUm_username(um_username);
-		vo.setPost_regdate(post_regdate);
-		vo.setPost_reported("x");
-		
+	public AjaxResult post_insert(PostVO vo) {	//PostVO에 내용을 넣을 것
 		AjaxResult result = boardService.insertPost(vo);
 		return result;
 	}
