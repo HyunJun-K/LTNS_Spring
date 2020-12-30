@@ -147,3 +147,24 @@ p i {
 }
 
 
+.popovers {
+	position: absolute;
+	background-color: white;
+	right : 0;
+	margin-right:10%;
+	margin-top: 10%;
+	display: none;
+}
+
+.popovers .popupBody {
+	padding : 10px;
+	font-size : 12px;
+}
+
+
+.popovers .popupTitle{
+	margin-top:5px;
+	padding : 10px;
+	font-size : 14px;
+}
+

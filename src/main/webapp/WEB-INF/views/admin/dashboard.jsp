@@ -15,10 +15,6 @@
 
 
 
-<!-- jQuery Modal -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
-
 
 <!-- google font -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -32,44 +28,18 @@
 
 
 <!--  bootstrap -->
-<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+<link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <link href='${pageContext.request.contextPath }/admin/CSS/dashBoard.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/dashBoard.js'></script>
 
 <body class="bg-light">
 
-	<!-- dashboard nav -->
-   <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
-      
-      <ul class="navbar-nav  d-flex flex-row-reverse  ">
-      
-        
-          <li class="nav-item  mr-5">
-          		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
-         		<span class="welcomes" style="font-size: 12px;">${id}</span>
-         		
-          </li>
-          <li class="nav-item mr-3">
-	          <div>
-	          <img src="${pageContext.request.contextPath }/admin/img/1.PNG">
-	          </div>
-  	      </li>
-			<li class="nav-item   mr-4 text-center">
-			<a type ="button" class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
-			</li>
-
-			<li class="nav-item  mr-4 text-center">
-			<a class="nav-link text-dark"  href="#ex1" rel="modal:open"><i class="fas fa-bell"></i></a>
-			</li>
-		</ul>
-     
-	 
-    </nav> <!-- nav header 라인 -->
-
+	<jsp:include page="${request.getRequestURI}/admin/nav/navs" flush="true" />
+	
+	
 	<div class="container-fluid">
 		<div class="row">
 			<nav class="col-md-2 d-none d-md-block bg-dark sidebar">
@@ -93,6 +63,10 @@
 						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
 								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 공지사항
 						</a></li>
+						
+						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/areaInfo"> <span
+								data-feather="bar-chart-2"></span> <i class="fas fa-utensils"></i>&nbsp;&nbsp; 휴게소 정보
+						</a></li>
 					</ul>
 
 				</div>
@@ -103,52 +77,7 @@
 		
 		
  <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
-	<div id="ex1" class="modal">
 
-				<form>
-					<div class="form-group mt-2">
-						<label for="exampleInputEmail1">Email</label> <input
-							type="email" class="form-control" id="exampleInputEmail1"
-							aria-describedby="emailHelp" placeholder="Enter email"> <small
-							id="emailHelp" class="form-text text-muted">
-							메일을 보낼때에는 신중하게 보냅시다.</small>
-					</div>
-					
-					<div class="form-group mt-2">
-						<label for="mailTitle">Title</label>
-						 <input type="text" class="form-control" id="mailTitle"
-							placeholder="Enter title"> 
-					</div>
-					
-					
-					<div class="form-group">
-						<label for="exampleFormControlTextarea1">Example textarea</label>
-						<textarea class="form-control" id="emailText"
-							rows="5"></textarea>
-					</div>
-
-
-					<div class="text-right">
-						<button type="button" onclick="message_hello();">안부 인사 </button>
-						<button type="button" onclick="message_report();">신고 안내</button>
-							
-						
-						<button type="submit" class="btn btn-primary">Submit</button>
-						<button class="btn btn-primary"  onclick="close_modal();" >close</button>
-					</div>
-					
-	
-				</form>
-
-
-
-	</div> <!--  end modal -->
-	 
- 
- 
- 
- 
- 
 	<!-- 일일 정산   -->
 	<div id="rowsdata" class="row">
 	
@@ -253,21 +182,28 @@
 		
 		
 		
-		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
-		<canvas id="myChart" width="550" height="300" ></canvas>
+		<div class= "d-inline-block justify-content-start ml-4" >
+	
+		<canvas id="myChart" style="position: relative; height:30vh; width:75vw" ></canvas>
 		</div>
 		
 		
-		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
-		<canvas id="memberListAdd" width="550" height="300" ></canvas>
+		<div class= "d-inline-block justify-content-start ml-4" >
+		<canvas id="memberListAdd" style="height:30vh; width:75vw" ></canvas>
 		</div>
 		
 
-
-
+	 
+			
 		
+			
+			
+			
+			
 		</main> <!-- article -->
+		
 	</div> <!-- end con -->
 
+	
 </body>
 </html>

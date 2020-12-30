@@ -12,6 +12,9 @@ public interface DashBoardDAO extends DAO{
 	int select_todayReports_post();
 	int select_total_coment();
 	int select_todayComent();
+
+	
+	int select_todayNotice();
 	
 	List<DTO> bestArea();
 	List<DTO> bestFood();

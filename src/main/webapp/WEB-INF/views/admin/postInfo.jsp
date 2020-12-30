@@ -26,37 +26,19 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 
+<!-- google font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+
 <link href='${pageContext.request.contextPath }/admin/CSS/postInfo.css' rel='stylesheet' />
 <script src='${pageContext.request.contextPath }/admin/JS/postInfo.js'></script>
 
 <body class="bg-light">
- <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
-      
-      <ul class="navbar-nav  d-flex flex-row-reverse  ">
-      
-        
-          <li class="nav-item  mr-5">
-          		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
-         		<span class="welcomes" style="font-size: 12px;"> ${id}  </span>
-         		
-          </li>
-          <li class="nav-item mr-3">
-	          <div>
-	          <img src="${pageContext.request.contextPath }/admin/img/1.PNG">
-	          </div>
-  	      </li>
-			<li class="nav-item   mr-4 text-center">
-			<a class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
-			</li>
 
-			<li class="nav-item  mr-4 text-center">
-			<a class="nav-link text-dark" href="#"> <i class="fas fa-envelope"></i></a>
-			</li>
-		</ul>
-     
-	 
-    </nav> <!-- nav header 라인 -->
+    <!-- nav -->
+	<jsp:include page="${request.getRequestURI}/admin/nav/navs" flush="true" />
+
 
 	<div class="container-fluid">
 		<div class="row">
@@ -82,6 +64,11 @@
 						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
 								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 공지사항
 						</a></li>
+						
+						
+						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/areaInfo"> <span
+								data-feather="bar-chart-2"></span> <i class="fas fa-utensils"></i>&nbsp;&nbsp; 휴게소 정보
+						</a></li>
 					</ul>
 
 				</div>
@@ -89,7 +76,7 @@
 		</div><!-- sidebar 라인 -->
 
 		<!-- section 1  -->
-		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+		<main role="main" id="main_article" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
 
 			   <div id="list" >
 				<div class="d01 text-right font-lg">
@@ -101,13 +88,15 @@
 				<form id="frmList" name="frmList">
 					<table class="table">
 						<thead class="thead-dark">
-							<th>UID</th>
+						<tr>
+							<th>Check</th>
 							<th>POST_ID</th>
 							<th>POST_TITLE</th>
 							<th>POST_CONTENTS</th>
 							<th>RA_CODE</th>
 							<th>UM_USERNAME</th>
 							<th>POST_REPORTED</th>
+						</tr>
 						</thead>
 						<tbody>
 
@@ -121,7 +110,7 @@
 				<div class="d-flex justify-content-center">
 					<form name="sechForm" id="sechForm">
 					<select id="sele_option" class="mdb-select">
-						<option value="title" selected> 제목 </option>
+						<option value="title" selected> 타이틀 </option>
 						<option value="nickName"> 닉네임 </option>
 					</select>
 					<input id="text_info"  class="input_seach" type="text" name="text_Info">
@@ -141,17 +130,18 @@
 	<hr>
 	
 		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
-		<canvas id="myChart" width="550" height="300" ></canvas>
+		<canvas id="myChart" style="height:300px; width:70vh" ></canvas>
 		</div>
 		
-		<div class="d-inline-block justify-content-end mr-2 ml-2">
-		<canvas id="postChart2" width="550" height="300" ></canvas>
+		<div class="d-inline-block justify-content-start mr-2 ml-2">
+		<canvas id="postChart2" style="height:300px; width:70vh" ></canvas>
 		</div>
+		
 			<div class="clear"></div>
 	
 	<hr>
 		<div class="d-inline-block justify-content-center">
-		<canvas id="linechart" width="1150" height="300"></canvas>
+		<canvas id="linechart" style="height:30vh; width:75vw" ></canvas>
 		</div>
 	
 	

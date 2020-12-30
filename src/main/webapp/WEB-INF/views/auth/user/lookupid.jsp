@@ -13,7 +13,7 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet"
-	href="<%=request.getContextPath()%>/resources/CSS/user/lookupid.css" />
+	href="<%=request.getContextPath()%>/resources/css/user/lookupid.css" />
 <title>아이디 찾기</title>
 </head>
 <body>
@@ -40,6 +40,6 @@
 		</form>
 	</div>
 	<script
-		src="<%=request.getContextPath()%>/resources/JS/user/lookupid.js"></script>
+		src="<%=request.getContextPath()%>/resources/js/user/lookupid.js"></script>
 </body>
 </html>

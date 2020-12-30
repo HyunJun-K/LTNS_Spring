@@ -2,15 +2,41 @@
 
 body {
 	height: 100vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+}
+
+.navbar-nav .welcomes{	
+	font-size: 5px;
+	
+}
+
+.navbar-brand {
+	padding: 0.57rem;
+}
+
+body img {
+	width: 50px;
+	height: 40px;
 }
 
 .box {
+	height: 100%;
 	display: flex;
-	justify-content: space-between;
+}
+
+.contents {
+	width: 100%;
+	display: flex;
 	align-items: center;
+}
+
+.column_box{
+	width: 100%;
+}
+
+.contents_box {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
 }
 
 a {

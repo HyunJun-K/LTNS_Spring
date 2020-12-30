@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.VO;
+import com.ltns.rest_area.domain.post.CommentDTO;
+import com.ltns.rest_area.domain.post.PostDTO;
 import com.ltns.rest_area.domain.restarea.FoodMenuDTO;
 import com.ltns.rest_area.domain.restarea.GasStationDTO;
 import com.ltns.rest_area.domain.restarea.RestAreaDTO;
@@ -225,13 +227,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<LikeDTO> findByPost_All(UserDTO user) {
+	public List<PostDTO> findByPost_All(UserDTO user) {
 		// TODO Auto-generated method stub
 		return session.getMapper(UserDAO.class).findByPost_All(user);
 	}
 
 	@Override
-	public List<LikeDTO> findByComment_All(UserDTO user) {
+	public List<CommentDTO> findByComment_All(UserDTO user) {
 		// TODO Auto-generated method stub
 		return session.getMapper(UserDAO.class).findByComment_All(user);
 	}
@@ -261,13 +263,13 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public List<LikeDTO> findByPost(UserDTO user, int from, int to) {
+	public List<PostDTO> findByPost(UserDTO user, int from, int to) {
 		// TODO Auto-generated method stub
 		return session.getMapper(UserDAO.class).findByPost(user, from, to);
 	}
 
 	@Override
-	public List<LikeDTO> findByComments(UserDTO user, int from, int to) {
+	public List<CommentDTO> findByComments(UserDTO user, int from, int to) {
 		// TODO Auto-generated method stub
 		return session.getMapper(UserDAO.class).findByComments(user, from, to);
 	}
@@ -291,9 +293,9 @@ public class UserDAOImpl implements UserDAO {
 	}
 
 	@Override
-	public void findByLikePost(LikeDTO like) {
+	public List<PostDTO> findByLikePost(LikeDTO like) {
 		// TODO Auto-generated method stub
-		// return session.getMapper(UserDAO.class).findByLikePost(like);
+		return session.getMapper(UserDAO.class).findByLikePost(like);
 	}
 
 	@Override

@@ -11,7 +11,7 @@
 
 <!-- css  -->
 <link
-	href="${pageContext.request.contextPath }/resources/CSS/user/loginmainstyle.css"
+	href="${pageContext.request.contextPath }/resources/css/user/loginmainstyle.css"
 	rel="stylesheet" type="text/css">
 
 
@@ -28,7 +28,7 @@
 
 <!-- js -->
 <script
-	src="${pageContext.request.contextPath }/resources/JS/user/login.js"></script>
+	src="${pageContext.request.contextPath }/resources/js/user/login.js"></script>
 
 
 <title>로그인화면</title>

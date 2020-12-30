@@ -26,6 +26,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 
+<!-- google font -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
 
 <!--  bootstrap -->
@@ -37,37 +40,16 @@
 
 <body id="mybodys" class="bg-light" >
 
-	<div  class="loadings">
-	  		<img src="https://static-steelkiwi-dev.s3.amazonaws.com/media/filer_public/4e/07/4e07eece-7c84-46e2-944d-1a6b856d7b5f/463ff844-6f36-4ffe-b051-fea983d39223.gif">
-	</div>
+	<div class="loading mt-5">
+			<img src="${pageContext.request.contextPath }/admin/img/loading.gif">
+		</div>
+	
 	<div id="bodys">
-	 <nav class="navbar navbar-dark  sticky-top bg-white flex-md-nowrap p-0 mt-0">
-      <a class="navbar-brand bg-dark col-sm-3 col-md-2 mr-0" href="#">LTNS DashBoard</a> <!--  barnd 설정  -->
-      
-      <ul class="navbar-nav  d-flex flex-row-reverse  ">
-      
-        
-          <li class="nav-item  mr-5">
-          		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
-         		<span class="welcomes" style="font-size: 12px;"> ${id} </span>
-         		
-          </li>
-          <li class="nav-item mr-3">
-	          <div>
-	          <img class="imgs_under" src="${pageContext.request.contextPath }/admin/img/1.PNG">
-	          </div>
-  	      </li>
-			<li class="nav-item   mr-4 text-center">
-			<a class="nav-link text-dark" href="#"><i class="fas fa-bell"></i></a>
-			</li>
-
-			<li class="nav-item  mr-4 text-center">
-			<a class="nav-link text-dark" href="#"> <i class="fas fa-envelope"></i></a>
-			</li>
-		</ul>
-     
 	 
-    </nav> <!-- nav header 라인 -->
+    <!-- nav -->
+	<jsp:include page="${request.getRequestURI}/admin/nav/navs" flush="true" />
+	 
+	 
 
 	<div class="container-fluid">
 		<div class="row">
@@ -90,9 +72,15 @@
 								data-feather="users"></span> <i class="fas fa-edit"></i>&nbsp;&nbsp;게시글 정보
 						</a></li>
 					
-					<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
+						<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/notice"> <span
 								data-feather="bar-chart-2"></span> <i class="far fa-clipboard"></i>&nbsp;&nbsp; 공지사항
 						</a></li>
+						
+						
+					<li class="nav-item"><a class="nav-link  text-white" href="${pageContext.request.contextPath}/admin/areaInfo"> <span
+								data-feather="bar-chart-2"></span> <i class="fas fa-utensils"></i>&nbsp;&nbsp; 휴게소 정보
+						</a></li>
+						
 					</ul>
 
 				</div>
@@ -100,7 +88,8 @@
 		</div><!-- sidebar 라인 -->
 
 		<!-- section 1  -->
-		<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+		<main role="main" id="main_article" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+		
 		
 
 	<div id="ex1" class="modal">
@@ -139,7 +128,7 @@
 							
 						
 						<button onclick="mailSend();" type="button" class="btn btn-outline-success">Submit</button>
-						<button class="btn btn-outline-danger"  onclick="close_modal();" >close</button>
+						 <a type="button" class="btn btn-outline-danger" href="#" rel="modal:close" id="close">Close</a>
 					</div>
 					
 					 <input type="hidden" name="csrfToken" value="${_csrf.token}" />
@@ -164,11 +153,13 @@
 				<form id="frmList" name="frmList">
 					<table class="table">
 						<thead class="thead-dark">
+						<tr>
 							<th>Check</th>
 							<th>UID</th>
 							<th>아이디</th>
 							<th>닉네임</th>
 							<th>가입일</th>
+						</tr>
 						</thead>
 						<tbody>
 
@@ -185,13 +176,13 @@
 						<option value="id" selected> 아이디 </option>
 						<option value="nickName"> 닉네임 </option>
 					</select>
-					<input id="text_info"  type="text" name="text_Info">
+					<input id="text_info"  type="text" name="text_Info" class="input_seach">
 					<button type="button" class="btn_infos" onclick="addSerch();"> 검색 </button>
 				 	
 				 	<input type="hidden" name="csrfToken" value="${_csrf.token}" />
 				  </form>
 				</div>
-		
+		<br>
 		 <div class="text-right mb-3">
 				 	<button type="button" class="btn_infos" onclick="change_grade();"> 권한 변경 </button>
 				 	<button type="button" class="btn_infos" onclick="delete_grade();"> 권한 삭제 </button>
@@ -206,20 +197,17 @@
 			<div class="clear"></div>
 
 	<hr>
-		<div class= "d-inline-block justify-content-start mr-4 ml-2" >
-		<canvas id="userCharts" width="550" height="300" ></canvas>
+
+		<div class= "d-inline-block justify-content-start  " >
+		<canvas id="userCharts"style="height:300px; width:70vh" ></canvas>
 		</div>
 		
-		<div class= "d-inline-block justify-content-end mr-4 ml-2" >
-		<canvas id="userCharts2" width="550" height="300" ></canvas>
+		<div class= "d-inline-block justify-content-start ml-4" >
+		<canvas id="userCharts2" style="height:300px; width:70vh"></canvas>
 		</div>
 
-
-	<div class="clear"></div>	
-	
-	<hr>
-	  
-	  
+  	<hr>
+	  	<div class="clear"></div>
 	  
 	  
 

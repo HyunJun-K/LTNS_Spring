@@ -1,6 +1,6 @@
 
 var pageNo = 1; 
-var pagenationPage = 5;
+var pagenationPage = 8;
 var viewItem = undefined; 
 
 
@@ -99,11 +99,6 @@ function updateList(JsonObj) {
 }
 
 
-function click_move(){
-    $("#list .subject").click(function(){
-        alert("test");
-    })
-}
 
 
 // 글삭제 
@@ -310,12 +305,12 @@ function charts(JsonObj) {
 	                'rgba(255, 159, 64, 0.2)'
 	            ],
 	            borderColor: [
-	                'rgba(255, 99, 132, 1)',
-	                'rgba(54, 162, 235, 1)',
-	                'rgba(255, 206, 86, 1)',
-	                'rgba(75, 192, 192, 1)',
-	                'rgba(153, 102, 255, 1)',
-	                'rgba(255, 159, 64, 1)'
+	                '#AC58FA',
+	                '#AC58FA',
+	                '#AC58FA',
+	                '#AC58FA',
+	                '#AC58FA',
+	                '#AC58FA'
 	            ],
 	            borderWidth: 1,
 		    	
@@ -380,14 +375,25 @@ function postcharts(JsonObj){
                 items[2].account,
                 items[3].account,
                 items[4].account],
-                
-                backgroundColor:  [ 
-                	'#D7F1FA',
-                    '#A0A0FF ',
-                    '#D2FFD2',
-                    '#3ED0C8',
-                    '#FFB2AF'
+                borderColor : [
+
+                    '#AC58FA',
+	                '#AC58FA',
+	                '#AC58FA',
+	                '#AC58FA',
+	                '#AC58FA',
+
                 ],
+                backgroundColor:  [ 
+                	'#F2F5A9',
+                    '#9FF781 ',
+                    '#F781D8',
+                    '#9F81F7',
+                    '#F5D0A9'
+                ],
+
+             
+
             }]
         },
         options: {
@@ -443,14 +449,17 @@ function lineCharts(JsonObj) {
             datasets: [
                 {
                     label: "일별 게시물 개수",
-                    fillColor: "rgba(220,220,220,0.2)",
-                    strokeColor: "rgba(220,220,220,1)",
-                    pointColor: "rgba(220,220,220,1)",
-                    pointStrokeColor: "#fff",
-                    pointHighlightFill: "#fff",
-                    pointHighlightStroke: "rgba(220,220,220,1)",
                     data: [
-                    ]
+                    ],
+                    backgroundColor: [
+                        
+                    ],
+                    borderColor: [
+                        '#086A87'
+                    ],
+                    borderWidth: 1,
+                    fill : false,
+                     lineTension: 0,
                 },
             ]
 
@@ -477,11 +486,13 @@ function lineCharts(JsonObj) {
     for(i=0; i<count; i++){
         var dataset  = config.data.datasets ;
         var data = dataset[0].data;
+        var backgroundColor = dataset[0].backgroundColor
         var label = config.data.labels;
         
 
         label.push(items[i].days);
         data.push(items[i].dayscount);
+        backgroundColor.push('#086A87');
     }
 
     

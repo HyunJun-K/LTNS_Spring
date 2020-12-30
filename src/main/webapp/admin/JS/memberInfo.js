@@ -1,6 +1,6 @@
 
 var pageNo = 1; 
-var pagenationPage = 5;
+var pagenationPage = 8;
 var viewItem = undefined; 
 
 
@@ -12,11 +12,11 @@ $(document).ready(function(){
 	pageLoad(pageNo);
 	TopComent();
 	TopPostUser();
+	$(".loading").hide();
 
-	$(".loadings").hide();
-
-	
-	
+	$("#close").click(function(){
+		$("#emailText").text("");
+	})
 })
 
 
@@ -66,7 +66,7 @@ function updateList(JsonObj) {
         result += "<tr>\n";
         result += "<td><input type='radio' class='radios' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
         result += "<td>" + items[i].um_UID + "</td>\n";
-		result += "<td> <a id='showModal' href='#ex1' rel='modal:open' ><span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span> </a>\n";
+		result += "<td> <a id='showModal' href='#ex1' rel='modal:open' class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td>  </a>\n";
 		//result += "<td><span id='names' class='subject' data-uid='" + items[i].um_UID + "'>" + items[i].um_USERNAME + "</span></td>\n";
         result += "<td>" + items[i].um_NICKNAME + "</td>\n";
         result += "<td><span data-viewcnt='" + items[i].um_UID + "'>" + items[i].user_regdate + "</span></td>\n";
@@ -96,8 +96,10 @@ function updateList(JsonObj) {
 
 function chk(){
 	$("#list .memberModal").click(function(){
+	//
 		var data = $(this).attr('data-age');
-		$("#userEmail").val($("#userEmail").val() + data);
+		$("#userEmail").val(data);
+	
 	})
 }
 
@@ -200,6 +202,9 @@ function seachData(JsonObj){
 			result += "<td><input type='radio' class='radios' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
         	result += "<td>" + items[i].um_UID + "</td>\n";
 			result += "<td> <a id='showModal' href='#ex1' rel='modal:open' ><span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span> </a>\n";
+		
+			//result += "<td>  <span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span>\n";
+		
 			result += "<td>" + items[i].um_NICKNAME + "</td>\n";
 			result += "<td><span data-viewcnt='" + items[i].um_UID + "'>" + items[i].user_regdate + "</span></td>\n";
 			result += "</tr>\n";
@@ -459,7 +464,7 @@ function donutChart(JsonObj){
 
 // modal event 
 function message_hello(){
-  $("#emailText").text(""); // 내용 초기화 
+  $("#emailText").text("");
   $("#emailText").text(
 	  "안녕하세요 LTNS 휴게소 정보 서비스 입니다. \n" +
 	  "매번 이용해주시는 고객님 정말 감사 드립니다. \n" + 
@@ -479,11 +484,6 @@ function message_report(){
 }
 
 
-
-function close_modal() {
-	$("#emailText").text(""); // 내용 초기화 
-	$.modal.close();
-}
 
 $.fn.serializeObject = function()
 
@@ -540,8 +540,6 @@ function mailSend(){
 	
 	var queryString = JSON.stringify($("form#mailForm").serializeObject());
 	
-	
-	
 	function mailSendAjax(queryString){
 		$.ajax({
 			url : "mailSendAjax",
@@ -558,8 +556,8 @@ function mailSend(){
 
 				 if(data.status =="OK"){
 				 	alert("메일 전송이 성공 하였습니다.");
-				 	
-					 $("#bodys").show();
+				 	location.reload();
+					$("#bodys").show();
 					$(".loadings").hide();
 					$("#mybodys").attr('class','bg-light')
 				 }
@@ -569,7 +567,7 @@ function mailSend(){
 	}
 	mailSendAjax(queryString);
 	$("#bodys").hide();
-	$(".loadings").show();
+	$(".loading").show();
 	$.modal.close();
 
 	$("#mybodys").attr('class','dark')
@@ -578,7 +576,5 @@ function mailSend(){
 
 
 }
-
-
 
 
