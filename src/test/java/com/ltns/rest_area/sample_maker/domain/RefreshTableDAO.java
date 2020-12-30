@@ -5,11 +5,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.ltns.rest_area.domain.DAO;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.VO;
+import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
 
 public class RefreshTableDAO extends AbstractDAO {
 	
@@ -246,6 +248,11 @@ public class RefreshTableDAO extends AbstractDAO {
 			"START WITH 1";
 	
 	
+	//select 
+	
+	 final static String SELECT_USERMEMBER = "SELECT * FROM USERMEMBER " ;
+	
+	
 	public RefreshTableDAO() {
 		super();
 	}
@@ -271,67 +278,24 @@ public class RefreshTableDAO extends AbstractDAO {
 		}
 	}
 	
+	//조회해서 가져오기 
+	public String memberInfo() throws SQLException {
+		int cnt = 0;
+		List<memberInfoDTO> list = null;
+		String result = "";
+		try {
+			pstmt=conn.prepareStatement(SELECT_USERMEMBER);
+			pstmt.executeQuery();
+			rs = pstmt.executeQuery(SELECT_USERMEMBER); 
+			while(rs.next()) {
+				result = rs.getString(4);
+			}
+		} finally {
+			close();
+		}
+		return result;
+	}
 	
-
-	@Override
-	public List<DTO> selectByInt(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DTO> selectByString(String s) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DTO> selectByDTO(DTO dto) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<DTO> selectByObject(Object obj) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int insertByDTO(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int insertByObject(Object obj) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateByDTO(DTO dto) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int updateByObject(Object obj) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteByInt(int i) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteByObject(Object obj) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
 
 	@Override
 	public int deleteAll() {
@@ -408,114 +372,6 @@ public class RefreshTableDAO extends AbstractDAO {
 		}
 		return 1;
 	}
-
-
-	@Override
-	public int insertAllByDTOs(List<DTO> dtos) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public int selectCnt() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public int selectCntByInt(int i) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public int selectCntByString(String str) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public int selectCntByObject(Object obj) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public List<DTO> selectAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-
-	@Override
-	public int updateAllByDTOs(List<DTO> dtos) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-
-	@Override
-	public int deleteByString(String str) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public List<DTO> selectFromRow(int from, int pagenationPage) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public int selectCntByVO(VO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public List<DTO> selectByVO(VO vo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Override
-	public int deleteByVO(VO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public int deleteByUid(int[] uids) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public int insertByVO(VO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-
-	@Override
-	public int updateByVO(VO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 
 

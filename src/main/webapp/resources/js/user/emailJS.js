@@ -12,6 +12,7 @@ function emailSend() {
 	
 		$('#message').val('findByUsername');
 		$('#kind').val('authentication');
+		$('#emailCK').attr('disabled', true);
 
 
 
@@ -49,7 +50,9 @@ function emailChk() {
 		
 		chk=null;
 		
-		$("#submit").attr("disabled", false);
+		$("#emailAC").attr("disabled", true);
+				$("#submit").attr("disabled", false);
+		$("#emailACbtn").attr("disabled", true);
 		
 		
 	}else{

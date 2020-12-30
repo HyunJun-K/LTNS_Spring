@@ -228,6 +228,12 @@
 	
 	
 	$('#submit').click(function() {
+
+		if($('#provisionYn2').is(":checked")) {
+			alert('약관에 동의하지 않으셧습니다.');
+			return;
+		}
+		
 			$('#message').val('insertUser');
 				 $.ajax({
 				type : "post",

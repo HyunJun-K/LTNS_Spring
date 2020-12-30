@@ -143,12 +143,13 @@ public class UserRestController {
 			UserDTO findUser = null;
 			String subject = null;
 			String contentText = null;
-			long number = System.currentTimeMillis() / 1000000000;
+			int random = ((int) (Math.random() * 9 + 1)) * 100000000;
+			long number = System.currentTimeMillis() / random;
 			if (kind.equals("authentication")) {
 				subject = "[회원가입] 인증번호";
 				contentText = subject + " : " + number;
 				new Gmail(request).emailSend("joinAdmin", user.getUm_username(), subject, contentText);
-				result.setCount((int)number);
+				result.setCount((int) number);
 				result.setStatus("OK");
 				result.setMessage("이메일 전송 성공");
 			} else if (kind.equals("findIdByUsername")) {
@@ -185,7 +186,7 @@ public class UserRestController {
 					contentText = "<table style=\"border: 1px solid black; border-collapse: collapse;\">";
 					contentText += "<thead style=\"border: 1px solid black;\">";
 					contentText += "<tr>";
-					contentText += "<th style=\"border: 1px solid black;\">";
+					contentText += "<th colspan=\"2\" style=\"border: 1px solid black;\">";
 					contentText += subject;
 					contentText += "</th>";
 					contentText += "</tr>";
@@ -438,22 +439,22 @@ public class UserRestController {
 				if (restAreas.size() != 0) {
 					map.put("restAreas", restAreas);
 				}
-			List<LikeDTO> postLikes = service.findByPost_like_All(user);
-			List<PostDTO> likePosts = new ArrayList<PostDTO>();
-			if(postLikes.size() != 0) {
-				postLikes.forEach(like -> likePosts.add(service.findByLikePost(like).get(0)));
-			}
-			if(likePosts.size() != 0) {
-				map.put("likePosts", likePosts);
-			}
-			List<PostDTO> posts = service.findByPost_All(user);
-			if(posts.size() != 0) {
-				map.put("posts", posts);
-			}
-			List<CommentDTO> comments = service.findByComment_All(user);
-			if(comments.size() != 0) {
-				map.put("comments", comments);
-			}
+				List<LikeDTO> postLikes = service.findByPost_like_All(user);
+				List<PostDTO> likePosts = new ArrayList<PostDTO>();
+				if (postLikes.size() != 0) {
+					postLikes.forEach(like -> likePosts.add(service.findByLikePost(like).get(0)));
+				}
+				if (likePosts.size() != 0) {
+					map.put("likePosts", likePosts);
+				}
+				List<PostDTO> posts = service.findByPost_All(user);
+				if (posts.size() != 0) {
+					map.put("posts", posts);
+				}
+				List<CommentDTO> comments = service.findByComment_All(user);
+				if (comments.size() != 0) {
+					map.put("comments", comments);
+				}
 				result.setMap(map);
 				result.setStatus("OK");
 				result.setMessage("정보전송 성공");
@@ -538,7 +539,8 @@ public class UserRestController {
 	}
 
 	@DeleteMapping("/member/user/list")
-	public AjaxResult delete(@RequestParam("um_uid") long uid, String table, String column, String[] strCode, int[] numCode) {
+	public AjaxResult delete(@RequestParam("um_uid") long uid, String table, String column, String[] strCode,
+			int[] numCode) {
 		AjaxResult result = new AjaxResult();
 		result.setStatus("FAIL");
 		try {
