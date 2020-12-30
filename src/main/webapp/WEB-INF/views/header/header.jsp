@@ -44,7 +44,6 @@
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 	</form>
-	<script src="<%=request.getContextPath()%>/resources/js/user/mypage.js"></script>
 	<script>
 		function logout() {
 			console.log($('#logout'));

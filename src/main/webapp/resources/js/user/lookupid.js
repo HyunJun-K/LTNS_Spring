@@ -1,6 +1,5 @@
 $(document).ready(function () {
   $('#emainBtn').click(function () {
-    console.log($('#lookupid').serialize());
     $('#kind').val('findIdByUsername');
     $('#message').val('findByUsername');
     $.ajax({
@@ -13,6 +12,7 @@ $(document).ready(function () {
             alert(
               '이메일이 성공적으로 전송되었습니다.\n가입시 등록한 이메일을 확인해 주세요.',
             );
+			location.href='/rest_area/auth/user/login';
           } else {
             alert(data.message);
           }
@@ -33,6 +33,7 @@ $(document).ready(function () {
             alert(
               '이메일이 성공적으로 전송되었습니다.\n가입시 등록한 이메일을 확인해 주세요.',
             );
+			location.href='/rest_area/auth/user/login';
           } else {
             alert(data.message);
           }

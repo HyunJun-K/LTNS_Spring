@@ -38,9 +38,9 @@
 
 	<!-- 로고  -->
 	<div class="text-center col-12 ">
-		<!-- 
-			<a id="login_logo" href="loginmain.jsp"> <img alt="Login_logo" src="../images/favicon.ico"></a>
-	 -->
+		
+			<a id="login_logo" href="${pageContext.request.contextPath }${pageContext.request.contextPath }/front"> <img alt="Login_logo" src="/rest_area/resources/img/logo.png"></a>
+	
 		<!-- container  -->
 
 		<div>
