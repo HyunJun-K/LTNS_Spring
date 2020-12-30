@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="csrf-token" content="${_csrf.token}">
 <title>지도 팝업</title>
 </head>
 

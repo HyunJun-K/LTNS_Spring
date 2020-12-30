@@ -69,13 +69,12 @@ public class PostMaker extends AbstractDAO  {
 	
 	
 	public String mkRacode() throws SQLException {
-		
 		RefreshTableDAO dao = new RefreshTableDAO();
 		ArrayList<String> list = dao.RAcode();
-		
+		//System.out.println(list.size());
 		int random = (int)(Math.random()*200);
 		String result = list.get(random);
-		
+		//System.out.println(result);
 		return result;
 		
 		
@@ -86,7 +85,7 @@ public class PostMaker extends AbstractDAO  {
 		PostMaker p = new PostMaker();
 
 		
-		int random = (int)(Math.random()*4);
+		int random = (int)(Math.random()*5);
 		RefreshTableDAO dao = new RefreshTableDAO();
 		ArrayList<String> list = new ArrayList<String>();
 		ArrayList<Integer> counts = new ArrayList<Integer>();
@@ -99,16 +98,15 @@ public class PostMaker extends AbstractDAO  {
 		int dataCnt = 0;
 		int cnt = 0;
 		
-		int randomsize = 10;
+		int randomsize = 4;
 		for (int i = 0; i < randomsize; i++) {
 			p.mkTitle(); //타이틀
 			p.mkContent(); // 내용 
-			datas = list.get(random);
-			dataCnt = counts.get(random);
+			
 			p.mkRacode();
 			p.mkReport();  // 신고횟수 
 			
-			dao.Post_Go(p.mkTitle(), p.mkContent(), dataCnt, datas, p.mkRacode(), p.mkReport());
+			dao.Post_Go(p.mkTitle(), p.mkContent(), counts.get(random), list.get(random), p.mkRacode(), p.mkReport());
 		}
 	
 

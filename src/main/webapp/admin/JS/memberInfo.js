@@ -12,8 +12,8 @@ $(document).ready(function(){
 	pageLoad(pageNo);
 	TopComent();
 	TopPostUser();
-	$(".loading").hide();
 
+	$(".loading").hide();
 	$("#close").click(function(){
 		$("#emailText").text("");
 	})
@@ -303,7 +303,7 @@ function TopComent(){
 		success : function(data,status){
 			if(data.status =="OK")
 			{
-			
+				
 					ComentCharts(data)
 			}
 		}

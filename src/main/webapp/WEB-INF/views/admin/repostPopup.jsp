@@ -4,6 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!--  csrf token 읽기 -->
+<meta charset="UTF-8" name="csrf-token" content="${_csrf.token}">
+
 <title>오늘 신고된 신고 목록</title>
 </head>
 

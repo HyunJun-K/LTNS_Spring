@@ -21,7 +21,7 @@ public class RefreshTableDAO extends AbstractDAO {
 	final static String DROP_POST_SEQ =	"DROP SEQUENCE Post_SEQ";
 	final static String DROP_COMMENTS_SEQ="DROP SEQUENCE Comments_SEQ";
 	final static String DROP_SCHDULE_SEQ = "DROP SEQUENCE s_sid_seq";
-	final static String DROP_NOTICE_SEQ ="notice_id_seq"; 
+	final static String DROP_NOTICE_SEQ ="DROP SEQUENCE notice_id_seq"; 
 	
 	final static String DROP_USERMEMBER_TABLE="DROP TABLE UserMember CASCADE CONSTRAINTS";
 	final static String DROP_AUTH_TABLE="DROP TABLE Auth CASCADE CONSTRAINTS";
@@ -243,11 +243,12 @@ public class RefreshTableDAO extends AbstractDAO {
 			"INCREMENT BY 1";
 	
 	final static String CREATE_SEQUENCE_SCHDULE = "CREATE SEQUENCE s_sid_seq " + 
-			"START WITH 1";
+			"START WITH 1 "+ 
+			"INCREMENT BY 1";
 	
 	final static String CREATE_SEQUENCE_NOTICE = "CREATE SEQUENCE notice_id_seq " + 
-			"START WITH 1";
-	
+			"START WITH 1 "+ 
+			"INCREMENT BY 1";
 	
 	//select 
 	
@@ -313,10 +314,10 @@ public class RefreshTableDAO extends AbstractDAO {
 	}
 	
 	public ArrayList<String> RAcode() throws SQLException {
-		String resultData = "";
+	
 		ArrayList<String> list = new ArrayList<String>();
 		try {
-			pstmt=conn.prepareStatement(SELECT_USERMEMBER);
+			pstmt=conn.prepareStatement(SELECT_AREA);
 			pstmt.executeQuery();
 			rs = pstmt.executeQuery(SELECT_AREA); 
 			while(rs.next()) {
@@ -372,8 +373,14 @@ public class RefreshTableDAO extends AbstractDAO {
 			justExcuteBySQL(DROP_FM_LIKE_TABLE);
 			justExcuteBySQL(DROP_POST_LIKE_TABLE);
 			justExcuteBySQL(DROP_USER_VIEW);
+			
 			justExcuteBySQL(DROP_SCHEDULE_TABLE);
 			justExcuteBySQL(DROP_NOTICE_TABLE);
+			
+			justExcuteBySQL(DROP_SCHDULE_SEQ);
+			justExcuteBySQL(DROP_NOTICE_SEQ);
+			
+			
 		} catch (SQLException e) {
 			System.out.println("drop 에러");
 			e.printStackTrace();
