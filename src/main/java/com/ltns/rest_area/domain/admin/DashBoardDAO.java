@@ -10,7 +10,7 @@ public interface DashBoardDAO extends DAO{
 	int select_totalPost();
 	int select_todayPost();
 	int select_todayReports_post();
-	int select_total_coment();
+
 	int select_todayComent();
 
 	
@@ -22,5 +22,7 @@ public interface DashBoardDAO extends DAO{
 	List<DTO> totalLike();
 	List<DTO> memberListChart();
 	List<DTO> monthPostChart();
+	List<DTO> chipGas();
+	
 	
 }

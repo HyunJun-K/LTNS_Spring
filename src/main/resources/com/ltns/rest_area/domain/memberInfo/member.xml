@@ -56,7 +56,11 @@
 	
 
 	<update id="updateByAuth" flushCache="true" >
-		UPDATE USERVIEW SET AUTHORITY = #{AUTHORITY} WHERE USERNAME = #{UM_USERNAME}
+		UPDATE USERVIEW SET AUTHORITY = #{AUTHORITY} WHERE AUTHORITY ='ROLE_MEMBER' AND USERNAME =#{UM_USERNAME};
 	</update>
+
+	<insert id="insertByAuth" flushCache="true">
+	</insert>
+
 
 </mapper>

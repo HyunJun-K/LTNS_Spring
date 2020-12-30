@@ -154,7 +154,7 @@
 					<table class="table">
 						<thead class="thead-dark">
 						<tr>
-							<th>Check</th>
+						
 							<th>UID</th>
 							<th>아이디</th>
 							<th>닉네임</th>
@@ -179,15 +179,11 @@
 					<input id="text_info"  type="text" name="text_Info" class="input_seach">
 					<button type="button" class="btn_infos" onclick="addSerch();"> 검색 </button>
 				 	
-				 	<input type="hidden" name="csrfToken" value="${_csrf.token}" />
+			
 				  </form>
 				</div>
 		<br>
-		 <div class="text-right mb-3">
-				 	<button type="button" class="btn_infos" onclick="change_grade();"> 권한 변경 </button>
-				 	<button type="button" class="btn_infos" onclick="delete_grade();"> 권한 삭제 </button>
-		</div>
-				 	
+		
 				<div class="d-flex justify-content-end">
 					<ul class="pagination " id="pagination">
 					</ul>

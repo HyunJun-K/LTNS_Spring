@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ltns.rest_area.domain.AjaxList;
 import com.ltns.rest_area.domain.AjaxResult;
 import com.ltns.rest_area.domain.DTO;
+import com.ltns.rest_area.domain.admin.AreaDataDTO;
 import com.ltns.rest_area.domain.admin.ResultData;
 import com.ltns.rest_area.service.admin.DashBoardService;
 
@@ -169,35 +170,35 @@ public class AdminDashBoardAjaxController {
 	
 	
 	
-	@PostMapping("today_coment")
-	public ResultData comentsToInfo() {
+	@PostMapping("ChipGas")
+	public AjaxList ChipGas() {
 		
 		String status ="FAIL";
 		StringBuffer message = new StringBuffer();
-		ResultData result = new ResultData();
-		int cnt = 0;
-		int totalCounts = 0;
-		try {
-			cnt = Dservice.todayComent();
-			totalCounts = Dservice.today_totalComent();
+		AjaxList result = new AjaxList();
+		
+		List<DTO> list = null;
+		
+		
+		try 	
+		{
+				list = Dservice.chip_Gas();
 			
-			if(cnt != 0) {
-				status = "OK";
-			}
-			
-			if(totalCounts != 0) {
-				status = "OK";
-			}
-			
+				if(list != null) {
+					status="OK";
+				}
 			
 		} catch (Exception e) {
 			message.append("트랜잭션오류 "+e.getMessage());
 		}
 		
-		result.setCount(cnt);
+		result.setList(list);
 		result.setStatus(status);
+		result.setCount(list.size());
 		result.setMessage(message.toString());
-		result.setTotalCounts(totalCounts);
+	
+		
+		
 		
 		
 		return result;

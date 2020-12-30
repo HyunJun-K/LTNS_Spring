@@ -64,7 +64,6 @@ function updateList(JsonObj) {
     for(i=0; i<count; i++){
 	
         result += "<tr>\n";
-        result += "<td><input type='radio' class='radios' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
         result += "<td>" + items[i].um_UID + "</td>\n";
 		result += "<td> <a id='showModal' href='#ex1' rel='modal:open' class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td>  </a>\n";
 		//result += "<td><span id='names' class='subject' data-uid='" + items[i].um_UID + "'>" + items[i].um_USERNAME + "</span></td>\n";
@@ -199,8 +198,7 @@ function seachData(JsonObj){
 	    var items  = JsonObj.list;
 	    for(i=0; i<count; i++){
 			result += "<tr>\n";
-			result += "<td><input type='radio' class='radios' name='um_UID' value='" + items[i].um_UID + "'></td>\n";
-        	result += "<td>" + items[i].um_UID + "</td>\n";
+			result += "<td>" + items[i].um_UID + "</td>\n";
 			result += "<td> <a id='showModal' href='#ex1' rel='modal:open' ><span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span> </a>\n";
 		
 			//result += "<td>  <span class='memberModal' data-age='" + items[i].um_USERNAME  + "'>" + items[i].um_USERNAME+ "</td> </span>\n";
@@ -230,61 +228,6 @@ function seachData(JsonObj){
 
 
 
-function change_grade(){
-	if($("#list tbody input[name=um_UID]").is(":checked")){
-		if(confirm("정말 권한을 부여 하시겠습니까?")) 
-		var checkData = $("#list tbody input[name='um_UID']:checked").val();
-
-		$.ajax({
-			url : "Change_Grage/" + checkData,
-			type : "GET",
-			headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-			dataType : "JSON",
-			contentType:'application/json;',
-			success : function(data, status){
-				if(data.status =="OK"){
-					alert("변경되었습니다.")
-				}else{
-					alert("변경 오류")
-				}
-			}
-		});
-		
-	}else{
-		alert("변경하실 유저를 Check를 해주세요")
-	}
-	
-}
-
-
-function delete_grade(){
-	if($("#list tbody input[name=um_UID]").is(":checked")){
-		if(confirm("정말 권한을 삭제 하시겠습니까?")) 
-		var checkData = $("#list tbody input[name='um_UID']:checked").val();
-
-		$.ajax({
-			url : "delete_Grage/" + checkData,
-			type : "GET",
-			headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-			dataType : "JSON",
-			contentType:'application/json;',
-			success : function(data, status){
-				if(data.status =="OK"){
-					alert("변경되었습니다.")
-				}else{
-					alert("변경 오류")
-				}
-			}
-		});
-		
-	}else{
-		alert("변경하실 유저를 Check를 해주세요")
-	}
-}
 
 
 

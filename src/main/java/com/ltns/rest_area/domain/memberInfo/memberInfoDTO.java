@@ -17,6 +17,7 @@ public class memberInfoDTO implements DTO   {
 	private String UM_REGDATE;
 	private String user_regdate;
 	private String UM_ENABLED;
+	private String UM_PASSWORD;
 	private int cnt;
 	private String title;
 	private String textMail;

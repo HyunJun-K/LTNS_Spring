@@ -46,7 +46,7 @@ function pageLoad(pageNo){
             if(status == "success"){
             
                 if(updateList(data)){
-                    click_move()
+                  
                 }
               
             }
@@ -292,7 +292,7 @@ function charts(JsonObj) {
 	    
 		data: {
 	        labels: 
-	        	[item[0].post_title , item[1].post_title, item[2].post_title, item[3].post_title, item[4].post_title ],
+	        	[item[0].um_USERNAME , item[1].um_USERNAME, item[2].um_USERNAME, item[3].um_USERNAME, item[4].um_USERNAME ],
 	        	
 	        datasets: [{
 	            data: [item[0].post_reported , item[1].post_reported, item[2].post_reported, item[3].post_reported, item[4].post_reported],
