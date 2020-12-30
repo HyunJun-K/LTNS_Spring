@@ -99,11 +99,6 @@ function updateList(JsonObj) {
 }
 
 
-function click_move(){
-    $("#list .subject").click(function(){
-        alert("test");
-    })
-}
 
 
 // 글삭제 

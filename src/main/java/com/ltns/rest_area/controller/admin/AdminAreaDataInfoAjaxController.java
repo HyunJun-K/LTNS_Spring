@@ -3,9 +3,11 @@ package com.ltns.rest_area.controller.admin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -238,6 +240,33 @@ public class AdminAreaDataInfoAjaxController {
 			result.setCount(list.size());
 			return result;
 		}
+		
+		
 	
+		
+	@PostMapping("/areaInfoPopUp/XYDATAREAD")
+	public AjaxList XYDATAREAD(@RequestBody AreaDataDTO dto ) {
+		StringBuffer message = new StringBuffer();
+		String status ="FAIL";
+		List<DTO> list = null;
+		
+		try {
+			list = Aservice.xyData(dto.getNames());
+			
+			if(list != null) {
+				status="OK";
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+		
+		AjaxList result = new AjaxList();
+		result.setMessage(message.toString());
+		result.setStatus(status);
+		result.setList(list);
+		result.setCount(list.size());
+		return result;
+
+	}
 	
 }

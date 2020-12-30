@@ -14,10 +14,6 @@ DROP TABLE ADMINNOTICE;
 
 --현준 추가 
 
-CREATE SEQUENCE s_sid_seq
-CREATE SEQUENCE notice_id_seq;
-START WITH 1
-INCREMENT BY 1;
 
 
 CREATE SEQUENCE notice_id_seq
@@ -48,9 +44,8 @@ CREATE TABLE ADMINNOTICE
     notice_regdate    DATE  		  NOT NULL, 
     notice_writer     VARCHAR2(20)    NOT NULL, 
  	notice_content    VARCHAR2(200)   NOT NULL,
-
     PRIMARY KEY (notice_id)
-)
+);
 
 
 

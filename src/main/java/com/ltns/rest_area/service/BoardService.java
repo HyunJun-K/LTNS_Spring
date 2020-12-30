@@ -44,7 +44,7 @@ public class BoardService {
 		viewDTO.setFmDTOs(dao.selectByString(ra_code));
 		
 		dao=sqlSession.getMapper(PostDAO.class);
-		viewDTO.setPostDtos(dao.selectByString(ra_code));
+		viewDTO.setPostDTOs(dao.selectByString(ra_code));
 		
 		return viewDTO;
 	}

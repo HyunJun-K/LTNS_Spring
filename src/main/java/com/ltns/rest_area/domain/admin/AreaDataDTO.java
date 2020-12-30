@@ -15,12 +15,16 @@ public class AreaDataDTO implements DTO {
 	private String GS_LPG; // 엘피지
 	
 	
-
+	
 	private String RA_CODE; //휴게소 코드
 	private String RA_NAME; // 휴게소 이름
-	private String RA_ROUTENO; //휴게소 방향 넘버
-	private String RA_ROUTENAME;  // 휴게소 방향 
+	private String RA_ROUTENO; // 고속도로 방향 넘버
+	private String RA_ROUTENAME;  // 고속도로 휴게소 방향 
 	private String RA_DESTINATION; // 휴게소 지역 
+	private String RA_XVALUE; // X
+	private String RA_YVALUE; // Y 
+	
+	
 	
 	
 	private int FM_ID; // UID 
@@ -29,9 +33,21 @@ public class AreaDataDTO implements DTO {
 	private int FM_price; // UID
 	
 	
+	private String code; //업데이트 받을정보 
+	private String areaName;
+	private String areaDe;
+	private String outName;
+	private String outNum;
+	
+	
+	
+	
+	
 	
 	int CNT;
 	private String target;
 	private String content; 
+	private String names;
+
 	
 }

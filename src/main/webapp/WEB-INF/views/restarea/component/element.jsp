@@ -11,7 +11,7 @@
 <c:choose>
 	<c:when test="${ra eq listSort }">
 		<c:forEach var="dto" items="${dtos }">
-			<a class="listelement" onclick="setPopup(${dto.ra_code})" href="javascript:void(0);" >
+			<a class="listelement" onclick="setPopup('${dto.ra_code}')" href="javascript:void(0);" >
 				<p class="ra_code undisplay">${dto.ra_code }</p>
 				<div class="card">
 				  <img src="..." alt="" />
@@ -25,7 +25,7 @@
 	</c:when>
 	<c:when test="${gs eq listSort }">
 		<c:forEach var="dto" items="${dtos }">
-			<a class="listelement" onclick="setPopup(${dto.ra_code})" href="javascript:void(0);" >
+			<a class="listelement" onclick="setPopup('${dto.ra_code}')" href="javascript:void(0);" >
 				<p class="ra_code undisplay">${dto.ra_code }</p>
 				<div class="card">
 				  <img src="..." alt="" />
@@ -40,7 +40,7 @@
 	</c:when>
 	<c:when test="${fm eq listSort }">
 		<c:forEach var="dto" items="${dtos }">
-			<a class="listelement" onclick="setPopup(${dto.ra_code})" href="javascript:void(0);" >
+			<a class="listelement" onclick="setPopup('${dto.ra_code}')" href="javascript:void(0);" >
 				<p class="ra_code undisplay">${dto.ra_code }</p>
 				<div class="card">
 				  <img src="..." alt="" />

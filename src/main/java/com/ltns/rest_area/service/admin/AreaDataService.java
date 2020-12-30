@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.ltns.rest_area.domain.DAO;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.admin.AreaDataDAO;
+import com.ltns.rest_area.domain.admin.AreaDataDTO;
 
 @Service
 public class AreaDataService {
@@ -68,4 +69,13 @@ public class AreaDataService {
 		vo = sqlSession.getMapper(AreaDataDAO.class);
 		return vo.SelectTotalMenu();
 	}
+	
+	
+	public List<DTO> xyData(String names){
+		vo = sqlSession.getMapper(AreaDataDAO.class);
+		return vo.SeachXY(names);
+	}
+	
+
+	
 }

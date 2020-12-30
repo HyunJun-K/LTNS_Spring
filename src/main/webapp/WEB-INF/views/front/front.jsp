@@ -16,8 +16,11 @@
 <!-- css, js -->
 <link href='${pageContext.request.contextPath }/resources/css/front.css' rel="stylesheet"/>
 <script type="text/javascript" src='${pageContext.request.contextPath }/resources/js/front.js'></script>
+
+
 <body class="container">
-	<div class="gridcontainer">
+	<jsp:include page="../header/header.jsp" />
+	<div id="frontpage" class="gridcontainer">
 		<div id="backgroundPane">
 		</div>
 		

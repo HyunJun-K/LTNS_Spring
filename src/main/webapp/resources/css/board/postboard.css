@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+#postboard .undisplay{
+	display : none;
+}
+
+#postboard #post_frmlist>table{
+	width : 100%;
+}
+
+#postboard .right{
+	float : right;
+}
+#postboard .clear{
+	clear : both;
+}
+#postboard #postwrite_new,#postboard #postwrite,#postboard #post_content,#postboard .write_post_title,#postboard .write_post_content{
+	width : 100%;
+}
+
+#postboard .write_post_content{
+	height:100px;
+}

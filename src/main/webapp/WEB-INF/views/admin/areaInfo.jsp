@@ -13,6 +13,7 @@
 <!-- jquery  -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+
 <!-- google font -->
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
@@ -28,6 +29,13 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/album/">
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+
+<!-- jQuery Modal -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
+
 
 <!--  지도 api  -->
 
@@ -72,13 +80,19 @@
 			</nav>
 		</div><!-- sidebar 라인 -->
 
+
+		
 	
 		
 		
 	    <main role="main" id="main_article" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4 ">
+		
+	
+	
+	
 	    <div id="list" >
 	    	<div class="btn_team text-right mt-2 mb-2">
-			<button type="button" id="btns" onclick="pageLoad(1);"> 휴게소</button>
+	    	<button type="button" id="btns" onclick="pageLoad(1);"> 휴게소</button>
 			<button type="button" id="btns" onclick="updateG(1);"> 주유소 </button>
 			<button type="button" id="btns" onclick="updateM(1);"> 음식 </button>
 			</div>
@@ -92,13 +106,14 @@
 							<th></th>
 							<th></th>
 							<th></th>
+							<th></th>
 							</tr>
 						</thead>
 						<tbody>
 
 						</tbody>
 					</table>
-				</form> 
+				</form>
 				
 				<br>
 				<div class="d-flex justify-content-center">
@@ -127,7 +142,7 @@
 		
 			
 			
-			
+			<input type="hidden" id="parent">
 		</main> <!-- article -->
 	</div> <!-- end con -->
 

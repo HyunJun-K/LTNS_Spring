@@ -100,13 +100,20 @@ public class BoardController {
 		return result;
 	}
 	
+	//새글 집어넣기
 	@PutMapping("/post")
-	public AjaxResult post_insert(PostVO vo) {	//PostVO에 내용을 넣을 것
-		AjaxResult result = boardService.insertPost(vo);
+	public AjaxResult post_insert(PostVO vo, Model model) {	//PostVO에 내용을 넣을 것
+		vo.setPost_id(post_id);
+		vo.setUm_uid(um_uid);
+		vo.setUm_username(um_username);
+		vo.setPost_regdate(post_regdate);
+		vo.setPost_reported("x");
 		
+		AjaxResult result = boardService.insertPost(vo);
 		return result;
 	}
 	
+	//글 업데이트
 	@PatchMapping("/post")
 	public AjaxResult post_update(PostVO vo) {
 		AjaxResult result=boardService.updatePost(vo);
@@ -114,6 +121,7 @@ public class BoardController {
 		return result;
 	}
 	
+	//글 삭제
 	@DeleteMapping("/post")
 	public AjaxResult post_delete(PostVO vo) {
 		AjaxResult result=boardService.deletePost(vo);

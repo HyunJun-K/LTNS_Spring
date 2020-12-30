@@ -1,10 +1,86 @@
+/* post list */
+//ajax 요청
+function postboard_ajax(){
+	$.ajax({
+		
+	});
+}
+
+//post list 초기화 
+function postboard_refresh(){
+	postboard_ajax();
+	
+}
+
+/* post write */
+
+//글작성 클릭 시
+function open_post_new(){
+    $('#btn_open_post_new').hide();
+    $('#postwrite_new').show();
+}
+
+function post_new(){
+
+	var PostVO={
+		post_id:'',
+		post_title:$('.post_title').attr('value'),
+		post_contents:$('.post_content').attr('value'),
+		um_uid:$('#restareaview p#ra_code').html(),
+		um_username:'',
+		post_regdate:'',
+		ra_code:'',
+		post_reported:''
+	};
+	//post 전송
+	$.ajax({
+		url:BASE_URL+'/board/post',
+		type:'POST',
+		dataType:'JSON',
+		contentType:'application/json',
+		data:JSON.stringify(PostVO),
+		success:function(data){
+			console.log("성공!");
+		    $('#btn_open_post_new').show();
+    		$('#postwrite_new').hide();
+			postview_refresh();
+			postboard_refresh();	
+		}
+	});
+}
+
+function postview_refresh(){
+    $('.write_post_title').val('');
+    $('.write_post_content').val('');
+}
+
+function post_cancle(){
+    postview_refresh();
+    $('#postwrite_new').hide();
+	$('#btn_open_post_new').show();
+}
+
+function post_update(post_id){
+
+}
+
+//textarea 글씨 갯수 검사
+function post_chkTextlimit(textarea,limitChar){
+    let charlength=textarea.value.length;
+    if(charlength>=limitChar){
+        let str=textarea.value.substr(0,limitChar);
+        textarea.value=str;
+    }
+    $('#post_textLength').html(charlength);
+}
+
 /*post view*/
 function postView(post_id){
     //기존 body가 있다면 지운다.
     $('tr.postbody').remove();
     //post_id의 ajax를 요청한다.
     $.ajax({
-        url:window.location.protocol+"/board/post/view/"+post_id,
+        url:BASE_URL+"/board/post/view/"+post_id,
         type:'GET',
         cache:false,
         success:function(data,status){
@@ -33,6 +109,24 @@ function postBody(jsonObj){
     $('tr.posthead_'+post_id).after(str);
 }
 
+
+function setPostboard(jsonObj){
+    postboard_str='';
+    for(i=0;i<jsonObj.length;i++){
+        postboard_str+='<tr id="posthead">'+
+        '<td class="ra_code undisplay">'+jsonObj[i].ra_code+'</td>'+
+        '<td class="post_id undisplay">'+jsonObj[i].post_id+'</td>'+
+        '<td class="post_title">'+jsonObj[i].post_title+'</td>'+
+        '<td class="um_username">'+jsonObj[i].post_username+'</td>'+
+        '<td class="post_like_cnt">'+jsonObj[i].post_like_cnt+'</td>'+
+        '<td class="post_regdate">'+jsonObj[i].post_regdate+'</td>'+
+        '<td class="post_reported">신고 버튼과 그 안의 이미지..</td>'+
+    '</tr>';
+    }
+
+    $('#post_frmlist tbody').html(postboard_str);
+    
+}
 
 /*페이지네이션*/
 function buildPagination(writePages, totalPage, curPage, pageRows){

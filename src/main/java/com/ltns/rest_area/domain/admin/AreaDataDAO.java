@@ -12,6 +12,9 @@ public interface AreaDataDAO extends DAO {
 	int SelectTotalGas() ;
 	int SelectTotalMenu();
 	
+	
+	
+	List<DTO> SeachXY(String names);
 	List<DTO> SerachFoodMenu(String FoodName);
 	List<DTO> ReastAreaName(String RName);
 	List<DTO> GasstionName(String GName);

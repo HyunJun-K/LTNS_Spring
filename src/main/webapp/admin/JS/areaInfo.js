@@ -8,7 +8,7 @@ var length = $("#heads").children().length
 $(document).ready(function() {
     
     pageLoad(pageNo);
-   
+  
 })
 
 
@@ -19,13 +19,16 @@ function pageLoad(pageNo){
           cache : false,
           headers: {
 			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-		},
+		 },
           contentType : 'application/json; charset=UTF-8',
           dataType : 'json',
       	  success : function(data, status){
             if(status == "success"){
                 thead(data);
-                updateList(data);
+                if(updateList(data)){
+                    popUp();
+                }
+                
             }
             
         }
@@ -37,7 +40,7 @@ function thead(JsonObj){
 
 
     if(JsonObj.list[0].gs_LPG != null){
-        var data = [ '주유소 이름','주유소 코드', '경유','휘발류','LPG']
+        var data = ['주유소 이름','주유소 코드', '경유','휘발류','LPG']
         $("thead").attr("class", 'bg-danger text-white')
     }else if(JsonObj.list[0].ra_ROUTENO != null){
         $("thead").attr("class", 'bg-info text-white')
@@ -69,8 +72,8 @@ function updateList(JsonObj) {
     for(i=0; i<count; i++){
 	
         result += "<tr>\n";
-        result += "<td>" + items[i].ra_NAME + "</td>\n";
-        result += "<td>" + items[i].ra_CODE + "</td>\n";
+        result += "<td><a class='racodeD'  data-racode='"+items[i].ra_NAME+"' >" + items[i].ra_NAME + "</a></td>\n";
+        result += "<td>" + items[i].ra_CODE +"</td>\n";
         result += "<td>" + items[i].ra_ROUTENAME + "</td>\n";
         result += "<td>" + items[i].ra_DESTINATION + "</td>\n";
         result += "<td>" + items[i].ra_ROUTENO+ "</td>\n";
@@ -154,6 +157,7 @@ function updateG(pageNo){
           if(status == "success"){
               thead(data);
               updateGas(data);
+            
           }
           
       }
@@ -388,8 +392,9 @@ function info_Serch(){
                     }
 
                     if(tex == "values_1"){
-                            updateList(data);
-                            thead(data);
+                        updateList(data);
+                        thead(data);
+                        popUp()
                     }else if(tex == "values_2"){
                          updateGas(data);
                          thead(data);
@@ -405,3 +410,20 @@ function info_Serch(){
 }
 
 
+
+
+function popUp(){
+    $("#list .racodeD").click(function(){
+        var data = $(this).attr('data-racode');
+        var url = "areaInfoPopUp/areaInfoUpdate";
+		var name = "areaInfoUpdatePopUp";
+        var option = "width = 800, height = 600 left = 400, top=100,location=no";
+        var chiled;
+        $("#parent").val(data);
+
+        chiled = window.open(url,name,option)
+        
+
+      
+    })
+}

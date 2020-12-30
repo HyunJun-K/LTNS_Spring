@@ -13,6 +13,8 @@ import lombok.NoArgsConstructor;
 @Data
 public class PostVO implements VO {
 
+	private String type;	//count, one, list, all
+	
 	private String orderBy;		
 	
 	private int fromRow;	//가져올 시작 row
