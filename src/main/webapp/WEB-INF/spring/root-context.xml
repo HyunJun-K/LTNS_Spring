@@ -37,7 +37,7 @@
         <security:form-login login-page="/auth/user/login" login-processing-url="/loginProcess"
                              authentication-success-handler-ref="loginSuccessHandler"
                              authentication-failure-handler-ref="loginFailureHandler"/>
-     	<security:logout logout-url="/logoutProcess" logout-success-url="/auth/user/login" invalidate-session="true"/>
+     	<security:logout logout-url="/logoutProcess" logout-success-url="/rest_area/front" invalidate-session="true"/>
         <security:access-denied-handler ref="securityDeniedHandler"/>
     </security:http>
     <security:authentication-manager>
