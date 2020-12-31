@@ -6,13 +6,13 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-public class FirstMemberDAO extends AbstractDAO {
+public class FirstMemberDAO_test extends AbstractDAO_test {
 
 	final static String INSERT_MEMBER="INSERT INTO UserMember(um_uid, um_username, um_password ,um_nickname)"+ 
 									"VALUES(?, ?, ? , ?)";
 	final static String INSERT_AUTH="INSERT INTO Auth VALUES(?, ?)";
 
-	public FirstMemberDAO(){
+	public FirstMemberDAO_test(){
 		super();
 	}
 	

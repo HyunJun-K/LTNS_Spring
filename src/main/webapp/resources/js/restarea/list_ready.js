@@ -34,5 +34,6 @@ $(document).ready(function(){
 		top_arrow_fadeout();
 	});
 	
-	
+	/*유저 확인으로 view 작업 : postboard.js*/
+	chk_usermember();
 })//end - $(document).ready

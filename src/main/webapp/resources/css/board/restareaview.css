@@ -11,6 +11,18 @@
 	margin : 10px;
 }
 
+#fmbox ul>li>p{
+	margin-bottom: 0;
+}
+
+.modal .like_btn{
+	border : none;
+	background-color: transparent;
+}
+.modal .like_btn>img{
+	max-height : 15px;
+}
+
 /* 모달 팝업 */
 .modal { /* 모달 전체 적용 */
 	background-color: rgba(0, 0, 0, 0.4);

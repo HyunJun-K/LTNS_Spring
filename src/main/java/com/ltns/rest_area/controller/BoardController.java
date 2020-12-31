@@ -10,7 +10,9 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ltns.rest_area.domain.AjaxList;
@@ -18,6 +20,7 @@ import com.ltns.rest_area.domain.AjaxResult;
 import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.VO;
 import com.ltns.rest_area.domain.post.CommentVO;
+import com.ltns.rest_area.domain.post.LikeVO;
 import com.ltns.rest_area.domain.post.PostVO;
 import com.ltns.rest_area.service.BoardService;
 
@@ -49,18 +52,17 @@ public class BoardController {
 	}
 	
 	//기본 포스트 리스트(안씀 ViewDTO가 다 가져다주고있음..)
-//	@PostMapping("/post/list/{ra_code}/{orderBy}")
-//	public AjaxList post_list(@PathVariable String ra_code,@PathVariable String orderBy) {
-//		AjaxList result=new AjaxList();
-//		
-//		int numOfRows=10;
-//		int lastRow=0;
-//		int pageNo=1;
-//		
-//		result=post_list(ra_code, orderBy, numOfRows, lastRow, pageNo);
-//		
-//		return result;
-//	}
+	@PostMapping("/post/list/{ra_code}/{orderBy}")
+	public AjaxList post_list(@PathVariable String ra_code,@PathVariable String orderBy) {
+		AjaxList result=new AjaxList();
+		
+		int numOfRows=10;
+		int lastRow=0;
+		int pageNo=1;
+		result=post_list(ra_code, orderBy, numOfRows, lastRow, pageNo);
+		
+		return result;
+	}
 	
 	//추가 포스트 리스트
 	@PostMapping("/post/list/{ra_code}/{orderBy}/{numOfRows}/{lastRow}/{pageNo}")
@@ -102,15 +104,15 @@ public class BoardController {
 	
 	//새글 집어넣기
 	@PutMapping("/post")
-	public AjaxResult post_insert(PostVO vo) {	//PostVO에 내용을 넣을 것
-		System.out.println("insert Post : "+vo);
+	public AjaxResult post_insert(@RequestBody PostVO vo) {	//PostVO에 내용을 넣을 것
+		System.out.println("insert Post : "+vo);//확인
 		AjaxResult result = boardService.insertPost(vo);
 		return result;
 	}
 	
 	//글 업데이트
 	@PatchMapping("/post")
-	public AjaxResult post_update(PostVO vo) {
+	public AjaxResult post_update(@RequestBody PostVO vo) {
 		AjaxResult result=boardService.updatePost(vo);
 		
 		return result;
@@ -118,30 +120,38 @@ public class BoardController {
 	
 	//글 삭제
 	@DeleteMapping("/post")
-	public AjaxResult post_delete(PostVO vo) {
+	public AjaxResult post_delete(@RequestBody PostVO vo) {
 		AjaxResult result=boardService.deletePost(vo);
 
 		return result;
 	}
 	
 	@PutMapping("/comment")
-	public AjaxResult comment_insert(CommentVO vo) {	//CommentVO에 내용을 넣을 것
+	public AjaxResult comment_insert(@RequestBody CommentVO vo) {	//CommentVO에 내용을 넣을 것
 		AjaxResult result=boardService.insertComment(vo);
 		
 		return result;
 	}
 	
 	@PatchMapping("/comment")
-	public AjaxResult comment_update(CommentVO vo) {
+	public AjaxResult comment_update(@RequestBody CommentVO vo) {
 		AjaxResult result=boardService.updateComment(vo);
 		
 		return result;
 	}
 	
 	@DeleteMapping("/comment")
-	public AjaxResult comment_delete(CommentVO vo) {
+	public AjaxResult comment_delete(@RequestBody CommentVO vo) {
 		AjaxResult result=boardService.deleteComment(vo);
 
+		return result;
+	}
+	
+	//like 처리
+	@PatchMapping("/like")
+	public AjaxResult like_process(@RequestBody LikeVO vo) {
+		AjaxResult result=boardService.likeProcess(vo);
+		
 		return result;
 	}
 }

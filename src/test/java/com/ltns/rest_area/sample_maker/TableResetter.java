@@ -8,21 +8,21 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
-import com.ltns.rest_area.sample_maker.domain.FirstMemberDAO;
-import com.ltns.rest_area.sample_maker.domain.RefreshTableDAO;
+import com.ltns.rest_area.sample_maker.domain.FirstMemberDAO_test;
+import com.ltns.rest_area.sample_maker.domain.RefreshTableDAO_test;
 
 public class TableResetter {
 	
 	@Test
 	public void refreshAllTable() throws SQLException {
-		RefreshTableDAO dao1=new RefreshTableDAO();
+		RefreshTableDAO_test dao1=new RefreshTableDAO_test();
 	
 		dao1.refreshAll();
 		dao1.close();
 		
 		System.out.println("테이블 세팅 완료!");
 		
-		FirstMemberDAO dao2 =new FirstMemberDAO();
+		FirstMemberDAO_test dao2 =new FirstMemberDAO_test();
 		dao2.InsertfirstMember();
 		dao2.close();
 		

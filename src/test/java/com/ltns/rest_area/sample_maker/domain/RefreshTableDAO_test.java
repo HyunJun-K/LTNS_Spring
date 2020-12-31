@@ -14,7 +14,7 @@ import com.ltns.rest_area.domain.DTO;
 import com.ltns.rest_area.domain.VO;
 import com.ltns.rest_area.domain.memberInfo.memberInfoDTO;
 
-public class RefreshTableDAO extends AbstractDAO_test {
+public class RefreshTableDAO_test extends AbstractDAO_test {
 	
 	//drop
 	final static String DROP_USERMEMBER_SEQ="DROP SEQUENCE SEQ_usermember_um_uid";
@@ -130,7 +130,7 @@ public class RefreshTableDAO extends AbstractDAO_test {
 			"    post_contents    CLOB  			NOT NULL,  " + 
 			"    um_uid           number            NOT NULL,  " + 
 			"    um_username      VARCHAR2(100)     NOT NULL,  " + 
-			"    post_regdate     TIMESTAMP         NOT NULL,  " + 
+			"    post_regdate     TIMESTAMP         DEFAULT SYSDATE NOT NULL,  " + 
 			"    ra_code          VARCHAR2(100)     NOT NULL,  " + 
 			"    post_reported    VARCHAR2(100)      ,  " + 
 			"    CONSTRAINT POST_PK PRIMARY KEY (post_id) " + 
@@ -157,18 +157,18 @@ public class RefreshTableDAO extends AbstractDAO_test {
 	final static String ALTER_RA_LIKE_UM_UID_FOREIGN_KEY="ALTER TABLE RA_like " + 
 			"    ADD CONSTRAINT FK_RA_like_um_uid_UserMember_u FOREIGN KEY (um_uid) " + 
 			"        REFERENCES UserMember (um_uid)";
-	final static String ALTER_RA_LIKE_RA_CODE_FOREIGN_KEY="ALTER TABLE RA_like " + 
-			"    ADD CONSTRAINT FK_RA_like_ra_code_RestArea_ra FOREIGN KEY (ra_code) " + 
-			"        REFERENCES RestArea (ra_code)";
+//	final static String ALTER_RA_LIKE_RA_CODE_FOREIGN_KEY="ALTER TABLE RA_like " + 
+//			"    ADD CONSTRAINT FK_RA_like_ra_code_RestArea_ra FOREIGN KEY (ra_code) " + 
+//			"        REFERENCES RestArea (ra_code)";
 	
 	final static String CREATE_GS_LIKE_TABLE="CREATE TABLE GS_like " + 
 			"( " + 
 			"    um_uid    number    NOT NULL,  " + 
 			"    gs_code     VARCHAR2(100)    NOT NULL " + 
 			")";
-	final static String ALTER_GS_LIKE_GS_ID_FOREIGN_KEY="ALTER TABLE GS_like " + 
-			"    ADD CONSTRAINT FK_GS_like_gs_id_GasStation_gs FOREIGN KEY (gs_code) " + 
-			"        REFERENCES GasStation (gs_code)";
+//	final static String ALTER_GS_LIKE_GS_ID_FOREIGN_KEY="ALTER TABLE GS_like " + 
+//			"    ADD CONSTRAINT FK_GS_like_gs_id_GasStation_gs FOREIGN KEY (gs_code) " + 
+//			"        REFERENCES GasStation (gs_code)";
 	final static String ALTER_GS_LIKE_UM_UID_FOREIGN_KEY="ALTER TABLE GS_like " + 
 			"    ADD CONSTRAINT FK_GS_like_um_uid_UserMember_u FOREIGN KEY (um_uid) " + 
 			"        REFERENCES UserMember (um_uid)";
@@ -178,9 +178,9 @@ public class RefreshTableDAO extends AbstractDAO_test {
 			"    um_uid    number    NOT NULL, " + 
 			"    fm_id     VARCHAR2(100)    NOT NULL " + 
 			")";
-	final static String ALTER_FM_LIKE_FM_ID_FOREIGN_KEY="ALTER TABLE FM_like " + 
-			"    ADD CONSTRAINT FK_FM_like_fm_id_FoodMenu_fm_i FOREIGN KEY (fm_id) " + 
-			"        REFERENCES FoodMenu (fm_id)";
+//	final static String ALTER_FM_LIKE_FM_ID_FOREIGN_KEY="ALTER TABLE FM_like " + 
+//			"    ADD CONSTRAINT FK_FM_like_fm_id_FoodMenu_fm_i FOREIGN KEY (fm_id) " + 
+//			"        REFERENCES FoodMenu (fm_id)";
 	final static String ALTER_FM_LIKE_UM_UID_FOREIGN_KEY="ALTER TABLE FM_like " + 
 			"    ADD CONSTRAINT FK_FM_like_um_uid_UserMember_u FOREIGN KEY (um_uid) " + 
 			"        REFERENCES UserMember (um_uid)";
@@ -258,12 +258,12 @@ public class RefreshTableDAO extends AbstractDAO_test {
 				"INSERT INTO POST"
 				+"(POST_ID,POST_TITLE,POST_CONTENTS,UM_UID,UM_USERNAME,POST_REGDATE,RA_CODE,POST_REPORTED) "
 				+"VALUES "
-				+"(Post_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+				+"(Post_SEQ.NEXTVAL, ?, ?, ?, ?, SYSTIMESTAMP, ?, ?)";
 	 
 	 
 	 
 	 
-	public RefreshTableDAO() {
+	public RefreshTableDAO_test() {
 		super();
 	}
 	
@@ -332,7 +332,7 @@ public class RefreshTableDAO extends AbstractDAO_test {
 	
 	//insert 
 	
-	public int Post_Go(String title, String cotent, int uid, String nick, String dates, String code, int report ) {
+	public int Post_Go(String title, String cotent, int uid, String nick, String code, int report ) {
 		int cnt = 0;
 		System.out.println(title + " : " + cotent + " : " + uid + " : " + nick + " : " + code + " : " + report + " :");
 		try {
@@ -341,9 +341,8 @@ public class RefreshTableDAO extends AbstractDAO_test {
 			pstmt.setString(2, cotent);
 			pstmt.setInt(3, uid);
 			pstmt.setString(4, nick);
-			pstmt.setString(5, dates);
-			pstmt.setString(6, code);
-			pstmt.setInt(7, report);
+			pstmt.setString(5, code);
+			pstmt.setInt(6, report);
 			cnt = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("에러! : "+ SQL_INSERT_POST);
@@ -409,13 +408,13 @@ public class RefreshTableDAO extends AbstractDAO_test {
 			
 			justExcuteBySQL(CREATE_RA_LIKE_TABLE);
 			justExcuteBySQL(ALTER_RA_LIKE_UM_UID_FOREIGN_KEY);
-			justExcuteBySQL(ALTER_RA_LIKE_RA_CODE_FOREIGN_KEY);
+//			justExcuteBySQL(ALTER_RA_LIKE_RA_CODE_FOREIGN_KEY);
 			justExcuteBySQL(CREATE_GS_LIKE_TABLE);
 			justExcuteBySQL(ALTER_GS_LIKE_UM_UID_FOREIGN_KEY);
-			justExcuteBySQL(ALTER_GS_LIKE_GS_ID_FOREIGN_KEY);
+//			justExcuteBySQL(ALTER_GS_LIKE_GS_ID_FOREIGN_KEY);
 			justExcuteBySQL(CREATE_FM_LIKE_TABLE);
 			justExcuteBySQL(ALTER_FM_LIKE_UM_UID_FOREIGN_KEY);
-			justExcuteBySQL(ALTER_FM_LIKE_FM_ID_FOREIGN_KEY);
+//			justExcuteBySQL(ALTER_FM_LIKE_FM_ID_FOREIGN_KEY);
 			justExcuteBySQL(CREATE_POST_LIKE_TABLE);
 			justExcuteBySQL(ALTER_POST_LIKE_UM_UID_FOREIGN_KEY);
 			justExcuteBySQL(ALTER_POST_LIKE_POST_ID_FOREIGN_KEY);

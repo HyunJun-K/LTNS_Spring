@@ -17,20 +17,22 @@
                 <th class="post_id undisplay">post_id</th>
                 <th class="post_title">제목</th>
                 <th class="um_username">작성자</th>
-                <th class="post_like_cnt">추천</th>
                 <th class="post_regdate">작성일</th>
+                <th class="post_like_cnt">추천</th>
                 <th class="post_reported">신고</th>
             </thead>
             <tbody>
-                <tr id="posthead_'${post_id}'">
-                    <td class="ra_code undisplay">${ra_code}</td>
-                    <td class="post_id undisplay">${post_id}</td>
-                    <td class="post_title">제목</td>
-                    <td class="um_username">작성자</td>
-                    <td class="post_like_cnt">좋아요 수</td>
-                    <td class="post_regdate">작성일</td>
-                    <td class="post_reported">신고 버튼과 그 안의 이미지..</td>
-                </tr>
+            	<a class="post_element" onclick="postView('${post_id}')" href="javascript:void(0);">
+	                <tr id="posthead_${post_id}">
+	                    <td class="ra_code undisplay">${ra_code}</td>
+	                    <td class="post_id undisplay">${post_id}</td>
+	                    <td class="post_title">제목</td>
+	                    <td class="um_username">작성자</td>
+	                    <td class="post_regdate">작성일</td>
+	                    <td class="post_like_cnt">좋아요 수</td>
+	                    <td class="post_reported"><button class="reported_btn"><image src="${pageContext.request.contextPath }/resources/img/redalert.png"></button></td>
+	                </tr>
+                </a>
                 <!--posthead 클릭시 js로 postbody를 집어넣어주기 내용 확장-->
                 <!-- <tr class="postbody">
                     <div class="post_content">
@@ -42,11 +44,14 @@
             </tbody>
         </table>
     </div>
+    <div class="clear"></div>
+   
     <div class="center">
-        <ul class="pagination" id="pagination">
+        <ul class="pagination center" id="post_pagination">
         </ul>
     </div>
 
+	
 	<!-- 글 작성 부분 -->
 	<div class="d01">
         <div class="right">

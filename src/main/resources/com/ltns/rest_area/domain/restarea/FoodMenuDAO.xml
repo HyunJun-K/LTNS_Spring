@@ -10,10 +10,14 @@
 	</select>
 	
 	<select id="selectByString" parameterType="String" resultType="com.ltns.rest_area.domain.restarea.FoodMenuDTO">
-		SELECT *
-		FROM FoodMenu
-		WHERE
-			ra_code=#{ra_code}
+		SELECT FoodMenu.*, a.fm_like_cnt
+		FROM FoodMenu LEFT OUTER JOIN(
+				SELECT fm_id, COUNT(*) AS fm_like_cnt
+				FROM fm_like
+				GROUP BY fm_id
+			)  a ON FoodMenu.fm_id=a.fm_id
+		WHERE 
+			FoodMenu.ra_code=#{ra_code}
 	</select>
 	
 	<select id="selectByVO" parameterType="com.ltns.rest_area.domain.restarea.RestAreaVO" resultType="com.ltns.rest_area.domain.restarea.FoodMenuDTO">
