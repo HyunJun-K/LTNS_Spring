@@ -239,7 +239,7 @@ function setPostboard(jsonObj){
         '<td class="um_username">'+jsonObj[i].post_username+'</td>'+
         '<td class="post_regdate">'+jsonObj[i].post_regdate+'</td>'+
 		'<td class="post_like_cnt">'+jsonObj[i].post_like_cnt+'</td>'+
-        '<td class="post_reported"><button class="reported_btn" onclick="post_reportPopUP(\''+jsonObj[i].post_id+'\')"><image src="'+BASE_URL+'/resources/img/redalert.png"></button></td>'+
+        '<td class="post_reported"><button class="reported_btn" onclick="textPopup('+jsonObj[i].post_id+');"><image src="'+BASE_URL+'/resources/img/redalert.png"></button></td>'+
     '</tr>';
     }
     $('#post_frmlist tbody').html(postboard_str);
@@ -294,4 +294,16 @@ function loadPage(page){
 	pageNo=page;
 	PAGENATION_URL_STR='10/'+((pageNo-1)*pagenationPage)+'/'+pageNo;
 	postboard_ajax();
+}
+
+
+
+function textPopup(data){
+    var url = "../../../../../admin/Report";
+    var name = "ReportPopup";
+    var option = "width = 800, height = 400 left = 400, top=100,location=no";
+    var _chiled;
+    $("#parent2").val(data);
+    _chiled = window.open(url,name,option)
+    
 }

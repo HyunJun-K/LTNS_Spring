@@ -23,12 +23,10 @@
 $(document).ready(function(){
 	
 	var post_id = opener.$("#parent2").val();
-	var name = opener.$("#parent3").val();
 	
 	
 	
 	$("#post_No").text(post_id)
-	$("#reportMan").text(name)
 	
 	
 	$("#reportGo").click(function(){
@@ -70,7 +68,6 @@ function close_btn(){
 			<form>
 				  <div>
 				  		<h6> Post_Number :<span id="post_No"> </span> </h6>
-				  		<h6> Report_User&nbsp;&nbsp;&nbsp;:<span id="reportMan">  </span> </h6>
 				  </div>
 
 				  <hr>

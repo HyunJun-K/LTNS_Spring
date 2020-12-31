@@ -92,9 +92,8 @@
 	
 	    <div id="list" >
 	    	<div class="btn_team text-right mt-2 mb-2">
-	    	<button type="button" id="btns" onclick="dataUpdate();"> 업데이트</button>
-	    	<button type="button" id="btns" onclick="textPopup();"> 테스트</button>
-			<button type="button" id="btns" onclick="pageLoad(1);"> 휴게소</button>
+	    	<button type="button" id="btns" class="float-left" onclick="dataUpdate();"> 업데이트</button>
+	    	<button type="button" id="btns" onclick="pageLoad(1);"> 휴게소</button>
 			<button type="button" id="btns" onclick="updateG(1);"> 주유소 </button>
 			<button type="button" id="btns" onclick="updateM(1);"> 음식 </button>
 			</div>
@@ -145,9 +144,6 @@
 			
 			
 			<input type="hidden" id="parent">
-			
-			<input type="hidden" id="parent2">
-			<input type="hidden" id="parent3">
 			
 			
 		</main> <!-- article -->

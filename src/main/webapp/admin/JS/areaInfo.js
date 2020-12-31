@@ -430,35 +430,29 @@ function popUp(){
 
 
 function dataUpdate(){
-    $.ajax({
-        url : "../api/allapi",
-        Type : "GET",
-        headers: {
-			'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success : function(data,status){
-            if(data.status=="OK"){
-                alert("업데이트 완료");
+
+    if(confirm("데이터를 업데이트 하시겠습니까?")){
+        
+        $.ajax({
+            url : "../api/allapi",
+            Type : "GET",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success : function(data,status){
+                if(data.status=="OK"){
+                    alert("업데이트 완료");
+                }
             }
-        }
 
 
-    })
+        })
+    } 
+
+    return false;
+
 
 }
 
 
 
-
-function textPopup(){
-    var url = "Report";
-    var name = "ReportPopup";
-    var option = "width = 800, height = 400 left = 400, top=100,location=no";
-    var _chiled;
-    
-    $("#parent2").val('33');
-    $("#parent3").val('1234');
-    _chiled = window.open(url,name,option)
-
-    
-}
