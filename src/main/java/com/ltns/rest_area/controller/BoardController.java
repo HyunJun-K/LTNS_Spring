@@ -147,10 +147,18 @@ public class BoardController {
 		return result;
 	}
 	
-	//like 처리
+	//like 버튼 클릭 처리
 	@PatchMapping("/like")
 	public AjaxResult like_process(@RequestBody LikeVO vo) {
 		AjaxResult result=boardService.likeProcess(vo);
+		
+		return result;
+	}
+	
+	//like 확인
+	@PostMapping("/like")
+	public AjaxResult like_chk(@RequestBody LikeVO vo) {
+		AjaxResult result=boardService.likeCheck(vo);
 		
 		return result;
 	}

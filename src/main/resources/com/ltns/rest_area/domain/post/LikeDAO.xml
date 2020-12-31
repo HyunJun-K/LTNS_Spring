@@ -47,6 +47,32 @@
 			</choose>
 	</select>
 	
+	<select id="selectCntByObject"  parameterType="com.ltns.rest_area.domain.post.LikeVO" resultType="int">
+		SELECT COUNT(*)
+		FROM 
+			<choose>
+				<when test="kind=='ra'">ra_like</when>
+				<when test="kind=='gs'">gs_like</when>
+				<when test="kind=='fm'">fm_like</when>
+				<when test="kind=='post'">post_like</when>
+			</choose>
+		WHERE
+			<choose>
+				<when test="kind=='ra'">ra_code=#{kind_id}</when>
+				<when test="kind=='gs'">gs_code=#{kind_id}</when>
+				<when test="kind=='fm'">fm_id=#{kind_id}</when>
+				<when test="kind=='post'">post_id=#{kind_id}</when>
+			</choose>
+			AND um_uid=#{um_uid} 
+		GROUP BY
+			<choose>
+				<when test="kind=='ra'">ra_code</when>
+				<when test="kind=='gs'">gs_code</when>
+				<when test="kind=='fm'">fm_id</when>
+				<when test="kind=='post'">post_id</when>
+			</choose>
+	</select>
+	
 	<insert id="insertByVO" flushCache="true" parameterType="com.ltns.rest_area.domain.post.LikeVO">
 		INSERT INTO 
 			<choose>

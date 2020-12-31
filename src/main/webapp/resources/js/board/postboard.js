@@ -195,13 +195,15 @@ function postBody(jsonObj){
 	    '<div class="post_content">'+
 	    jsonObj.obj.post_contents.replaceAll('\n','<br>')+
 	    '</div>'+
-		'<span><button class="like_btn" onclick="like_btn(\'post\',\''+jsonObj.obj.post_id+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="post_like_cnt_text_'+jsonObj.obj.post_id+'">'+jsonObj.obj.post_like_cnt+'</span></span>';
+		'<span><button id="post_like_btn_'+jsonObj.obj.post_id+'" class="like_btn" onclick="like_btn(\'post\',\''+jsonObj.obj.post_id+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="post_like_cnt_text_'+jsonObj.obj.post_id+'">'+jsonObj.obj.post_like_cnt+'</span></span>';
 	if($('header #header_um_uid').html()==jsonObj.obj.um_uid){
 		str+='<button id="post_deletebtn" class="btn right" onclick="post_delete('+jsonObj.obj.post_id+')">삭제</button>'+
 	    '<button id="post_updatebtn" class="btn right" onclick="postBody_update()">수정</button>';
 	}
 	str+='<br></td></tr>';
     $('tr#posthead_'+jsonObj.obj.post_id).after(str);
+	
+	chk_your_like('post',jsonObj.obj.post_id);
 }
 
 //update
