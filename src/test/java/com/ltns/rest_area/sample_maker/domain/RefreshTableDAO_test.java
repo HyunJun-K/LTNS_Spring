@@ -254,6 +254,9 @@ public class RefreshTableDAO_test extends AbstractDAO_test {
 	
 	 final static String SELECT_USERMEMBER = "SELECT * FROM USERMEMBER " ;
 	 final static String SELECT_AREA = "SELECT * FROM RESTAREA";
+	 
+	
+
 	 public static final String SQL_INSERT_POST =
 				"INSERT INTO POST"
 				+"(POST_ID,POST_TITLE,POST_CONTENTS,UM_UID,UM_USERNAME,POST_REGDATE,RA_CODE,POST_REPORTED) "
@@ -351,6 +354,10 @@ public class RefreshTableDAO_test extends AbstractDAO_test {
 		
 		return cnt;
 	}
+	
+	
+	
+	
 	
 	
 	
