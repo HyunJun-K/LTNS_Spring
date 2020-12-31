@@ -43,8 +43,8 @@
 			</li>
 			
 			<li class="nav-item   mr-2 text-center">
-			<button type="button" class="mt-1 btn"" >		
-			<i class="fas fa-bus"></i>	
+			<button type="button" class="mt-1 btn" onclick="location.href='${pageContext.request.contextPath}/rest_area/front'" >		
+			<i class="fas fa-bus" ></i>	
 			</button>
 			</li>
 			

@@ -173,7 +173,8 @@
 	        <h3 class="text-warning" >가장 저렴한 주유소</h3>
 	       <p id="chip_gas" class="card-title">  </p>
 	        <span id="chip_gas_D" class="card-body "> </span> <br>
-	        <span id="chip_gas_O" class="card-body "> </span>
+	        <span id="chip_gas_O" class="card-body "> </span> <br>
+	        <span id="chip_gas_L" class="card-body "> </span>
 	      </div>
 	    </div>
 	  </div>

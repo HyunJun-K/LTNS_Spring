@@ -8,5 +8,8 @@ import com.ltns.rest_area.sample_maker.domain.AbstractDAO_test;
 class MemberMaker extends AbstractDAO_test  {
 
 	
+	
+	
+	
 
 }

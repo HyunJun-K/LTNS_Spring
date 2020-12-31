@@ -71,12 +71,9 @@ public class PostMaker extends AbstractDAO_test  {
 	public String mkRacode() throws SQLException {
 		RefreshTableDAO dao = new RefreshTableDAO();
 		ArrayList<String> list = dao.RAcode();
-		//System.out.println(list.size());
 		int random = (int)(Math.random()*200);
 		String result = list.get(random);
-		//System.out.println(result);
 		return result;
-		
 		
 	}
 	
