@@ -6,6 +6,12 @@
 #restareaview>div>.container #rabox>h1,#gsbox>h4, #inner_fmbox>h4, #postboard>h4{
 	background-color:#efca8d;
 }
+
+#restareaview .like{
+	background-color: #ccccff;
+	border-radius: 100%;
+}
+
 #postboard button{
 	background-color:#eeeeee;
 	margin : 10px;

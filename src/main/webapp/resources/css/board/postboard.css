@@ -89,3 +89,8 @@
 #postboard .like_btn>img{
 	max-height : 15px;
 }
+
+#postboard .like{
+	background-color: #ccccff;
+	border-radius: 100%;
+}

@@ -157,5 +157,17 @@ public class BoardService {
 		return result;
 	}
 
+	public AjaxResult likeCheck(LikeVO vo) {
+		LikeDAO dao=sqlSession.getMapper(LikeDAO.class);
+		AjaxResult result=new AjaxResult();
+		try {
+			result.setObj(dao.selectCntByObject(vo));//이거 0일때 문제생긴다...
+		}catch(Exception e) {
+			System.out.println("like cnt 추출에서 0 문제 [LikeVO : "+vo+"]");
+			result.setObj(0);
+		}
+		return result;
+	}
+
 
 }
