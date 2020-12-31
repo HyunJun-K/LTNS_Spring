@@ -21,7 +21,7 @@ public class ApiController {
 		try {
 			apiService.refreshApiData();
 		} catch (Exception e) {
-			System.out.println("db에러");
+			System.out.println("에러 : /allapi");
 			e.printStackTrace();
 			return ".";
 		}

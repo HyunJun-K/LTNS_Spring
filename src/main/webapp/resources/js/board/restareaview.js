@@ -36,7 +36,7 @@ function setPopup(ra_code){
 
 function setView(jsonObj){
     rabox_str='<h1>'+jsonObj.obj.raDTO.ra_name+'</h1>'+
-	'<span><button class="like_btn" onclick="like_btn(\''+$('header #header_um_uid').html()+'\', \'ra\', \''+jsonObj.obj.raDTO.ra_code+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="ra_like_cnt_text">'+jsonObj.obj.raDTO.ra_like_cnt+'</span></span>'+
+	'<span><button class="like_btn" onclick="like_btn(\'ra\', \''+jsonObj.obj.raDTO.ra_code+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="ra_like_cnt_text">'+jsonObj.obj.raDTO.ra_like_cnt+'</span></span>'+
     '<p>노선 : '+jsonObj.obj.raDTO.ra_routeName+
     ' <br>방향 : '+jsonObj.obj.raDTO.ra_destination+
     ' <br>위치(경도,위도) : '+jsonObj.obj.raDTO.ra_xValue+', '+jsonObj.obj.raDTO.ra_yValue+
@@ -46,7 +46,7 @@ function setView(jsonObj){
     row=jsonObj.obj.gsDTOs;
     for(i=0;i<row.length;i++){
         gsbox_str+='<h4>'+row[i].gs_name+'</h4>'+
-	'<span><button class="like_btn" onclick="like_btn(\''+$('header #header_um_uid').html()+'\', \'gs\', \''+row[i].gs_code+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="gs_like_cnt_text">'+row[i].gs_like_cnt+'</span></span>'+
+	'<span><button class="like_btn" onclick="like_btn(\'gs\', \''+row[i].gs_code+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="gs_like_cnt_text">'+row[i].gs_like_cnt+'</span></span>'+
     '    <p>휘발유 가격 : '+row[i].gs_gasoline+
     '       <br>경유 가격 : '+row[i].gs_diesel+
     '       <br>LPG 가격 : '+row[i].gs_lpg+
@@ -58,7 +58,7 @@ function setView(jsonObj){
     for(i=0;i<row.length;i++){
         fmbox_str+='<li>'+
     '    <p>'+row[i].fm_name+'</p>'+
-	'<span><button class="like_btn" onclick="like_btn(\''+$('header #header_um_uid').html()+'\', \'fm\', \''+row[i].fm_id+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="fm_like_cnt_text_'+row[i].fm_id+'">'+row[i].fm_like_cnt+'</span></span>'+
+	'<span><button class="like_btn" onclick="like_btn(\'fm\', \''+row[i].fm_id+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="fm_like_cnt_text_'+row[i].fm_id+'">'+row[i].fm_like_cnt+'</span></span>'+
     '    <p>소비자가 : '+row[i].fm_price+'원'+
     '    <br>재료 : '+row[i].fm_material+
     '    <br>'+row[i].fm_etc+'</p>'+
@@ -128,10 +128,10 @@ function panTo(place) {
 }       
 
 /* like_btn */
-function like_btn(um_uid, kind, kind_id){
+function like_btn(kind, kind_id){
 	//토글 작업 => 해당 좋아요 테이블 조회 => 1.조회결과없으면 생성 2.조회결과있으면 삭제 => 해당 {kind}_like_cnt 값을 다시 받음. 초기화 할 것..
 	var LikeVO={
-		um_uid:um_uid,
+		um_uid:$('header #header_um_uid').html(),
 		kind:kind,
 		kind_id:kind_id
 	};
@@ -158,6 +158,23 @@ function like_btn(um_uid, kind, kind_id){
 				$('#post_like_cnt_text_'+LikeVO.kind_id).html(data.obj)
 			}	
 		}
-	});
+	});	
+}
+
+function chk_all_your_like(){
+	//kind , kind_id 받기 => 요청 => um_id와 kind_id가 일치하는 요소 확인 => 있으면 빨갛게
 	
+}
+
+//post_view에서 직접 활용
+function chk_your_like(kind,kind_id){
+	let um_uid=$('header #header_um_uid').html();
+	
+	let likeBtnArray;
+	
+	//페이지 파싱 단계
+	let btnstr='$(\'#'+kind+'_like_btn\')';
+	if(kind=="fm"||kind=="post"){
+		btnstr+='_'+kind_id;
+	}
 }

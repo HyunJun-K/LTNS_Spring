@@ -70,6 +70,12 @@
 				<when test="kind=='post'">post_like</when>
 			</choose>
 		WHERE
-			um_uid= #{um_uid}
+			um_uid= #{um_uid} AND 
+			<choose>
+				<when test="kind=='ra'">ra_code=#{kind_id}</when>
+				<when test="kind=='gs'">gs_code=#{kind_id}</when>
+				<when test="kind=='fm'">fm_id=#{kind_id}</when>
+				<when test="kind=='post'">post_id=#{kind_id}</when>
+			</choose>
 	</delete>
 </mapper>

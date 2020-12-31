@@ -3,10 +3,14 @@
 <mapper namespace="com.ltns.rest_area.domain.post.PostDAO">
 	
 	<select id="selectByInt" parameterType="int" resultType="com.ltns.rest_area.domain.post.PostDTO">
-		SELECT * 
-		FROM Post 
+		SELECT Post.*, a.post_like_cnt 
+		FROM Post LEFT OUTER JOIN(
+				SELECT post_id, COUNT(*) AS post_like_cnt
+				FROM post_like
+				GROUP BY post_id
+			) a ON Post.post_id=a.post_id
 		WHERE 
-			post_id=#{post_id} 
+			Post.post_id=#{post_id} 
 	</select>
 	
 	<select id="selectByString" parameterType="String" resultType="com.ltns.rest_area.domain.post.PostDTO">

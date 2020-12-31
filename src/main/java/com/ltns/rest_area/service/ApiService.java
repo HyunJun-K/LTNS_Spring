@@ -74,8 +74,14 @@ public class ApiService {
 		int result = 0;
 
 		// api 가져오기
+		try {
 		getDTOFromJson();
-
+		}catch (Exception e){
+			System.out.println("  도로교통공사 api 에러");
+			throw e;
+		}
+		
+		try {
 		// 기존 정보 날리기
 		result = deleteAllBeforeApiDataInDB();
 
@@ -85,7 +91,11 @@ public class ApiService {
 		result = insertGasStationByDTOs(gSdtos);
 //		
 		result = insertFoodMenuByDTOs(fMdtos);
-
+		}catch (Exception e) {
+			System.out.println("   DB연결 에러");			
+			throw e;
+		}
+		
 		System.out.println("작업 완료!");
 
 		return result;

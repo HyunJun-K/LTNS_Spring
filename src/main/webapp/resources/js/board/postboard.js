@@ -195,7 +195,7 @@ function postBody(jsonObj){
 	    '<div class="post_content">'+
 	    jsonObj.obj.post_contents.replaceAll('\n','<br>')+
 	    '</div>'+
-		'<span><button class="like_btn"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> '+jsonObj.obj.post_like_cnt+'</span>';
+		'<span><button class="like_btn" onclick="like_btn(\'post\',\''+jsonObj.obj.post_id+'\')"><image src="'+BASE_URL+'/resources/img/like.png"></image></button> <span id="post_like_cnt_text_'+jsonObj.obj.post_id+'">'+jsonObj.obj.post_like_cnt+'</span></span>';
 	if($('header #header_um_uid').html()==jsonObj.obj.um_uid){
 		str+='<button id="post_deletebtn" class="btn right" onclick="post_delete('+jsonObj.obj.post_id+')">삭제</button>'+
 	    '<button id="post_updatebtn" class="btn right" onclick="postBody_update()">수정</button>';
@@ -237,7 +237,7 @@ function setPostboard(jsonObj){
         '<td class="um_username">'+jsonObj[i].post_username+'</td>'+
         '<td class="post_regdate">'+jsonObj[i].post_regdate+'</td>'+
 		'<td class="post_like_cnt">'+jsonObj[i].post_like_cnt+'</td>'+
-        '<td class="post_reported"><button class="reported_btn"><image src="'+BASE_URL+'/resources/img/redalert.png"></button></td>'+
+        '<td class="post_reported"><button class="reported_btn" onclick="post_reportPopUP(\''+jsonObj[i].post_id+'\')"><image src="'+BASE_URL+'/resources/img/redalert.png"></button></td>'+
     '</tr>';
     }
     $('#post_frmlist tbody').html(postboard_str);
