@@ -254,13 +254,33 @@ public class RefreshTableDAO extends AbstractDAO_test {
 	
 	 final static String SELECT_USERMEMBER = "SELECT * FROM USERMEMBER " ;
 	 final static String SELECT_AREA = "SELECT * FROM RESTAREA";
-	 public static final String SQL_INSERT_POST =
+	 final static String SELECT_GAS = "SELECT * FROM GASSTATION";
+	 final static String SELECT_FOOD = "SELECT * FROM FOODMENU";
+	 final static String SQL_INSERT_POST =
 				"INSERT INTO POST"
 				+"(POST_ID,POST_TITLE,POST_CONTENTS,UM_UID,UM_USERNAME,POST_REGDATE,RA_CODE,POST_REPORTED) "
 				+"VALUES "
 				+"(Post_SEQ.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 	 
+	 final static String SQL_INSERT_LIKE_AREA = 
+		"INSERT INTO RA_LIKE" 
+		+"(UM_UID, RA_CODE)"
+		+"VALUES "
+		+"(?,?)";
 	 
+	 final static String SQL_INSERT_LIKE_GAS= 
+        "INSERT INTO GS_LIKE" 
+	    +"(UM_UID, GS_CODE)"
+	    +"VALUES "
+	    +"(?,?)";
+	 
+	 final static String SQL_INSERT_LIKE_FOOD= 
+		        "INSERT INTO FM_LIKE" 
+			    +"(UM_UID, FM_ID)"
+			    +"VALUES "
+			    +"(?,?)";
+
+			 
 	 
 	 
 	public RefreshTableDAO() {
@@ -313,6 +333,7 @@ public class RefreshTableDAO extends AbstractDAO_test {
 		return Map;
 	}
 	
+	//휴게소 검색
 	public ArrayList<String> RAcode() throws SQLException {
 	
 		ArrayList<String> list = new ArrayList<String>();
@@ -328,6 +349,43 @@ public class RefreshTableDAO extends AbstractDAO_test {
 		}
 		return list;
 	}
+	
+	//주유소 검색
+	public ArrayList<String> GScode() throws SQLException {
+		
+		ArrayList<String> list = new ArrayList<String>();
+		try {
+			pstmt=conn.prepareStatement(SELECT_GAS);
+			pstmt.executeQuery();
+			rs = pstmt.executeQuery(SELECT_GAS); 
+			while(rs.next()) {
+				list.add(rs.getString(1));
+			}
+		} catch (Exception e) {
+			e.getMessage();
+		}
+		return list;
+	}
+	
+	
+	//푸드 검색
+		public ArrayList<String> Fcode() throws SQLException {
+			
+			ArrayList<String> list = new ArrayList<String>();
+			try {
+				pstmt=conn.prepareStatement(SELECT_FOOD);
+				pstmt.executeQuery();
+				rs = pstmt.executeQuery(SELECT_FOOD); 
+				while(rs.next()) {
+					list.add(rs.getString(1));
+				}
+			} catch (Exception e) {
+				e.getMessage();
+			}
+			return list;
+		}
+	
+	
 	
 	
 	//insert 
@@ -353,6 +411,57 @@ public class RefreshTableDAO extends AbstractDAO_test {
 		return cnt;
 	}
 	
+	//휴게소 추천
+	public int like_Area(int uid, String code) {
+		int cnt = 0;
+		System.out.println(uid + " : " + code);
+		try {
+			pstmt = conn.prepareStatement(SQL_INSERT_LIKE_AREA);
+			pstmt.setInt(1, uid);
+			pstmt.setString(2, code);
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("에러! : "+ SQL_INSERT_LIKE_AREA);
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+	
+	//주유소 추천
+		public int like_Gas(int uid, String Gcode) {
+			int cnt = 0;
+			System.out.println(uid + " : " + Gcode);
+			try {
+				pstmt = conn.prepareStatement(SQL_INSERT_LIKE_GAS);
+				pstmt.setInt(1, uid);
+				pstmt.setString(2, Gcode);
+				cnt = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("에러! : "+ SQL_INSERT_LIKE_GAS);
+				e.printStackTrace();
+			}
+			
+			return cnt;
+		}
+		
+		//음식 추천
+		public int like_Food(int uid, String Fcode) {
+			int cnt = 0;
+			System.out.println(uid + " : " + Fcode);
+			try {
+				pstmt = conn.prepareStatement(SQL_INSERT_LIKE_FOOD);
+				pstmt.setInt(1, uid);
+				pstmt.setString(2, Fcode);
+				cnt = pstmt.executeUpdate();
+			} catch (SQLException e) {
+				System.out.println("에러! : "+ SQL_INSERT_LIKE_FOOD);
+				e.printStackTrace();
+			}
+			
+			return cnt;
+		}
+		
 	
 	
 

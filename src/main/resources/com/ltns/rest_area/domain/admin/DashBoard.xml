@@ -29,7 +29,7 @@
 	
 	<select id="chipGas"  resultType="com.ltns.rest_area.domain.admin.AreaDataDTO">
 	<![CDATA[
-	SELECT GS_NAME, GS_DIESEL , GS_GASOLINE FROM 
+	SELECT GS_NAME, GS_DIESEL , GS_GASOLINE, GS_LPG FROM 
 		(SELECT * FROM GASSTATION ORDER BY GS_DIESEL ,GS_GASOLINE DESC)
 		WHERE ROWNUM <=5	
 	]]>

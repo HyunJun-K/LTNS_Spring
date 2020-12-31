@@ -161,6 +161,7 @@ function today_post(){
                     $("#chip_gas").html("<span>" + data.list[0].gs_NAME + "</span>");
                     $("#chip_gas_D").text("경유 : " + data.list[0].gs_DIESEL);
                     $("#chip_gas_O").text("휘발류 : " + data.list[0].gs_GASOLINE);
+                    $("#chip_gas_L").text("LPG : " + data.list[0].gs_LPG);
                 }
             }
         });
