@@ -39,6 +39,7 @@ $(document).ready(function(){
 			success : function(data,status){
 				if(data.status=="OK"){
 					alert("신고가 접수되었습니다.");
+					self.close();
 				}
 			}
 		})

@@ -19,7 +19,7 @@
       <ul class="navbar-nav  d-flex flex-row-reverse  ">
       
         <li class="nav-item  text-center mr-2">
-			<button type="button" class="mt-1 btn">		
+			<button type="button" class="mt-1 btn" onclick="location.href='${pageContext.request.contextPath}/rest_area/front'">		
 			<i class="fas fa-door-open"></i>
 			</button>
 		</li>
@@ -41,13 +41,6 @@
 			<i class="fas fa-bell"></i>	
 			</button>
 			</li>
-			
-			<li class="nav-item   mr-2 text-center">
-			<button type="button" class="mt-1 btn" onclick="location.href='${pageContext.request.contextPath}/rest_area/front'" >		
-			<i class="fas fa-bus" ></i>	
-			</button>
-			</li>
-			
 			
 		</ul>
      	

@@ -55,7 +55,7 @@ class MemberMaker extends AbstractDAO_test  {
 	public static void main(String[] args) {
 		RefreshTableDAO dao = new RefreshTableDAO();
 		MemberMaker m = new MemberMaker();
-		dao.insert_Member(8,m.mkId(), m.mkPw(), m.mkId(), m.postDate());
+		dao.insert_Member(7,m.mkId(), m.mkPw(), m.mkId(), m.postDate());
 		
 	}
 	
