@@ -139,8 +139,6 @@ function like_btn(kind, kind_id){
 		kind:kind,
 		kind_id:kind_id
 	};
-	console.log("LikeVO 확인 : ")
-	console.log(LikeVO);
 	$.ajax({
 		url:BASE_URL+'/board/like',
 		headers: {
@@ -195,7 +193,6 @@ function chk_all_your_like(){
 
 	//음식 좋아요 작업
 	$('.fm_id_span').each(function(index,item){
-		console.log($(item).html());
 		chk_your_like('fm',$(item).html());
 	});
 }
@@ -209,8 +206,6 @@ function chk_your_like(kind,kind_id){
 		kind:kind,
 		kind_id:kind_id
 	};
-	console.log("LikeVO 확인 : ")
-	console.log(LikeVO);
 	$.ajax({
 		url:BASE_URL+'/board/like',
 		headers: {
