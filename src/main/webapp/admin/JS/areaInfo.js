@@ -446,3 +446,19 @@ function dataUpdate(){
     })
 
 }
+
+
+
+
+function textPopup(){
+    var url = "Report";
+    var name = "ReportPopup";
+    var option = "width = 800, height = 400 left = 400, top=100,location=no";
+    var _chiled;
+    
+    $("#parent2").val('33');
+    $("#parent3").val('1234');
+    _chiled = window.open(url,name,option)
+
+    
+}

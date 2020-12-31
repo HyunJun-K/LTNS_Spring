@@ -323,6 +323,33 @@ public class AdminPostAjaxController {
 	
 	
 	
+	@GetMapping("reportManiger/{post_id}")	
+	public AjaxList report(@PathVariable int post_id) {
+		StringBuffer message = new StringBuffer();
+		String status ="FAIL";
+		int cnt = 0; 
+		
+		
+		try {
+			cnt = post_service.report(post_id);
+			
+			if(cnt != 0) {
+				status ="OK";
+				System.out.println("성공");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			message.append("[Error]" + e.getMessage());
+
+		}
+		
+		AjaxList result = new AjaxList();
+		result.setStatus(status);
+		result.setCount(cnt);
+		result.setMessage(message.toString());
+		return result;
+	} 	
+		
 	
 	
 }

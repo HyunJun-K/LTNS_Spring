@@ -120,5 +120,10 @@ public class AdminController_ {
 	}
 	
 	
+	@RequestMapping("/Report")
+	public void report(){
+	}
+	
+	
 	
 }
