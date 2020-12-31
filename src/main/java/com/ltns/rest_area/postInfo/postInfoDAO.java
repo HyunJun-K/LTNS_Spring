@@ -17,6 +17,8 @@ public interface postInfoDAO extends DAO{
 	
 	
 	
+	int updateReport(int post_id);
+	
 	List<postInfoDTO> FileAllselect();
 	int updateByDTOS(postInfoDTO dto);
 	int deleteByInts(int i);	

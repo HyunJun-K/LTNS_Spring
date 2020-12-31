@@ -73,5 +73,16 @@ public class PostInfoService {
 	}
 	
 	
+	public int report(int post_id) {
+		daos = sqlSession.getMapper(postInfoDAO.class);
+		return daos.updateReport(post_id);
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 }

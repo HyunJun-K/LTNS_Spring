@@ -90,7 +90,7 @@
 			
 			
 			<div class=" row mt-2 d-flex justify-content-center">
-			<button class="btn-lg bg-success text-white  " type="button" onclick="history.back()">취소</button>
+			<button class="btn-lg bg-success text-white  " type="button" onclick="location.href='<%=request.getContextPath()%><%=request.getContextPath()%>/front'">취소</button>
 			<input class="btn-lg bg-success text-white " id="emailSend" type="button" value="문의">
 			</div>
 			

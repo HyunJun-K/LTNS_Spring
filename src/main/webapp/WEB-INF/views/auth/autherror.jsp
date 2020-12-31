@@ -27,7 +27,6 @@
 </h3>
 <div class="clearfix">
 	<button class="btn btn-danger float-right ml-2" onclick="location.href='<%=request.getContextPath()%>/auth/report'">문의하기</button>
-	<button class="btn btn-primary float-right" onclick="location.href='<%=request.getContextPath()%>/auth/user/join'">회원가입 </button>
 </div>
 </div>
 </body>
