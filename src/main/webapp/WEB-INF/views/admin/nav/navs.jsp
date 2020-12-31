@@ -18,6 +18,12 @@
       
       <ul class="navbar-nav  d-flex flex-row-reverse  ">
       
+        <li class="nav-item  text-center mr-2">
+			<button type="button" class="mt-1 btn">		
+			<i class="fas fa-door-open"></i>
+			</button>
+		</li>
+        
         
           <li class="nav-item  mr-5">
           		<span class="font-weight-bold mt-2"  style="font-size: 14px;"> Hello Master </span> <br>
@@ -29,11 +35,20 @@
 	          <img src="${pageContext.request.contextPath }/admin/img/1.PNG">
 	          </div>
   	      </li>
-			<li class="nav-item   mr-4 text-center">
+  	      
+			<li class="nav-item   mr-2 text-center">
 			<button type="button" class="mt-1 btn" onclick="popover();" >		
 			<i class="fas fa-bell"></i>	
 			</button>
 			</li>
+			
+			<li class="nav-item   mr-2 text-center">
+			<button type="button" class="mt-1 btn"" >		
+			<i class="fas fa-bus"></i>	
+			</button>
+			</li>
+			
+			
 		</ul>
      	
 			<div class="popovers border border-dark text-center">
