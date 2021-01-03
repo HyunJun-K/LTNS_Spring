@@ -16,6 +16,7 @@ $(document).ready(function(){
 	$(".loading").hide();
 	$("#close").click(function(){
 		$("#emailText").text("");
+		
 	})
 })
 

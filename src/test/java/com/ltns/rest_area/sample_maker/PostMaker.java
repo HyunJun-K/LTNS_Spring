@@ -78,8 +78,8 @@ public class PostMaker extends AbstractDAO_test  {
 	}
 	
 	public String postDate() {
-		String result ="2020-12-";
-		int random = (int)(Math.random()*30);
+		String result ="2021-01-";
+		int random = (int)(Math.random()*3);
 		result+= random;
 		return result;
 	}
@@ -114,8 +114,9 @@ public class PostMaker extends AbstractDAO_test  {
 			p.mkReport();  // 신고횟수 
 			p.postDate();
 			dao.Post_Go(p.mkTitle(), p.mkContent(), counts.get(random), list.get(random), p.postDate(), p.mkRacode(), p.mkReport());
+			dao.close();
 		}
-	
+		
 
 	}
 	
