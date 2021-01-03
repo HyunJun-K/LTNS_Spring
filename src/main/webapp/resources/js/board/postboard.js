@@ -236,7 +236,7 @@ function setPostboard(jsonObj){
         '<td class="ra_code undisplay">'+jsonObj[i].ra_code+'</td>'+
         '<td class="post_id undisplay">'+jsonObj[i].post_id+'</td>'+
         '<td class="post_title"><a class="post_element" onclick="postView('+jsonObj[i].post_id+')" href="javascript:void(0);">'+jsonObj[i].post_title+'</a></td>'+
-        '<td class="um_username">'+jsonObj[i].post_username+'</td>'+
+        '<td class="um_username">'+jsonObj[i].um_username+'</td>'+
         '<td class="post_regdate">'+jsonObj[i].post_regdate+'</td>'+
 		'<td class="post_like_cnt">'+jsonObj[i].post_like_cnt+'</td>'+
         '<td class="post_reported"><button class="reported_btn" onclick="textPopup('+jsonObj[i].post_id+');"><image src="'+BASE_URL+'/resources/img/redalert.png"></button></td>'+
