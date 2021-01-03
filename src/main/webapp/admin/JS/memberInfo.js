@@ -177,7 +177,9 @@ function addSerch(){
 		 success : function(data, status){
 	            if(status == "success"){
 	            
-	                if(seachData(data)){}
+	                if(seachData(data)){
+						chk();
+					}
 	                
 	       }
 	    }
@@ -210,7 +212,7 @@ function seachData(JsonObj){
 	    }
 
 	    $("#list tbody").html(result); //업데이트 
-	    $("#pageinfo").html(JsonObj.pageNo + " / " + JsonObj.totalPage + "페이지  " +  "<span class='text-warning' >" + JsonObj.totalCnt + "</span>" + " 명의 회원"  );
+	    $("#pageinfo").html(JsonObj.count + " 명의 회원이 검색 되었습니다.");
 
 	    //페이징 정보 업데이트 
 	    var pagination = buildPagination(JsonObj.writePages, JsonObj.totalPage, JsonObj.pageNo, JsonObj.pagenationPage);

@@ -209,24 +209,26 @@ public class ApiService {
 		fullcnt = Integer.parseInt((jsonObj.get("count").toString())) / 99;
 
 		System.out.println("주유소 api를 가져오는 중..");
+		System.out.println();
 		// 전부 꺼내기
 		// 디비에 집어넣기
 		for (int i = 1; i <= fullcnt + 1; i++) {
 			jsonParser = new JSONParser();
 			jsonObj = (JSONObject) jsonParser.parse(readURL(url + "&pageNo=" + i));
 			JSONArray array = (JSONArray) jsonObj.get("list");
-
 			// 최대갯수로 페이지마다 죠지기
 			for (int j = 0; j < array.size(); j++) {
 				JSONObject row = (JSONObject) array.get(j);
 				String gs_code = (String) row.get("serviceAreaCode");
 				String gs_name = (String) row.get("serviceAreaName");
+				if(gs_name==null) continue;
 				String ra_code = ranameMap.get(gs_name.replaceAll("주유소", ""));
 				if (ra_code == null) {
 //					ra_code = "X";
 					//휴게소 위치정보가 없는 곳들은 열외합니다...
 					continue;
 				}
+
 				String ra_name=ra_codeNra_nameMap.get(ra_code);
 
 				String gs_company = (String) row.get("oilCompany");

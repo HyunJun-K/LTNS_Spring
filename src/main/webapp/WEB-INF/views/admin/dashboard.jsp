@@ -162,7 +162,7 @@
 	     	 <p id="gas_name" class="card-title2"> </p>
 	        <span id="gas_price" class="card-body text-center"> </span> <br>
 	        <span id="gas_price_lpg" class="card-body text-center"> </span> <br> 
-	         <span id="recomend_gas" class="card-body text-center">  </span>
+	         <span id="recomend_gas" class="card-body text-center">  </span> 
 	     </div>
 	    </div>
 	  </div>
@@ -171,10 +171,11 @@
 	    <div class="card text-center">
 	      <div class="card-body border border-warning">
 	        <h3 class="text-warning" >가장 저렴한 주유소</h3>
-	       <p id="chip_gas" class="card-title">  </p>
+	       <p id="chip_gas" class="card-title2">  </p>
 	        <span id="chip_gas_D" class="card-body "> </span> <br>
 	        <span id="chip_gas_O" class="card-body "> </span> <br>
-	        <span id="chip_gas_L" class="card-body "> </span>
+	        <span id="chip_gas_L" class="card-body "> </span> <br>
+	        
 	      </div>
 	    </div>
 	  </div>

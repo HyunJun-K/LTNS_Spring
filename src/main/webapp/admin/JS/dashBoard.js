@@ -158,8 +158,8 @@ function today_post(){
             },
             success : function(data,status){
                 if(data.status=="OK"){
-                    $("#chip_gas").html("<span>" + data.list[0].gs_NAME + "</span>");
-                    $("#chip_gas_D").text("경유 : " + data.list[0].gs_DIESEL);
+                    $("#chip_gas").html("<span> <i class='far fa-hand-peace'></i> " + data.list[0].gs_NAME + "</span>");
+                    $("#chip_gas_D").text("경유 : " + data.list[0].gs_DIESEL); 
                     $("#chip_gas_O").text("휘발류 : " + data.list[0].gs_GASOLINE);
                     $("#chip_gas_L").text("LPG : " + data.list[0].gs_LPG);
                 }
@@ -236,9 +236,9 @@ function Best(){
                     var items = data.list;
                 
                     $("#gas_name").html( "<i class='far fa-hand-peace'></i> " +items[0].gs_name + "</span>");
-                    $("#gas_price").html( " 디젤 : " +  items[0].gs_DIESEL + "   휘발류 :" + items[0].gs_GASOLINE);
-                    $("#gas_price_lpg").html(" LPG :" + items[0].gs_LPG )
-                    $("#recomend_gas").html(" Best : " +  "<span class='text-danger'>"+items[0].best_RA + "<span>" ); 
+                    $("#gas_price").html( " 경유 : " +  items[0].gs_DIESEL);
+                    $("#gas_price_lpg").html(" 휘발류 :" + items[0].gs_GASOLINE )
+                    $("#recomend_gas").html(" LPG : " +  items[0].gs_LPG  ); 
                 }
             }
 

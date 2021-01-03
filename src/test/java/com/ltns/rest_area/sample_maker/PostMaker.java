@@ -78,9 +78,9 @@ public class PostMaker extends AbstractDAO_test  {
 	}
 	
 	public String postDate() {
-		String result ="2021-01-";
-		int random = (int)(Math.random()*3);
-		result+= random;
+		String result ="2020-12-";
+		int random = (int)(Math.random()*30);
+		result += random;
 		return result;
 	}
 	
@@ -105,7 +105,7 @@ public class PostMaker extends AbstractDAO_test  {
 		int dataCnt = 0;
 		int cnt = 0;
 		
-		int randomsize = 50;
+		int randomsize = 10;
 		for (int i = 0; i < randomsize; i++) {
 			random = (int)(Math.random()*5);
 			p.mkTitle(); //타이틀
@@ -114,9 +114,9 @@ public class PostMaker extends AbstractDAO_test  {
 			p.mkReport();  // 신고횟수 
 			p.postDate();
 			dao.Post_Go(p.mkTitle(), p.mkContent(), counts.get(random), list.get(random), p.postDate(), p.mkRacode(), p.mkReport());
-			dao.close();
+			
 		}
-		
+		dao.close();
 
 	}
 	

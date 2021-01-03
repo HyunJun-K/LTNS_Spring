@@ -42,7 +42,7 @@ class MemberMaker extends AbstractDAO_test  {
 		
 		
 		public String postDate() {
-			String result ="2020-12-";
+			String result ="2021-01-";
 			int random = (int)(Math.random()*30);
 			result+= random;
 			return result;
@@ -55,7 +55,7 @@ class MemberMaker extends AbstractDAO_test  {
 	public static void main(String[] args) {
 		RefreshTableDAO dao = new RefreshTableDAO();
 		MemberMaker m = new MemberMaker();
-		dao.insert_Member(7,m.mkId(), m.mkPw(), m.mkId(), m.postDate());
+		dao.insert_Member(9,m.mkId(), m.mkPw(), m.mkId(), m.postDate());
 		
 	}
 	

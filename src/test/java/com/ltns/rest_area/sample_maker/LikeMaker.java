@@ -69,9 +69,8 @@ public class LikeMaker extends AbstractDAO_test {
 			dao.like_Food(like.mk_Uid(), like.mkFcode());
 			dao.like_Gas(like.mk_Uid(), like.mkGcode());
 			dao.like_Area(like.mk_Uid(), like.mkRacode());
-				
 		}
-		
+		dao.close();
 	}
 	
 }

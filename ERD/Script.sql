@@ -656,3 +656,26 @@ SELECT * FROM RESTAREA r ;
 SELECT * FROM GASSTATION ; 
 SELECT * FROM SCHEDULE s ;
 SELECT * FROM RESTAREA r ;
+
+SELECT * FROM post;
+
+	SELECT TO_CHAR(POST_REGDATE ,'MM-DD') days , nvl(count(*) ,0) dayscount  FROM POST
+		WHERE POST_REGDATE BETWEEN to_char(trunc(sysdate, 'iw')-7) and to_char(trunc(sysdate, 'iw'))
+		GROUP BY TO_CHAR(POST_REGDATE ,'MM-DD')
+		order by days
+		
+		
+		SELECT to_char(trunc(sysdate, 'iw') FROM dual; 
+		
+	
+	
+	
+	
+	SELECT * FROM POST p 
+	
+	SELECT to_char(trunc(sysdate, 'iw')-7) FROM DUAL;
+	SELECT SYSDATE FROM DUAL ;
+	
+DELETE FROM post;
+
+SELECT * FROM USERMEMBER u ;
