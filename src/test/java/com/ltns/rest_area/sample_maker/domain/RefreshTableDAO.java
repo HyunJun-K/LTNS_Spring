@@ -256,6 +256,10 @@ public class RefreshTableDAO extends AbstractDAO_test {
 	 final static String SELECT_AREA = "SELECT * FROM RESTAREA";
 	 final static String SELECT_GAS = "SELECT * FROM GASSTATION";
 	 final static String SELECT_FOOD = "SELECT * FROM FOODMENU";
+	 
+	 final static String INSERT_MEMBER_DATA="INSERT INTO UserMember(um_uid, um_username, um_password ,um_nickname,um_regdate)"+ 
+				"VALUES(?, ?, ?, ?, ?)";
+	 
 	 final static String SQL_INSERT_POST =
 				"INSERT INTO POST"
 				+"(POST_ID,POST_TITLE,POST_CONTENTS,UM_UID,UM_USERNAME,POST_REGDATE,RA_CODE,POST_REPORTED) "
@@ -410,6 +414,29 @@ public class RefreshTableDAO extends AbstractDAO_test {
 		
 		return cnt;
 	}
+	
+	
+
+	public int insert_Member(int uid, String um_username, String um_password, String um_nickname, String data) {
+		int cnt = 0;
+		System.out.println(um_username + " : " + um_password + " : "  + um_nickname + " : " + data);
+		try {
+			pstmt = conn.prepareStatement(INSERT_MEMBER_DATA);
+			pstmt.setInt(1, uid);
+			pstmt.setString(2, um_username);
+			pstmt.setString(3, um_password);
+			pstmt.setString(4, um_nickname);
+			pstmt.setString(5, data);
+			cnt = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("에러! : "+ INSERT_MEMBER_DATA);
+			e.printStackTrace();
+		}
+		
+		return cnt;
+	}
+	
+	
 	
 	//휴게소 추천
 	public int like_Area(int uid, String code) {

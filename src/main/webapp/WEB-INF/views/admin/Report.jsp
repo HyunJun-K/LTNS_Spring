@@ -23,12 +23,10 @@
 $(document).ready(function(){
 	
 	var post_id = opener.$("#parent2").val();
-	var name = opener.$("#parent3").val();
 	
 	
 	
 	$("#post_No").text(post_id)
-	$("#reportMan").text(name)
 	
 	
 	$("#reportGo").click(function(){
@@ -41,6 +39,7 @@ $(document).ready(function(){
 			success : function(data,status){
 				if(data.status=="OK"){
 					alert("신고가 접수되었습니다.");
+					self.close();
 				}
 			}
 		})
@@ -70,7 +69,6 @@ function close_btn(){
 			<form>
 				  <div>
 				  		<h6> Post_Number :<span id="post_No"> </span> </h6>
-				  		<h6> Report_User&nbsp;&nbsp;&nbsp;:<span id="reportMan">  </span> </h6>
 				  </div>
 
 				  <hr>
